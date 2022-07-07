@@ -1,11 +1,10 @@
 <?php
 namespace App\Http\Controllers\API;
-use App\Option;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Section;
-use Illuminate\Support\Facades\Auth;
-use Validator;
+use App\Models\Section;
+
 class SectionController extends Controller
 {
     public $successStatus = 200;

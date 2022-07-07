@@ -1,9 +1,10 @@
 <?php
 namespace App\Http\Controllers\API;
-use App\Section;
+
+use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Note;
+use App\Models\Note;
 use Validator;
 class NoteController extends Controller
 {

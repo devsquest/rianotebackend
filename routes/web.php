@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Auth::routes();
 Auth::routes(['register' => false]);
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
@@ -22,8 +20,6 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/', function () {
     return view('auth.login');
 });
-
-
 
 Route::prefix('admin')->group(function () {
     Route::get('note-list', [\App\Http\Controllers\Admin\NoteController::class, 'index'])

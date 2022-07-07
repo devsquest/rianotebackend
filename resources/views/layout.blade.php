@@ -2,28 +2,28 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <link rel="icon" href="{{ asset('plugins/images/favicon.png') }}">
+        <link rel="icon" href="{{ asset('admin/plugins/images/favicon.png') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#000000">
-        <link rel="apple-touch-icon" href="{{ asset('plugins/images/logo.png') }}">
+        <link rel="apple-touch-icon" href="{{ asset('admin/plugins/images/logo.png') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <!-- Bootstrap Core CSS -->
-        <link href="{{ asset('bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- This is Sidebar menu CSS -->
-        <link href="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css') }}" rel="stylesheet">
         <!-- This is a Animation CSS -->
-        <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/css/animate.css') }}" rel="stylesheet">
         <!-- This is a Custom CSS -->
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-        <link href="{{ asset('css/colors/blue-dark.css') }}" id="theme" rel="stylesheet">
-        <link href="{{ asset('plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+        <link href="{{ asset('admin/css/colors/blue-dark.css') }}" id="theme" rel="stylesheet">
+        <link href="{{ asset('admin/plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css') }}" rel="stylesheet">
         <!-- Color picker plugins css -->
-        <link href="{{ asset('plugins/bower_components/jquery-asColorPicker-master/css/asColorPicker.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/plugins/bower_components/jquery-asColorPicker-master/css/asColorPicker.css') }}" rel="stylesheet">
         <!-- Date picker plugins css -->
-        <link href="{{ asset('plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('admin/plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css">
         <!-- Daterange picker plugins css -->
-        <link href="{{ asset('plugins/bower_components/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/plugins/bower_components/timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('admin/plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <title>Admin Panel</title>
@@ -44,12 +44,12 @@
                     <!-- Logo -->
                     <a class="logo" href="{{ asset('admin/note-list') }}"><b><i class="fa fa-home"></i>&nbsp; Ria Note</b></a> </div>
                 <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{ asset('plugins/images/users/varun.jpg') }}" alt="user-img" width="36" class="img-circle">
+                    <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{ asset('admin/plugins/images/users/varun.jpg') }}" alt="user-img" width="36" class="img-circle">
                             <b class="hidden-xs">{{ $user->name }}</b><span class="caret"></span> </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <div class="dw-user-box">
-                                    <div class="u-img"><img src="{{ asset('plugins/images/users/varun.jpg') }}" alt="user" /></div>
+                                    <div class="u-img"><img src="{{ asset('admin/plugins/images/users/varun.jpg') }}" alt="user" /></div>
                                     <div class="u-text">
                                         <h4>{{ $user->name }}</h4>
                                         <p class="text-muted">{{ $user->email }}</p>
@@ -95,24 +95,24 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2021 &copy; Ria Note </footer>
+            <footer class="footer text-center"> 2022 &copy; Ria Note </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
     <!-- jQuery -->
-        <script src="{{ asset('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
         <!-- Bootstrap Core JavaScript -->
-        <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('admin/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <!-- Sidebar menu plugin JavaScript -->
-        <script src="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
 
         <!-- jQuery -->
-        <script src="{{ asset('plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/bower_components/jquery/dist/jquery.min.js') }}"></script>
         <!-- Bootstrap Core JavaScript -->
-        <script src="{{ asset('bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('admin/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <!-- Sidebar menu plugin JavaScript -->
-        <script src="{{ asset('plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
+        <script src="{{ asset('admin/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js') }}"></script>
         <!-- Custom Theme JavaScript -->
-        <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="{{ asset('admin/js/custom.js') }}"></script>
     </body>
 </html>
