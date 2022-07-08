@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/note/{view?}', [\App\Http\Controllers\HomeController::class, 'index'])->where('view', '(.*)')->name('vue_page');
+
 Route::prefix('admin')->group(function () {
     Route::get('note-list', [\App\Http\Controllers\Admin\NoteController::class, 'index'])
         ->middleware('auth');
