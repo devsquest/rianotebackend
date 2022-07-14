@@ -152,7 +152,28 @@ var render = function render() {
     }
   })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 top-note-height"
-  })])])])]);
+  }, [_c("div", {
+    staticClass: "user-profile",
+    staticStyle: {
+      "margin-top": "1.2rem"
+    }
+  }, [_c("img", {
+    staticStyle: {
+      border: "3px solid #dee2e6 !important",
+      "border-radius": "50%",
+      width: "45px"
+    },
+    attrs: {
+      src: this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg",
+      alt: ""
+    }
+  }), _vm._v(" "), _c("span", {
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v("Danny Alves")]), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-angle-down"
+  })])])])])])]);
 };
 
 var staticRenderFns = [function () {

@@ -20,7 +20,22 @@
             </div>
           </div>
           <div class="col-lg-4 top-note-height">
-            
+            <div class="user-profile" style="margin-top: 1.2rem">
+              <img
+                style="
+                  border: 3px solid #dee2e6 !important;
+                  border-radius: 50%;
+                  width: 45px;
+                "
+                :src="
+                  this.$appConfig.asset_url +
+                  '/note_assets/img/icons/Basic-Note_42.jpg'
+                "
+                alt=""
+              />
+              <span style="font-size: 14px">Danny Alves</span>
+              <i class="fa-solid fa-angle-down"></i>
+            </div>
           </div>
         </div>
       </div>
