@@ -1,2 +1,22 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+.note-background {
+  background-color: #f7f7f7;
+}
 
+.note-logo {
+  background-color: #0e386a;
+}
+
+.top-note-height {
+  height: 80px;
+}
+
+.logo-img {
+  width: 170px;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: #53b848;
+  border-color: #53b848;
+}

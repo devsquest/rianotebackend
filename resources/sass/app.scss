@@ -3,3 +3,23 @@
 
 // Variables
 @import 'variables';
+
+// Custom
+.note-background {
+    background-color: $body-bg;
+}
+
+.note-logo {
+    background-color: #0e386a;
+}
+.top-note-height {
+    height: 80px;
+}
+.logo-img{
+    width: 170px;
+}
+.btn-success {
+    color: #fff;
+    background-color: #53b848;
+    border-color: #53b848;
+}

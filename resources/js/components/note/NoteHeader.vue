@@ -1,12 +1,9 @@
 <template>
-  <div>Note Header</div>
+  <div></div>
 </template>
 
 <script>
 export default {
   name: "NoteHeader",
-  mounted() {
-    console.log("NH");
-  },
 };
 </script>

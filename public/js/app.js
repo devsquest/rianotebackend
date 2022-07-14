@@ -29,20 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "MasterLayout",
-  methods: {
-    changeRoute: function changeRoute() {
-      this.$router.push({
-        name: "make_note",
-        params: {
-          type: "abc"
-        }
-      });
-    }
-  },
-  mounted: function mounted() {
-    console.log("ML");
-  }
+  name: "MasterLayout"
 });
 
 /***/ }),
@@ -74,10 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "NoteFooter",
-  mounted: function mounted() {
-    console.log("NF");
-  }
+  name: "NoteFooter"
 });
 
 /***/ }),
@@ -93,10 +77,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "NoteHeader",
-  mounted: function mounted() {
-    console.log("NH");
-  }
+  name: "NoteHeader"
 });
 
 /***/ }),
@@ -150,14 +131,42 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_c("button", {
-    on: {
-      click: _vm.changeRoute
+  return _c("div", {
+    staticClass: "container-fluid p-0"
+  }, [_c("div", {
+    staticClass: "note-background"
+  }, [_c("div", {
+    staticClass: "note-header"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-2 note-logo top-note-height"
+  }, [_c("img", {
+    staticClass: "logo-img mt-2",
+    staticStyle: {
+      "margin-left": "2.2rem !important"
+    },
+    attrs: {
+      src: this.$appConfig.asset_url + "/note_assets/img/Basic-Note_03_03.png",
+      alt: ""
     }
-  }, [_vm._v("Chnage Route")])]);
+  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-4 top-note-height"
+  })])])])]);
 };
 
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "col-lg-6 top-note-height"
+  }, [_c("div", {
+    staticClass: "new-note-btn"
+  }, [_c("button", {
+    staticClass: "btn btn-success mt-4 ml-3"
+  }, [_vm._v("New Note")])])]);
+}];
 render._withStripped = true;
 
 
@@ -207,7 +216,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._v("Note Footer")]);
+  return _c("div");
 };
 
 var staticRenderFns = [];
@@ -231,7 +240,7 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("div", [_vm._v("Note Header")]);
+  return _c("div");
 };
 
 var staticRenderFns = [];
@@ -247,30 +256,49 @@ render._withStripped = true;
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _sass_app_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../sass/app.scss */ "./resources/sass/app.scss");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _configuration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./configuration */ "./resources/js/configuration.js");
 
 
 
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].config.productionTip = false;
-vue__WEBPACK_IMPORTED_MODULE_3__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].prototype.$appConfig = _configuration__WEBPACK_IMPORTED_MODULE_3__["default"];
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].config.productionTip = false;
+vue__WEBPACK_IMPORTED_MODULE_4__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__["default"] // short for `routes: routes`
 
 });
-new vue__WEBPACK_IMPORTED_MODULE_3__["default"]({
+new vue__WEBPACK_IMPORTED_MODULE_4__["default"]({
   router: router,
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
   }
 }).$mount('#app');
+
+/***/ }),
+
+/***/ "./resources/js/configuration.js":
+/*!***************************************!*\
+  !*** ./resources/js/configuration.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  asset_url: "http://127.0.0.1:8000"
+});
 
 /***/ }),
 

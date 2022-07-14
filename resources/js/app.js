@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import './../sass/app.scss'
 import 'popper.js'
 import routes from './routes'
+import configuration from './configuration'
+Vue.prototype.$appConfig = configuration
 
 Vue.config.productionTip = false
 
