@@ -66,13 +66,13 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
+                    <i class="fa-solid fa-calendar-days u-input-icon"></i>
                     <input type="text" placeholder="Date" class="u-input" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
+                    <i class="fa-solid fa-clock u-input-icon"></i>
                     <input
                       type="text"
                       placeholder="Start Time"
@@ -82,26 +82,34 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
+                    <i class="fa-solid fa-clock u-input-icon"></i>
                     <input type="text" placeholder="End Time" class="u-input" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
+                    <i class="fa-solid fa-sack-dollar u-input-icon"></i>
                     <input type="text" placeholder="Fee" class="u-input" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
-                    <input type="text" placeholder="Intrductory Comments" class="u-input" />
+                    <i class="fa-regular fa-message u-input-icon"></i>
+                    <input
+                      type="text"
+                      placeholder="Intrductory Comments"
+                      class="u-input"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
                   <div class="input-group-u">
-                    <i class="fa fa-user u-input-icon"></i>
-                    <input type="text" placeholder="Closing Comments" class="u-input" />
+                    <i class="fa-regular fa-message u-input-icon"></i>
+                    <input
+                      type="text"
+                      placeholder="Closing Comments"
+                      class="u-input"
+                    />
                   </div>
                 </div>
               </div>

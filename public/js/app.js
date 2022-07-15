@@ -241,7 +241,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-solid fa-calendar-days u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
@@ -253,7 +253,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-solid fa-clock u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
@@ -265,7 +265,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-solid fa-clock u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
@@ -277,7 +277,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-solid fa-sack-dollar u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
@@ -289,7 +289,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-regular fa-message u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
@@ -301,7 +301,7 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "input-group-u"
   }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
+    staticClass: "fa-regular fa-message u-input-icon"
   }), _vm._v(" "), _c("input", {
     staticClass: "u-input",
     attrs: {
