@@ -132,7 +132,7 @@ var render = function render() {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "container-fluid p-0"
+    staticClass: "container-fluid make-note"
   }, [_c("div", {
     staticClass: "note-background"
   }, [_c("div", {
@@ -140,7 +140,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-lg-2 note-logo top-note-height"
+    staticClass: "col-lg-2 col-md-2 col-sm-2 col-6 note-logo top-note-height"
   }, [_c("img", {
     staticClass: "logo-img mt-2",
     staticStyle: {
@@ -151,11 +151,12 @@ var render = function render() {
       alt: ""
     }
   })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4 top-note-height"
+    staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
   }, [_c("div", {
     staticClass: "user-profile",
     staticStyle: {
-      "margin-top": "1.2rem"
+      "margin-top": "1.2rem",
+      "margin-left": "6rem !important"
     }
   }, [_c("img", {
     staticStyle: {
@@ -172,8 +173,25 @@ var render = function render() {
       "font-size": "14px"
     }
   }, [_vm._v("Danny Alves")]), _vm._v(" "), _c("i", {
-    staticClass: "fa-solid fa-angle-down"
-  })])])])])])]);
+    staticClass: "fa-solid fa-angle-down",
+    staticStyle: {
+      color: "#cbcbcb"
+    }
+  }), _vm._v(" "), _c("hr", {
+    staticClass: "vertical"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-sliders",
+    staticStyle: {
+      color: "#cbcbcb"
+    }
+  }), _vm._v(" "), _c("hr", {
+    staticClass: "vertical"
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-life-ring",
+    staticStyle: {
+      color: "#cbcbcb"
+    }
+  })])])]), _vm._v(" "), _vm._m(1)])])]);
 };
 
 var staticRenderFns = [function () {
@@ -181,12 +199,116 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "col-lg-6 top-note-height"
+    staticClass: "col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
   }, [_c("div", {
     staticClass: "new-note-btn"
   }, [_c("button", {
     staticClass: "btn btn-success mt-4 ml-3"
   }, [_vm._v("New Note")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12",
+    staticStyle: {
+      "background-color": "#0e386a"
+    }
+  }, [_c("div", {
+    staticClass: "input-placeholder mt-3 mb-3",
+    staticStyle: {
+      "padding-left": "2%",
+      "padding-right": "2%"
+    }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Name"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Date"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Start Time"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "End Time"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Fee"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-12"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Intrductory Comments"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-12"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Closing Comments"
+    }
+  })])])])])])]);
 }];
 render._withStripped = true;
 

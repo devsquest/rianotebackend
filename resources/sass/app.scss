@@ -5,21 +5,69 @@
 @import 'variables';
 
 // Custom
+$u-color-1 : #0e386a;
+$u-color-2 : rgb(28, 81, 214);
+
+.make-note{
+    font-family: $font-family-poppins;
+}
 .note-background {
     background-color: $body-bg;
 }
 
 .note-logo {
-    background-color: #0e386a;
+    background-color: $u-color-1;
 }
+
 .top-note-height {
     height: 80px;
 }
-.logo-img{
+
+.logo-img {
     width: 170px;
 }
+
 .btn-success {
     color: #fff;
     background-color: #53b848;
     border-color: #53b848;
+}
+
+.vertical {
+    width: 80px;
+    display: inline-block;
+    transform: rotate(90deg);
+}
+
+.white-bg {
+    background-color: #ffffff;
+}
+
+.u-input::placeholder {
+    color: white;
+    position: absolute;
+    left: 30px;
+}
+
+.u-input-icon {
+    color: white;
+    position: relative;
+    top: 22px;
+    left: 5px;
+}
+
+.u-input {
+    width: 100%;
+    border: none;
+    height: 27px;
+    background-color: $u-color-1;
+    border-bottom: 1px solid $u-color-2;
+    padding-left: 30px;
+    color: white;
+}
+
+.u-input:focus {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid $u-color-2;
 }

@@ -1,4 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap);
+.make-note {
+  font-family: "Poppins", sans-serif;
+}
+
 .note-background {
   background-color: #f7f7f7;
 }
@@ -19,4 +24,49 @@
   color: #fff;
   background-color: #53b848;
   border-color: #53b848;
+}
+
+.vertical {
+  width: 80px;
+  display: inline-block;
+  transform: rotate(90deg);
+}
+
+.white-bg {
+  background-color: #ffffff;
+}
+
+.u-input::-moz-placeholder {
+  color: white;
+  position: absolute;
+  left: 30px;
+}
+
+.u-input::placeholder {
+  color: white;
+  position: absolute;
+  left: 30px;
+}
+
+.u-input-icon {
+  color: white;
+  position: relative;
+  top: 22px;
+  left: 5px;
+}
+
+.u-input {
+  width: 100%;
+  border: none;
+  height: 27px;
+  background-color: #0e386a;
+  border-bottom: 1px solid rgb(28, 81, 214);
+  padding-left: 30px;
+  color: white;
+}
+
+.u-input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgb(28, 81, 214);
 }

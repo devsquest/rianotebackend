@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{ asset('note_assets/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('note_assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('note_assets/css/formChanges.css') }}">
+    <!-- <link rel="stylesheet/less" href="{{ asset('note_assets/css/formChanges.less') }}"> -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 </head>
 
