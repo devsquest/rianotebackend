@@ -77,3 +77,19 @@ $btn-color : #53b848;
 .bg-green {
     background-color: $btn-color;
 }
+
+.note-result {
+    width: 100%;
+    background-color: white;
+    min-height: 600px;
+    padding: 5px;
+}
+
+.note-section-left-ul {
+    list-style-type: none;
+}
+
+.note-section-left-li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

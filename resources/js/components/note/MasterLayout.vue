@@ -210,6 +210,24 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-4 col-md-4">
+                <br>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="note-section-left">
+                      <ul class="note-section-left-ul">
+                        <li class="note-section-left-li">Global Assessment</li>
+                        <li class="note-section-left-li">Level of functioning</li>
+                        <li class="note-section-left-li">Effective State</li>
+                        <li class="note-section-left-li">Mental State</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8 col-md-8"></div>
+            </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="row">
@@ -245,7 +263,8 @@
                               padding: 15px;
                             "
                             href="#"
-                            > <i class="fa-solid fa-file-export"></i> Export</a
+                          >
+                            <i class="fa-solid fa-file-export"></i> Export</a
                           >
                         </li>
                         <li class="nav-item">
@@ -257,7 +276,8 @@
                               padding: 15px;
                             "
                             href="#"
-                            > <i class="fa-solid fa-copy"></i> Copy</a
+                          >
+                            <i class="fa-solid fa-copy"></i> Copy</a
                           >
                         </li>
                         <li class="nav-item">
@@ -269,7 +289,9 @@
                               padding: 15px;
                             "
                             href="#"
-                            > <i class="fa-solid fa-pen-to-square"></i> Final Edit</a
+                          >
+                            <i class="fa-solid fa-pen-to-square"></i> Final
+                            Edit</a
                           >
                         </li>
                         <li class="nav-item">
@@ -281,12 +303,20 @@
                               padding: 15px;
                             "
                             href="#"
-                            > <i class="fa-solid fa-eraser"></i> Clear</a
+                          >
+                            <i class="fa-solid fa-eraser"></i> Clear</a
                           >
                         </li>
                       </ul>
                     </div>
                   </nav>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12">
+                <div class="note-result">
+                  <h5>Session Note</h5>
                 </div>
               </div>
             </div>

@@ -410,7 +410,29 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Progress")])])])])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Progress")])])])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-4 col-md-4"
+  }, [_c("br"), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "note-section-left"
+  }, [_c("ul", {
+    staticClass: "note-section-left-ul"
+  }, [_c("li", {
+    staticClass: "note-section-left-li"
+  }, [_vm._v("Global Assessment")]), _vm._v(" "), _c("li", {
+    staticClass: "note-section-left-li"
+  }, [_vm._v("Level of functioning")]), _vm._v(" "), _c("li", {
+    staticClass: "note-section-left-li"
+  }, [_vm._v("Effective State")]), _vm._v(" "), _c("li", {
+    staticClass: "note-section-left-li"
+  }, [_vm._v("Mental State")])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-8 col-md-8"
+  })])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-6 col-md-6"
   }, [_c("div", {
     staticClass: "row"
@@ -485,7 +507,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-pen-to-square"
-  }), _vm._v(" Final Edit")])]), _vm._v(" "), _c("li", {
+  }), _vm._v(" Final\n                            Edit")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link white-text",
@@ -499,7 +521,13 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-eraser"
-  }), _vm._v(" Clear")])])])])])])])])])])]);
+  }), _vm._v(" Clear")])])])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("div", {
+    staticClass: "note-result"
+  }, [_c("h5", [_vm._v("Session Note")])])])])])])]);
 }];
 render._withStripped = true;
 
