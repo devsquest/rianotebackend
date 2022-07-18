@@ -117,6 +117,182 @@
           </div>
         </div>
       </div>
+      <div class="note-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-6">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 bg-green">
+                <div class="scrollable-nav">
+                  <nav
+                    class="navbar navbar-expand-lg navbar-light"
+                    style="overflow-x: auto; padding: 0"
+                  >
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                    >
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div
+                      class="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            >Stand Info</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            >State</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            >Themes</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            >Treatment</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            >Progress</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="row">
+              <div class="col-lg-12 col-md-12 bg-green">
+                <div class="scrollable-nav">
+                  <nav
+                    class="navbar navbar-expand-lg navbar-light"
+                    style="overflow-x: auto; padding: 0"
+                  >
+                    <button
+                      class="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                    >
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div
+                      class="collapse navbar-collapse"
+                      id="navbarSupportedContent"
+                    >
+                      <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            > <i class="fa-solid fa-file-export"></i> Export</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            > <i class="fa-solid fa-copy"></i> Copy</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            > <i class="fa-solid fa-pen-to-square"></i> Final Edit</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link white-text"
+                            style="
+                              color: white;
+                              font-weight: 700;
+                              padding: 15px;
+                            "
+                            href="#"
+                            > <i class="fa-solid fa-eraser"></i> Clear</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

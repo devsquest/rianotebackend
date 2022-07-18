@@ -7,10 +7,12 @@
 // Custom
 $u-color-1 : #0e386a;
 $u-color-2 : rgb(28, 81, 214);
+$btn-color : #53b848;
 
-.make-note{
+.make-note {
     font-family: $font-family-poppins;
 }
+
 .note-background {
     background-color: $body-bg;
 }
@@ -29,8 +31,8 @@ $u-color-2 : rgb(28, 81, 214);
 
 .btn-success {
     color: #fff;
-    background-color: #53b848;
-    border-color: #53b848;
+    background-color: $btn-color;
+    border-color: $btn-color;
 }
 
 .vertical {
@@ -70,4 +72,8 @@ $u-color-2 : rgb(28, 81, 214);
     border: none;
     outline: none;
     border-bottom: 1px solid $u-color-2;
+}
+
+.bg-green {
+    background-color: $btn-color;
 }

@@ -191,7 +191,7 @@ var render = function render() {
     staticStyle: {
       color: "#cbcbcb"
     }
-  })])])]), _vm._v(" "), _vm._m(1)])])]);
+  })])])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2)])]);
 };
 
 var staticRenderFns = [function () {
@@ -309,6 +309,197 @@ var staticRenderFns = [function () {
       placeholder: "Closing Comments"
     }
   })])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "note-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-6 col-md-6"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12 bg-green"
+  }, [_c("div", {
+    staticClass: "scrollable-nav"
+  }, [_c("nav", {
+    staticClass: "navbar navbar-expand-lg navbar-light",
+    staticStyle: {
+      "overflow-x": "auto",
+      padding: "0"
+    }
+  }, [_c("button", {
+    staticClass: "navbar-toggler",
+    attrs: {
+      type: "button",
+      "data-toggle": "collapse",
+      "data-target": "#navbarSupportedContent",
+      "aria-controls": "navbarSupportedContent",
+      "aria-expanded": "false",
+      "aria-label": "Toggle navigation"
+    }
+  }, [_c("span", {
+    staticClass: "navbar-toggler-icon"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "collapse navbar-collapse",
+    attrs: {
+      id: "navbarSupportedContent"
+    }
+  }, [_c("ul", {
+    staticClass: "navbar-nav mr-auto"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Stand Info")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("State")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Themes")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Treatment")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Progress")])])])])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6 col-md-6"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12 bg-green"
+  }, [_c("div", {
+    staticClass: "scrollable-nav"
+  }, [_c("nav", {
+    staticClass: "navbar navbar-expand-lg navbar-light",
+    staticStyle: {
+      "overflow-x": "auto",
+      padding: "0"
+    }
+  }, [_c("button", {
+    staticClass: "navbar-toggler",
+    attrs: {
+      type: "button",
+      "data-toggle": "collapse",
+      "data-target": "#navbarSupportedContent",
+      "aria-controls": "navbarSupportedContent",
+      "aria-expanded": "false",
+      "aria-label": "Toggle navigation"
+    }
+  }, [_c("span", {
+    staticClass: "navbar-toggler-icon"
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "collapse navbar-collapse",
+    attrs: {
+      id: "navbarSupportedContent"
+    }
+  }, [_c("ul", {
+    staticClass: "navbar-nav mr-auto"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-file-export"
+  }), _vm._v(" Export")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-copy"
+  }), _vm._v(" Copy")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-pen-to-square"
+  }), _vm._v(" Final Edit")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px"
+    },
+    attrs: {
+      href: "#"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-eraser"
+  }), _vm._v(" Clear")])])])])])])])])])])]);
 }];
 render._withStripped = true;
 
