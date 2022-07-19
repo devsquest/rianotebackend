@@ -43,9 +43,10 @@ export default {
     };
   },
   methods: {
-    loginSubmit(e) {
+    async loginSubmit(e) {
       e.preventDefault();
-      console.log(this.formData);
+      this.$store.dispatch("login/login", this.formData);
+      console.log(this.$store.state.login.loginInfo);
     },
   },
 };
