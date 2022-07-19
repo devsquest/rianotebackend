@@ -45,8 +45,9 @@ export default {
   methods: {
     async loginSubmit(e) {
       e.preventDefault();
-      this.$store.dispatch("login/login", this.formData);
-      console.log(this.$store.state.login.loginInfo);
+      await this.$store.dispatch("login/login", this.formData).then(() => {
+        console.log(this.$store.state.login.loginInfo);
+      });
     },
   },
 };

@@ -16,13 +16,13 @@ const mutations = {
     }
 };
 const actions = {
-    login(context, payload) {
+    async login(context, payload) {
         let url = process.env.MIX_API_URL + "/api/login";
         let headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
         };
-        Vue.axios.post(url, payload, { headers: headers }).then((response) => {
+        return Vue.axios.post(url, payload, { headers: headers }).then((response) => {
             context.commit('login', response);
         }).catch((error) => {
             console.log(error);
