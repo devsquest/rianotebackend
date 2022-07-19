@@ -2,6 +2,8 @@ import MasterLayout from './components/note/MasterLayout.vue'
 import NotFound from './components/note/NotFound.vue'
 import NoteHeader from './components/note/NoteHeader.vue'
 import NoteFooter from './components/note/NoteFooter.vue'
+import LoginPage from './components/note/pages/LoginPage.vue'
+
 let node = "/" + process.env.MIX_BASE_NODE;
 
 const routes = [
@@ -11,10 +13,13 @@ const routes = [
     // { path: '/category/:slug', name: 'category_page', component: CategoryPage },
     // { path: '/:cat_name/:slug', name: 'content_page', component: ContentPage },
     //
-    { path: node + '/makenote/:type', name: 'make_note', components: {
-        header: NoteHeader,
-        default: MasterLayout,
-        footer: NoteFooter
-    } },
+    { path: node + '/login', name: 'login_page', component: LoginPage },
+    {
+        path: node + '/makenote/:type', name: 'make_note', components: {
+            header: NoteHeader,
+            default: MasterLayout,
+            footer: NoteFooter
+        }
+    },
 ]
 export default routes;

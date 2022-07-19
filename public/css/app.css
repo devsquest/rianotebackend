@@ -82,11 +82,89 @@
   padding: 5px;
 }
 
-.note-section-left-ul {
-  list-style-type: none;
+.note-section-left {
+  background-color: #0e386a;
+  min-height: 570px;
 }
 
 .note-section-left-li {
   padding-top: 10px;
   padding-bottom: 10px;
+  color: white;
+  font-weight: 900;
+}
+
+.note-section-left-li:hover {
+  background-color: #53b848;
+}
+
+.note-section-left-text {
+  display: block;
+  text-align: center;
+}
+
+.tool-input {
+  border-style: none;
+  background-color: hsl(0deg, 0%, 96%);
+  color: hsl(0deg, 0%, 69%);
+  width: 100%;
+  font-weight: 500;
+  height: 35px;
+}
+
+.tool-input::-moz-placeholder {
+  color: hsl(0deg, 0%, 69%);
+  font-weight: 500;
+}
+
+.tool-input::placeholder {
+  color: hsl(0deg, 0%, 69%);
+  font-weight: 500;
+}
+
+.tool-input:focus {
+  border: none;
+  outline: none;
+}
+
+.tools-area {
+  background-color: white;
+  padding: 20px;
+}
+
+.tool-input-icon {
+  position: absolute;
+  top: 30px;
+  right: 41px;
+  color: hsl(0deg, 0%, 69%);
+}
+
+.single-tools-option {
+  padding: 3px;
+}
+
+.single-tools-option-text {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.single-tools-option-input {
+  border-style: none;
+  width: 100%;
+  background-color: #0e386a;
+  color: white;
+  height: 28px;
+}
+
+.single-tools-option-input:focus {
+  border: none;
+  outline: none;
+}
+
+.single-tools-option-input-icon {
+  color: white;
+  position: absolute;
+  right: 41px;
+  bottom: 27px;
+  font-size: 20px;
 }
