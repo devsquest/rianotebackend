@@ -6,5 +6,10 @@
 <script>
 export default {
   name: "SplashPage",
+  data() {
+    return {
+      showModal: false,
+    };
+  },
 };
 </script>

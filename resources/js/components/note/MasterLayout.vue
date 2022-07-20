@@ -20,7 +20,9 @@
             class="col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
           >
             <div class="new-note-btn">
-              <button class="btn btn-success mt-4 ml-3">New Note</button>
+              <button class="btn btn-success mt-4 ml-3" v-on:click="newNoteBtn">
+                New Note
+              </button>
             </div>
           </div>
           <div
@@ -217,13 +219,19 @@
                   <div class="col-lg-12">
                     <div class="note-section-left">
                       <div class="note-section-left-li">
-                        <span class="note-section-left-text">Level of functioning</span>
+                        <span class="note-section-left-text"
+                          >Level of functioning</span
+                        >
                       </div>
                       <div class="note-section-left-li">
-                        <span class="note-section-left-text">Level of functioning</span>
+                        <span class="note-section-left-text"
+                          >Level of functioning</span
+                        >
                       </div>
                       <div class="note-section-left-li">
-                        <span class="note-section-left-text">Effective State</span>
+                        <span class="note-section-left-text"
+                          >Effective State</span
+                        >
                       </div>
                       <div class="note-section-left-li">
                         <span class="note-section-left-text">Mental State</span>
@@ -233,13 +241,19 @@
                 </div>
               </div>
               <div class="col-lg-8 col-md-8">
-                <br>
+                <br />
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="tools-area">
                       <div class="search-box">
-                        <input type="text" placeholder="Enter Search Here" class="tool-input">
-                        <i class="fa-solid fa-magnifying-glass tool-input-icon"></i>
+                        <input
+                          type="text"
+                          placeholder="Enter Search Here"
+                          class="tool-input"
+                        />
+                        <i
+                          class="fa-solid fa-magnifying-glass tool-input-icon"
+                        ></i>
                       </div>
                       <div class="single-tools-area">
                         <div class="tools-heading mt-2">
@@ -247,8 +261,17 @@
                         </div>
                         <div class="tools-options">
                           <div class="single-tools-option">
-                            <input type="text" class="single-tools-option-input" disabled>
-                            <i class="fa-solid fa-square-pen single-tools-option-input-icon"></i>
+                            <input
+                              type="text"
+                              class="single-tools-option-input"
+                              disabled
+                            />
+                            <i
+                              class="
+                                fa-solid fa-square-pen
+                                single-tools-option-input-icon
+                              "
+                            ></i>
                           </div>
                         </div>
                       </div>
@@ -353,11 +376,107 @@
         </div>
       </div>
     </div>
+    <!--model start-->
+    <div
+      class="modal fade"
+      id="newNoteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="newNoteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form method="post" v-on:submit="submitNewNote">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newNoteModalLabel">
+                Start a new note
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p class="modal-main-text">Choose Note Type</p>
+                  <p v-for="note in notes_list" :key="note.id">
+                    <input
+                      type="radio"
+                      name="note"
+                      :value="note.id"
+                      v-model="selected_note"
+                    />
+                    <span>{{ note.name }}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="submit" class="btn btn-success">
+                Start a new Note
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--model start-->
   </div>
 </template>
 
 <script>
 export default {
   name: "MasterLayout",
+  data() {
+    return {
+      notes_list: null,
+      selected_note: this.$route.params.type,
+    };
+  },
+  mounted() {
+    this.getNotesList();
+  },
+  methods: {
+    newNoteBtn() {
+      $("#newNoteModal").modal("show");
+    },
+    getNotesList() {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      this.axios
+        .get(process.env.MIX_API_URL + "/api/notes", { headers: headers })
+        .then((response) => {
+          this.notes_list = response.data.success;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    submitNewNote(e) {
+      e.preventDefault();
+      this.$router.push({
+        name: 'make_note',
+        params: { type: this.selected_note },
+      });
+      $("#newNoteModal").modal("hide");
+    },
+  },
 };
 </script>

@@ -2185,7 +2185,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "MasterLayout"
+  name: "MasterLayout",
+  data: function data() {
+    return {
+      notes_list: null,
+      selected_note: this.$route.params.type
+    };
+  },
+  mounted: function mounted() {
+    this.getNotesList();
+  },
+  methods: {
+    newNoteBtn: function newNoteBtn() {
+      $("#newNoteModal").modal("show");
+    },
+    getNotesList: function getNotesList() {
+      var _this = this;
+
+      var _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")),
+          token = _JSON$parse.token;
+
+      var headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer ".concat(token)
+      };
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
+        headers: headers
+      }).then(function (response) {
+        _this.notes_list = response.data.success;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    submitNewNote: function submitNewNote(e) {
+      e.preventDefault();
+      this.$router.push({
+        name: 'make_note',
+        params: {
+          type: this.selected_note
+        }
+      });
+      $("#newNoteModal").modal("hide");
+    }
+  }
 });
 
 /***/ }),
@@ -2317,7 +2360,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "SplashPage"
+  name: "SplashPage",
+  data: function data() {
+    return {
+      showModal: false
+    };
+  }
 });
 
 /***/ }),
@@ -2392,7 +2440,16 @@ var render = function render() {
       src: this.$appConfig.asset_url + "/note_assets/img/Basic-Note_03_03.png",
       alt: ""
     }
-  })]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
+  }, [_c("div", {
+    staticClass: "new-note-btn"
+  }, [_c("button", {
+    staticClass: "btn btn-success mt-4 ml-3",
+    on: {
+      click: _vm.newNoteBtn
+    }
+  }, [_vm._v("\n                New Note\n              ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
   }, [_c("div", {
     staticClass: "user-profile",
@@ -2433,21 +2490,65 @@ var render = function render() {
     staticStyle: {
       color: "#cbcbcb"
     }
-  })])])]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _vm._m(2)])]);
+  })])])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "newNoteModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "newNoteModalLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_c("form", {
+    attrs: {
+      method: "post"
+    },
+    on: {
+      submit: _vm.submitNewNote
+    }
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("p", {
+    staticClass: "modal-main-text"
+  }, [_vm._v("Choose Note Type")]), _vm._v(" "), _vm._l(_vm.notes_list, function (note) {
+    return _c("p", {
+      key: note.id
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.selected_note,
+        expression: "selected_note"
+      }],
+      attrs: {
+        type: "radio",
+        name: "note"
+      },
+      domProps: {
+        value: note.id,
+        checked: _vm._q(_vm.selected_note, note.id)
+      },
+      on: {
+        change: function change($event) {
+          _vm.selected_note = note.id;
+        }
+      }
+    }), _vm._v(" "), _c("span", [_vm._v(_vm._s(note.name))])]);
+  })], 2)])]), _vm._v(" "), _vm._m(3)])])])])]);
 };
 
 var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
-  }, [_c("div", {
-    staticClass: "new-note-btn"
-  }, [_c("button", {
-    staticClass: "btn btn-success mt-4 ml-3"
-  }, [_vm._v("New Note")])])]);
-}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -2808,6 +2909,47 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "note-result"
   }, [_c("h5", [_vm._v("Session Note")])])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h5", {
+    staticClass: "modal-title",
+    attrs: {
+      id: "newNoteModalLabel"
+    }
+  }, [_vm._v("\n                Start a new note\n              ")]), _vm._v(" "), _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "modal-footer"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("\n                Close\n              ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("\n                Start a new Note\n              ")])]);
 }];
 render._withStripped = true;
 

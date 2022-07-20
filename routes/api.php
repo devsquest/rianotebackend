@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\NoteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/details', 'API\UserController@details');
     Route::post('/user-info', 'API\UserController@updateUser');
     Route::get('/sections', 'API\SectionController@index');
-    Route::get('/notes', 'API\NoteController@index');
-    Route::get('/notes/{id}', 'API\NoteController@getSectionByType');
+    Route::get('/notes', [NoteController::class, 'index']);
+    Route::get('/notes/{id}', [NoteController::class, 'getSectionByType']);
     Route::get('/headings/{id}', 'API\HeadingController@getHeadingsByType');
     Route::post('/headings/save', 'API\HeadingController@saveHeading');
     Route::put('/headings/{id}', 'API\HeadingController@editHeading');

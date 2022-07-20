@@ -159,10 +159,15 @@ $btn-color : #53b848;
     border: none;
     outline: none;
 }
-.single-tools-option-input-icon{
+
+.single-tools-option-input-icon {
     color: white;
     position: absolute;
     right: 41px;
     bottom: 27px;
     font-size: 20px;
+}
+
+.modal-main-text {
+    font-weight: 700;
 }
