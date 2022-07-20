@@ -5,8 +5,8 @@ const state = {
 };
 const getters = {};
 const mutations = {
-    login(state, payload){
-        if(payload.status == '200'){
+    login(state, payload) {
+        if (payload.status == '200') {
             state.loginInfo = {
                 status: 'true',
                 token: payload.data.success.token,
