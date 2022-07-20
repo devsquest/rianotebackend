@@ -44,9 +44,14 @@ export default {
   },
   methods: {
     async loginSubmit(e) {
+      this.$store.state.login.loginInfo = null;
       e.preventDefault();
       await this.$store.dispatch("login/login", this.formData).then(() => {
-        console.log(this.$store.state.login.loginInfo);
+        if (this.$store.state.login.loginInfo != null) {
+          this.$router.push({ name: "splash_page" });
+        } else {
+          this.$swal("Invalid Info");
+        }
       });
     },
   },
