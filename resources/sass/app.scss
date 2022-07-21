@@ -82,7 +82,9 @@ $btn-color : #53b848;
     width: 100%;
     background-color: white;
     min-height: 600px;
-    padding: 5px;
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 .note-section-left {
@@ -170,4 +172,14 @@ $btn-color : #53b848;
 
 .modal-main-text {
     font-weight: 700;
+}
+
+.note-heading-text-title {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.note-heading-text-value {
+    font-size: 17px;
+    font-weight: normal;
 }

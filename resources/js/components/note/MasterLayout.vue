@@ -63,13 +63,23 @@
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa fa-user u-input-icon"></i>
-                    <input type="text" placeholder="Name" class="u-input" />
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      class="u-input"
+                      v-model="note.name"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-calendar-days u-input-icon"></i>
-                    <input type="text" placeholder="Date" class="u-input" />
+                    <input
+                      type="text"
+                      placeholder="Date"
+                      class="u-input"
+                      v-model="note.date"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
@@ -79,19 +89,30 @@
                       type="text"
                       placeholder="Start Time"
                       class="u-input"
+                      v-model="note.start_time"
                     />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
-                    <input type="text" placeholder="End Time" class="u-input" />
+                    <input
+                      type="text"
+                      placeholder="End Time"
+                      class="u-input"
+                      v-model="note.end_time"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-sack-dollar u-input-icon"></i>
-                    <input type="text" placeholder="Fee" class="u-input" />
+                    <input
+                      type="text"
+                      placeholder="Fee"
+                      class="u-input"
+                      v-model="note.fee"
+                    />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-12">
@@ -101,6 +122,7 @@
                       type="text"
                       placeholder="Intrductory Comments"
                       class="u-input"
+                      v-model="note.intro_comments"
                     />
                   </div>
                 </div>
@@ -111,6 +133,7 @@
                       type="text"
                       placeholder="Closing Comments"
                       class="u-input"
+                      v-model="note.closing_comments"
                     />
                   </div>
                 </div>
@@ -368,7 +391,39 @@
             <div class="row">
               <div class="col-lg-12 col-md-12">
                 <div class="note-result">
-                  <h5>Session Note</h5>
+                  <div class="section-1">
+                    <p v-if="note.name != null && note.name != ''">
+                      <span class="note-heading-text-title">Name: </span>
+                      <span class="note-heading-text-value">{{
+                        note.name
+                      }}</span>
+                    </p>
+                    <p v-if="note.date != null && note.date != ''">
+                      <span class="note-heading-text-title">Date: </span>
+                      <span class="note-heading-text-value">{{
+                        note.date
+                      }}</span>
+                    </p>
+                    <p v-if="note.start_time != null && note.start_time != ''">
+                      <span class="note-heading-text-title">Start Time: </span>
+                      <span class="note-heading-text-value">{{
+                        note.start_time
+                      }}</span>
+                    </p>
+                    <p v-if="note.end_time != null && note.end_time != ''">
+                      <span class="note-heading-text-title">End Time: </span>
+                      <span class="note-heading-text-value">{{
+                        note.end_time
+                      }}</span>
+                    </p>
+                    <p v-if="note.fee != null && note.fee != ''">
+                      <span class="note-heading-text-title">Fee: </span>
+                      <span class="note-heading-text-value">{{
+                        note.fee
+                      }}</span>
+                    </p>
+                    <p>Session Note</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -444,6 +499,15 @@ export default {
     return {
       notes_list: null,
       selected_note: this.$route.params.type,
+      note: {
+        name: null,
+        date: null,
+        start_time: null,
+        end_time: null,
+        fee: null,
+        intro_comments: null,
+        closing_comments: null,
+      },
     };
   },
   mounted() {
@@ -472,7 +536,7 @@ export default {
     submitNewNote(e) {
       e.preventDefault();
       this.$router.push({
-        name: 'make_note',
+        name: "make_note",
         params: { type: this.selected_note },
       });
       $("#newNoteModal").modal("hide");

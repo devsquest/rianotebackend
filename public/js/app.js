@@ -2189,7 +2189,16 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       notes_list: null,
-      selected_note: this.$route.params.type
+      selected_note: this.$route.params.type,
+      note: {
+        name: null,
+        date: null,
+        start_time: null,
+        end_time: null,
+        fee: null,
+        intro_comments: null,
+        closing_comments: null
+      }
     };
   },
   mounted: function mounted() {
@@ -2221,7 +2230,7 @@ __webpack_require__.r(__webpack_exports__);
     submitNewNote: function submitNewNote(e) {
       e.preventDefault();
       this.$router.push({
-        name: 'make_note',
+        name: "make_note",
         params: {
           type: this.selected_note
         }
@@ -2490,7 +2499,252 @@ var render = function render() {
     staticStyle: {
       color: "#cbcbcb"
     }
-  })])])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._m(1)]), _vm._v(" "), _c("div", {
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12",
+    staticStyle: {
+      "background-color": "#0e386a"
+    }
+  }, [_c("div", {
+    staticClass: "input-placeholder mt-3 mb-3",
+    staticStyle: {
+      "padding-left": "2%",
+      "padding-right": "2%"
+    }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa fa-user u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.name,
+      expression: "note.name"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Name"
+    },
+    domProps: {
+      value: _vm.note.name
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "name", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-solid fa-calendar-days u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.date,
+      expression: "note.date"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Date"
+    },
+    domProps: {
+      value: _vm.note.date
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "date", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-solid fa-clock u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.start_time,
+      expression: "note.start_time"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Start Time"
+    },
+    domProps: {
+      value: _vm.note.start_time
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "start_time", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-solid fa-clock u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.end_time,
+      expression: "note.end_time"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "End Time"
+    },
+    domProps: {
+      value: _vm.note.end_time
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "end_time", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-6"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-solid fa-sack-dollar u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.fee,
+      expression: "note.fee"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Fee"
+    },
+    domProps: {
+      value: _vm.note.fee
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "fee", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-12"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-regular fa-message u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.intro_comments,
+      expression: "note.intro_comments"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Intrductory Comments"
+    },
+    domProps: {
+      value: _vm.note.intro_comments
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "intro_comments", $event.target.value);
+      }
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-3 col-md-3 col-12"
+  }, [_c("div", {
+    staticClass: "input-group-u"
+  }, [_c("i", {
+    staticClass: "fa-regular fa-message u-input-icon"
+  }), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.note.closing_comments,
+      expression: "note.closing_comments"
+    }],
+    staticClass: "u-input",
+    attrs: {
+      type: "text",
+      placeholder: "Closing Comments"
+    },
+    domProps: {
+      value: _vm.note.closing_comments
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.note, "closing_comments", $event.target.value);
+      }
+    }
+  })])])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "note-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-6 col-md-6"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("div", {
+    staticClass: "note-result"
+  }, [_c("div", {
+    staticClass: "section-1"
+  }, [_vm.note.name != null && _vm.note.name != "" ? _c("p", [_c("span", {
+    staticClass: "note-heading-text-title"
+  }, [_vm._v("Name: ")]), _vm._v(" "), _c("span", {
+    staticClass: "note-heading-text-value"
+  }, [_vm._v(_vm._s(_vm.note.name))])]) : _vm._e(), _vm._v(" "), _vm.note.date != null && _vm.note.date != "" ? _c("p", [_c("span", {
+    staticClass: "note-heading-text-title"
+  }, [_vm._v("Date: ")]), _vm._v(" "), _c("span", {
+    staticClass: "note-heading-text-value"
+  }, [_vm._v(_vm._s(_vm.note.date))])]) : _vm._e(), _vm._v(" "), _vm.note.start_time != null && _vm.note.start_time != "" ? _c("p", [_c("span", {
+    staticClass: "note-heading-text-title"
+  }, [_vm._v("Start Time: ")]), _vm._v(" "), _c("span", {
+    staticClass: "note-heading-text-value"
+  }, [_vm._v(_vm._s(_vm.note.start_time))])]) : _vm._e(), _vm._v(" "), _vm.note.end_time != null && _vm.note.end_time != "" ? _c("p", [_c("span", {
+    staticClass: "note-heading-text-title"
+  }, [_vm._v("End Time: ")]), _vm._v(" "), _c("span", {
+    staticClass: "note-heading-text-value"
+  }, [_vm._v(_vm._s(_vm.note.end_time))])]) : _vm._e(), _vm._v(" "), _vm.note.fee != null && _vm.note.fee != "" ? _c("p", [_c("span", {
+    staticClass: "note-heading-text-title"
+  }, [_vm._v("Fee: ")]), _vm._v(" "), _c("span", {
+    staticClass: "note-heading-text-value"
+  }, [_vm._v(_vm._s(_vm.note.fee))])]) : _vm._e(), _vm._v(" "), _c("p", [_vm._v("Session Note")])])])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade",
     attrs: {
       id: "newNoteModal",
@@ -2553,114 +2807,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-12",
-    staticStyle: {
-      "background-color": "#0e386a"
-    }
-  }, [_c("div", {
-    staticClass: "input-placeholder mt-3 mb-3",
-    staticStyle: {
-      "padding-left": "2%",
-      "padding-right": "2%"
-    }
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-3 col-6"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa fa-user u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Name"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-6"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-calendar-days u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Date"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-6"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-clock u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Start Time"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-6"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-clock u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "End Time"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-6"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-sack-dollar u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Fee"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-12"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-regular fa-message u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Intrductory Comments"
-    }
-  })])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-3 col-md-3 col-12"
-  }, [_c("div", {
-    staticClass: "input-group-u"
-  }, [_c("i", {
-    staticClass: "fa-regular fa-message u-input-icon"
-  }), _vm._v(" "), _c("input", {
-    staticClass: "u-input",
-    attrs: {
-      type: "text",
-      placeholder: "Closing Comments"
-    }
-  })])])])])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "note-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
     staticClass: "col-lg-6 col-md-6"
   }, [_c("div", {
     staticClass: "row"
@@ -2813,9 +2959,12 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-square-pen single-tools-option-input-icon"
-  })])])])])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-6 col-md-6"
-  }, [_c("div", {
+  })])])])])])])])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12 col-md-12 bg-green"
@@ -2902,13 +3051,7 @@ var staticRenderFns = [function () {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-eraser"
-  }), _vm._v(" Clear")])])])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-12 col-md-12"
-  }, [_c("div", {
-    staticClass: "note-result"
-  }, [_c("h5", [_vm._v("Session Note")])])])])])])]);
+  }), _vm._v(" Clear")])])])])])])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -3390,6 +3533,9 @@ var routes = [{
     header: _components_note_NoteHeader_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     "default": _components_note_MasterLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     footer: _components_note_NoteFooter_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
+  meta: {
+    middleware: [_middleware_auth__WEBPACK_IMPORTED_MODULE_0__["default"]]
   }
 }];
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (routes);

@@ -22,7 +22,8 @@ const routes = [
             header: NoteHeader,
             default: MasterLayout,
             footer: NoteFooter
-        }
+        },
+        meta: { middleware: [auth] }
     },
 ]
 export default routes;
