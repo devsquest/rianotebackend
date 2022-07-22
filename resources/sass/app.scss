@@ -7,6 +7,7 @@
 // Custom
 $u-color-1 : #0e386a;
 $u-color-2 : rgb(28, 81, 214);
+$u-color-3 : #e0a800;
 $btn-color : #53b848;
 
 .make-note {
@@ -182,4 +183,107 @@ $btn-color : #53b848;
 .note-heading-text-value {
     font-size: 17px;
     font-weight: normal;
+}
+
+//@login
+.login-row {
+    background-color: $u-color-1;
+}
+
+.note-login-form {
+    width: 75%;
+    margin-left: 0;
+    padding: 3rem;
+}
+
+.note-login-link {
+    margin-left: 4rem;
+    text-decoration: none;
+    color: $u-color-3;
+}
+
+.note-login-link:hover {
+    text-decoration: none;
+    color: $u-color-3;
+}
+
+.note-login-page-logo {
+    width: 80px;
+    margin-top: 4rem;
+    margin-left: 3rem
+}
+
+.login-page-checkbox {
+    width: 15px;
+    height: 15px;
+}
+
+.login-page-checkbox:checked {
+    background-color: transparent;
+    outline: 2px solid $u-color-3;
+}
+
+.login-u-input {
+    border-radius: 2rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+.login-u-input::placeholder {
+    color: white;
+}
+
+.login-u-input-focus:focus {
+    border-radius: 2rem;
+    border-color: $u-color-3;
+    outline: 2px solid $u-color-3;
+    color: white
+}
+
+.login-u-input-focus {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+}
+
+.purchase-u-btn:hover {
+    border-color: $u-color-3;
+}
+
+.u-login-btn {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.purchase-u-btn {
+    background-color: transparent;
+}
+
+.login-side-img {
+    padding: 10%;
+    border-radius: 11%;
+}
+
+.login-form-input-icon {
+    position: relative;
+    left: 91%;
+    top: -28px;
+}
+
+.login-form-input-icon:focus {
+    color: $u-color-3;
+}
+
+@media (max-width: 767px) {
+    .note-login-form {
+        width: 100%;
+    }
+
+    .d-xs-none {
+        display: none !important;
+    }
 }

@@ -4,8 +4,9 @@ import configuration from './configuration'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import VueSweetalert2 from 'vue-sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
+import VueSweetalert2 from 'vue-sweetalert2'
+import toastr from 'vue-toastr'
+import 'sweetalert2/dist/sweetalert2.min.css'
 import './../sass/app.scss'
 import 'popper.js'
 import routes from './routes'
@@ -19,6 +20,7 @@ Vue.config.productionTip = false
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2);
+Vue.use(toastr);
 
 const router = new VueRouter({
   mode: 'history',
