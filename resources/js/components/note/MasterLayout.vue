@@ -11,7 +11,7 @@
               class="logo-img mt-2"
               :src="
                 this.$appConfig.asset_url +
-                '/note_assets/img/Basic-Note_03_03.png'
+                '/note_assets/img/Faster_note logo.png'
               "
               alt=""
             />
@@ -171,62 +171,15 @@
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                           <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
+                            class="
+                              nav-link
+                              white-text
+                              note-nav-link note-nav-link-headings
                             "
-                            href="#"
-                            >Stand Info</a
+                            v-on:click="loadHeadings"
+                            style="color: white"
                           >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                            "
-                            href="#"
-                            >State</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                            "
-                            href="#"
-                            >Themes</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                            "
-                            href="#"
-                            >Treatment</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                            "
-                            href="#"
-                            >Progress</a
+                            Headings</a
                           >
                         </li>
                       </ul>
@@ -235,73 +188,8 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-4 col-md-4">
-                <br />
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="note-section-left">
-                      <div class="note-section-left-li">
-                        <span class="note-section-left-text"
-                          >Level of functioning</span
-                        >
-                      </div>
-                      <div class="note-section-left-li">
-                        <span class="note-section-left-text"
-                          >Level of functioning</span
-                        >
-                      </div>
-                      <div class="note-section-left-li">
-                        <span class="note-section-left-text"
-                          >Effective State</span
-                        >
-                      </div>
-                      <div class="note-section-left-li">
-                        <span class="note-section-left-text">Mental State</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-8 col-md-8">
-                <br />
-                <div class="row">
-                  <div class="col-lg-12">
-                    <div class="tools-area">
-                      <div class="search-box">
-                        <input
-                          type="text"
-                          placeholder="Enter Search Here"
-                          class="tool-input"
-                        />
-                        <i
-                          class="fa-solid fa-magnifying-glass tool-input-icon"
-                        ></i>
-                      </div>
-                      <div class="single-tools-area">
-                        <div class="tools-heading mt-2">
-                          <h5>The Client Mental State Included:</h5>
-                        </div>
-                        <div class="tools-options">
-                          <div class="single-tools-option">
-                            <input
-                              type="text"
-                              class="single-tools-option-input"
-                              disabled
-                            />
-                            <i
-                              class="
-                                fa-solid fa-square-pen
-                                single-tools-option-input-icon
-                              "
-                            ></i>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="tools-box-complete" v-if="loadHeadingsStatus">
+              <HeadingPart />
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -488,16 +376,21 @@
         </div>
       </div>
     </div>
-    <!--model start-->
+    <!--model end-->
   </div>
 </template>
 
 <script>
+import HeadingPart from "./parts/HeadingPart.vue";
 export default {
   name: "MasterLayout",
+  components: {
+    HeadingPart,
+  },
   data() {
     return {
       notes_list: null,
+      loadHeadingsStatus: false,
       selected_note: this.$route.params.type,
       note: {
         name: null,
@@ -511,6 +404,7 @@ export default {
     };
   },
   mounted() {
+    document.title = "Make A New Note";
     this.getNotesList();
   },
   methods: {
@@ -540,6 +434,13 @@ export default {
         params: { type: this.selected_note },
       });
       $("#newNoteModal").modal("hide");
+    },
+    loadHeadings() {
+      this.$el
+        .querySelector(".note-nav-link-headings")
+        .classList.add("note-nav-a-click");
+      this.$el.querySelector(".note-nav-link-headings").style.color = "#e0a800";
+      this.loadHeadingsStatus = true;
     },
   },
 };

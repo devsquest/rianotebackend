@@ -68,8 +68,12 @@
                   >
                 </label>
               </div>
-              <button type="submit" class="btn btn-warning u-login-btn mt-3">
-                Login
+              <button
+                type="submit"
+                class="btn btn-warning u-login-btn mt-3"
+                :disabled="loginBtn.disable"
+              >
+                {{ loginBtn.text }}
               </button>
               <button
                 type="button"
@@ -100,7 +104,14 @@ export default {
         email: null,
         password: null,
       },
+      loginBtn: {
+        disable: false,
+        text: "Login",
+      },
     };
+  },
+  mounted(){
+    document.title = "Login";
   },
   methods: {
     async loginSubmit(e) {
@@ -114,13 +125,18 @@ export default {
         this.formData.password == ""
       ) {
         this.$toastr.e("Password is required", "Password");
-        this.$refs.password.focus()
+        this.$refs.password.focus();
       } else {
+        this.$toastr.w("Try to Loging...", "Wait!");
+        this.loginBtn.disable = true;
+        this.loginBtn.text = "Login....";
         await this.$store.dispatch("login/login", this.formData).then(() => {
           if (this.$store.state.login.loginInfo != null) {
             this.$toastr.s("Loged in Successfully!", "Success!");
             this.$router.push({ name: "splash_page" });
           } else {
+            this.loginBtn.disable = false;
+            this.loginBtn.text = "Login";
             this.$toastr.e("Invalid Info", "Error!");
           }
         });

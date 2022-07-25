@@ -27,13 +27,31 @@ $btn-color : #53b848;
 }
 
 .logo-img {
-    width: 170px;
+    width: 65px;
 }
 
 .btn-success {
     color: #fff;
-    background-color: $btn-color;
-    border-color: $btn-color;
+    background-color: $u-color-3;
+    border-color: $u-color-3;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: $u-color-3;
+    border-color: $u-color-3;
+}
+
+.btn-success:visited {
+    color: #fff;
+    background-color: $u-color-3;
+    border-color: $u-color-3;
+}
+
+.btn-success:active {
+    color: #fff;
+    background-color: $u-color-3;
+    border-color: $u-color-3;
 }
 
 .vertical {
@@ -76,7 +94,7 @@ $btn-color : #53b848;
 }
 
 .bg-green {
-    background-color: $btn-color;
+    background-color: $u-color-3;
 }
 
 .note-result {
@@ -102,7 +120,7 @@ $btn-color : #53b848;
 }
 
 .note-section-left-li:hover {
-    background-color: $btn-color;
+    background-color: $u-color-3;
 }
 
 .note-section-left-text {
@@ -278,6 +296,51 @@ $btn-color : #53b848;
     color: $u-color-3;
 }
 
+.note-background-img {
+    background-image: url("/note_assets/img/office-gfa4b44aa2_1920.jpg");
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.note-background-color {
+    background-color: rgba(14, 56, 106, 0.9);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.logo-placement {
+    padding-top: 10%;
+    padding-right: 25%;
+    padding-left: 25%;
+}
+
+.inner-content-splash {
+    border: 2px solid hsl(225deg 44% 36%);
+    padding: 15%;
+}
+
+.splash-logo {
+    width: 180px;
+}
+
+.splash-btn {
+    background-color: $u-color-3;
+    padding: 0.4rem 2.5rem;
+}
+
+.note-nav-link {
+    color: white;
+    font-weight: 700;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.note-nav-a-click {
+    background-color: #f7f7f7;
+}
+
+//@mobile
 @media (max-width: 767px) {
     .note-login-form {
         width: 100%;
