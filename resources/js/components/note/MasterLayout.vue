@@ -310,7 +310,21 @@
                         note.fee
                       }}</span>
                     </p>
-                    <p>Session Note</p>
+                    <div class="heading-sections-note-result">
+                      <div
+                        class="div"
+                        v-for="x in allHeadingsStore"
+                        :key="x.id"
+                      >
+                        <h6 v-if="x.status == 1">
+                          <label class="ex-bold-heading"
+                            >{{ x.heading_text }}:</label
+                          >
+                          <label>{{ x.heading_content }}</label>
+                        </h6>
+                      </div>
+                    </div>
+                    <h6 class="ex-bold-heading">Session Note:</h6>
                   </div>
                 </div>
               </div>
@@ -441,6 +455,11 @@ export default {
         .classList.add("note-nav-a-click");
       this.$el.querySelector(".note-nav-link-headings").style.color = "#e0a800";
       this.loadHeadingsStatus = true;
+    },
+  },
+  computed: {
+    allHeadingsStore() {
+      return this.$store.state.note.all_headings;
     },
   },
 };

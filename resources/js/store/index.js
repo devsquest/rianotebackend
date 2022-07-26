@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import login from './modules/login'
-// import cart from './modules/cart'
+import note from './modules/note'
 
 Vue.use(Vuex)
 
@@ -12,6 +12,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     login,
-    // cart,
+    note,
   }
 })
