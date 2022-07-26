@@ -75,7 +75,7 @@
                   <div class="input-group-u">
                     <i class="fa-solid fa-calendar-days u-input-icon"></i>
                     <input
-                      type="text"
+                      type="date"
                       placeholder="Date"
                       class="u-input"
                       v-model="note.date"
@@ -189,7 +189,7 @@
               </div>
             </div>
             <div class="tools-box-complete" v-if="loadHeadingsStatus">
-              <HeadingPart />
+              <heading-part></heading-part>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">

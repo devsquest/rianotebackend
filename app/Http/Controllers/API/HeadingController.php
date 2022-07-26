@@ -99,4 +99,10 @@ class HeadingController extends Controller
         $headings = Heading::all();
         return response()->json(['success' => $headings], 200);
     }
+    public function allHeadings($note_id)
+    {
+        $user = Auth::user();
+        $headings = Heading::where('user_id', $user->id)->where('note_id', $note_id)->get();
+        return response()->json(['success' => $headings], 200);
+    }
 }

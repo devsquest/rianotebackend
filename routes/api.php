@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/sections', 'API\SectionController@index');
     Route::get('/notes', [NoteController::class, 'index']);
     Route::get('/notes/{id}', [NoteController::class, 'getSectionByType']);
+    Route::get('/headings_all/{note_id}', [HeadingController::class, 'allHeadings']);
     Route::get('/headings/{id}', [HeadingController::class, 'getHeadingsByType']);
     Route::post('/headings/save', [HeadingController::class, 'saveHeading']);
     Route::put('/headings/{id}', [HeadingController::class, 'editHeading']);

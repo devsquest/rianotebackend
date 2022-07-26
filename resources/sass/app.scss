@@ -100,7 +100,7 @@ $btn-color : #53b848;
 .note-result {
     width: 100%;
     background-color: white;
-    min-height: 600px;
+    min-height: 100vh;
     padding-top: 1rem;
     padding-left: 1.5rem;
     margin-right: 1.5rem;
@@ -108,7 +108,7 @@ $btn-color : #53b848;
 
 .note-section-left {
     background-color: $u-color-1;
-    min-height: 570px;
+    min-height: 100vh;
 }
 
 
@@ -338,6 +338,53 @@ $btn-color : #53b848;
 
 .note-nav-a-click {
     background-color: #f7f7f7;
+}
+
+.tools-box-complete {
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.note-heading-section {
+    padding: 10px;
+}
+
+.bold-heading {
+    font-weight: 600;
+}
+
+.icon-pack-heading-note {
+    margin-top: 1.9rem !important;
+}
+
+.btn-note-heading-pm {
+    border: 1px solid #eceff1;
+    background-color: #eceff1;
+    border-radius: 3px;
+}
+
+.btn-note-heading-save {
+    border: 1px solid #218838;
+    background-color: #218838;
+    color: white;
+    border-radius: 3px;
+}
+
+.btn-note-heading-del {
+    border: 1px solid #c82333;
+    background-color: #c82333;
+    color: white;
+    border-radius: 3px;
+}
+
+.btn-heading-note-add-new {
+    border-radius: 3px;
+    border: 1px solid $u-color-1;
+    background-color: $u-color-1;
+    color: white;
+    font-weight: 600;
+    padding: 4px;
 }
 
 //@mobile
