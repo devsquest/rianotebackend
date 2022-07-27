@@ -12,7 +12,7 @@ class Heading extends Model
      * @var array
      */
     protected $fillable = [
-        'heading_text', 'heading_content',
+        'note_id', 'heading_text', 'heading_content', 'user_id'
     ];
 
     /**

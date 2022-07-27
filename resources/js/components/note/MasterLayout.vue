@@ -189,7 +189,7 @@
               </div>
             </div>
             <div class="tools-box-complete" v-if="loadHeadingsStatus">
-              <heading-part></heading-part>
+              <heading-part :note_id="selected_note"></heading-part>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">

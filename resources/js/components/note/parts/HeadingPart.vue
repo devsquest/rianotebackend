@@ -57,7 +57,10 @@
                 >
                   +/-
                 </button>
-                <button class="btn-note-heading-save">
+                <button
+                  v-on:click="saveThisHeading(i)"
+                  class="btn-note-heading-save"
+                >
                   <i class="fa-solid fa-floppy-disk"></i>
                 </button>
                 <button
@@ -116,7 +119,10 @@
                 >
                   +/-
                 </button>
-                <button class="btn-note-heading-save">
+                <button
+                  v-on:click="updateThisHeadingDB(i)"
+                  class="btn-note-heading-save"
+                >
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
                 <button
@@ -138,6 +144,7 @@
 <script>
 export default {
   name: "HeadingPart",
+  props: ["note_id"],
   data() {
     return {
       selected_note: this.$route.params.type,
@@ -227,13 +234,70 @@ export default {
         await this.axios
           .delete(url, { headers: headers })
           .then((response) => {
-            console.log(response);
+            this.$toastr.s("Saved heading deleted", "Success");
+            this.dbHeadingsList.splice(index, 1);
           })
           .catch((error) => {
             console.log(error);
             this.$toastr.e("Something went wrong", "Error!");
           });
       }
+    },
+    async saveThisHeading(index) {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      let formBody = {
+        note_id: this.note_id,
+        heading_text: this.headingsList[index].heading_text,
+        heading_content: this.headingsList[index].heading_content,
+      };
+      let url = process.env.MIX_API_URL + "/api/headings/save";
+      await this.axios
+        .post(url, formBody, { headers: headers })
+        .then((response) => {
+          this.dbHeadingsList.push({
+            id: this.dbHeadingsList.length + this.headingsList.length + 1,
+            heading_text: this.headingsList[index].heading_text,
+            heading_content: this.headingsList[index].heading_content,
+            status: this.headingsList[index].status,
+            type: "db",
+            db_id: response.data.success.data.id,
+          });
+          this.headingsList.splice(index, 1);
+          this.$toastr.s("New Heading saved", "Success");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    async updateThisHeadingDB(index) {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      let formBody = {
+        _method: "PUT",
+        heading_text: this.dbHeadingsList[index].heading_text,
+        heading_content: this.dbHeadingsList[index].heading_content,
+      };
+      let url =
+        process.env.MIX_API_URL +
+        "/api/headings/" +
+        this.dbHeadingsList[index].db_id;
+      await this.axios
+        .post(url, formBody, { headers: headers })
+        .then((response) => {
+          this.$toastr.s("Heading updated", "Success");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
   watch: {
