@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/test/umer', function(){
+    return "This is Test response Umer";
+});
+
 Route::get('/note/{view?}', [\App\Http\Controllers\HomeController::class, 'index'])->where('view', '(.*)')->name('vue_page');
 
 Route::prefix('admin')->group(function () {
