@@ -92,7 +92,7 @@ class HeadingController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function deleteHeadingById(Request $request)
+    public function deleteHeadingById(Request $request, $id)
     {
         $heading = Heading::findOrFail($request->id);
         $heading->delete();

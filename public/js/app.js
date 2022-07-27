@@ -2634,8 +2634,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
-                  id: db_id
-                }, {
                   headers: headers
                 }).then(function (response) {
                   console.log(response);

@@ -225,7 +225,7 @@ export default {
         };
         let url = process.env.MIX_API_URL + "/api/headings/" + db_id;
         await this.axios
-          .delete(url, { id: db_id }, { headers: headers })
+          .delete(url, { headers: headers })
           .then((response) => {
             console.log(response);
           })
