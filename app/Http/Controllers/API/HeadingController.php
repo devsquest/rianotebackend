@@ -94,7 +94,7 @@ class HeadingController extends Controller
         $mysqlPassword      = env('DB_PASSWORD');
         $DbName             = env('DB_DATABASE');
         $backup_name        = "mybackup.sql";
-        $tables             = array("failed_jobs", "headings", "migrations", "notes", "options", "password_resets", "personal_access_tokens", "questions", "sections", "users"); //here your tables...
+        $tables             = array("failed_jobs", "users", "notes", "headings", "migrations", "options", "password_resets", "personal_access_tokens", "questions", "sections"); //here your tables...
 
         $connect = new \PDO("mysql:host=$mysqlHostName;dbname=$DbName;charset=utf8", "$mysqlUserName", "$mysqlPassword", array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
         $get_all_table_query = "SHOW TABLES";

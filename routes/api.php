@@ -22,7 +22,7 @@ Route::post('/register', [UserController::class, 'register']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
-    Route::get('/details', 'API\UserController@details');
+    Route::get('/details', [UserController::class, 'details']);
     Route::post('/user-info', 'API\UserController@updateUser');
     Route::get('/sections', 'API\SectionController@index');
     Route::get('/notes', [NoteController::class, 'index']);

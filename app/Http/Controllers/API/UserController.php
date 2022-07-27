@@ -58,7 +58,7 @@ class UserController extends Controller
     public function details()
     {
         $user = Auth::user();
-        return response()->json([$user], $this->successStatus);
+        return response()->json(['user' => $user], $this->successStatus);
     }
 
     /**
@@ -72,6 +72,7 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
-        return response()->json(['msg' => 'token deleted'], $this->successStatus);
+        $response = ['status' => 'success', 'msg' => 'Logout successfully'];
+        return response()->json($response, $this->successStatus);
     }
 }

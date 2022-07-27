@@ -19,7 +19,7 @@ Auth::routes(['register' => false]);
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::get('/', function () {
-    return view('auth.login');
+    return "Faster Note Front Website";
 });
 
 Route::get('/backup', [HeadingController::class, 'our_backup_database']);

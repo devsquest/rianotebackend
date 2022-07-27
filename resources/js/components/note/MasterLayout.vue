@@ -28,28 +28,50 @@
           <div
             class="col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
           >
-            <div
-              class="user-profile"
-              style="margin-top: 1.2rem; margin-left: 6rem !important"
-            >
-              <img
-                style="
-                  border: 3px solid #dee2e6 !important;
-                  border-radius: 50%;
-                  width: 45px;
-                "
-                :src="
-                  this.$appConfig.asset_url +
-                  '/note_assets/img/icons/Basic-Note_42.jpg'
-                "
-                alt=""
-              />
-              <span style="font-size: 14px">Danny Alves</span>
-              <i class="fa-solid fa-angle-down" style="color: #cbcbcb"></i>
-              <hr class="vertical" />
-              <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i>
-              <hr class="vertical" />
-              <i class="fa-solid fa-life-ring" style="color: #cbcbcb"></i>
+            <div class="dropdown">
+              <div
+                class="user-profile"
+                style="margin-top: 1.2rem; margin-left: 6rem !important"
+              >
+                <img
+                  style="
+                    border: 3px solid #dee2e6 !important;
+                    border-radius: 50%;
+                    width: 45px;
+                  "
+                  :src="
+                    this.$appConfig.asset_url +
+                    '/note_assets/img/icons/Basic-Note_42.jpg'
+                  "
+                  alt=""
+                />
+                <span v-if="userInfo != null" style="font-size: 14px">{{
+                  userInfo.name
+                }}</span>
+                <span
+                  lass="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fa-solid fa-angle-down" style="color: #cbcbcb"></i>
+                </span>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <span class="dropdown-item btn" href="#">Dashboard</span>
+                  <span
+                    v-on:click="logoutNote"
+                    class="dropdown-item btn"
+                    href="#"
+                    >Logout</span
+                  >
+                </div>
+                <hr class="vertical" />
+                <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i>
+                <!-- <hr class="vertical" />
+                <i class="fa-solid fa-life-ring" style="color: #cbcbcb"></i> -->
+              </div>
             </div>
           </div>
         </div>
@@ -425,6 +447,14 @@ export default {
     newNoteBtn() {
       $("#newNoteModal").modal("show");
     },
+    logoutNote() {
+      this.$store.dispatch("login/logoutUser").then(() => {
+        this.$toastr.s("User Logout", "Success");
+        this.$router.push({
+          name: "login_page",
+        });
+      });
+    },
     getNotesList() {
       const { token } = JSON.parse(localStorage.getItem("loginInfo"));
       let headers = {
@@ -460,6 +490,15 @@ export default {
   computed: {
     allHeadingsStore() {
       return this.$store.state.note.all_headings;
+    },
+    userInfo() {
+      if (this.$store.state.login.user != null) {
+        return this.$store.state.login.user;
+      } else {
+        this.$store.dispatch("login/userInformation").then(() => {
+          return this.$store.state.login.user;
+        });
+      }
     },
   },
 };

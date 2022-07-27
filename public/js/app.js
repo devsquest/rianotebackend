@@ -2215,8 +2215,19 @@ __webpack_require__.r(__webpack_exports__);
     newNoteBtn: function newNoteBtn() {
       $("#newNoteModal").modal("show");
     },
-    getNotesList: function getNotesList() {
+    logoutNote: function logoutNote() {
       var _this = this;
+
+      this.$store.dispatch("login/logoutUser").then(function () {
+        _this.$toastr.s("User Logout", "Success");
+
+        _this.$router.push({
+          name: "login_page"
+        });
+      });
+    },
+    getNotesList: function getNotesList() {
+      var _this2 = this;
 
       var _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")),
           token = _JSON$parse.token;
@@ -2229,7 +2240,7 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
-        _this.notes_list = response.data.success;
+        _this2.notes_list = response.data.success;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2253,6 +2264,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     allHeadingsStore: function allHeadingsStore() {
       return this.$store.state.note.all_headings;
+    },
+    userInfo: function userInfo() {
+      var _this3 = this;
+
+      if (this.$store.state.login.user != null) {
+        return this.$store.state.login.user;
+      } else {
+        this.$store.dispatch("login/userInformation").then(function () {
+          return _this3.$store.state.login.user;
+        });
+      }
     }
   }
 });
@@ -2846,6 +2868,8 @@ var render = function render() {
   }, [_vm._v("\n              New Note\n            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
   }, [_c("div", {
+    staticClass: "dropdown"
+  }, [_c("div", {
     staticClass: "user-profile",
     staticStyle: {
       "margin-top": "1.2rem",
@@ -2861,30 +2885,36 @@ var render = function render() {
       src: this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg",
       alt: ""
     }
-  }), _vm._v(" "), _c("span", {
+  }), _vm._v(" "), _vm.userInfo != null ? _c("span", {
     staticStyle: {
       "font-size": "14px"
     }
-  }, [_vm._v("Danny Alves")]), _vm._v(" "), _c("i", {
-    staticClass: "fa-solid fa-angle-down",
-    staticStyle: {
-      color: "#cbcbcb"
+  }, [_vm._v(_vm._s(_vm.userInfo.name))]) : _vm._e(), _vm._v(" "), _vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "dropdown-menu",
+    attrs: {
+      "aria-labelledby": "dropdownMenuButton"
     }
-  }), _vm._v(" "), _c("hr", {
+  }, [_c("span", {
+    staticClass: "dropdown-item btn",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Dashboard")]), _vm._v(" "), _c("span", {
+    staticClass: "dropdown-item btn",
+    attrs: {
+      href: "#"
+    },
+    on: {
+      click: _vm.logoutNote
+    }
+  }, [_vm._v("Logout")])]), _vm._v(" "), _c("hr", {
     staticClass: "vertical"
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-sliders",
     staticStyle: {
       color: "#cbcbcb"
     }
-  }), _vm._v(" "), _c("hr", {
-    staticClass: "vertical"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-solid fa-life-ring",
-    staticStyle: {
-      color: "#cbcbcb"
-    }
-  })])])]), _vm._v(" "), _c("div", {
+  })])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12",
@@ -3113,7 +3143,7 @@ var render = function render() {
       "overflow-x": "auto",
       padding: "0"
     }
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarSupportedContent"
@@ -3138,7 +3168,7 @@ var render = function render() {
     }
   })], 1) : _vm._e()]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-6 col-md-6"
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12 col-md-12"
@@ -3200,7 +3230,7 @@ var render = function render() {
     on: {
       submit: _vm.submitNewNote
     }
-  }, [_vm._m(2), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "row"
@@ -3232,10 +3262,29 @@ var render = function render() {
         }
       }
     }), _vm._v(" "), _c("span", [_vm._v(_vm._s(note.name))])]);
-  })], 2)])]), _vm._v(" "), _vm._m(3)])])])])]);
+  })], 2)])]), _vm._v(" "), _vm._m(4)])])])])]);
 };
 
 var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", {
+    attrs: {
+      lass: "btn btn-secondary dropdown-toggle",
+      type: "button",
+      id: "dropdownMenuButton",
+      "data-toggle": "dropdown",
+      "aria-haspopup": "true",
+      "aria-expanded": "false"
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-angle-down",
+    staticStyle: {
+      color: "#cbcbcb"
+    }
+  })]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -4336,7 +4385,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var state = {
-  loginInfo: null
+  loginInfo: null,
+  user: null
 };
 var getters = {};
 var mutations = {
@@ -4347,6 +4397,18 @@ var mutations = {
         token: payload.data.success.token
       };
       localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
+    }
+  },
+  userInformation: function userInformation(state, payload) {
+    state.user = payload;
+  },
+  logoutUser: function logoutUser(state, payload) {
+    console.log(payload);
+
+    if (payload.status == "success") {
+      state.loginInfo = null;
+      state.user = null;
+      localStorage.removeItem('loginInfo');
     }
   }
 };
@@ -4377,6 +4439,68 @@ var actions = {
           }
         }
       }, _callee);
+    }))();
+  },
+  userInformation: function userInformation(context) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+      var _JSON$parse, token, url, headers;
+
+      return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
+              url = "http://127.0.0.1:8000" + "/api/details";
+              headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer ".concat(token)
+              };
+              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get(url, {
+                headers: headers
+              }).then(function (response) {
+                context.commit('userInformation', response.data.user);
+              })["catch"](function (error) {
+                console.log(error);
+              }));
+
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }))();
+  },
+  logoutUser: function logoutUser(context) {
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _JSON$parse2, token, url, headers;
+
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
+              url = "http://127.0.0.1:8000" + "/api/logout";
+              headers = {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer ".concat(token)
+              };
+              return _context3.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get(url, {
+                headers: headers
+              }).then(function (response) {
+                context.commit('logoutUser', response.data);
+              })["catch"](function (error) {
+                console.log(error);
+              }));
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
     }))();
   }
 };
