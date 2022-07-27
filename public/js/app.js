@@ -4198,9 +4198,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   asset_url: "http://127.0.0.1:8000",
-  app_name: "Laravel"
+  app_name: process.env.MIX_APP_NAME
 });
 
 /***/ }),
