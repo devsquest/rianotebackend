@@ -2531,7 +2531,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         type: "local",
         db_id: null
       });
-      console.log(this.dbHeadingsList, this.headingsList);
     },
     makeHeadingActiveInactive: function makeHeadingActiveInactive(index, type) {
       if (type == "local") {
@@ -2596,20 +2595,77 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    deleteHeading: function deleteHeading(index, type) {
+      var _arguments = arguments,
+          _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var db_id, _JSON$parse2, token, headers, url;
+
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                db_id = _arguments.length > 2 && _arguments[2] !== undefined ? _arguments[2] : null;
+
+                if (!(type == "local")) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                _this2.headingsList.splice(index, 1);
+
+                _context2.next = 11;
+                break;
+
+              case 5:
+                if (!(type == "db")) {
+                  _context2.next = 11;
+                  break;
+                }
+
+                _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
+                headers = {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer ".concat(token)
+                };
+                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
+                _context2.next = 11;
+                return _this2.axios["delete"](url, {
+                  id: db_id
+                }, {
+                  headers: headers
+                }).then(function (response) {
+                  console.log(response);
+                })["catch"](function (error) {
+                  console.log(error);
+
+                  _this2.$toastr.e("Something went wrong", "Error!");
+                });
+
+              case 11:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   watch: {
     headingsList: {
       handler: function handler(val) {
         var final_arr = this.dbHeadingsList.concat(this.headingsList);
-        this.$store.commit('note/changeHeadings', final_arr);
+        this.$store.commit("note/changeHeadings", final_arr);
       },
       deep: true
     },
     dbHeadingsList: {
       handler: function handler(val) {
         var final_arr = this.dbHeadingsList.concat(this.headingsList);
-        this.$store.commit('note/changeHeadings', final_arr);
+        this.$store.commit("note/changeHeadings", final_arr);
       },
       deep: true
     }
@@ -3747,7 +3803,16 @@ var render = function render() {
           return _vm.makeHeadingActiveInactive(i, x.type);
         }
       }
-    }, [_vm._v("\n                +/-\n              ")]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _vm._m(3, true)])]);
+    }, [_vm._v("\n                +/-\n              ")]), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _c("button", {
+      staticClass: "btn-note-heading-del",
+      on: {
+        click: function click($event) {
+          return _vm.deleteHeading(i, x.type);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa-solid fa-trash-can"
+    })])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -3761,7 +3826,7 @@ var render = function render() {
     staticClass: "fa-solid fa-plus"
   }), _vm._v(" Add another heading\n          ")])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(4), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12 col-md-12"
   }, _vm._l(_vm.dbHeadingsList, function (x, i) {
     return _c("div", {
@@ -3830,7 +3895,16 @@ var render = function render() {
           return _vm.makeHeadingActiveInactive(i, x.type);
         }
       }
-    }, [_vm._v("\n                +/-\n              ")]), _vm._v(" "), _vm._m(5, true), _vm._v(" "), _vm._m(6, true)])]);
+    }, [_vm._v("\n                +/-\n              ")]), _vm._v(" "), _vm._m(4, true), _vm._v(" "), _c("button", {
+      staticClass: "btn-note-heading-del",
+      on: {
+        click: function click($event) {
+          return _vm.deleteHeading(i, x.type, x.db_id);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa-solid fa-trash-can"
+    })])])]);
   }), 0)])])])]);
 };
 
@@ -3869,15 +3943,6 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("button", {
-    staticClass: "btn-note-heading-del"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-trash-can"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("hr"), _vm._v(" "), _c("h5", {
@@ -3891,15 +3956,6 @@ var staticRenderFns = [function () {
     staticClass: "btn-note-heading-save"
   }, [_c("i", {
     staticClass: "fa-solid fa-pen-to-square"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("button", {
-    staticClass: "btn-note-heading-del"
-  }, [_c("i", {
-    staticClass: "fa-solid fa-trash-can"
   })]);
 }];
 render._withStripped = true;

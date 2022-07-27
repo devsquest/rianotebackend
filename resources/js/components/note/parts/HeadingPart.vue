@@ -60,7 +60,10 @@
                 <button class="btn-note-heading-save">
                   <i class="fa-solid fa-floppy-disk"></i>
                 </button>
-                <button class="btn-note-heading-del">
+                <button
+                  v-on:click="deleteHeading(i, x.type)"
+                  class="btn-note-heading-del"
+                >
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
@@ -116,7 +119,10 @@
                 <button class="btn-note-heading-save">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
-                <button class="btn-note-heading-del">
+                <button
+                  v-on:click="deleteHeading(i, x.type, x.db_id)"
+                  class="btn-note-heading-del"
+                >
                   <i class="fa-solid fa-trash-can"></i>
                 </button>
               </div>
@@ -161,7 +167,6 @@ export default {
         type: "local",
         db_id: null,
       });
-      console.log(this.dbHeadingsList, this.headingsList);
     },
     makeHeadingActiveInactive(index, type) {
       if (type == "local") {
@@ -208,19 +213,41 @@ export default {
           this.$toastr.e("Something went wrong", "Error!");
         });
     },
+    async deleteHeading(index, type, db_id = null) {
+      if (type == "local") {
+        this.headingsList.splice(index, 1);
+      } else if (type == "db") {
+        const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+        let headers = {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        };
+        let url = process.env.MIX_API_URL + "/api/headings/" + db_id;
+        await this.axios
+          .delete(url, { id: db_id }, { headers: headers })
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$toastr.e("Something went wrong", "Error!");
+          });
+      }
+    },
   },
   watch: {
     headingsList: {
       handler(val) {
         let final_arr = this.dbHeadingsList.concat(this.headingsList);
-        this.$store.commit('note/changeHeadings', final_arr);
+        this.$store.commit("note/changeHeadings", final_arr);
       },
       deep: true,
     },
     dbHeadingsList: {
       handler(val) {
         let final_arr = this.dbHeadingsList.concat(this.headingsList);
-        this.$store.commit('note/changeHeadings', final_arr);
+        this.$store.commit("note/changeHeadings", final_arr);
       },
       deep: true,
     },
