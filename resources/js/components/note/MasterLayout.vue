@@ -108,7 +108,7 @@
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
                     <input
-                      type="text"
+                      type="time"
                       placeholder="Start Time"
                       class="u-input"
                       v-model="note.start_time"
@@ -119,7 +119,7 @@
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
                     <input
-                      type="text"
+                      type="time"
                       placeholder="End Time"
                       class="u-input"
                       v-model="note.end_time"
@@ -202,6 +202,23 @@
                             style="color: white"
                           >
                             Headings</a
+                          >
+                        </li>
+                        <li
+                          v-for="x in sections_list"
+                          :key="x.id"
+                          class="nav-item"
+                        >
+                          <a
+                            class="
+                              nav-link
+                              white-text
+                              note-nav-link note-nav-link-headings
+                            "
+                            v-on:click="loadHeadings"
+                            style="color: white"
+                          >
+                            {{ x.name }}</a
                           >
                         </li>
                       </ul>
@@ -426,6 +443,7 @@ export default {
   data() {
     return {
       notes_list: null,
+      sections_list: null,
       loadHeadingsStatus: false,
       selected_note: this.$route.params.type,
       note: {
@@ -442,6 +460,7 @@ export default {
   mounted() {
     document.title = "Make A New Note";
     this.getNotesList();
+    this.getSectionsList();
   },
   methods: {
     newNoteBtn() {
@@ -465,7 +484,25 @@ export default {
       this.axios
         .get(process.env.MIX_API_URL + "/api/notes", { headers: headers })
         .then((response) => {
-          this.notes_list = response.data.success;
+          this.notes_list = response.data.data.notes;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getSectionsList() {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let headers = {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      this.axios
+        .get(process.env.MIX_API_URL + "/api/sections/" + this.selected_note, {
+          headers: headers,
+        })
+        .then((response) => {
+          this.sections_list = response.data.data.sections;
         })
         .catch((error) => {
           console.log(error);

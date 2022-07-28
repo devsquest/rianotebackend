@@ -18,9 +18,8 @@ const mutations = {
     userInformation(state, payload) {
         state.user = payload;
     },
-    logoutUser(state, payload){
-        console.log(payload);
-        if(payload.status == "success"){
+    logoutUser(state, payload) {
+        if (payload.status == "success") {
             state.loginInfo = null;
             state.user = null;
             localStorage.removeItem('loginInfo');

@@ -110,7 +110,7 @@ export default {
       this.axios
         .get(process.env.MIX_API_URL + "/api/notes", { headers: headers })
         .then((response) => {
-          this.notes_list = response.data.success;
+          this.notes_list = response.data.data.notes;
         })
         .catch((error) => {
           console.log(error);

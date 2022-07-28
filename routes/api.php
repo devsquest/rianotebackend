@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\NoteController;
 use App\Http\Controllers\API\HeadingController;
+use App\Http\Controllers\API\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/details', [UserController::class, 'details']);
     Route::post('/user-info', 'API\UserController@updateUser');
-    Route::get('/sections', 'API\SectionController@index');
+    Route::get('/sections/{note_id}', [SectionController::class, 'index']);
     Route::get('/notes', [NoteController::class, 'index']);
     Route::get('/notes/{id}', [NoteController::class, 'getSectionByType']);
     Route::get('/headings_all/{note_id}', [HeadingController::class, 'allHeadings']);
