@@ -62,6 +62,6 @@
 </template>
 <script>
 export default {
-  name: "HeadingPart",
+  name: "SectionPart",
 };
 </script>

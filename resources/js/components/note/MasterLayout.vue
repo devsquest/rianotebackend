@@ -193,30 +193,46 @@
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                           <a
-                            class="
-                              nav-link
-                              white-text
-                              note-nav-link note-nav-link-headings
-                            "
+                            :class="[
+                              'nav-link',
+                              'white-text',
+                              'note-nav-link',
+                              'note-nav-link-headings',
+                              {
+                                'note-nav-a-click': loadHeadingsTab.status,
+                              },
+                            ]"
+                            :style="[
+                              loadHeadingsTab.status
+                                ? { color: '#e0a800' }
+                                : { color: 'white' },
+                            ]"
                             v-on:click="loadHeadings"
-                            style="color: white"
                           >
                             Headings</a
                           >
                         </li>
                         <li
-                          v-for="x in sections_list"
+                          v-for="(x, index) in sections_list"
                           :key="x.id"
                           class="nav-item"
                         >
                           <a
-                            class="
-                              nav-link
-                              white-text
-                              note-nav-link note-nav-link-headings
-                            "
-                            v-on:click="loadHeadings"
-                            style="color: white"
+                            :class="[
+                              'nav-link',
+                              'white-text',
+                              'note-nav-link',
+                              'note-nav-link-headings',
+                              {
+                                'note-nav-a-click': x.showStatus,
+                              },
+                            ]"
+                            :style="[
+                              x.showStatus
+                                ? { color: '#e0a800' }
+                                : { color: 'white' },
+                            ]"
+                            v-on:click="loadSections(x.id, index)"
                           >
                             {{ x.name }}</a
                           >
@@ -227,8 +243,10 @@
                 </div>
               </div>
             </div>
-            <div class="tools-box-complete" v-if="loadHeadingsStatus">
-              <heading-part :note_id="selected_note"></heading-part>
+            <div class="tools-box-complete">
+              <KeepAlive>
+                <component :is="current" :note_id="selected_note"></component>
+              </KeepAlive>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -435,16 +453,24 @@
 
 <script>
 import HeadingPart from "./parts/HeadingPart.vue";
+import SectionPart from "./parts/SectionPart.vue";
+
 export default {
   name: "MasterLayout",
   components: {
     HeadingPart,
+    SectionPart,
   },
   data() {
     return {
+      current: "HeadingPart",
       notes_list: null,
       sections_list: null,
-      loadHeadingsStatus: false,
+      loadHeadingsTab: {
+        status: false,
+        class: "note-nav-a-click",
+      },
+      sectionTab: {},
       selected_note: this.$route.params.type,
       note: {
         name: null,
@@ -502,7 +528,10 @@ export default {
           headers: headers,
         })
         .then((response) => {
-          this.sections_list = response.data.data.sections;
+          this.sections_list = response.data.data.sections.map((val) => {
+            val.showStatus = false;
+            return val;
+          });
         })
         .catch((error) => {
           console.log(error);
@@ -517,11 +546,18 @@ export default {
       $("#newNoteModal").modal("hide");
     },
     loadHeadings() {
-      this.$el
-        .querySelector(".note-nav-link-headings")
-        .classList.add("note-nav-a-click");
-      this.$el.querySelector(".note-nav-link-headings").style.color = "#e0a800";
-      this.loadHeadingsStatus = true;
+      this.loadHeadingsTab.status = true;
+      this.current = "HeadingPart";
+    },
+    loadSections(id, index) {
+      this.loadHeadingsTab.status = false;
+      this.current = "SectionPart";
+      //
+      this.sections_list = this.sections_list.map((val) => {
+        val.showStatus = false;
+        return val;
+      });
+      this.sections_list[index].showStatus = true;
     },
   },
   computed: {
