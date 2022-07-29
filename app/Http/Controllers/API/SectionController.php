@@ -9,12 +9,19 @@ use App\Models\Section;
 class SectionController extends Controller
 {
     public $successStatus = 200;
-    public function index($note_id)
+    public function index($note_id, $parent_id = null)
     {
-        $sections = Section::where('parent_id', null)->where('note_id', $note_id)->get();
-        $response = ['status' => 'success', 'msg' => '', 'data' => [
-            'sections' => $sections,
-        ]];
+        if ($parent_id == null) {
+            $sections = Section::where('parent_id', null)->where('note_id', $note_id)->get();
+            $response = ['status' => 'success', 'msg' => '', 'data' => [
+                'sections' => $sections,
+            ]];
+        } else {
+            $sections = Section::where('parent_id', $parent_id)->where('note_id', $note_id)->get();
+            $response = ['status' => 'success', 'msg' => '', 'data' => [
+                'sections' => $sections,
+            ]];
+        }
         return response()->json($response, $this->successStatus);
     }
     public function getSectionContent(Request $request)

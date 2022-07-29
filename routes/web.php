@@ -15,7 +15,10 @@ use App\Http\Controllers\Front\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function(){
+    return "Faster Note is Comming Soon!";
+});
+Route::get('/homepage', [HomeController::class, 'index']);
 
 Auth::routes(['register' => false]);
 

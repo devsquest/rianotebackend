@@ -63,5 +63,29 @@
 <script>
 export default {
   name: "SectionPart",
+  props: ["note_id"],
+  mounted() {
+    console.log(this.note_id);
+  },
+  methods: {
+    sectionContent() {
+      // const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      // let headers = {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${token}`,
+      // };
+      // this.axios
+      //   .get(process.env.MIX_API_URL + "/api/sections/" + this.note_id, {
+      //     headers: headers,
+      //   })
+      //   .then((response) => {
+      //     //
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    },
+  },
 };
 </script>

@@ -2842,7 +2842,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "SectionPart"
+  name: "SectionPart",
+  props: ["note_id"],
+  mounted: function mounted() {
+    console.log(this.note_id);
+  },
+  methods: {
+    sectionContent: function sectionContent() {// const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      // let headers = {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${token}`,
+      // };
+      // this.axios
+      //   .get(process.env.MIX_API_URL + "/api/sections/" + this.note_id, {
+      //     headers: headers,
+      //   })
+      //   .then((response) => {
+      //     //
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    }
+  }
 });
 
 /***/ }),
