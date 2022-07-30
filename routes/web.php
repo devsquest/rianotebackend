@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\HeadingController;
+use App\Http\Controllers\Front\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +15,14 @@ use App\Http\Controllers\API\HeadingController;
 |
 */
 
+Route::get('/', function(){
+    return "Faster Note is Comming Soon!";
+});
+Route::get('/homepage', [HomeController::class, 'index']);
+
 Auth::routes(['register' => false]);
 
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-Route::get('/', function () {
-    return "Faster Note Front Website";
-});
 
 Route::get('/backup', [HeadingController::class, 'our_backup_database']);
 

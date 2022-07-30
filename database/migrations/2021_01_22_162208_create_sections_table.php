@@ -21,6 +21,7 @@ class CreateSectionsTable extends Migration
             $table->string('name');
             $table->bigInteger('note_id')->unsigned()->nullable();
             $table->foreign('note_id')->references('id')->on('notes');
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }

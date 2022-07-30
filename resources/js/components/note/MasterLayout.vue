@@ -548,11 +548,14 @@ export default {
     loadHeadings() {
       this.loadHeadingsTab.status = true;
       this.current = "HeadingPart";
+      this.sections_list = this.sections_list.map((val) => {
+        val.showStatus = false;
+        return val;
+      });
     },
     loadSections(id, index) {
       this.loadHeadingsTab.status = false;
       this.current = "SectionPart";
-      //
       this.sections_list = this.sections_list.map((val) => {
         val.showStatus = false;
         return val;

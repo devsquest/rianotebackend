@@ -2290,11 +2290,14 @@ __webpack_require__.r(__webpack_exports__);
     loadHeadings: function loadHeadings() {
       this.loadHeadingsTab.status = true;
       this.current = "HeadingPart";
+      this.sections_list = this.sections_list.map(function (val) {
+        val.showStatus = false;
+        return val;
+      });
     },
     loadSections: function loadSections(id, index) {
       this.loadHeadingsTab.status = false;
-      this.current = "SectionPart"; //
-
+      this.current = "SectionPart";
       this.sections_list = this.sections_list.map(function (val) {
         val.showStatus = false;
         return val;
@@ -2839,7 +2842,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "SectionPart"
+  name: "SectionPart",
+  props: ["note_id"],
+  mounted: function mounted() {
+    console.log(this.note_id);
+  },
+  methods: {
+    sectionContent: function sectionContent() {// const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      // let headers = {
+      //   Accept: "application/json",
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${token}`,
+      // };
+      // this.axios
+      //   .get(process.env.MIX_API_URL + "/api/sections/" + this.note_id, {
+      //     headers: headers,
+      //   })
+      //   .then((response) => {
+      //     //
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    }
+  }
 });
 
 /***/ }),
@@ -4373,7 +4399,11 @@ __webpack_require__.r(__webpack_exports__);
 /* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   asset_url: "http://127.0.0.1:8000",
+<<<<<<< HEAD
   app_name: process.env.MIX_APP_NAME
+=======
+  app_name: "Laravel"
+>>>>>>> ff76948f1c8f73b16ae659962556f1a3239fb4fa
 });
 
 /***/ }),
