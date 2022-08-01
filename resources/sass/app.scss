@@ -392,6 +392,15 @@ $btn-color : #53b848;
     padding: 4px;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+.notfound-image {
+    width: 100%;
+    max-height: 100vh;
+}
+
 //@mobile
 @media (max-width: 767px) {
     .note-login-form {
@@ -401,8 +410,4 @@ $btn-color : #53b848;
     .d-xs-none {
         display: none !important;
     }
-}
-
-::-webkit-calendar-picker-indicator {
-    filter: invert(1);
 }

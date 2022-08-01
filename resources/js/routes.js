@@ -10,11 +10,6 @@ let node = "/" + process.env.MIX_BASE_NODE;
 
 const routes = [
     { path: '*', name: 'notfound_page', component: NotFound },
-    // { path: '/', name: 'home_page', component: HomePage },
-    // { path: '/contact', name: 'contact_page', component: ContactPage },
-    // { path: '/category/:slug', name: 'category_page', component: CategoryPage },
-    // { path: '/:cat_name/:slug', name: 'content_page', component: ContentPage },
-    //
     { path: node + '/login', name: 'login_page', component: LoginPage },
     { path: node + '/splash', name: 'splash_page', component: SplashPage, meta: { middleware: [auth] } },
     {
