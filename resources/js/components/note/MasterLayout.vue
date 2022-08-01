@@ -245,8 +245,15 @@
             </div>
             <div class="tools-box-complete">
               <KeepAlive>
-                <component :is="current" :note_id="selected_note"></component>
+                <component
+                  :is="current"
+                  :note_id="selected_note"
+                  v-if="renderComponent"
+                ></component>
               </KeepAlive>
+              <!-- <div v-else>
+                <section-part :note_id="selected_note"></section-part>
+              </div> -->
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -463,6 +470,7 @@ export default {
   },
   data() {
     return {
+      renderComponent: true,
       current: "HeadingPart",
       notes_list: null,
       sections_list: null,
@@ -489,6 +497,17 @@ export default {
     this.getSectionsList();
   },
   methods: {
+    forceRerender() {
+      // Remove my-component from the DOM
+      this.renderComponent = false;
+
+      // If you like promises better you can
+      // also use nextTick this way
+      this.$nextTick().then(() => {
+        // Add the component back in
+        this.renderComponent = true;
+      });
+    },
     newNoteBtn() {
       $("#newNoteModal").modal("show");
     },

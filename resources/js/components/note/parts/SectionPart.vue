@@ -67,6 +67,12 @@ export default {
   mounted() {
     console.log(this.note_id);
   },
+  activated() {
+    console.log(this.note_id);
+  },
+  deactivated() {
+    console.log(this.note_id);
+  },
   methods: {
     sectionContent() {
       // const { token } = JSON.parse(localStorage.getItem("loginInfo"));

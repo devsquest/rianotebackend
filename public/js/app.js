@@ -2196,6 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      renderComponent: true,
       current: "HeadingPart",
       notes_list: null,
       sections_list: null,
@@ -2222,22 +2223,34 @@ __webpack_require__.r(__webpack_exports__);
     this.getSectionsList();
   },
   methods: {
+    forceRerender: function forceRerender() {
+      var _this = this;
+
+      // Remove my-component from the DOM
+      this.renderComponent = false; // If you like promises better you can
+      // also use nextTick this way
+
+      this.$nextTick().then(function () {
+        // Add the component back in
+        _this.renderComponent = true;
+      });
+    },
     newNoteBtn: function newNoteBtn() {
       $("#newNoteModal").modal("show");
     },
     logoutNote: function logoutNote() {
-      var _this = this;
+      var _this2 = this;
 
       this.$store.dispatch("login/logoutUser").then(function () {
-        _this.$toastr.s("User Logout", "Success");
+        _this2.$toastr.s("User Logout", "Success");
 
-        _this.$router.push({
+        _this2.$router.push({
           name: "login_page"
         });
       });
     },
     getNotesList: function getNotesList() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")),
           token = _JSON$parse.token;
@@ -2250,13 +2263,13 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
-        _this2.notes_list = response.data.data.notes;
+        _this3.notes_list = response.data.data.notes;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     getSectionsList: function getSectionsList() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")),
           token = _JSON$parse2.token;
@@ -2269,7 +2282,7 @@ __webpack_require__.r(__webpack_exports__);
       this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
-        _this3.sections_list = response.data.data.sections.map(function (val) {
+        _this4.sections_list = response.data.data.sections.map(function (val) {
           val.showStatus = false;
           return val;
         });
@@ -2310,13 +2323,13 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.note.all_headings;
     },
     userInfo: function userInfo() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.$store.state.login.user != null) {
         return this.$store.state.login.user;
       } else {
         this.$store.dispatch("login/userInformation").then(function () {
-          return _this4.$store.state.login.user;
+          return _this5.$store.state.login.user;
         });
       }
     }
@@ -2847,6 +2860,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log(this.note_id);
   },
+  activated: function activated() {
+    console.log(this.note_id);
+  },
+  deactivated: function deactivated() {
+    console.log(this.note_id);
+  },
   methods: {
     sectionContent: function sectionContent() {// const { token } = JSON.parse(localStorage.getItem("loginInfo"));
       // let headers = {
@@ -3269,12 +3288,12 @@ var render = function render() {
     }, [_vm._v("\n                          " + _vm._s(x.name))])]);
   })], 2)])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tools-box-complete"
-  }, [_c("KeepAlive", [_c(_vm.current, {
+  }, [_c("KeepAlive", [_vm.renderComponent ? _c(_vm.current, {
     tag: "component",
     attrs: {
       note_id: _vm.selected_note
     }
-  })], 1)], 1)]), _vm._v(" "), _c("div", {
+  }) : _vm._e()], 1)], 1)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-6 col-md-6"
   }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "row"
@@ -4396,14 +4415,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   asset_url: "http://127.0.0.1:8000",
-<<<<<<< HEAD
-  app_name: process.env.MIX_APP_NAME
-=======
   app_name: "Laravel"
->>>>>>> ff76948f1c8f73b16ae659962556f1a3239fb4fa
 });
 
 /***/ }),
