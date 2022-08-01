@@ -3672,15 +3672,26 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _vm._m(0);
+  return _c("div", {
+    staticClass: "vue-not-found"
+  }, [_c("div", {
+    staticClass: "container-fluid"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("div", {
+    staticClass: "notfound-img"
+  }, [_c("img", {
+    staticClass: "notfound-image",
+    attrs: {
+      src: this.$appConfig.asset_url + "/note_assets/img/404.jpg",
+      alt: ""
+    }
+  })])])])])]);
 };
 
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", [_c("h1", [_vm._v("Not Found Page")])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
@@ -4620,12 +4631,7 @@ var routes = [{
   path: '*',
   name: 'notfound_page',
   component: _components_note_NotFound_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-}, // { path: '/', name: 'home_page', component: HomePage },
-// { path: '/contact', name: 'contact_page', component: ContactPage },
-// { path: '/category/:slug', name: 'category_page', component: CategoryPage },
-// { path: '/:cat_name/:slug', name: 'content_page', component: ContentPage },
-//
-{
+}, {
   path: node + '/login',
   name: 'login_page',
   component: _components_note_pages_LoginPage_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
