@@ -3422,7 +3422,7 @@ var render = function render() {
   }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", _vm._l(_vm.questionsData, function (x) {
     return _c("span", {
       key: x.oid
-    }, [_vm._v(_vm._s(x.question_text) + " " + _vm._s(x.option_text) + ". ")]);
+    }, [_vm._v(_vm._s(x.question_text) + " " + _vm._s(x.option_text) + ".\n                    ")]);
   }), 0)])])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade",
     attrs: {

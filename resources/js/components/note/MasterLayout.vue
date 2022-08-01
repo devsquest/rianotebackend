@@ -391,7 +391,9 @@
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
-                      <span v-for="x in questionsData" :key="x.oid">{{ x.question_text }} {{ x.option_text}}. </span>
+                      <span v-for="x in questionsData" :key="x.oid"
+                        >{{ x.question_text }} {{ x.option_text }}.
+                      </span>
                     </p>
                   </div>
                 </div>
