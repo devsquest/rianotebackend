@@ -244,9 +244,17 @@
               </div>
             </div>
             <div class="tools-box-complete">
-              <KeepAlive>
-                <component :is="current" :note_id="selected_note"></component>
+              <KeepAlive include="HeadingPart">
+                <component
+                  :is="current"
+                  :note_id="selected_note"
+                  :key="this.section_slug"
+                  :slug="this.section_slug"
+                ></component>
               </KeepAlive>
+              <!-- <div v-else>
+                <section-part :note_id="selected_note"></section-part>
+              </div> -->
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -382,6 +390,11 @@
                       </div>
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
+                    <p>
+                      <span v-for="x in questionsData" :key="x.oid"
+                        >{{ x.question_text }} {{ x.option_text }}.
+                      </span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -463,6 +476,7 @@ export default {
   },
   data() {
     return {
+      section_slug: this.$route.params.section,
       current: "HeadingPart",
       notes_list: null,
       sections_list: null,
@@ -541,7 +555,7 @@ export default {
       e.preventDefault();
       this.$router.push({
         name: "make_note",
-        params: { type: this.selected_note },
+        params: { type: this.selected_note, section: this.section_slug },
       });
       $("#newNoteModal").modal("hide");
     },
@@ -552,6 +566,11 @@ export default {
         val.showStatus = false;
         return val;
       });
+      this.section_slug = "Headings";
+      this.$router.push({
+        name: "make_note",
+        params: { type: this.selected_note, section: "Headings" },
+      });
     },
     loadSections(id, index) {
       this.loadHeadingsTab.status = false;
@@ -561,6 +580,16 @@ export default {
         return val;
       });
       this.sections_list[index].showStatus = true;
+      if (this.sections_list[index].id != this.section_slug) {
+        this.section_slug = this.sections_list[index].id;
+        this.$router.push({
+          name: "make_note",
+          params: {
+            type: this.selected_note,
+            section: this.sections_list[index].id,
+          },
+        });
+      }
     },
   },
   computed: {
@@ -575,6 +604,9 @@ export default {
           return this.$store.state.login.user;
         });
       }
+    },
+    questionsData() {
+      return this.$store.state.note.questions_on_result;
     },
   },
 };

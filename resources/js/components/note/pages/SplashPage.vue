@@ -93,7 +93,7 @@ export default {
     };
   },
   mounted() {
-    document.title = "Welcome to "+ this.$appConfig.app_name;
+    document.title = "Welcome to " + this.$appConfig.app_name;
     this.getNotesList();
   },
   methods: {
@@ -121,7 +121,7 @@ export default {
       if (this.selected_note != null) {
         this.$router.push({
           name: "make_note",
-          params: { type: this.selected_note },
+          params: { type: this.selected_note, section: "Headings" },
         });
         $("#newNoteModal").modal("hide");
       } else {

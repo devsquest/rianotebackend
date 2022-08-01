@@ -14,21 +14,21 @@ class Section extends Model
 
     public function children()
     {
-        return $this->hasMany('App\Section', 'parent', 'id');
+        return $this->hasMany('App\Models\Section', 'parent', 'id');
     }
 
     public function parent()
     {
-        return $this->hasOne('App\Section', 'id', 'parent');
+        return $this->hasOne('App\Models\Section', 'id', 'parent');
     }
 
     public function questions()
     {
-        return $this->hasMany('App\Question');
+        return $this->hasMany('App\Models\Question');
     }
 
     public function note()
     {
-        return $this->belongsTo('App\Note');
+        return $this->belongsTo('App\Models\Note');
     }
 }

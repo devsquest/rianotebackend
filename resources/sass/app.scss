@@ -126,6 +126,7 @@ $btn-color : #53b848;
 .note-section-left-text {
     display: block;
     text-align: center;
+    cursor: pointer;
 }
 
 .tool-input {
@@ -149,18 +150,14 @@ $btn-color : #53b848;
 
 .tools-area {
     background-color: white;
-    padding: 20px;
+    padding: 2px;
 }
 
 .tool-input-icon {
     position: absolute;
-    top: 30px;
-    right: 41px;
+    top: 13px;
+    right: 20px;
     color: hsl(0deg 0% 69%);
-}
-
-.single-tools-option {
-    padding: 3px;
 }
 
 .single-tools-option-text {
@@ -174,6 +171,21 @@ $btn-color : #53b848;
     background-color: $u-color-1;
     color: white;
     height: 28px;
+}
+
+.note-questions-single-option-box {
+    background-color: hsl(0deg, 0%, 96%);;
+    color: black;
+    padding: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.questions {
+    overflow: auto;
+    height: 100vh;
+    padding: 10px;
 }
 
 .single-tools-option-input:focus {

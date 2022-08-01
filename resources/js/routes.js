@@ -13,7 +13,7 @@ const routes = [
     { path: node + '/login', name: 'login_page', component: LoginPage },
     { path: node + '/splash', name: 'splash_page', component: SplashPage, meta: { middleware: [auth] } },
     {
-        path: node + '/makenote/:type', name: 'make_note', components: {
+        path: node + '/makenote/:type/:section?', name: 'make_note', components: {
             header: NoteHeader,
             default: MasterLayout,
             footer: NoteFooter
