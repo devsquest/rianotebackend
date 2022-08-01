@@ -17,10 +17,10 @@ class Question extends Model
 
     public function options()
     {
-        return $this->hasMany('App\Option');
+        return $this->hasMany('App\Models\Option');
     }
 
     public function section(){
-        return $this->belongsTo('App\Section');
+        return $this->belongsTo('App\Models\Section');
     }
 }

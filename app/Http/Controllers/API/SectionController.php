@@ -33,6 +33,9 @@ class SectionController extends Controller
                 $question['options'] = $options;
             }
         }
-        return response()->json(['success' => $questions], $this->successStatus);
+        $response = ['status' => 'success', 'msg' => '', 'data' => [
+            'questions' => $questions,
+        ]];
+        return response()->json($response, $this->successStatus);
     }
 }

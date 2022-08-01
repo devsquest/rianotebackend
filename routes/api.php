@@ -6,6 +6,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\NoteController;
 use App\Http\Controllers\API\HeadingController;
 use App\Http\Controllers\API\SectionController;
+use App\Http\Controllers\API\OptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::post('/register', [UserController::class, 'register']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/details', [UserController::class, 'details']);
-    Route::post('/user-info', 'API\UserController@updateUser');
+    Route::post('/user-info', [UserController::class, 'updateUser']);
     Route::get('/sections/{note_id}/{parent_id?}', [SectionController::class, 'index']);
     Route::get('/notes', [NoteController::class, 'index']);
     Route::get('/notes/{id}', [NoteController::class, 'getSectionByType']);
@@ -33,6 +34,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/headings/save', [HeadingController::class, 'saveHeading']);
     Route::put('/headings/{id}', [HeadingController::class, 'editHeading']);
     Route::delete('/headings/{id}', [HeadingController::class, 'deleteHeadingById']);
-    Route::get('/questions/{id}', 'API\SectionController@getSectionContent');
-    Route::put('/option/{id}', 'API\OptionController@editOption');
+    Route::get('/questions/{id}', [SectionController::class, 'getSectionContent']);
+    Route::put('/option/{id}', [OptionController::class, 'editOption']);
 });

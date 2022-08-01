@@ -244,11 +244,12 @@
               </div>
             </div>
             <div class="tools-box-complete">
-              <KeepAlive>
+              <KeepAlive include="HeadingPart">
                 <component
                   :is="current"
                   :note_id="selected_note"
-                  v-if="renderComponent"
+                  :key="this.section_slug"
+                  :slug="this.section_slug"
                 ></component>
               </KeepAlive>
               <!-- <div v-else>
@@ -389,6 +390,9 @@
                       </div>
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
+                    <p>
+                      <span v-for="x in questionsData" :key="x.oid">{{ x.question_text }} {{ x.option_text}}. </span>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -470,7 +474,7 @@ export default {
   },
   data() {
     return {
-      renderComponent: true,
+      section_slug: this.$route.params.section,
       current: "HeadingPart",
       notes_list: null,
       sections_list: null,
@@ -497,17 +501,6 @@ export default {
     this.getSectionsList();
   },
   methods: {
-    forceRerender() {
-      // Remove my-component from the DOM
-      this.renderComponent = false;
-
-      // If you like promises better you can
-      // also use nextTick this way
-      this.$nextTick().then(() => {
-        // Add the component back in
-        this.renderComponent = true;
-      });
-    },
     newNoteBtn() {
       $("#newNoteModal").modal("show");
     },
@@ -560,7 +553,7 @@ export default {
       e.preventDefault();
       this.$router.push({
         name: "make_note",
-        params: { type: this.selected_note },
+        params: { type: this.selected_note, section: this.section_slug },
       });
       $("#newNoteModal").modal("hide");
     },
@@ -571,6 +564,11 @@ export default {
         val.showStatus = false;
         return val;
       });
+      this.section_slug = "Headings";
+      this.$router.push({
+        name: "make_note",
+        params: { type: this.selected_note, section: "Headings" },
+      });
     },
     loadSections(id, index) {
       this.loadHeadingsTab.status = false;
@@ -580,6 +578,16 @@ export default {
         return val;
       });
       this.sections_list[index].showStatus = true;
+      if (this.sections_list[index].id != this.section_slug) {
+        this.section_slug = this.sections_list[index].id;
+        this.$router.push({
+          name: "make_note",
+          params: {
+            type: this.selected_note,
+            section: this.sections_list[index].id,
+          },
+        });
+      }
     },
   },
   computed: {
@@ -594,6 +602,9 @@ export default {
           return this.$store.state.login.user;
         });
       }
+    },
+    questionsData() {
+      return this.$store.state.note.questions_on_result;
     },
   },
 };
