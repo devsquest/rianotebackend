@@ -21,7 +21,7 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $sections = Section::paginate(5);
+        $sections = Section::paginate(15);
         $parentSections = Section::where('parent_id', '=', null)->pluck('name', 'id')
             ->all();
 
