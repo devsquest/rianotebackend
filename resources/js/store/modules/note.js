@@ -5,6 +5,7 @@ const state = {
     questions: new Map(),
     current_section_questions: [],
     questions_on_result: [],
+    formQuestions: new Map(),
 };
 const getters = {};
 const mutations = {

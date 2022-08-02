@@ -20,7 +20,7 @@ class QuestionController extends Controller
      * @return View
      */
     public function index(){
-        $questions = Question::paginate(5);
+        $questions = Question::paginate(15);
 
         return view('question.list-question', [
             'questions' => $questions,

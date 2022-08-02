@@ -232,7 +232,7 @@
                                 ? { color: '#e0a800' }
                                 : { color: 'white' },
                             ]"
-                            v-on:click="loadSections(x.id, index)"
+                            v-on:click="loadSections(x.id, index, x.type)"
                           >
                             {{ x.name }}</a
                           >
@@ -250,11 +250,9 @@
                   :note_id="selected_note"
                   :key="this.section_slug"
                   :slug="this.section_slug"
+                  :section_type="section_type"
                 ></component>
               </KeepAlive>
-              <!-- <div v-else>
-                <section-part :note_id="selected_note"></section-part>
-              </div> -->
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -476,6 +474,7 @@ export default {
   },
   data() {
     return {
+      section_type: null,
       section_slug: this.$route.params.section,
       current: "HeadingPart",
       notes_list: null,
@@ -572,7 +571,8 @@ export default {
         params: { type: this.selected_note, section: "Headings" },
       });
     },
-    loadSections(id, index) {
+    loadSections(id, index, type) {
+      this.section_type = type;
       this.loadHeadingsTab.status = false;
       this.current = "SectionPart";
       this.sections_list = this.sections_list.map((val) => {

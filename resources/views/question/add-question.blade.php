@@ -33,8 +33,9 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" id="selection-type" name="selection-type" required>
                                         <option value="">{{ __('Select Selection Type')}}</option>
-                                        <option value="Single" {{ (isset($editQuestion) and $editQuestion->selection_type == 'Single') ? 'selected' : '' }}>Single</option>
-                                        <option value="Multiple" {{ (isset($editQuestion) and $editQuestion->selection_type == 'Multiple') ? 'selected' : '' }}>Multiple</option>
+                                        <option value="single" {{ (isset($editQuestion) and $editQuestion->selection_type == 'single') ? 'selected' : '' }}>Single</option>
+                                        <option value="multiple" {{ (isset($editQuestion) and $editQuestion->selection_type == 'multiple') ? 'selected' : '' }}>Multiple</option>
+                                        <option value="form" {{ (isset($editQuestion) and $editQuestion->selection_type == 'form') ? 'selected' : '' }}>Form</option>
                                     </select>
                                 </div>
                             </div>

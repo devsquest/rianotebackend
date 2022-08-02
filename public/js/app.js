@@ -2196,6 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      section_type: null,
       section_slug: this.$route.params.section,
       current: "HeadingPart",
       notes_list: null,
@@ -2248,7 +2249,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this2.notes_list = response.data.data.notes;
@@ -2267,7 +2268,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/sections/" + this.selected_note, {
+      this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
@@ -2305,7 +2306,8 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    loadSections: function loadSections(id, index) {
+    loadSections: function loadSections(id, index, type) {
+      this.section_type = type;
       this.loadHeadingsTab.status = false;
       this.current = "SectionPart";
       this.sections_list = this.sections_list.map(function (val) {
@@ -2457,7 +2459,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$refs.email.focus();
 
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
               case 7:
@@ -2470,31 +2472,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this.$refs.password.focus();
 
-                _context.next = 17;
+                _context.next = 16;
                 break;
 
               case 12:
-                _this.$toastr.w("Try to Loging...", "Wait!");
-
                 _this.loginBtn.disable = true;
                 _this.loginBtn.text = "Login....";
-                _context.next = 17;
+                _context.next = 16;
                 return _this.$store.dispatch("login/login", _this.formData).then(function () {
-                  if (_this.$store.state.login.loginInfo != null) {
-                    _this.$toastr.s("Loged in Successfully!", "Success!");
-
-                    _this.$router.push({
-                      name: "splash_page"
-                    });
-                  } else {
+                  if (_this.$store.state.login.error_log_text != null) {
                     _this.loginBtn.disable = false;
                     _this.loginBtn.text = "Login";
 
-                    _this.$toastr.e("Invalid Info", "Error!");
+                    _this.$toastr.w("You are not allowed to login", "Warning!");
+                  } else {
+                    if (_this.$store.state.login.loginInfo != null) {
+                      _this.$toastr.s("Loged in Successfully!", "Success!");
+
+                      _this.$router.push({
+                        name: "splash_page"
+                      });
+                    } else {
+                      _this.loginBtn.disable = false;
+                      _this.loginBtn.text = "Login";
+
+                      _this.$toastr.e("Invalid Info", "Error!");
+                    }
                   }
                 });
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -2545,7 +2552,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -2659,7 +2666,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings_all/" + _this.selected_note;
+                url = "http://127.0.0.1:8000" + "/api/headings_all/" + _this.selected_note;
                 _context.next = 5;
                 return _this.axios.get(url, {
                   headers: headers
@@ -2723,7 +2730,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings/" + db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
                   headers: headers
@@ -2766,7 +2773,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this3.headingsList[index].heading_text,
                   heading_content: _this3.headingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/save";
+                url = "http://127.0.0.1:8000" + "/api/headings/save";
                 _context3.next = 6;
                 return _this3.axios.post(url, formBody, {
                   headers: headers
@@ -2816,7 +2823,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this4.dbHeadingsList[index].heading_text,
                   heading_content: _this4.dbHeadingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
                 _context4.next = 6;
                 return _this4.axios.post(url, formBody, {
                   headers: headers
@@ -2876,7 +2883,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SectionPart",
-  props: ["note_id", "slug"],
+  props: ["note_id", "slug", "section_type"],
   data: function data() {
     return {
       showByDefault: false,
@@ -2905,7 +2912,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   Authorization: "Bearer ".concat(token)
                 };
                 _context.next = 4;
-                return _this.axios.get("https://fasternote.com" + "/api/sections/" + _this.note_id + "/" + _this.slug, {
+                return _this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + _this.note_id + "/" + _this.section_type + "/" + _this.slug, {
                   headers: headers
                 }).then(function (response) {
                   if (response.data.data.sections.length > 0) {
@@ -2951,7 +2958,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     addQuestionInResult: function addQuestionInResult(question_id, option_id) {
-      this.$store.commit('note/addQuestionsOnResult', {
+      this.$store.commit("note/addQuestionsOnResult", {
         qid: question_id.id,
         question_text: question_id.question_text,
         oid: option_id.id,
@@ -3361,7 +3368,7 @@ var render = function render() {
       }],
       on: {
         click: function click($event) {
-          return _vm.loadSections(x.id, index);
+          return _vm.loadSections(x.id, index, x.type);
         }
       }
     }, [_vm._v("\n                          " + _vm._s(x.name))])]);
@@ -3376,7 +3383,8 @@ var render = function render() {
     tag: "component",
     attrs: {
       note_id: _vm.selected_note,
-      slug: this.section_slug
+      slug: this.section_slug,
+      section_type: _vm.section_type
     }
   })], 1)], 1)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-6 col-md-6"
@@ -4351,7 +4359,9 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "vue-section-part"
-  }, [_vm.sub_sections_list != null ? _c("div", {
+  }, [_vm.section_type == "questionnaire" ? _c("div", {
+    staticClass: "questionnaire"
+  }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-4 col-md-4"
@@ -4404,11 +4414,28 @@ var render = function render() {
             return _vm.addQuestionInResult(x, option);
           }
         }
-      }, [_vm._v("\n                      " + _vm._s(option.option_text) + "\n                    ")])]);
+      }, [_vm._v("\n                        " + _vm._s(option.option_text) + "\n                      ")])]);
     }), 0)]);
-  }), 0)])])]) : _vm._e()])]) : _c("div", {
+  }), 0)])])]) : _vm._e()])])]) : _vm.section_type == "form-inline" ? _c("div", {
+    staticClass: "form-inline"
+  }, [_c("div", {
     staticClass: "row"
-  }, [_vm._m(1)])]);
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("br"), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_vm._m(1), _vm._v(" "), _vm._l(_vm.sub_sections_list, function (x) {
+    return _c("div", {
+      key: x.id,
+      staticClass: "col-lg-12 col-md-12"
+    }, [_c("div", {
+      staticClass: "note-input-group"
+    }, [_c("div", {
+      staticClass: "note-input-group-head"
+    }, [_c("h6", {
+      staticClass: "bold-heading"
+    }, [_vm._v(_vm._s(x.question_text) + ":")])]), _vm._v(" "), _vm._m(2, true)])]);
+  })], 2)])])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
@@ -4431,8 +4458,25 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "col-lg-12"
-  }, [_c("br"), _vm._v(" "), _c("h2", [_vm._v("No Content Regarding this Catgeory")])]);
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("p", {
+    staticClass: "bold-heading"
+  }, [_vm._v("\n              Add information as appropriate in the spaces below.\n            ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "note-input-group-field"
+  }, [_c("input", {
+    staticClass: "form-control",
+    staticStyle: {
+      width: "100%"
+    },
+    attrs: {
+      type: "text"
+    }
+  })]);
 }];
 render._withStripped = true;
 
@@ -4532,7 +4576,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  asset_url: "https://fasternote.com",
+  asset_url: "http://127.0.0.1:8000",
   app_name: "Laravel"
 });
 
@@ -4714,17 +4758,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var state = {
   loginInfo: null,
-  user: null
+  user: null,
+  error_log_text: null
 };
 var getters = {};
 var mutations = {
   login: function login(state, payload) {
-    if (payload.status == '200') {
+    state.error_log_text = null;
+
+    if (payload.status == '200' && payload.data.data.user.isAdmin != 1) {
       state.loginInfo = {
         status: 'true',
-        token: payload.data.success.token
+        token: payload.data.data.token
       };
+      state.user = payload.data.data.user;
       localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
+    } else if (payload.status == '200' && payload.data.data.user.isAdmin == 1) {
+      state.error_log_text = 'You are not allowed to Login Man';
+    } else {
+      state.error_log_text = null;
     }
   },
   userInformation: function userInformation(state, payload) {
@@ -4746,7 +4798,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "https://fasternote.com" + "/api/login";
+              url = "http://127.0.0.1:8000" + "/api/login";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -4776,7 +4828,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/details";
+              url = "http://127.0.0.1:8000" + "/api/details";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -4807,7 +4859,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
-              url = "https://fasternote.com" + "/api/logout";
+              url = "http://127.0.0.1:8000" + "/api/logout";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -4865,7 +4917,8 @@ var state = {
   all_headings: [],
   questions: new Map(),
   current_section_questions: [],
-  questions_on_result: []
+  questions_on_result: [],
+  formQuestions: new Map()
 };
 var getters = {};
 var mutations = {
@@ -4893,7 +4946,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/questions/" + payload;
+              url = "http://127.0.0.1:8000" + "/api/questions/" + payload;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

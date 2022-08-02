@@ -19,10 +19,18 @@ class UserController extends Controller
      */
     public function login()
     {
+        $validator = Validator::make(request()->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        }
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
             $user = Auth::user();
-            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-            return response()->json(['success' => $success], $this->successStatus);
+            $token =  $user->createToken('MyApp')->plainTextToken;
+            $response = ['status' => 'success', 'msg' => 'Login successfully!', 'data' => ['token' => $token, 'user' => $user]];
+            return response()->json($response, $this->successStatus);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

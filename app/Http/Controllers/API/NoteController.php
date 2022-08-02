@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
 use App\Models\Section;
-use Validator;
+use Auth;
 
 class NoteController extends Controller
 {
     public $successStatus = 200;
     public function index()
     {
-        $notes = Note::where('status', 1)->get();
+        $notes = Note::where('status', 1)->where('user_id', Auth::user()->id)->get();
         $response = ['status' => 'success', 'msg' => '', 'data' => [
             'notes' => $notes,
         ]];

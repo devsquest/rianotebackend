@@ -42,7 +42,7 @@
                 <!-- Toggle icon for mobile view -->
                 <div class="top-left-part">
                     <!-- Logo -->
-                    <a class="logo" href="{{ asset('admin/note-list') }}"><b><i class="fa fa-home"></i>&nbsp; Ria Note</b></a> </div>
+                    <a class="logo" href="{{ asset('admin/note-list') }}"><b><i class="fa fa-home"></i>&nbsp; {{ env('APP_NAME') }}</b></a> </div>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="{{ asset('admin/plugins/images/users/varun.jpg') }}" alt="user-img" width="36" class="img-circle">
                             <b class="hidden-xs">{{ $user->name }}</b><span class="caret"></span> </a>

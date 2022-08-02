@@ -110,7 +110,7 @@ export default {
       },
     };
   },
-  mounted(){
+  mounted() {
     document.title = "Login";
   },
   methods: {
@@ -127,17 +127,22 @@ export default {
         this.$toastr.e("Password is required", "Password");
         this.$refs.password.focus();
       } else {
-        this.$toastr.w("Try to Loging...", "Wait!");
         this.loginBtn.disable = true;
         this.loginBtn.text = "Login....";
         await this.$store.dispatch("login/login", this.formData).then(() => {
-          if (this.$store.state.login.loginInfo != null) {
-            this.$toastr.s("Loged in Successfully!", "Success!");
-            this.$router.push({ name: "splash_page" });
-          } else {
+          if (this.$store.state.login.error_log_text != null) {
             this.loginBtn.disable = false;
             this.loginBtn.text = "Login";
-            this.$toastr.e("Invalid Info", "Error!");
+            this.$toastr.w("You are not allowed to login", "Warning!");
+          } else {
+            if (this.$store.state.login.loginInfo != null) {
+              this.$toastr.s("Loged in Successfully!", "Success!");
+              this.$router.push({ name: "splash_page" });
+            } else {
+              this.loginBtn.disable = false;
+              this.loginBtn.text = "Login";
+              this.$toastr.e("Invalid Info", "Error!");
+            }
           }
         });
       }

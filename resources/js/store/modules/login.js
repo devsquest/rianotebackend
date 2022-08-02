@@ -3,16 +3,23 @@ import Vue from 'vue'
 const state = {
     loginInfo: null,
     user: null,
+    error_log_text: null,
 };
 const getters = {};
 const mutations = {
     login(state, payload) {
-        if (payload.status == '200') {
+        state.error_log_text = null;
+        if (payload.status == '200' && payload.data.data.user.isAdmin != 1) {
             state.loginInfo = {
                 status: 'true',
-                token: payload.data.success.token,
-            }
+                token: payload.data.data.token,
+            };
+            state.user = payload.data.data.user;
             localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
+        } else if (payload.status == '200' && payload.data.data.user.isAdmin == 1) {
+            state.error_log_text = 'You are not allowed to Login Man';
+        } else {
+            state.error_log_text = null;
         }
     },
     userInformation(state, payload) {

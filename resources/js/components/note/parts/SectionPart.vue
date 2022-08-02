@@ -1,57 +1,62 @@
 <template>
   <div class="vue-section-part">
-    <div class="row" v-if="sub_sections_list != null">
-      <div class="col-lg-4 col-md-4">
-        <br />
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="note-section-left">
-              <div
-                class="note-section-left-li"
-                v-for="x in sub_sections_list"
-                :key="x.id"
-              >
-                <span
-                  class="note-section-left-text"
-                  v-on:click="loadSubSection(x.id)"
-                  >{{ x.name }}</span
+    <div class="questionnaire" v-if="section_type == 'questionnaire'">
+      <div class="row">
+        <div class="col-lg-4 col-md-4">
+          <br />
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="note-section-left">
+                <div
+                  class="note-section-left-li"
+                  v-for="x in sub_sections_list"
+                  :key="x.id"
                 >
+                  <span
+                    class="note-section-left-text"
+                    v-on:click="loadSubSection(x.id)"
+                    >{{ x.name }}</span
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-lg-8 col-md-8">
-        <br />
-        <div class="row" v-if="showByDefault">
-          <div class="col-lg-12">
-            <div class="tools-area">
-              <div class="search-box">
-                <input
-                  type="text"
-                  placeholder="Enter Search Here"
-                  class="tool-input"
-                />
-                <i class="fa-solid fa-magnifying-glass tool-input-icon"></i>
-              </div>
-              <div class="questions">
-                <div
-                  class="single-tools-area"
-                  v-for="x in currentSelectedSection"
-                  :key="x.id"
-                >
-                  <div class="tools-heading mt-2">
-                    <h6 class="bold-heading">{{ x.question_text }}</h6>
-                  </div>
-                  <div class="tools-options">
-                    <div
-                      class="single-tools-option"
-                      v-for="option in x.options"
-                      :key="option.id"
-                    >
-                      <p class="note-questions-single-option-box" v-on:click="addQuestionInResult(x, option)">
-                        {{ option.option_text }}
-                      </p>
+        <div class="col-lg-8 col-md-8">
+          <br />
+          <div class="row" v-if="showByDefault">
+            <div class="col-lg-12">
+              <div class="tools-area">
+                <div class="search-box">
+                  <input
+                    type="text"
+                    placeholder="Enter Search Here"
+                    class="tool-input"
+                  />
+                  <i class="fa-solid fa-magnifying-glass tool-input-icon"></i>
+                </div>
+                <div class="questions">
+                  <div
+                    class="single-tools-area"
+                    v-for="x in currentSelectedSection"
+                    :key="x.id"
+                  >
+                    <div class="tools-heading mt-2">
+                      <h6 class="bold-heading">{{ x.question_text }}</h6>
+                    </div>
+                    <div class="tools-options">
+                      <div
+                        class="single-tools-option"
+                        v-for="option in x.options"
+                        :key="option.id"
+                      >
+                        <p
+                          class="note-questions-single-option-box"
+                          v-on:click="addQuestionInResult(x, option)"
+                        >
+                          {{ option.option_text }}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -61,10 +66,28 @@
         </div>
       </div>
     </div>
-    <div class="row" v-else>
-      <div class="col-lg-12">
-        <br />
-        <h2>No Content Regarding this Catgeory</h2>
+    <div class="form-inline" v-else-if="section_type == 'form-inline'">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <br />
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <p class="bold-heading">
+                Add information as appropriate in the spaces below.
+              </p>
+            </div>
+            <div class="col-lg-12 col-md-12" v-for="x in sub_sections_list" :key="x.id">
+              <div class="note-input-group">
+                <div class="note-input-group-head">
+                  <h6 class="bold-heading">{{ x.question_text }}:</h6>
+                </div>
+                <div class="note-input-group-field">
+                  <input type="text" class="form-control" style="width: 100%" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +95,7 @@
 <script>
 export default {
   name: "SectionPart",
-  props: ["note_id", "slug"],
+  props: ["note_id", "slug", "section_type"],
   data() {
     return {
       showByDefault: false,
@@ -96,6 +119,8 @@ export default {
           process.env.MIX_API_URL +
             "/api/sections/" +
             this.note_id +
+            "/" +
+            this.section_type +
             "/" +
             this.slug,
           {
@@ -124,14 +149,14 @@ export default {
         );
       });
     },
-    addQuestionInResult(question_id, option_id){
-      this.$store.commit('note/addQuestionsOnResult', {
+    addQuestionInResult(question_id, option_id) {
+      this.$store.commit("note/addQuestionsOnResult", {
         qid: question_id.id,
         question_text: question_id.question_text,
         oid: option_id.id,
-        option_text: option_id.option_text
+        option_text: option_id.option_text,
       });
-    }
+    },
   },
   computed: {
     currentSelectedSection() {
