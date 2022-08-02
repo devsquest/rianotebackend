@@ -54,9 +54,9 @@
                             <div class="col-sm-9">
                                 <select class="form-control" name="type" id="type" required>
                                     <option value="">{{ __('Select Type')}}</option>
-                                    <option value="questionnaire" @if($editSection->type == 'questionnaire') selected @endif>Questionnaire</option>
-                                    <option value="form-inline" @if($editSection->type == 'form-inline') selected @endif>Form Heading and Content Inline</option>
-                                    <option value="form-nextline" @if($editSection->type == 'form-nextline') selected @endif>Form Heading and Content Next Line</option>
+                                    <option value="questionnaire" @if(isset($editSection) && $editSection->type == 'questionnaire') selected @endif>Questionnaire</option>
+                                    <option value="form-inline" @if(isset($editSection) && $editSection->type == 'form-inline') selected @endif>Form Heading and Content Inline</option>
+                                    <option value="form-nextline" @if(isset($editSection) && $editSection->type == 'form-nextline') selected @endif>Form Heading and Content Next Line</option>
                                 </select>
                             </div>
                         </div>
