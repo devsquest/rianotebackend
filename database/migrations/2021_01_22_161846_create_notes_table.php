@@ -18,6 +18,7 @@ class CreateNotesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

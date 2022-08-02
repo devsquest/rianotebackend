@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Option;
 use App\Models\Question;
-use App\Models\Section;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class OptionController extends Controller
      * @return View
      */
     public function index(){
-        $options = Option::paginate(5);
+        $options = Option::paginate(15);
 
         return view('option.list-option', [
             'options' => $options,

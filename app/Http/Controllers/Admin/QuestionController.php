@@ -35,7 +35,7 @@ class QuestionController extends Controller
     public function addQuestion(){
         return view('question.add-question', [
             'user' => Auth::user(),
-            'sections' => Section::all()
+            'sections' => Section::all(),
         ]);
     }
 

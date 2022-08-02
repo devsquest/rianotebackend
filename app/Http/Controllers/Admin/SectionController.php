@@ -19,9 +19,10 @@ class SectionController extends Controller
     /**
      * @return View
      */
-    public function index(){
+    public function index()
+    {
         $sections = Section::paginate(5);
-        $parentSections = Section::where('parent_id' , '=', null)->pluck('name', 'id')
+        $parentSections = Section::where('parent_id', '=', null)->pluck('name', 'id')
             ->all();
 
         return view('section.list-section', [
@@ -34,11 +35,12 @@ class SectionController extends Controller
     /**
      * @return Application|RedirectResponse|Redirector
      */
-    public function addSection(){
+    public function addSection()
+    {
         return view('section.add-section', [
             'user' => Auth::user(),
             'notes' => Note::all()->where('status', '=', 1),
-            'parentSections' => Section::where('parent_id' , '=', null)->pluck('name', 'id')->all()
+            'parentSections' => Section::where('parent_id', '=', null)->pluck('name', 'id')->all()
         ]);
     }
 
@@ -46,21 +48,20 @@ class SectionController extends Controller
      * @param Request $request
      * @return Application|RedirectResponse|Redirector
      */
-    public function saveSection(Request $request){
-        $data = request()->all();
-        $section = new Section();
-        $section->name = $data['section-name'];
-
+    public function saveSection(Request $request)
+    {
+        $data = $request->all();
         Section::create([
             'name' => $data['section-name'],
             'parent_id' => $data['parent-section'],
-            'note_id' => $data['section-note']
+            'note_id' => $data['section-note'],
+            'type' => $data['type']
         ]);
-
         return redirect('admin/section-list')->with('status', 'Section Has Been Updated/Inserted');
     }
 
-    public function deleteSection($id) {
+    public function deleteSection($id)
+    {
         Section::destroy($id);
         return redirect('admin/section-list')->with('status', 'Section Has Been Deleted Successfully');
     }
@@ -72,8 +73,8 @@ class SectionController extends Controller
         return view('section.add-section', [
             'user' => Auth::user(),
             'editSection' => $section,
-            'notes' => Note::all()->where('status', '=', 1),
-            'parentSections' => Section::where('parent_id' , '=', null)->pluck('name', 'id')->all()
+            'notes' => Note::where('status', 1)->get(),
+            'parentSections' => Section::where('parent_id', '=', null)->pluck('name', 'id')->all()
         ]);
     }
 
@@ -84,6 +85,7 @@ class SectionController extends Controller
         $section = Section::find($id);
         $section->name = $data['section-name'];
         $section->parent_id = $data['parent-section'];
+        $section->type = $data['type'];
         $section->note()->associate(Note::find($data['section-note']));
         $section->save();
 

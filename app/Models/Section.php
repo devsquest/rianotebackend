@@ -10,6 +10,7 @@ class Section extends Model
 {
     use HasApiTokens;
 
+    protected $fillable = ['parent_id', 'name', 'note_id', 'type'];
     protected $guarded = [];
 
     public function children()

@@ -12,16 +12,16 @@ class Note extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'status', 'user_id'
     ];
 
     public function sections()
     {
-        return $this->hasMany('App\Section');
+        return $this->hasMany('App\Models\Section');
     }
 
     public function headings()
     {
-        return $this->hasMany('App\Heading');
+        return $this->hasMany('App\Models\Heading');
     }
 }
