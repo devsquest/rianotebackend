@@ -186,6 +186,11 @@
   font-size: 15px;
 }
 
+.note-questions-single-option-box-selected {
+  background-color: #0e386a;
+  color: white;
+}
+
 .questions {
   overflow: auto;
   height: 100vh;

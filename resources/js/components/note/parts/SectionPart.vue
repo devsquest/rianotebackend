@@ -49,12 +49,20 @@
                     </div>
                     <div class="tools-options">
                       <div
-                        class="single-tools-option"
                         v-for="option in x.options"
                         :key="option.id"
+                        class="single-tools-option"
                       >
                         <p
-                          class="note-questions-single-option-box"
+                          :class="[
+                            'note-questions-single-option-box',
+                            {
+                              'note-questions-single-option-box-selected':
+                                x.selectedOptions.indexOf(option.id) != -1
+                                  ? true
+                                  : false,
+                            },
+                          ]"
                           v-on:click="addQuestionInResult(x, option)"
                         >
                           {{ option.option_text }}
@@ -139,19 +147,14 @@ export default {
         this.$store.dispatch("note/getQuestions", id);
       }
     },
-    addQuestionInResult(question_id, option_id) {
+    addQuestionInResult(question, option) {
       this.$store.commit("note/addQuestionsOnResult", {
-        qid: question_id.id,
-        question_text: question_id.question_text,
-        oid: option_id.id,
-        option_text: option_id.option_text,
+        question: question,
+        option: option,
       });
     },
   },
   computed: {
-    // currentSelectedSection() {
-    //   return this.$store.state.note.current_section_questions;
-    // },
     currentSectionQuestions() {
       return this.$store.getters["note/currentSectionQuestions"];
     },

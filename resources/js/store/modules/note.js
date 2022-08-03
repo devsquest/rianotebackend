@@ -39,6 +39,7 @@ const mutations = {
         });
         payload.data.forEach((val) => {
             val.isDisplay = false;
+            val.selectedOptions = [];
             state.questions.push(val);
         });
     },
@@ -60,6 +61,17 @@ const mutations = {
                 return val;
             });
         }
+    },
+    addQuestionsOnResult(state, payload) {
+        let index = state.questions.findIndex(x => x.id == payload.question.id);
+        if (payload.question.selection_type == 'single') {
+            state.questions[index].selectedOptions = [];
+            state.questions[index].selectedOptions.push(payload.option.id);
+            state.questions[index].isDisplay = true;
+        } else if (payload.question.selection_type == 'multiple') {
+
+        }
+        console.log(state.questions);
     },
 };
 const actions = {
