@@ -23,8 +23,9 @@
                                 <div class="col-sm-9">
                                     <select class="form-control" id="question-type" name="question-type" required>
                                         <option value="">{{ __('Select Question Type')}}</option>
-                                        <option value="Text" {{ (isset($editQuestion) and $editQuestion->question_type == 'Text') ? 'selected' : '' }}>Text</option>
-                                        <option value="Tags" {{ (isset($editQuestion) and $editQuestion->question_type == 'Tags') ? 'selected' : '' }}>Tags</option>
+                                        <option value="text" {{ (isset($editQuestion) and $editQuestion->question_type == 'text') ? 'selected' : '' }}>Text</option>
+                                        <option value="tags" {{ (isset($editQuestion) and $editQuestion->question_type == 'tags') ? 'selected' : '' }}>Tags</option>
+                                        <option value="form" {{ (isset($editQuestion) and $editQuestion->question_type == 'form') ? 'selected' : '' }}>Form</option>
                                     </select>
                                 </div>
                             </div>
@@ -35,7 +36,6 @@
                                         <option value="">{{ __('Select Selection Type')}}</option>
                                         <option value="single" {{ (isset($editQuestion) and $editQuestion->selection_type == 'single') ? 'selected' : '' }}>Single</option>
                                         <option value="multiple" {{ (isset($editQuestion) and $editQuestion->selection_type == 'multiple') ? 'selected' : '' }}>Multiple</option>
-                                        <option value="form" {{ (isset($editQuestion) and $editQuestion->selection_type == 'form') ? 'selected' : '' }}>Form</option>
                                     </select>
                                 </div>
                             </div>

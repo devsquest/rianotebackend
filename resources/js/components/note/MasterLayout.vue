@@ -387,6 +387,20 @@
                         </h6>
                       </div>
                     </div>
+                    <div class="heading-sections-note-result">
+                      <div
+                        class="div"
+                        v-for="x in formQuestions"
+                        :key="x.id"
+                      >
+                        <h6 v-if="x.textInput != null && x.textInput != ''">
+                          <label class="ex-bold-heading"
+                            >{{ x.question_text }}:</label
+                          >
+                          <label>{{ x.textInput }}</label>
+                        </h6>
+                      </div>
+                    </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
                       <span v-for="x in questionsData" :key="x.oid"
@@ -607,6 +621,9 @@ export default {
     },
     questionsData() {
       return this.$store.state.note.questions_on_result;
+    },
+    formQuestions() {
+      return this.$store.state.note.formQuestions;
     },
   },
 };

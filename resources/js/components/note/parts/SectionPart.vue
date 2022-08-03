@@ -8,9 +8,12 @@
             <div class="col-lg-12">
               <div class="note-section-left">
                 <div
-                  class="note-section-left-li"
-                  v-for="x in sub_sections_list"
+                  v-for="x in currentSubSectionList"
                   :key="x.id"
+                  :class="[
+                    'note-section-left-li',
+                    { 'note-section-left-li-selected': x.showStatus },
+                  ]"
                 >
                   <span
                     class="note-section-left-text"
@@ -38,11 +41,11 @@
                 <div class="questions">
                   <div
                     class="single-tools-area"
-                    v-for="x in currentSelectedSection"
+                    v-for="x in currentSectionQuestions"
                     :key="x.id"
                   >
                     <div class="tools-heading mt-2">
-                      <h6 class="bold-heading">{{ x.question_text }}</h6>
+                      <h6 class="bold-heading">{{ x.question_text }}:</h6>
                     </div>
                     <div class="tools-options">
                       <div
@@ -76,13 +79,22 @@
                 Add information as appropriate in the spaces below.
               </p>
             </div>
-            <div class="col-lg-12 col-md-12" v-for="x in sub_sections_list" :key="x.id">
+            <div
+              class="col-lg-12 col-md-12"
+              v-for="x in currentFormQuestions"
+              :key="x.id"
+            >
               <div class="note-input-group">
                 <div class="note-input-group-head">
                   <h6 class="bold-heading">{{ x.question_text }}:</h6>
                 </div>
                 <div class="note-input-group-field">
-                  <input type="text" class="form-control" style="width: 100%" />
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="width: 100%"
+                    v-model="x.textInput"
+                  />
                 </div>
               </div>
             </div>
@@ -104,50 +116,28 @@ export default {
     };
   },
   mounted() {
+    this.$store.commit("note/changeParentComponent", {
+      parent_id: this.slug,
+    });
     this.sectionContent();
   },
   methods: {
     async sectionContent() {
-      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
-      let headers = {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      };
-      await this.axios
-        .get(
-          process.env.MIX_API_URL +
-            "/api/sections/" +
-            this.note_id +
-            "/" +
-            this.section_type +
-            "/" +
-            this.slug,
-          {
-            headers: headers,
-          }
-        )
-        .then((response) => {
-          if (response.data.data.sections.length > 0) {
-            this.sub_sections_list = response.data.data.sections;
-          } else {
-            this.sub_sections_list = null;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
+      if (this.currentFormQuestions.length <= 0) {
+        this.$store.dispatch("note/sectionContent", {
+          note_id: this.note_id,
+          section_type: this.section_type,
+          slug: this.slug,
         });
+      }
     },
     async loadSubSection(id) {
+      this.$store.commit("note/changeSubSectionComponent", id);
       this.showByDefault = true;
       this.current_section_id = id;
-      this.$store.dispatch("note/getQuestions", id).then(() => {
-        let store = this.$store.state.note.questions;
-        this.$store.commit(
-          "note/currentSelectedSection",
-          store.get("s" + this.current_section_id)
-        );
-      });
+      if (this.currentSectionQuestions.length <= 0) {
+        this.$store.dispatch("note/getQuestions", id);
+      }
     },
     addQuestionInResult(question_id, option_id) {
       this.$store.commit("note/addQuestionsOnResult", {
@@ -159,8 +149,17 @@ export default {
     },
   },
   computed: {
-    currentSelectedSection() {
-      return this.$store.state.note.current_section_questions;
+    // currentSelectedSection() {
+    //   return this.$store.state.note.current_section_questions;
+    // },
+    currentSectionQuestions() {
+      return this.$store.getters["note/currentSectionQuestions"];
+    },
+    currentSubSectionList() {
+      return this.$store.state.note.sub_sections_list;
+    },
+    currentFormQuestions() {
+      return this.$store.getters["note/currentSectionFormQuestions"];
     },
   },
 };

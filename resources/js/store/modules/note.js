@@ -2,26 +2,65 @@ import Vue from 'vue'
 
 const state = {
     all_headings: [],
-    questions: new Map(),
+    questions: [],
     current_section_questions: [],
     questions_on_result: [],
-    formQuestions: new Map(),
+    formQuestions: [],
+    sub_sections_list: [],
+    current_parent_section_id: null,
+    current_sub_section_id: null,
 };
-const getters = {};
+const getters = {
+    currentSectionFormQuestions(state) {
+        return state.formQuestions.filter(form => form.parent_section_id == state.current_parent_section_id);
+    },
+    currentSectionQuestions(state) {
+        return state.questions.filter(question => question.section_id == state.current_sub_section_id);
+    },
+};
 const mutations = {
+    changeParentComponent(state, payload) {
+        state.current_parent_section_id = payload.parent_id;
+    },
+    changeSubSectionComponent(state, payload) {
+        state.current_sub_section_id = payload;
+    },
     changeHeadings(state, payload) {
         state.all_headings = payload;
     },
     getQuestions(state, payload) {
-        state.questions.set('s' + payload.section_id, payload.data);
+        state.sub_sections_list = state.sub_sections_list.map((val) => {
+            if (payload.section_id == val.id) {
+                val.showStatus = true
+            } else {
+                val.showStatus = false;
+            }
+            return val;
+        });
+        payload.data.forEach((val) => {
+            val.isDisplay = false;
+            state.questions.push(val);
+        });
     },
     currentSelectedSection(state, payload) {
         state.current_section_questions = payload;
     },
-    addQuestionsOnResult(state, payload){
-        console.log(payload);
-        state.questions_on_result.push(payload);
-    }
+    setFormQuestions(state, payload) {
+        state.current_parent_section_id = payload.parent_section_id;
+        if (payload.section_type == 'form-inline') {
+            payload.data.forEach((value) => {
+                value.textInput = null;
+                value.parent_section_id = payload.parent_section_id;
+                state.formQuestions.push(value);
+            });
+
+        } else if (payload.section_type == 'questionnaire') {
+            state.sub_sections_list = payload.data.map((val) => {
+                val.showStatus = false;
+                return val;
+            });
+        }
+    },
 };
 const actions = {
     async getQuestions(context, payload) {
@@ -37,6 +76,37 @@ const actions = {
         }).catch((error) => {
             console.log(error);
         });
+    },
+    async sectionContent(context, payload) {
+        const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+        let headers = {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        };
+        return Vue.axios
+            .get(
+                process.env.MIX_API_URL +
+                "/api/sections/" +
+                payload.note_id +
+                "/" +
+                payload.section_type +
+                "/" +
+                payload.slug,
+                {
+                    headers: headers,
+                }
+            )
+            .then((response) => {
+                context.commit("setFormQuestions", {
+                    parent_section_id: payload.slug,
+                    section_type: payload.section_type,
+                    data: response.data.data.sections,
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 };
 

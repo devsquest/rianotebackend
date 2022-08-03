@@ -114,6 +114,10 @@
   font-weight: 900;
 }
 
+.note-section-left-li-selected {
+  background-color: #e0a800;
+}
+
 .note-section-left-li:hover {
   background-color: #e0a800;
 }
