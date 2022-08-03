@@ -571,6 +571,7 @@ export default {
         params: { type: this.selected_note, section: this.section_slug },
       });
       $("#newNoteModal").modal("hide");
+      location.reload();
     },
     loadHeadings() {
       this.loadHeadingsTab.status = true;

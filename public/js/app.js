@@ -2289,6 +2289,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       $("#newNoteModal").modal("hide");
+      location.reload();
     },
     loadHeadings: function loadHeadings() {
       this.loadHeadingsTab.status = true;
