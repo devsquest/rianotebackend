@@ -87,6 +87,7 @@ class NoteController extends Controller
 
         $note = Note::find($id);
         $note->name = $data['note-name'];
+        $note->user_id = $data['userid'];
         $note->status = $status;
         $note->save();
 

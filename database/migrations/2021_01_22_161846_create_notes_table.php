@@ -13,12 +13,11 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('notes');
         Schema::create('notes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('status')->default(false);
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->default(null);
             $table->timestamps();
         });
     }

@@ -65,11 +65,21 @@ const mutations = {
     addQuestionsOnResult(state, payload) {
         let index = state.questions.findIndex(x => x.id == payload.question.id);
         if (payload.question.selection_type == 'single') {
-            state.questions[index].selectedOptions = [];
-            state.questions[index].selectedOptions.push(payload.option.id);
-            state.questions[index].isDisplay = true;
+            if (state.questions[index].selectedOptions.length > 0 && state.questions[index].selectedOptions[0] == payload.option.id) {
+                state.questions[index].selectedOptions.splice(0, 1);
+            } else {
+                state.questions[index].selectedOptions = [];
+                state.questions[index].selectedOptions.push(payload.option.id);
+                state.questions[index].isDisplay = true;
+            }
         } else if (payload.question.selection_type == 'multiple') {
-
+            let selected_options_index = state.questions[index].selectedOptions.indexOf(payload.option.id);
+            if (selected_options_index == -1) {
+                state.questions[index].selectedOptions.push(payload.option.id);
+                state.questions[index].isDisplay = true;
+            } else {
+                state.questions[index].selectedOptions.splice(selected_options_index, 1);
+            }
         }
         console.log(state.questions);
     },
