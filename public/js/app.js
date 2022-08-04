@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
+      this.axios.get("https://fasternote.com" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this2.notes_list = response.data.data.notes;
@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
+      this.axios.get("https://fasternote.com" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
@@ -2570,7 +2570,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
+      this.axios.get("https://fasternote.com" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -2684,7 +2684,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings_all/" + _this.selected_note;
+                url = "https://fasternote.com" + "/api/headings_all/" + _this.selected_note;
                 _context.next = 5;
                 return _this.axios.get(url, {
                   headers: headers
@@ -2748,7 +2748,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
+                url = "https://fasternote.com" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
                   headers: headers
@@ -2791,7 +2791,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this3.headingsList[index].heading_text,
                   heading_content: _this3.headingsList[index].heading_content
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/save";
+                url = "https://fasternote.com" + "/api/headings/save";
                 _context3.next = 6;
                 return _this3.axios.post(url, formBody, {
                   headers: headers
@@ -2841,7 +2841,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this4.dbHeadingsList[index].heading_text,
                   heading_content: _this4.dbHeadingsList[index].heading_content
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
+                url = "https://fasternote.com" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
                 _context4.next = 6;
                 return _this4.axios.post(url, formBody, {
                   headers: headers
@@ -4750,7 +4750,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  asset_url: "http://127.0.0.1:8000",
+  asset_url: "https://fasternote.com",
   app_name: "Laravel"
 });
 
@@ -4972,7 +4972,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "http://127.0.0.1:8000" + "/api/login";
+              url = "https://fasternote.com" + "/api/login";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -5002,7 +5002,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "http://127.0.0.1:8000" + "/api/details";
+              url = "https://fasternote.com" + "/api/details";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5033,7 +5033,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
-              url = "http://127.0.0.1:8000" + "/api/logout";
+              url = "https://fasternote.com" + "/api/logout";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5197,7 +5197,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "http://127.0.0.1:8000" + "/api/questions/" + payload;
+              url = "https://fasternote.com" + "/api/questions/" + payload;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5236,7 +5236,7 @@ var actions = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer ".concat(token)
               };
-              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("http://127.0.0.1:8000" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
+              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("https://fasternote.com" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
                 headers: headers
               }).then(function (response) {
                 context.commit("setFormQuestions", {
