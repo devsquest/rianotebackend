@@ -287,8 +287,9 @@
                               color: white;
                               font-weight: 700;
                               padding: 15px;
+                              cursor: pointer;
                             "
-                            href="#"
+                            v-on:click="generatePDF"
                           >
                             <i class="fa-solid fa-file-export"></i> Export</a
                           >
@@ -300,8 +301,9 @@
                               color: white;
                               font-weight: 700;
                               padding: 15px;
+                              cursor: pointer;
                             "
-                            href="#"
+                            v-on:click="copyContent"
                           >
                             <i class="fa-solid fa-copy"></i> Copy</a
                           >
@@ -341,7 +343,7 @@
             </div>
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="note-result">
+                <div class="note-result" id="note-result">
                   <div class="section-1">
                     <p v-if="note.name != null && note.name != ''">
                       <span class="note-heading-text-title">Name: </span>
@@ -389,26 +391,85 @@
                     </div>
                     <div class="heading-sections-note-result">
                       <div
-                        class="div"
-                        v-for="x in formQuestions"
+                        class="form-inline-note"
+                        v-for="x in formQuestions.filter(
+                          (x) => x.formType == 'form-inline'
+                        )"
                         :key="x.id"
                       >
-                        <h6 v-if="x.textInput != null && x.textInput != ''">
-                          <label class="ex-bold-heading"
-                            >{{ x.question_text }}:</label
-                          >
-                          <label>{{ x.textInput }}</label>
-                        </h6>
+                        <div>
+                          <h6 v-if="x.textInput != null && x.textInput != ''">
+                            <label class="ex-bold-heading"
+                              >{{ x.question_text }}:</label
+                            >
+                            <label>{{ x.textInput }}</label>
+                          </h6>
+                        </div>
                       </div>
+                      <!--form-inline-note-->
+                      <div
+                        class="form-nextline-note"
+                        v-for="x in formQuestions.filter(
+                          (x) => x.formType == 'form-nextline'
+                        )"
+                        :key="x.id"
+                      >
+                        <div>
+                          <div v-if="x.textInput != null && x.textInput != ''">
+                            <h6>
+                              <label class="ex-bold-heading"
+                                >{{ x.question_text }}:</label
+                              >
+                            </h6>
+                            <p>
+                              <label>{{ x.textInput }}</label>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <!--form-nextline-->
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
-                      <span v-for="x in questionsData" :key="x.oid"
-                        >{{ x.question_text }} {{ x.option_text }}.
+                      <span
+                        v-for="x in questionsData.filter((x) => x.isDisplay)"
+                        :key="x.id"
+                      >
+                        <span>{{ x.question_text }}</span>
+                        <span v-for="(v, i) in x.options" :key="v.id">
+                          <span v-if="x.selectedOptions.indexOf(v.id) != -1">
+                            <span v-if="i >= 1 && x.options.length >= i">
+                              ,</span
+                            >
+                            {{ v.option_text }}</span
+                          > </span
+                        >.
                       </span>
                     </p>
                   </div>
+                  <div class="section-2">
+                    <p class="text-left note-hr-line"></p>
+                    <p v-if="userInfo != null">{{ userInfo.signature }}</p>
+                  </div>
                 </div>
+                <VueHtml2pdf
+                  :show-layout="false"
+                  :float-layout="true"
+                  :enable-download="true"
+                  :preview-modal="true"
+                  :paginate-elements-by-height="1400"
+                  filename="myPDF"
+                  :pdf-quality="2"
+                  :manual-pagination="false"
+                  pdf-format="a4"
+                  pdf-orientation="landscape"
+                  pdf-content-width="800px"
+                  ref="html2Pdf"
+                >
+                  <section slot="pdf-content" id="pdf_to_append">
+                    <!-- PDF Content Here -->
+                  </section>
+                </VueHtml2pdf>
               </div>
             </div>
           </div>
@@ -477,12 +538,14 @@
 </template>
 
 <script>
+import VueHtml2pdf from "vue-html2pdf";
 import HeadingPart from "./parts/HeadingPart.vue";
 import SectionPart from "./parts/SectionPart.vue";
 
 export default {
   name: "MasterLayout",
   components: {
+    VueHtml2pdf,
     HeadingPart,
     SectionPart,
   },
@@ -606,6 +669,17 @@ export default {
         });
       }
     },
+    generatePDF() {
+      document.getElementById("pdf_to_append").innerHTML = "";
+      const node = document.getElementById("note-result");
+      const clone = node.cloneNode(true);
+      document.getElementById("pdf_to_append").appendChild(clone);
+      this.$refs.html2Pdf.generatePdf();
+    },
+    copyContent() {
+        console.log("Copy content!");
+        this.$toastr.s("Copied!", "Success!");
+    },
   },
   computed: {
     allHeadingsStore() {
@@ -621,7 +695,7 @@ export default {
       }
     },
     questionsData() {
-      return this.$store.state.note.questions_on_result;
+      return this.$store.state.note.questions;
     },
     formQuestions() {
       return this.$store.state.note.formQuestions;

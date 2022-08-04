@@ -422,6 +422,12 @@ $btn-color : #53b848;
     max-height: 100vh;
 }
 
+.note-hr-line {
+    border-bottom: 1px solid black;
+    width: 25%;
+    margin-bottom: 0;
+}
+
 //@mobile
 @media (max-width: 767px) {
     .note-login-form {

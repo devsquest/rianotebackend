@@ -1,7 +1,10 @@
 <template>
   <div class="vue-section-part">
     <div class="questionnaire" v-if="section_type == 'questionnaire'">
-      <div class="row">
+      <div
+        class="row"
+        v-if="currentSubSectionList != null && currentSubSectionList.length > 0"
+      >
         <div class="col-lg-4 col-md-4">
           <br />
           <div class="row">
@@ -76,9 +79,18 @@
           </div>
         </div>
       </div>
+      <div class="row" v-else>
+        <div class="col-lg-12">
+          <br />
+          <h2>No Content Regarding this Catgeory</h2>
+        </div>
+      </div>
     </div>
     <div class="form-inline" v-else-if="section_type == 'form-inline'">
-      <div class="row">
+      <div
+        class="row"
+        v-if="currentFormQuestions != null && currentFormQuestions.length > 0"
+      >
         <div class="col-lg-12 col-md-12">
           <br />
           <div class="row">
@@ -100,13 +112,61 @@
                   <input
                     type="text"
                     class="form-control"
-                    style="width: 100%"
+                    style="width: 95%"
                     v-model="x.textInput"
                   />
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row" v-else>
+        <div class="col-lg-12">
+          <br />
+          <h2>No Content Regarding this Catgeory</h2>
+        </div>
+      </div>
+    </div>
+    <div class="form-nextline" v-else-if="section_type == 'form-nextline'">
+      <div
+        class="row"
+        v-if="currentFormQuestions != null && currentFormQuestions.length > 0"
+      >
+        <div class="col-lg-12 col-md-12">
+          <br />
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <p class="bold-heading">
+                Add information as appropriate in the spaces below.
+              </p>
+            </div>
+            <div
+              class="col-lg-12 col-md-12"
+              v-for="x in currentFormQuestions"
+              :key="x.id"
+            >
+              <div class="note-input-group">
+                <div class="note-input-group-head">
+                  <h6 class="bold-heading">{{ x.question_text }}:</h6>
+                </div>
+                <div class="note-input-group-field">
+                  <input
+                    type="text"
+                    class="form-control"
+                    style="width: 95%"
+                    v-model="x.textInput"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" v-else>
+        <div class="col-lg-12">
+          <br />
+          <h2>No Content Regarding this Catgeory</h2>
         </div>
       </div>
     </div>

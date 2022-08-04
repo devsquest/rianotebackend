@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'status', 'isAdmin', 'signature'
     ];
 
     /**
@@ -40,6 +40,6 @@ class User extends Authenticatable
 
     public function headings()
     {
-        return $this->hasMany('App\Heading');
+        return $this->hasMany('App\Models\Heading');
     }
 }

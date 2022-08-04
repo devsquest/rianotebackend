@@ -4,7 +4,6 @@ const state = {
     all_headings: [],
     questions: [],
     current_section_questions: [],
-    questions_on_result: [],
     formQuestions: [],
     sub_sections_list: [],
     current_parent_section_id: null,
@@ -51,10 +50,17 @@ const mutations = {
         if (payload.section_type == 'form-inline') {
             payload.data.forEach((value) => {
                 value.textInput = null;
+                value.formType = 'form-inline';
                 value.parent_section_id = payload.parent_section_id;
                 state.formQuestions.push(value);
             });
-
+        } else if (payload.section_type == 'form-nextline') {
+            payload.data.forEach((value) => {
+                value.textInput = null;
+                value.formType = 'form-nextline';
+                value.parent_section_id = payload.parent_section_id;
+                state.formQuestions.push(value);
+            });
         } else if (payload.section_type == 'questionnaire') {
             state.sub_sections_list = payload.data.map((val) => {
                 val.showStatus = false;
@@ -67,6 +73,7 @@ const mutations = {
         if (payload.question.selection_type == 'single') {
             if (state.questions[index].selectedOptions.length > 0 && state.questions[index].selectedOptions[0] == payload.option.id) {
                 state.questions[index].selectedOptions.splice(0, 1);
+                state.questions[index].isDisplay = false;
             } else {
                 state.questions[index].selectedOptions = [];
                 state.questions[index].selectedOptions.push(payload.option.id);
@@ -81,7 +88,6 @@ const mutations = {
                 state.questions[index].selectedOptions.splice(selected_options_index, 1);
             }
         }
-        console.log(state.questions);
     },
 };
 const actions = {

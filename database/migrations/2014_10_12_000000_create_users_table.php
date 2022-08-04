@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->boolean('status')->nullable()->default(1);
             $table->boolean('isAdmin')->nullable()->default(0);
+            $table->string('signature')->nullable();
             $table->timestamps();
         });
     }
