@@ -3538,7 +3538,7 @@ var render = function render() {
       "manual-pagination": false,
       "pdf-format": "a4",
       "pdf-orientation": "landscape",
-      "pdf-content-width": "800px"
+      "pdf-content-width": "100%"
     }
   }, [_c("section", {
     attrs: {
@@ -3589,7 +3589,8 @@ var render = function render() {
       }],
       attrs: {
         type: "radio",
-        name: "note"
+        name: "note",
+        id: "note-" + note.id
       },
       domProps: {
         value: note.id,
@@ -3600,7 +3601,11 @@ var render = function render() {
           _vm.selected_note = note.id;
         }
       }
-    }), _vm._v(" "), _c("span", [_vm._v(_vm._s(note.name))])]);
+    }), _vm._v(" "), _c("label", {
+      attrs: {
+        "for": "note-" + note.id
+      }
+    }, [_vm._v(_vm._s(note.name))])]);
   })], 2)])]), _vm._v(" "), _vm._m(6)])])])])]);
 };
 
@@ -4104,7 +4109,8 @@ var render = function render() {
       }],
       attrs: {
         type: "radio",
-        name: "note"
+        name: "note",
+        id: "note-" + note.id
       },
       domProps: {
         value: note.id,
@@ -4115,7 +4121,11 @@ var render = function render() {
           _vm.selected_note = note.id;
         }
       }
-    }), _vm._v(" "), _c("span", [_vm._v(_vm._s(note.name))])]);
+    }), _vm._v(" "), _c("label", {
+      attrs: {
+        "for": "note-" + note.id
+      }
+    }, [_vm._v(_vm._s(note.name))])]);
   })], 2)])]), _vm._v(" "), _vm._m(1)])])])])]);
 };
 

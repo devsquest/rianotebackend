@@ -463,7 +463,7 @@
                   :manual-pagination="false"
                   pdf-format="a4"
                   pdf-orientation="landscape"
-                  pdf-content-width="800px"
+                  pdf-content-width="100%"
                   ref="html2Pdf"
                 >
                   <section slot="pdf-content" id="pdf_to_append">
@@ -511,8 +511,9 @@
                       name="note"
                       :value="note.id"
                       v-model="selected_note"
+                      :id="'note-' + note.id"
                     />
-                    <span>{{ note.name }}</span>
+                    <label :for="'note-' + note.id">{{ note.name }}</label>
                   </p>
                 </div>
               </div>

@@ -58,8 +58,9 @@
                       name="note"
                       :value="note.id"
                       v-model="selected_note"
+                      :id="'note-' + note.id"
                     />
-                    <span>{{ note.name }}</span>
+                    <label :for="'note-' + note.id">{{ note.name }}</label>
                   </p>
                 </div>
               </div>
