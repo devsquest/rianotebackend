@@ -343,7 +343,7 @@
             </div>
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="note-result" id="note-result">
+                <div class="note-result" id="note-result" ref="noteresult">
                   <div class="section-1">
                     <p v-if="note.name != null && note.name != ''">
                       <span class="note-heading-text-title">Name: </span>
@@ -678,8 +678,9 @@ export default {
       this.$refs.html2Pdf.generatePdf();
     },
     copyContent() {
-        console.log("Copy content!");
-        this.$toastr.s("Copied!", "Success!");
+      let noteresult = this.$refs.noteresult;
+      this.$copyText(noteresult);
+      this.$toastr.s("Copied!", "Success!");
     },
   },
   computed: {

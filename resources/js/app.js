@@ -12,6 +12,7 @@ import 'popper.js'
 import routes from './routes'
 import store from './store'
 import middlewarePipeline from './middleware/middlewarePipeline'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.prototype.$appConfig = configuration
 
@@ -21,6 +22,7 @@ Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2);
 Vue.use(toastr);
+Vue.use(VueClipboard)
 
 const router = new VueRouter({
   mode: 'history',

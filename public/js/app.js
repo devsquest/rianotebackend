@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this2.notes_list = response.data.data.notes;
@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/sections/" + this.selected_note, {
+      this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
@@ -2339,7 +2339,8 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.html2Pdf.generatePdf();
     },
     copyContent: function copyContent() {
-      console.log("Copy content!");
+      var noteresult = this.$refs.noteresult;
+      this.$copyText(noteresult);
       this.$toastr.s("Copied!", "Success!");
     }
   },
@@ -2570,7 +2571,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -2684,7 +2685,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings_all/" + _this.selected_note;
+                url = "http://127.0.0.1:8000" + "/api/headings_all/" + _this.selected_note;
                 _context.next = 5;
                 return _this.axios.get(url, {
                   headers: headers
@@ -2748,7 +2749,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings/" + db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
                   headers: headers
@@ -2791,7 +2792,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this3.headingsList[index].heading_text,
                   heading_content: _this3.headingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/save";
+                url = "http://127.0.0.1:8000" + "/api/headings/save";
                 _context3.next = 6;
                 return _this3.axios.post(url, formBody, {
                   headers: headers
@@ -2841,7 +2842,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this4.dbHeadingsList[index].heading_text,
                   heading_content: _this4.dbHeadingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
                 _context4.next = 6;
                 return _this4.axios.post(url, formBody, {
                   headers: headers
@@ -3454,6 +3455,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("div", {
+    ref: "noteresult",
     staticClass: "note-result",
     attrs: {
       id: "note-result"
@@ -4675,10 +4677,10 @@ render._withStripped = true;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue */ "./resources/js/App.vue");
 /* harmony import */ var _configuration__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./configuration */ "./resources/js/configuration.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js");
@@ -4690,6 +4692,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
 /* harmony import */ var _middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./middleware/middlewarePipeline */ "./resources/js/middleware/middlewarePipeline.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-clipboard2 */ "./node_modules/vue-clipboard2/vue-clipboard.js");
+/* harmony import */ var vue_clipboard2__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(vue_clipboard2__WEBPACK_IMPORTED_MODULE_11__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -4710,13 +4714,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].prototype.$appConfig = _configuration__WEBPACK_IMPORTED_MODULE_1__["default"];
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].config.productionTip = false;
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_3__["default"], (axios__WEBPACK_IMPORTED_MODULE_2___default()));
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()));
-vue__WEBPACK_IMPORTED_MODULE_11__["default"].use(vue_toastr__WEBPACK_IMPORTED_MODULE_5__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_12__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].prototype.$appConfig = _configuration__WEBPACK_IMPORTED_MODULE_1__["default"];
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].config.productionTip = false;
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].use(vue_axios__WEBPACK_IMPORTED_MODULE_3__["default"], (axios__WEBPACK_IMPORTED_MODULE_2___default()));
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].use((vue_sweetalert2__WEBPACK_IMPORTED_MODULE_4___default()));
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].use(vue_toastr__WEBPACK_IMPORTED_MODULE_5__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_12__["default"].use((vue_clipboard2__WEBPACK_IMPORTED_MODULE_11___default()));
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__["default"]({
   mode: 'history',
   routes: _routes__WEBPACK_IMPORTED_MODULE_8__["default"] // short for `routes: routes`
 
@@ -4738,7 +4744,7 @@ router.beforeEach(function (to, from, next) {
     next: (0,_middleware_middlewarePipeline__WEBPACK_IMPORTED_MODULE_10__["default"])(context, middleware, 1)
   }));
 });
-new vue__WEBPACK_IMPORTED_MODULE_11__["default"]({
+new vue__WEBPACK_IMPORTED_MODULE_12__["default"]({
   router: router,
   store: _store__WEBPACK_IMPORTED_MODULE_9__["default"],
   render: function render(h) {
@@ -4760,7 +4766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  asset_url: "https://fasternote.com",
+  asset_url: "http://127.0.0.1:8000",
   app_name: "Laravel"
 });
 
@@ -4982,7 +4988,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "https://fasternote.com" + "/api/login";
+              url = "http://127.0.0.1:8000" + "/api/login";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -5012,7 +5018,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/details";
+              url = "http://127.0.0.1:8000" + "/api/details";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5043,7 +5049,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
-              url = "https://fasternote.com" + "/api/logout";
+              url = "http://127.0.0.1:8000" + "/api/logout";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5207,7 +5213,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/questions/" + payload;
+              url = "http://127.0.0.1:8000" + "/api/questions/" + payload;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5246,7 +5252,7 @@ var actions = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer ".concat(token)
               };
-              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("https://fasternote.com" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
+              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("http://127.0.0.1:8000" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
                 headers: headers
               }).then(function (response) {
                 context.commit("setFormQuestions", {
@@ -5274,6 +5280,22 @@ var actions = {
   mutations: mutations,
   actions: actions
 });
+
+/***/ }),
+
+/***/ "./node_modules/clipboard/dist/clipboard.min.js":
+/*!******************************************************!*\
+  !*** ./node_modules/clipboard/dist/clipboard.min.js ***!
+  \******************************************************/
+/***/ (function(module) {
+
+/*!
+ * clipboard.js v2.0.11
+ * https://clipboardjs.com/
+ *
+ * Licensed MIT © Zeno Rocha
+ */
+!function(t,e){ true?module.exports=e():0}(this,function(){return n={686:function(t,e,n){"use strict";n.d(e,{default:function(){return b}});var e=n(279),i=n.n(e),e=n(370),u=n.n(e),e=n(817),r=n.n(e);function c(t){try{return document.execCommand(t)}catch(t){return}}var a=function(t){t=r()(t);return c("cut"),t};function o(t,e){var n,o,t=(n=t,o="rtl"===document.documentElement.getAttribute("dir"),(t=document.createElement("textarea")).style.fontSize="12pt",t.style.border="0",t.style.padding="0",t.style.margin="0",t.style.position="absolute",t.style[o?"right":"left"]="-9999px",o=window.pageYOffset||document.documentElement.scrollTop,t.style.top="".concat(o,"px"),t.setAttribute("readonly",""),t.value=n,t);return e.container.appendChild(t),e=r()(t),c("copy"),t.remove(),e}var f=function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{container:document.body},n="";return"string"==typeof t?n=o(t,e):t instanceof HTMLInputElement&&!["text","search","url","tel","password"].includes(null==t?void 0:t.type)?n=o(t.value,e):(n=r()(t),c("copy")),n};function l(t){return(l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}var s=function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{},e=t.action,n=void 0===e?"copy":e,o=t.container,e=t.target,t=t.text;if("copy"!==n&&"cut"!==n)throw new Error('Invalid "action" value, use either "copy" or "cut"');if(void 0!==e){if(!e||"object"!==l(e)||1!==e.nodeType)throw new Error('Invalid "target" value, use a valid Element');if("copy"===n&&e.hasAttribute("disabled"))throw new Error('Invalid "target" attribute. Please use "readonly" instead of "disabled" attribute');if("cut"===n&&(e.hasAttribute("readonly")||e.hasAttribute("disabled")))throw new Error('Invalid "target" attribute. You can\'t cut text from elements with "readonly" or "disabled" attributes')}return t?f(t,{container:o}):e?"cut"===n?a(e):f(e,{container:o}):void 0};function p(t){return(p="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function d(t,e){for(var n=0;n<e.length;n++){var o=e[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(t,o.key,o)}}function y(t,e){return(y=Object.setPrototypeOf||function(t,e){return t.__proto__=e,t})(t,e)}function h(n){var o=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Date.prototype.toString.call(Reflect.construct(Date,[],function(){})),!0}catch(t){return!1}}();return function(){var t,e=v(n);return t=o?(t=v(this).constructor,Reflect.construct(e,arguments,t)):e.apply(this,arguments),e=this,!(t=t)||"object"!==p(t)&&"function"!=typeof t?function(t){if(void 0!==t)return t;throw new ReferenceError("this hasn't been initialised - super() hasn't been called")}(e):t}}function v(t){return(v=Object.setPrototypeOf?Object.getPrototypeOf:function(t){return t.__proto__||Object.getPrototypeOf(t)})(t)}function m(t,e){t="data-clipboard-".concat(t);if(e.hasAttribute(t))return e.getAttribute(t)}var b=function(){!function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),e&&y(t,e)}(r,i());var t,e,n,o=h(r);function r(t,e){var n;return function(t){if(!(t instanceof r))throw new TypeError("Cannot call a class as a function")}(this),(n=o.call(this)).resolveOptions(e),n.listenClick(t),n}return t=r,n=[{key:"copy",value:function(t){var e=1<arguments.length&&void 0!==arguments[1]?arguments[1]:{container:document.body};return f(t,e)}},{key:"cut",value:function(t){return a(t)}},{key:"isSupported",value:function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:["copy","cut"],t="string"==typeof t?[t]:t,e=!!document.queryCommandSupported;return t.forEach(function(t){e=e&&!!document.queryCommandSupported(t)}),e}}],(e=[{key:"resolveOptions",value:function(){var t=0<arguments.length&&void 0!==arguments[0]?arguments[0]:{};this.action="function"==typeof t.action?t.action:this.defaultAction,this.target="function"==typeof t.target?t.target:this.defaultTarget,this.text="function"==typeof t.text?t.text:this.defaultText,this.container="object"===p(t.container)?t.container:document.body}},{key:"listenClick",value:function(t){var e=this;this.listener=u()(t,"click",function(t){return e.onClick(t)})}},{key:"onClick",value:function(t){var e=t.delegateTarget||t.currentTarget,n=this.action(e)||"copy",t=s({action:n,container:this.container,target:this.target(e),text:this.text(e)});this.emit(t?"success":"error",{action:n,text:t,trigger:e,clearSelection:function(){e&&e.focus(),window.getSelection().removeAllRanges()}})}},{key:"defaultAction",value:function(t){return m("action",t)}},{key:"defaultTarget",value:function(t){t=m("target",t);if(t)return document.querySelector(t)}},{key:"defaultText",value:function(t){return m("text",t)}},{key:"destroy",value:function(){this.listener.destroy()}}])&&d(t.prototype,e),n&&d(t,n),r}()},828:function(t){var e;"undefined"==typeof Element||Element.prototype.matches||((e=Element.prototype).matches=e.matchesSelector||e.mozMatchesSelector||e.msMatchesSelector||e.oMatchesSelector||e.webkitMatchesSelector),t.exports=function(t,e){for(;t&&9!==t.nodeType;){if("function"==typeof t.matches&&t.matches(e))return t;t=t.parentNode}}},438:function(t,e,n){var u=n(828);function i(t,e,n,o,r){var i=function(e,n,t,o){return function(t){t.delegateTarget=u(t.target,n),t.delegateTarget&&o.call(e,t)}}.apply(this,arguments);return t.addEventListener(n,i,r),{destroy:function(){t.removeEventListener(n,i,r)}}}t.exports=function(t,e,n,o,r){return"function"==typeof t.addEventListener?i.apply(null,arguments):"function"==typeof n?i.bind(null,document).apply(null,arguments):("string"==typeof t&&(t=document.querySelectorAll(t)),Array.prototype.map.call(t,function(t){return i(t,e,n,o,r)}))}},879:function(t,n){n.node=function(t){return void 0!==t&&t instanceof HTMLElement&&1===t.nodeType},n.nodeList=function(t){var e=Object.prototype.toString.call(t);return void 0!==t&&("[object NodeList]"===e||"[object HTMLCollection]"===e)&&"length"in t&&(0===t.length||n.node(t[0]))},n.string=function(t){return"string"==typeof t||t instanceof String},n.fn=function(t){return"[object Function]"===Object.prototype.toString.call(t)}},370:function(t,e,n){var f=n(879),l=n(438);t.exports=function(t,e,n){if(!t&&!e&&!n)throw new Error("Missing required arguments");if(!f.string(e))throw new TypeError("Second argument must be a String");if(!f.fn(n))throw new TypeError("Third argument must be a Function");if(f.node(t))return c=e,a=n,(u=t).addEventListener(c,a),{destroy:function(){u.removeEventListener(c,a)}};if(f.nodeList(t))return o=t,r=e,i=n,Array.prototype.forEach.call(o,function(t){t.addEventListener(r,i)}),{destroy:function(){Array.prototype.forEach.call(o,function(t){t.removeEventListener(r,i)})}};if(f.string(t))return t=t,e=e,n=n,l(document.body,t,e,n);throw new TypeError("First argument must be a String, HTMLElement, HTMLCollection, or NodeList");var o,r,i,u,c,a}},817:function(t){t.exports=function(t){var e,n="SELECT"===t.nodeName?(t.focus(),t.value):"INPUT"===t.nodeName||"TEXTAREA"===t.nodeName?((e=t.hasAttribute("readonly"))||t.setAttribute("readonly",""),t.select(),t.setSelectionRange(0,t.value.length),e||t.removeAttribute("readonly"),t.value):(t.hasAttribute("contenteditable")&&t.focus(),n=window.getSelection(),(e=document.createRange()).selectNodeContents(t),n.removeAllRanges(),n.addRange(e),n.toString());return n}},279:function(t){function e(){}e.prototype={on:function(t,e,n){var o=this.e||(this.e={});return(o[t]||(o[t]=[])).push({fn:e,ctx:n}),this},once:function(t,e,n){var o=this;function r(){o.off(t,r),e.apply(n,arguments)}return r._=e,this.on(t,r,n)},emit:function(t){for(var e=[].slice.call(arguments,1),n=((this.e||(this.e={}))[t]||[]).slice(),o=0,r=n.length;o<r;o++)n[o].fn.apply(n[o].ctx,e);return this},off:function(t,e){var n=this.e||(this.e={}),o=n[t],r=[];if(o&&e)for(var i=0,u=o.length;i<u;i++)o[i].fn!==e&&o[i].fn._!==e&&r.push(o[i]);return r.length?n[t]=r:delete n[t],this}},t.exports=e,t.exports.TinyEmitter=e}},r={},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,{a:e}),e},o.d=function(t,e){for(var n in e)o.o(e,n)&&!o.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:e[n]})},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o(686).default;function o(t){if(r[t])return r[t].exports;var e=r[t]={exports:{}};return n[t](e,e.exports,o),e.exports}var n,r});
 
 /***/ }),
 
@@ -16187,6 +16209,102 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* module decorator */ module = __webpack_require__.hmd(module);
 function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function plugin(e,n){if(!e.vueAxiosInstalled){var o=isAxiosLike(n)?migrateToMultipleInstances(n):n;if(isValidConfig(o)){var t=getVueVersion(e);if(t){var i=t<3?registerOnVue2:registerOnVue3;Object.keys(o).forEach((function(n){i(e,n,o[n])})),e.vueAxiosInstalled=!0}else console.error("[vue-axios] unknown Vue version")}else console.error("[vue-axios] configuration is invalid, expected options are either <axios_instance> or { <registration_key>: <axios_instance> }")}}function registerOnVue2(e,n,o){Object.defineProperty(e.prototype,n,{get:function(){return o}}),e[n]=o}function registerOnVue3(e,n,o){e.config.globalProperties[n]=o,e[n]=o}function isAxiosLike(e){return e&&"function"==typeof e.get&&"function"==typeof e.post}function migrateToMultipleInstances(e){return{axios:e,$http:e}}function isValidConfig(e){return"object"===_typeof(e)&&Object.keys(e).every((function(n){return isAxiosLike(e[n])}))}function getVueVersion(e){return e&&e.version&&Number(e.version.split(".")[0])}"object"==("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=plugin:"function"==typeof define&&__webpack_require__.amdO?define([],(function(){return plugin})):window.Vue&&window.axios&&window.Vue.use&&Vue.use(plugin,window.axios);
+
+/***/ }),
+
+/***/ "./node_modules/vue-clipboard2/vue-clipboard.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-clipboard2/vue-clipboard.js ***!
+  \******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Clipboard = __webpack_require__(/*! clipboard/dist/clipboard.min.js */ "./node_modules/clipboard/dist/clipboard.min.js") // FIXME: workaround for browserify
+
+var VueClipboardConfig = {
+  autoSetContainer: false,
+  appendToBody: true // This fixes IE, see #50
+}
+
+var VueClipboard = {
+  install: function (Vue) {
+    var globalPrototype = Vue.version.slice(0, 2) === '3.' ? Vue.config.globalProperties : Vue.prototype
+    globalPrototype.$clipboardConfig = VueClipboardConfig
+    globalPrototype.$copyText = function (text, container) {
+      return new Promise(function (resolve, reject) {
+        var fakeElement = document.createElement('button')
+        var clipboard = new Clipboard(fakeElement, {
+          text: function () { return text },
+          action: function () { return 'copy' },
+          container: typeof container === 'object' ? container : document.body
+        })
+        clipboard.on('success', function (e) {
+          clipboard.destroy()
+          resolve(e)
+        })
+        clipboard.on('error', function (e) {
+          clipboard.destroy()
+          reject(e)
+        })
+        if (VueClipboardConfig.appendToBody) document.body.appendChild(fakeElement)
+        fakeElement.click()
+        if (VueClipboardConfig.appendToBody) document.body.removeChild(fakeElement)
+      })
+    }
+
+    Vue.directive('clipboard', {
+      bind: function (el, binding, vnode) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          var clipboard = new Clipboard(el, {
+            text: function () { return binding.value },
+            action: function () { return binding.arg === 'cut' ? 'cut' : 'copy' },
+            container: VueClipboardConfig.autoSetContainer ? el : undefined
+          })
+          clipboard.on('success', function (e) {
+            var callback = el._vClipboard_success
+            callback && callback(e)
+          })
+          clipboard.on('error', function (e) {
+            var callback = el._vClipboard_error
+            callback && callback(e)
+          })
+          el._vClipboard = clipboard
+        }
+      },
+      update: function (el, binding) {
+        if (binding.arg === 'success') {
+          el._vClipboard_success = binding.value
+        } else if (binding.arg === 'error') {
+          el._vClipboard_error = binding.value
+        } else {
+          el._vClipboard.text = function () { return binding.value }
+          el._vClipboard.action = function () { return binding.arg === 'cut' ? 'cut' : 'copy' }
+        }
+      },
+      unbind: function (el, binding) {
+        // FIXME: investigate why $element._vClipboard was missing
+        if (!el._vClipboard) return
+        if (binding.arg === 'success') {
+          delete el._vClipboard_success
+        } else if (binding.arg === 'error') {
+          delete el._vClipboard_error
+        } else {
+          el._vClipboard.destroy()
+          delete el._vClipboard
+        }
+      }
+    })
+  },
+  config: VueClipboardConfig
+}
+
+if (true) {
+  module.exports = VueClipboard
+} else {}
+
 
 /***/ }),
 
