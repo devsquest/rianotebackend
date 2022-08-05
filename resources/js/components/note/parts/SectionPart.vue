@@ -48,7 +48,7 @@
                     :key="x.id"
                   >
                     <div class="tools-heading mt-2">
-                      <h6 class="bold-heading">{{ x.question_text }}:</h6>
+                      <h6 class="bold-heading" v-if="x.only_show_options == false">{{ x.question_text }}:</h6>
                     </div>
                     <div class="tools-options">
                       <div
@@ -71,6 +71,9 @@
                           {{ option.option_text }}
                         </p>
                       </div>
+                    </div>
+                    <div class="tools-option-add-new">
+                      <button class="btn btn-new-phrase"> <i class="fa-solid fa-plus"></i> Add your own custom phrase</button>
                     </div>
                   </div>
                 </div>

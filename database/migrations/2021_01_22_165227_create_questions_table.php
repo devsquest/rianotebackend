@@ -20,6 +20,7 @@ class CreateQuestionsTable extends Migration
             $table->string('selection_type')->nullable();
             $table->bigInteger('section_id')->unsigned()->nullable();
             $table->foreign('section_id')->references('id')->on('sections');
+            $table->boolean('only_show_options')->nullable()->default(0)->comment('Only show options on front site hide question');
             $table->timestamps();
         });
     }

@@ -57,6 +57,16 @@
                                 </div>
                             </div>
                             <div class="form-group row m-b-5">
+                                <label class="col-sm-3 col-form-label" for="only_show_options">Only Show Options</label>
+                                <div class="col-sm-9">
+                                    @if(isset($editQuestion))
+                                    <input type="checkbox" name="only_show_options" id="only_show_options" @if($editQuestion->only_show_options) checked @endif>
+                                    @else
+                                    <input type="checkbox" name="only_show_options" id="only_show_options">
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="form-group row m-b-5">
                                 <label class="col-sm-3 col-form-label"></label>
                                 <div class="col-sm-9">
                                     @if(isset($editQuestion))

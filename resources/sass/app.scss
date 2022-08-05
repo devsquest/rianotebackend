@@ -428,6 +428,19 @@ $btn-color : #53b848;
     margin-bottom: 0;
 }
 
+.btn-new-phrase {
+    background-color: $u-color-1;
+    border: 1px solid $u-color-1;
+    font-size: 14px;
+    color: white;
+}
+
+.btn-new-phrase:hover {
+    background-color: $u-color-1;
+    border: 1px solid $u-color-1;
+    color: white;
+}
+
 //@mobile
 @media (max-width: 767px) {
     .note-login-form {
@@ -437,4 +450,60 @@ $btn-color : #53b848;
     .d-xs-none {
         display: none !important;
     }
+}
+
+//Dashboard
+.border-less {
+    border-style: none;
+}
+
+.form-control {
+    border-style: none;
+}
+
+.log-out-left-nav-dashboard {
+    margin-top: 100%;
+}
+
+.content-area {
+    background-color: #f7f7f7;
+}
+
+.note-db-icon {
+    background-color: black;
+}
+
+.db-section-2 {
+    background-image: linear-gradient(to left, navy, rgb(118 118 213));
+}
+
+.tbldiv {
+    background-color: white;
+}
+
+.note-db-logo {
+    background-image: linear-gradient(to right, navy, rgb(118 118 213));
+}
+
+.btn-14px {
+    font-size: 14px;
+}
+
+.dashboard-bell-icon {
+    position: relative;
+    top: 8px;
+    right: 15px;
+    color: $u-color-3;
+}
+
+.note-db-link {
+    text-decoration: none;
+}
+
+.note-db-link:visited {
+    text-decoration: none;
+}
+
+.note-db-link:hover {
+    text-decoration: none;
 }

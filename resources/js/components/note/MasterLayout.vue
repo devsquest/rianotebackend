@@ -21,7 +21,7 @@
           >
             <div class="new-note-btn">
               <button class="btn btn-success mt-4 ml-3" v-on:click="newNoteBtn">
-                New Note
+                <i class="fa-solid fa-plus"></i> New Note
               </button>
             </div>
           </div>
@@ -59,18 +59,18 @@
                   <i class="fa-solid fa-angle-down" style="color: #cbcbcb"></i>
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <span class="dropdown-item btn" href="#">Dashboard</span>
-                  <span
-                    v-on:click="logoutNote"
+                  <!-- <span class="dropdown-item btn">Dashboard</span> -->
+                  <router-link
                     class="dropdown-item btn"
-                    href="#"
+                    :to="{ name: 'dashboard_page' }"
+                    >Dashboard</router-link
+                  >
+                  <span v-on:click="logoutNote" class="dropdown-item btn"
                     >Logout</span
                   >
                 </div>
                 <hr class="vertical" />
                 <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i>
-                <!-- <hr class="vertical" />
-                <i class="fa-solid fa-life-ring" style="color: #cbcbcb"></i> -->
               </div>
             </div>
           </div>
@@ -436,15 +436,24 @@
                         v-for="x in questionsData.filter((x) => x.isDisplay)"
                         :key="x.id"
                       >
-                        <span>{{ x.question_text }}</span>
-                        <span v-for="(v, i) in x.options" :key="v.id">
-                          <span v-if="x.selectedOptions.indexOf(v.id) != -1">
-                            <span v-if="i >= 1 && x.options.length >= i">
-                              ,</span
-                            >
-                            {{ v.option_text }}</span
-                          > </span
-                        >.
+                        <span v-if="x.only_show_options == false">
+                          <span>{{ x.question_text }}</span>
+                          <span v-for="(v, i) in x.options" :key="v.id">
+                            <span v-if="x.selectedOptions.indexOf(v.id) != -1">
+                              <span v-if="i >= 1 && x.options.length >= i">
+                                ,</span
+                              >
+                              {{ v.option_text }}</span
+                            > </span
+                          >.
+                        </span>
+                        <span v-else>
+                          <span v-for="v in x.options" :key="v.id">
+                            <span v-if="x.selectedOptions.indexOf(v.id) != -1"
+                              >{{ v.option_text }}.
+                            </span>
+                          </span>
+                        </span>
                       </span>
                     </p>
                   </div>
@@ -684,7 +693,6 @@ export default {
       this.$toastr.s("Copied!", "Success!");
     },
     clearContent() {
-      console.log("clear");
       this.$swal
         .fire({
           title: "Do you want to clear the whole content?",

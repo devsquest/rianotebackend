@@ -18,7 +18,7 @@ const getters = {
     },
 };
 const mutations = {
-    clearContent(state){
+    clearContent(state) {
         state.all_headings = [];
         state.questions = [];
         state.formQuestions = [];
@@ -93,6 +93,9 @@ const mutations = {
                 state.questions[index].isDisplay = true;
             } else {
                 state.questions[index].selectedOptions.splice(selected_options_index, 1);
+            }
+            if (state.questions[index].selectedOptions.length == 0) {
+                state.questions[index].isDisplay = false;
             }
         }
     },
