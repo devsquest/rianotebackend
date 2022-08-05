@@ -456,16 +456,13 @@
   border-style: none;
 }
 
-.form-control {
-  border-style: none;
-}
-
 .log-out-left-nav-dashboard {
   margin-top: 100%;
 }
 
 .content-area {
   background-color: #f7f7f7;
+  height: 100%;
 }
 
 .note-db-icon {
@@ -497,6 +494,11 @@
 
 .note-db-link {
   text-decoration: none;
+  color: black;
+}
+
+.note-db-link-active {
+  color: rgb(28, 81, 214);
 }
 
 .note-db-link:visited {

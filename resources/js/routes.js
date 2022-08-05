@@ -5,6 +5,8 @@ import LoginPage from './components/note/pages/LoginPage.vue'
 import SplashPage from './components/note/pages/SplashPage.vue'
 import DashLayout from './components/dashboard/DashLayout.vue'
 import DashboardPage from './components/dashboard/pages/DashboardPage.vue'
+import GettingStartedPage from './components/dashboard/pages/GettingStartedPage.vue'
+import MyProfilePage from './components/dashboard/pages/MyProfilePage.vue'
 
 let node = "/" + process.env.MIX_BASE_NODE;
 
@@ -18,7 +20,9 @@ const routes = [
     {
         path: node + '/user', name: 'dash_layout', component: DashLayout, meta: { middleware: [auth] },
         children: [
-            { path: node + '/user/dashboard', name: 'dashboard_page', component: DashboardPage },
+            { path: node + '/user/dashboard', name: 'dashboard_page', component: DashboardPage, meta: { middleware: [auth] } },
+            { path: node + '/user/getting-started', name: 'getting_started_page', component: GettingStartedPage, meta: { middleware: [auth] } },
+            { path: node + '/user/my-profile', name: 'my_profile_page', component: MyProfilePage, meta: { middleware: [auth] } },
         ]
     },
 ]

@@ -457,16 +457,13 @@ $btn-color : #53b848;
     border-style: none;
 }
 
-.form-control {
-    border-style: none;
-}
-
 .log-out-left-nav-dashboard {
     margin-top: 100%;
 }
 
 .content-area {
     background-color: #f7f7f7;
+    height: 100%;
 }
 
 .note-db-icon {
@@ -498,6 +495,11 @@ $btn-color : #53b848;
 
 .note-db-link {
     text-decoration: none;
+    color: black;
+}
+
+.note-db-link-active {
+    color: $u-color-2;
 }
 
 .note-db-link:visited {

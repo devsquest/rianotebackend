@@ -5,7 +5,10 @@
         <div class="row">
           <div class="col-md-6 text-left">
             <p>
-              <b>Welcome to your {{ this.$appConfig.app_name }} User Dashboard</b>
+              <b
+                >Welcome to your {{ this.$appConfig.app_name }} User
+                Dashboard</b
+              >
             </p>
           </div>
           <div class="col-md-6 text-right">
@@ -17,7 +20,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" v-if="userInfo != null">
       <div class="row text-white db-section-2 pb-2">
         <div class="col-md-12 p-4">
           <h6>Basic Information</h6>
@@ -29,7 +32,7 @@
               <span>Email: </span>
             </div>
             <div class="col-md-6 text-right">
-              <span>Info@telechats.com</span>
+              <span>{{ userInfo.email }}</span>
             </div>
           </div>
         </div>
@@ -40,7 +43,7 @@
               <span>Signature: </span>
             </div>
             <div class="col-md-6 text-right">
-              <span>Telechats, inc</span>
+              <span>{{ userInfo.signature }}</span>
             </div>
           </div>
         </div>
@@ -111,5 +114,20 @@
 <script>
 export default {
   name: "DashboardPage",
+  mounted() {
+    this.$emit("updateNav", this.$route.name);
+    document.title = "Dashboard";
+  },
+  computed: {
+    userInfo() {
+      if (this.$store.state.login.user != null) {
+        return this.$store.state.login.user;
+      } else {
+        this.$store.dispatch("login/userInformation").then(() => {
+          return this.$store.state.login.user;
+        });
+      }
+    },
+  },
 };
 </script>

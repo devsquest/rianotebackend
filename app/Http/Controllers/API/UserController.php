@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class UserController extends Controller
@@ -73,9 +74,15 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function updateUser(Request $request): JsonResponse
+    public function updateUser(Request $request)
     {
-        return response()->json(['data' => Auth::user(), $this->successStatus]);
+        $data = $request->all();
+        if(isset($data['password'])){
+            $data['password'] = Hash::make($data['password']);
+        }
+        $user = User::find(Auth::user()->id)->update($data);
+        $response = ['status' => 'success', 'msg' => 'Successfully updated', 'data' => ['user' => $user]];
+        return response()->json($response, $this->successStatus);
     }
     public function logout(Request $request)
     {

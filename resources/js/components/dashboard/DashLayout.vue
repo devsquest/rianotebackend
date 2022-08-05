@@ -18,20 +18,47 @@
           <div class="nav">
             <ul class="list-group border-0 m-3">
               <li class="list-group-item border-less p-3 text-primary">
-                <a href="" class="note-db-link">
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'dashboard_page',
+                    },
+                  ]"
+                  :to="{ name: 'dashboard_page' }"
+                >
                   <i class="fa-solid fa-database pe-4"></i> Dashboard
-                </a>
+                </router-link>
               </li>
 
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
-                  <i class="fa-solid fa-power-off pe-4"></i> Getting Start
-                </a>
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'getting_started_page',
+                    },
+                  ]"
+                  :to="{ name: 'getting_started_page' }"
+                >
+                  <i class="fa-solid fa-power-off pe-4"></i> Getting Started
+                </router-link>
               </li>
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'my_profile_page',
+                    },
+                  ]"
+                  :to="{ name: 'my_profile_page' }"
+                >
                   <i class="fa-solid fa-user pe-4"></i> My Profile
-                </a>
+                </router-link>
               </li>
 
               <li class="list-group-item border-less p-3">
@@ -68,12 +95,7 @@
                   p-3
                   log-out-left-nav-dashboard
                 "
-              >
-                <!-- <a href="" class="note-db-link">
-                  <div class="border-top pb-3"></div>
-                  <i class="fa-solid fa-power-off pe-4"></i> Log Out
-                </a> -->
-              </li>
+              ></li>
             </ul>
           </div>
         </div>
@@ -118,7 +140,10 @@
               </div>
             </div>
           </div>
-          <router-view></router-view>
+          <router-view
+            :key="this.$route.name"
+            v-on:updateNav="updateNavParent($event)"
+          ></router-view>
         </div>
       </div>
     </div>
@@ -128,6 +153,11 @@
 <script>
 export default {
   name: "DashLayout",
+  data() {
+    return {
+      current_active_component: this.$route.name,
+    };
+  },
   methods: {
     logoutNote() {
       this.$store.dispatch("login/logoutUser").then(() => {
@@ -136,6 +166,9 @@ export default {
           name: "login_page",
         });
       });
+    },
+    updateNavParent(route_name) {
+      this.current_active_component = route_name;
     },
   },
   computed: {
