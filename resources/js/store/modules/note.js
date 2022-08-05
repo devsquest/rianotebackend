@@ -18,6 +18,13 @@ const getters = {
     },
 };
 const mutations = {
+    clearContent(state){
+        state.all_headings = [];
+        state.questions = [];
+        state.formQuestions = [];
+        state.sub_sections_list = [];
+
+    },
     changeParentComponent(state, payload) {
         state.current_parent_section_id = payload.parent_id;
     },

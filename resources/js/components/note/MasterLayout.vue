@@ -329,8 +329,9 @@
                               color: white;
                               font-weight: 700;
                               padding: 15px;
+                              cursor: pointer;
                             "
-                            href="#"
+                            v-on:click="clearContent"
                           >
                             <i class="fa-solid fa-eraser"></i> Clear</a
                           >
@@ -681,6 +682,31 @@ export default {
       let noteresult = this.$refs.noteresult;
       this.$copyText(noteresult);
       this.$toastr.s("Copied!", "Success!");
+    },
+    clearContent() {
+      console.log("clear");
+      this.$swal
+        .fire({
+          title: "Do you want to clear the whole content?",
+          showCancelButton: true,
+          confirmButtonText: "Clear",
+        })
+        .then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            this.$store.commit("note/clearContent");
+            this.note.name = null;
+            this.note.date = null;
+            this.note.start_time = null;
+            this.note.end_time = null;
+            this.note.fee = null;
+            this.note.intro_comments = null;
+            this.note.closing_comments = null;
+            this.$swal.fire("Cleared!", "", "success");
+          } else if (result.isDenied) {
+            this.$swal.fire("Not Cleared", "", "info");
+          }
+        });
     },
   },
   computed: {

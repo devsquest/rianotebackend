@@ -2252,7 +2252,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
+      this.axios.get("https://fasternote.com" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this2.notes_list = response.data.data.notes;
@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
+      this.axios.get("https://fasternote.com" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
@@ -2342,6 +2342,33 @@ __webpack_require__.r(__webpack_exports__);
       var noteresult = this.$refs.noteresult;
       this.$copyText(noteresult);
       this.$toastr.s("Copied!", "Success!");
+    },
+    clearContent: function clearContent() {
+      var _this4 = this;
+
+      console.log("clear");
+      this.$swal.fire({
+        title: "Do you want to clear the whole content?",
+        showCancelButton: true,
+        confirmButtonText: "Clear"
+      }).then(function (result) {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          _this4.$store.commit("note/clearContent");
+
+          _this4.note.name = null;
+          _this4.note.date = null;
+          _this4.note.start_time = null;
+          _this4.note.end_time = null;
+          _this4.note.fee = null;
+          _this4.note.intro_comments = null;
+          _this4.note.closing_comments = null;
+
+          _this4.$swal.fire("Cleared!", "", "success");
+        } else if (result.isDenied) {
+          _this4.$swal.fire("Not Cleared", "", "info");
+        }
+      });
     }
   },
   computed: {
@@ -2349,13 +2376,13 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.note.all_headings;
     },
     userInfo: function userInfo() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.$store.state.login.user != null) {
         return this.$store.state.login.user;
       } else {
         this.$store.dispatch("login/userInformation").then(function () {
-          return _this4.$store.state.login.user;
+          return _this5.$store.state.login.user;
         });
       }
     },
@@ -2571,7 +2598,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
+      this.axios.get("https://fasternote.com" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -2685,7 +2712,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings_all/" + _this.selected_note;
+                url = "https://fasternote.com" + "/api/headings_all/" + _this.selected_note;
                 _context.next = 5;
                 return _this.axios.get(url, {
                   headers: headers
@@ -2749,7 +2776,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
+                url = "https://fasternote.com" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
                   headers: headers
@@ -2792,7 +2819,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this3.headingsList[index].heading_text,
                   heading_content: _this3.headingsList[index].heading_content
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/save";
+                url = "https://fasternote.com" + "/api/headings/save";
                 _context3.next = 6;
                 return _this3.axios.post(url, formBody, {
                   headers: headers
@@ -2842,7 +2869,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this4.dbHeadingsList[index].heading_text,
                   heading_content: _this4.dbHeadingsList[index].heading_content
                 };
-                url = "http://127.0.0.1:8000" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
+                url = "https://fasternote.com" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
                 _context4.next = 6;
                 return _this4.axios.post(url, formBody, {
                   headers: headers
@@ -3450,7 +3477,22 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-copy"
-  }), _vm._v(" Copy")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4)])])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" Copy")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px",
+      cursor: "pointer"
+    },
+    on: {
+      click: _vm.clearContent
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-eraser"
+  }), _vm._v(" Clear")])])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12 col-md-12"
@@ -3571,7 +3613,7 @@ var render = function render() {
     on: {
       submit: _vm.submitNewNote
     }
-  }, [_vm._m(5), _vm._v(" "), _c("div", {
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "row"
@@ -3608,7 +3650,7 @@ var render = function render() {
         "for": "note-" + note.id
       }
     }, [_vm._v(_vm._s(note.name))])]);
-  })], 2)])]), _vm._v(" "), _vm._m(6)])])])])]);
+  })], 2)])]), _vm._v(" "), _vm._m(5)])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -3683,25 +3725,6 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "fa-solid fa-pen-to-square"
   }), _vm._v(" Final\n                          Edit")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link white-text",
-    staticStyle: {
-      color: "white",
-      "font-weight": "700",
-      padding: "15px"
-    },
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-eraser"
-  }), _vm._v(" Clear")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -4766,7 +4789,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  asset_url: "http://127.0.0.1:8000",
+  asset_url: "https://fasternote.com",
   app_name: "Laravel"
 });
 
@@ -4988,7 +5011,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "http://127.0.0.1:8000" + "/api/login";
+              url = "https://fasternote.com" + "/api/login";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -5018,7 +5041,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "http://127.0.0.1:8000" + "/api/details";
+              url = "https://fasternote.com" + "/api/details";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5049,7 +5072,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
-              url = "http://127.0.0.1:8000" + "/api/logout";
+              url = "https://fasternote.com" + "/api/logout";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5125,6 +5148,12 @@ var getters = {
   }
 };
 var mutations = {
+  clearContent: function clearContent(state) {
+    state.all_headings = [];
+    state.questions = [];
+    state.formQuestions = [];
+    state.sub_sections_list = [];
+  },
   changeParentComponent: function changeParentComponent(state, payload) {
     state.current_parent_section_id = payload.parent_id;
   },
@@ -5213,7 +5242,7 @@ var actions = {
           switch (_context.prev = _context.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "http://127.0.0.1:8000" + "/api/questions/" + payload;
+              url = "https://fasternote.com" + "/api/questions/" + payload;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -5252,7 +5281,7 @@ var actions = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer ".concat(token)
               };
-              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("http://127.0.0.1:8000" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
+              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("https://fasternote.com" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
                 headers: headers
               }).then(function (response) {
                 context.commit("setFormQuestions", {
