@@ -99,6 +99,10 @@ const mutations = {
             }
         }
     },
+    addQuestionNewOption(state, payload) {
+        let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);
+        state.questions[index].options.push(payload.data.data.option);
+    }
 };
 const actions = {
     async getQuestions(context, payload) {
@@ -147,7 +151,31 @@ const actions = {
             });
     },
     async addQuestionNewOption(context, payload) {
-        console.log(payload);
+        const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+        let headers = {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        };
+        let bodyData = {
+            question_id: payload.question.id,
+            option_text: payload.option.option_text,
+        };
+        return Vue.axios
+            .post(
+                process.env.MIX_API_URL +
+                "/api/option/add-new-option",
+                bodyData,
+                {
+                    headers: headers,
+                }
+            )
+            .then((response) => {
+                context.commit("addQuestionNewOption", response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 };
 

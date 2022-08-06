@@ -36,4 +36,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('/headings/{id}', [HeadingController::class, 'deleteHeadingById']);
     Route::get('/questions/{id}', [SectionController::class, 'getSectionContent']);
     Route::put('/option/{id}', [OptionController::class, 'editOption']);
+    Route::post('/option/add-new-option', [OptionController::class, 'addOption']);
 });

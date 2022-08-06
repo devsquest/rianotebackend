@@ -3333,11 +3333,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         option: option
       });
     },
-    addOwnCustomPhrase: function addOwnCustomPhrase(question) {
-      this.new_phrase.isDisplay = this.new_phrase.isDisplay == true ? false : true; // this.$store.dispatch('note/addQuestionNewOption', {
-      //   question: question,
-      //   option: this.new_phrase
-      // });
+    addOwnCustomPhrase: function addOwnCustomPhrase() {
+      this.new_phrase.isDisplay = this.new_phrase.isDisplay == true ? false : true;
+    },
+    closeNewPhraseInput: function closeNewPhraseInput() {
+      this.new_phrase.isDisplay = false;
+    },
+    saveNewPhrase: function saveNewPhrase(question) {
+      var _this3 = this;
+
+      if (this.new_phrase.option_text == null || this.new_phrase.option_text == "") {
+        this.$toastr.e("Required Option Text", "Option Text!");
+        return false;
+      }
+
+      this.$store.dispatch("note/addQuestionNewOption", {
+        question: question,
+        option: this.new_phrase
+      }).then(function () {
+        _this3.new_phrase.isDisplay = false;
+        _this3.new_phrase.option_text = null;
+      });
     }
   },
   computed: {
@@ -5819,7 +5835,7 @@ var render = function render() {
       staticClass: "btn btn-new-phrase",
       on: {
         click: function click($event) {
-          return _vm.addOwnCustomPhrase(x);
+          return _vm.addOwnCustomPhrase();
         }
       }
     }, [_c("i", {
@@ -5850,11 +5866,74 @@ var render = function render() {
       }
     })]) : _vm._e(), _vm._v(" "), _vm.new_phrase.isDisplay ? _c("div", {
       staticClass: "tools-option-input-box-btn mt-2"
-    }, [_vm._m(1, true), _vm._v(" "), _vm._m(2, true)]) : _vm._e()]);
+    }, [_c("button", {
+      staticClass: "btn btn-primary btn-14px",
+      on: {
+        click: function click($event) {
+          return _vm.saveNewPhrase(x);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-save"
+    })]), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-danger btn-14px",
+      on: {
+        click: _vm.closeNewPhraseInput
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-times"
+    })])]) : _vm._e()]);
   }), 0)])])]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(3)])]) : _vm.section_type == "form-inline" ? _c("div", {
+  }, [_vm._m(1)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
+  }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12 col-md-12"
+  }, [_c("br"), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_vm._m(2), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+    return _c("div", {
+      key: x.id,
+      staticClass: "col-lg-12 col-md-12"
+    }, [_c("div", {
+      staticClass: "note-input-group"
+    }, [_c("div", {
+      staticClass: "note-input-group-head"
+    }, [_c("h6", {
+      staticClass: "bold-heading"
+    }, [_vm._v(_vm._s(x.question_text) + ":")])]), _vm._v(" "), _c("div", {
+      staticClass: "note-input-group-field"
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: x.textInput,
+        expression: "x.textInput"
+      }],
+      staticClass: "form-control",
+      staticStyle: {
+        width: "95%"
+      },
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: x.textInput
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+
+          _vm.$set(x, "textInput", $event.target.value);
+        }
+      }
+    })])])]);
+  })], 2)])]) : _c("div", {
+    staticClass: "row"
+  }, [_vm._m(3)])]) : _vm.section_type == "form-nextline" ? _c("div", {
+    staticClass: "form-nextline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -5900,54 +5979,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(5)])]) : _vm.section_type == "form-nextline" ? _c("div", {
-    staticClass: "form-nextline"
-  }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-12 col-md-12"
-  }, [_c("br"), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_vm._m(6), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
-    return _c("div", {
-      key: x.id,
-      staticClass: "col-lg-12 col-md-12"
-    }, [_c("div", {
-      staticClass: "note-input-group"
-    }, [_c("div", {
-      staticClass: "note-input-group-head"
-    }, [_c("h6", {
-      staticClass: "bold-heading"
-    }, [_vm._v(_vm._s(x.question_text) + ":")])]), _vm._v(" "), _c("div", {
-      staticClass: "note-input-group-field"
-    }, [_c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: x.textInput,
-        expression: "x.textInput"
-      }],
-      staticClass: "form-control",
-      staticStyle: {
-        width: "95%"
-      },
-      attrs: {
-        type: "text"
-      },
-      domProps: {
-        value: x.textInput
-      },
-      on: {
-        input: function input($event) {
-          if ($event.target.composing) return;
-
-          _vm.$set(x, "textInput", $event.target.value);
-        }
-      }
-    })])])]);
-  })], 2)])]) : _c("div", {
-    staticClass: "row"
-  }, [_vm._m(7)])]) : _vm._e()]);
+  }, [_vm._m(5)])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
@@ -5964,24 +5996,6 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-magnifying-glass tool-input-icon"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("button", {
-    staticClass: "btn btn-primary btn-14px"
-  }, [_c("i", {
-    staticClass: "fa fa-save"
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("button", {
-    staticClass: "btn btn-danger btn-14px"
-  }, [_c("i", {
-    staticClass: "fa fa-times"
   })]);
 }, function () {
   var _vm = this,
@@ -6635,6 +6649,12 @@ var mutations = {
         state.questions[index].isDisplay = false;
       }
     }
+  },
+  addQuestionNewOption: function addQuestionNewOption(state, payload) {
+    var index = state.questions.findIndex(function (x) {
+      return x.id == payload.data.data.option.question_id;
+    });
+    state.questions[index].options.push(payload.data.data.option);
   }
 };
 var actions = {
@@ -6708,13 +6728,31 @@ var actions = {
   },
   addQuestionNewOption: function addQuestionNewOption(context, payload) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+      var _JSON$parse3, token, headers, bodyData;
+
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              console.log(payload);
+              _JSON$parse3 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse3.token;
+              headers = {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer ".concat(token)
+              };
+              bodyData = {
+                question_id: payload.question.id,
+                option_text: payload.option.option_text
+              };
+              return _context3.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.post("https://fasternote.com" + "/api/option/add-new-option", bodyData, {
+                headers: headers
+              }).then(function (response) {
+                context.commit("addQuestionNewOption", response);
+              })["catch"](function (error) {
+                console.log(error);
+              }));
 
-            case 1:
+            case 4:
             case "end":
               return _context3.stop();
           }

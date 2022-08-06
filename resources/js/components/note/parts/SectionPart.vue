@@ -80,7 +80,7 @@
                     <div class="tools-option-add-new">
                       <h6 class="bold-heading">Customized phrases:</h6>
                       <button
-                        v-on:click="addOwnCustomPhrase(x)"
+                        v-on:click="addOwnCustomPhrase()"
                         class="btn btn-new-phrase"
                       >
                         <i class="fa-solid fa-plus"></i> Add your own custom
@@ -102,10 +102,16 @@
                       class="tools-option-input-box-btn mt-2"
                       v-if="new_phrase.isDisplay"
                     >
-                      <button class="btn btn-primary btn-14px">
+                      <button
+                        class="btn btn-primary btn-14px"
+                        v-on:click="saveNewPhrase(x)"
+                      >
                         <i class="fa fa-save"></i>
                       </button>
-                      <button class="btn btn-danger btn-14px">
+                      <button
+                        class="btn btn-danger btn-14px"
+                        v-on:click="closeNewPhraseInput"
+                      >
                         <i class="fa fa-times"></i>
                       </button>
                     </div>
@@ -254,13 +260,30 @@ export default {
         option: option,
       });
     },
-    addOwnCustomPhrase(question) {
+    addOwnCustomPhrase() {
       this.new_phrase.isDisplay =
         this.new_phrase.isDisplay == true ? false : true;
-      // this.$store.dispatch('note/addQuestionNewOption', {
-      //   question: question,
-      //   option: this.new_phrase
-      // });
+    },
+    closeNewPhraseInput() {
+      this.new_phrase.isDisplay = false;
+    },
+    saveNewPhrase(question) {
+      if (
+        this.new_phrase.option_text == null ||
+        this.new_phrase.option_text == ""
+      ) {
+        this.$toastr.e("Required Option Text", "Option Text!");
+        return false;
+      }
+      this.$store
+        .dispatch("note/addQuestionNewOption", {
+          question: question,
+          option: this.new_phrase,
+        })
+        .then(() => {
+          this.new_phrase.isDisplay = false;
+          this.new_phrase.option_text = null;
+        });
     },
   },
   computed: {
