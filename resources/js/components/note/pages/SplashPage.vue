@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-        <!--model start-->
+    <!--model start-->
     <div
       class="modal fade"
       id="newNoteModal"

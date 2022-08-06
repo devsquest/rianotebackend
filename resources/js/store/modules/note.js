@@ -145,6 +145,9 @@ const actions = {
             .catch((error) => {
                 console.log(error);
             });
+    },
+    async addQuestionNewOption(context, payload) {
+        console.log(payload);
     }
 };
 

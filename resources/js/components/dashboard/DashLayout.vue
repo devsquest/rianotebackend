@@ -62,30 +62,63 @@
               </li>
 
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'my_requests_page',
+                    },
+                  ]"
+                  :to="{ name: 'my_requests_page' }"
+                >
                   <i class="fa-solid fa-arrow-up-right-dots pe-4"></i> My
                   Requests
-                </a>
+                </router-link>
               </li>
 
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'my_orders_page',
+                    },
+                  ]"
+                  :to="{ name: 'my_orders_page' }"
+                >
                   <i class="fa-solid fa-square-poll-horizontal pe-4"></i> My
                   Orders
-                </a>
+                </router-link>
               </li>
 
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
+                <router-link
+                  :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'my_subscriptions_page',
+                    },
+                  ]"
+                  :to="{ name: 'my_subscriptions_page' }"
+                >
                   <i class="fa-solid fa-square-poll-vertical pe-4"></i> My
                   Subscriptions
-                </a>
+                </router-link>
               </li>
 
               <li class="list-group-item border-less p-3">
-                <a href="" class="note-db-link">
+                <router-link :class="[
+                    'note-db-link',
+                    {
+                      'note-db-link-active':
+                        current_active_component == 'my_notifications_page',
+                    },
+                  ]" :to="{ name: 'my_notifications_page'}">
                   <i class="fa-solid fa-bell pe-4"></i> My Notifications
-                </a>
+                </router-link>
               </li>
 
               <li
