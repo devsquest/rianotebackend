@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Section;
+use App\Models\Option;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -66,6 +67,7 @@ class QuestionController extends Controller
 
     public function deleteQuestion($id)
     {
+        $options = Option::where('question_id', $id)->delete();
         Question::destroy($id);
         return redirect('admin/question-list')->with('status', 'Question Has Been Deleted Successfully');
     }

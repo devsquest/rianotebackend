@@ -95,7 +95,7 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2022 &copy; Ria Note </footer>
+            <footer class="footer text-center"> 2022 &copy; {{ env('APP_NAME') }} </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
