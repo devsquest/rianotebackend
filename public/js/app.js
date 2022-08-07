@@ -2451,6 +2451,11 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      if (this.password["new"] != this.password.new_conform) {
+        this.$toastr.e("Conform Password Mismatch", "Conform Password");
+        return false;
+      }
+
       var _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")),
           token = _JSON$parse2.token;
 

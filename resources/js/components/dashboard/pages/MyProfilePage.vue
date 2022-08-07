@@ -159,6 +159,10 @@ export default {
         this.$toastr.e("New Conform Password is required", "New Conform Password");
         return false;
       }
+      if (this.password.new != this.password.new_conform) {
+        this.$toastr.e("Conform Password Mismatch", "Conform Password");
+        return false;
+      }
       const { token } = JSON.parse(localStorage.getItem("loginInfo"));
       let headers = {
         Accept: "application/json",
