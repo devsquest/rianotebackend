@@ -119,7 +119,7 @@ const actions = {
     async getQuestions(context, payload) {
         console.log(payload);
         const { token } = JSON.parse(localStorage.getItem("loginInfo"));
-        let url = process.env.MIX_API_URL + "/api/questions/" + payload.id;
+        let url = process.env.MIX_API_URL + "/api/questions/" + payload.id + "/" + payload.type;
         let headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",

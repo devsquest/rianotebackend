@@ -31,7 +31,10 @@
         <div class="col-lg-8 col-md-8">
           <br />
           <div class="row" v-if="showByDefault">
-            <div class="col-lg-12">
+            <div
+              class="col-lg-12"
+              v-if="current_sub_section == 'questionnaire'"
+            >
               <div class="tools-area">
                 <div class="search-box">
                   <input
@@ -119,6 +122,11 @@
                 </div>
               </div>
             </div>
+            <!--col-->
+            <div class="col-lg-12" v-if="current_sub_section == 'statements'">
+              <h1>Hello Guys</h1>
+            </div>
+            <!--col-->
           </div>
         </div>
       </div>
@@ -224,6 +232,7 @@ export default {
       showByDefault: false,
       current_section_id: null,
       sub_sections_list: null,
+      current_sub_section: null,
       new_phrase: {
         option_text: null,
         isDisplay: false,
@@ -247,6 +256,7 @@ export default {
       }
     },
     async loadSubSection(id, type) {
+      this.current_sub_section = type;
       this.$store.commit("note/changeSubSectionComponent", id);
       this.showByDefault = true;
       this.current_section_id = id;

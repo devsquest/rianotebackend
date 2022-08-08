@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('/headings/save', [HeadingController::class, 'saveHeading']);
     Route::put('/headings/{id}', [HeadingController::class, 'editHeading']);
     Route::delete('/headings/{id}', [HeadingController::class, 'deleteHeadingById']);
-    Route::get('/questions/{id}', [SectionController::class, 'getSectionContent']);
+    Route::get('/questions/{id}/{type}', [SectionController::class, 'getSectionContent']);
     Route::put('/option/{id}', [OptionController::class, 'editOption']);
     Route::post('/option/add-new-option', [OptionController::class, 'addOption']);
 });

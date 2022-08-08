@@ -3270,6 +3270,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       showByDefault: false,
       current_section_id: null,
       sub_sections_list: null,
+      current_sub_section: null,
       new_phrase: {
         option_text: null,
         isDisplay: false
@@ -3315,6 +3316,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                _this2.current_sub_section = type;
+
                 _this2.$store.commit("note/changeSubSectionComponent", id);
 
                 _this2.showByDefault = true;
@@ -3332,7 +3335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 4:
+              case 5:
               case "end":
                 return _context2.stop();
             }
@@ -5815,7 +5818,7 @@ var render = function render() {
     staticClass: "col-lg-8 col-md-8"
   }, [_c("br"), _vm._v(" "), _vm.showByDefault ? _c("div", {
     staticClass: "row"
-  }, [_c("div", {
+  }, [_vm.current_sub_section == "questionnaire" ? _c("div", {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "tools-area"
@@ -5901,7 +5904,9 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-times"
     })])]) : _vm._e()]);
-  }), 0)])])]) : _vm._e()])]) : _c("div", {
+  }), 0)])]) : _vm._e(), _vm._v(" "), _vm.current_sub_section == "statements" ? _c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h1", [_vm._v("Hello Guys")])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
   }, [_vm._m(1)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
@@ -6726,7 +6731,7 @@ var actions = {
             case 0:
               console.log(payload);
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/questions/" + payload.id;
+              url = "https://fasternote.com" + "/api/questions/" + payload.id + "/" + payload.type;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",

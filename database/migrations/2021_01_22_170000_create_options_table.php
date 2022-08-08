@@ -18,6 +18,7 @@ class CreateOptionsTable extends Migration
             $table->longText('option_text');
             $table->bigInteger('question_id')->unsigned()->nullable();
             $table->foreign('question_id')->references('id')->on('questions');
+            $table->unsignedBigInteger('statement_detail_id')->nullable();
             $table->timestamps();
         });
     }

@@ -19,8 +19,16 @@ class Question extends Model
     {
         return $this->hasMany('App\Models\Option');
     }
-
-    public function section(){
+    public function statementMaster()
+    {
+        return $this->hasMany('App\Models\StatementMaster');
+    }
+    public function statementDetail()
+    {
+        return $this->hasMany('App\Models\StatementDetail');
+    }
+    public function section()
+    {
         return $this->belongsTo('App\Models\Section');
     }
 }

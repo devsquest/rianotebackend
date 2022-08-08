@@ -12,7 +12,7 @@ class Option extends Model
      * @var array
      */
     protected $fillable = [
-        'option_text', 'question_id',
+        'option_text', 'question_id', 'statement_detail_id'
     ];
 
     public function question()

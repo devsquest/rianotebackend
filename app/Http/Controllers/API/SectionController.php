@@ -33,14 +33,19 @@ class SectionController extends Controller
         }
         return response()->json($response, $this->successStatus);
     }
-    public function getSectionContent(Request $request)
+    public function getSectionContent($id, $type)
     {
-        $questions = Section::find($request->id)->questions;
-        foreach ($questions as $question) {
-            $options = $question->options;
-            if (!empty($options)) {
-                $question['options'] = $options;
+        if ($type == 'questionnaire') {
+            $questions = Section::find($id)->questions;
+            foreach ($questions as $question) {
+                $options = $question->options;
+                if (!empty($options)) {
+                    $question['options'] = $options;
+                }
             }
+        } else{
+            $questions = Question::where('section_id', $id)->with(['statementMaster', 'statementDetail.options'])->get();
+            // return $questions;
         }
         $response = ['status' => 'success', 'msg' => '', 'data' => [
             'questions' => $questions,

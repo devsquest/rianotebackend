@@ -15,7 +15,19 @@ use App\Http\Controllers\Front\HomeController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return 'Cleared!';
+});
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return 'Migrated!';
+});
+
+Route::get('/', function () {
     return "Faster Note is Comming Soon!";
 });
 Route::get('/homepage', [HomeController::class, 'index']);
