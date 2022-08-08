@@ -13,6 +13,7 @@ import routes from './routes'
 import store from './store'
 import middlewarePipeline from './middleware/middlewarePipeline'
 import VueClipboard from 'vue-clipboard2'
+import './filters'
 
 Vue.prototype.$appConfig = configuration
 

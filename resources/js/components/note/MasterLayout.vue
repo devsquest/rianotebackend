@@ -436,9 +436,42 @@
                         v-for="x in questionsData.filter((x) => x.isDisplay)"
                         :key="x.id"
                       >
-                        <span v-if="x.only_show_options == false">
-                          <span>{{ x.question_text }}</span>
-                          <span v-for="(v, i) in x.options" :key="v.id">
+                        <span
+                          v-if="
+                            x.question_type == 'text' ||
+                            x.question_type == 'tags'
+                          "
+                        >
+                          <span v-if="x.only_show_options == false">
+                            <span>{{ x.question_text }}</span>
+                            <span v-for="(v, i) in x.options" :key="v.id">
+                              <span
+                                v-if="x.selectedOptions.indexOf(v.id) != -1"
+                              >
+                                <span v-if="i >= 1 && x.options.length >= i">
+                                  ,</span
+                                >
+                                {{ v.option_text }}</span
+                              > </span
+                            >.
+                          </span>
+                          <span v-else>
+                            <span v-for="v in x.options" :key="v.id">
+                              <span v-if="x.selectedOptions.indexOf(v.id) != -1"
+                                >{{ v.option_text }}.
+                              </span>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          v-else-if="
+                            x.question_type == 'tags-replacement-option'
+                          "
+                        >
+                          <span>{{
+                            x.question_text | removeOptionString(x)
+                          }}</span>
+                          <span v-for="(v, i) in x.options" :key="v.id" class="d-none">
                             <span v-if="x.selectedOptions.indexOf(v.id) != -1">
                               <span v-if="i >= 1 && x.options.length >= i">
                                 ,</span
@@ -446,13 +479,6 @@
                               {{ v.option_text }}</span
                             > </span
                           >.
-                        </span>
-                        <span v-else>
-                          <span v-for="v in x.options" :key="v.id">
-                            <span v-if="x.selectedOptions.indexOf(v.id) != -1"
-                              >{{ v.option_text }}.
-                            </span>
-                          </span>
                         </span>
                       </span>
                     </p>

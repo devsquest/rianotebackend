@@ -98,6 +98,7 @@ const mutations = {
                 state.questions[index].isDisplay = false;
             }
         }
+        // console.log(state.questions);
     },
     addQuestionNewOption(state, payload) {
         let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);
