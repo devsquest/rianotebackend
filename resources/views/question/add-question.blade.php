@@ -47,10 +47,18 @@
                                         <option value="">{{ __('Select Section')}}</option>
                                         @foreach($sections as $key => $section)
                                             @if($section->name != 'Headings')
-                                                @if(isset($editQuestion) && ($section->id == $editQuestion->section_id))
-                                                    <option selected value="{{$section->id}}">{{ $section->name }}</option>
+                                                @if($section->parent != null)
+                                                    @if(isset($editQuestion) && ($section->id == $editQuestion->section_id))
+                                                        <option selected value="{{$section->id}}">{{ $section->parent->name }} - {{ $section->name }}</option>
+                                                    @else
+                                                        <option value="{{$section->id}}">{{ $section->parent->name }} - {{ $section->name }}</option>
+                                                    @endif
                                                 @else
-                                                    <option value="{{$section->id}}">{{ $section->name }}</option>
+                                                    @if(isset($editQuestion) && ($section->id == $editQuestion->section_id))
+                                                        <option selected value="{{$section->id}}">{{ $section->name }}</option>
+                                                    @else
+                                                        <option value="{{$section->id}}">{{ $section->name }}</option>
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endforeach

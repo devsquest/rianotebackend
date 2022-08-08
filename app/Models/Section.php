@@ -20,7 +20,7 @@ class Section extends Model
 
     public function parent()
     {
-        return $this->hasOne('App\Models\Section', 'id', 'parent');
+        return $this->hasOne('App\Models\Section', 'id', 'parent_id');
     }
 
     public function questions()
