@@ -57,6 +57,7 @@
                                     <option value="questionnaire" @if(isset($editSection) && $editSection->type == 'questionnaire') selected @endif>Questionnaire</option>
                                     <option value="form-inline" @if(isset($editSection) && $editSection->type == 'form-inline') selected @endif>Form Heading and Content Inline</option>
                                     <option value="form-nextline" @if(isset($editSection) && $editSection->type == 'form-nextline') selected @endif>Form Heading and Content Next Line</option>
+                                    <option value="statements" @if(isset($editSection) && $editSection->type == 'statements') selected @endif>Statements</option>
                                 </select>
                             </div>
                         </div>

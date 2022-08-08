@@ -20,7 +20,7 @@
                 >
                   <span
                     class="note-section-left-text"
-                    v-on:click="loadSubSection(x.id)"
+                    v-on:click="loadSubSection(x.id, x.type)"
                     >{{ x.name }}</span
                   >
                 </div>
@@ -246,12 +246,14 @@ export default {
         });
       }
     },
-    async loadSubSection(id) {
+    async loadSubSection(id, type) {
       this.$store.commit("note/changeSubSectionComponent", id);
       this.showByDefault = true;
       this.current_section_id = id;
       if (this.currentSectionQuestions.length <= 0) {
-        this.$store.dispatch("note/getQuestions", id);
+        this.$store.dispatch("note/getQuestions", { id: id, type: type });
+      } else {
+        this.$store.commit("note/changeQuestionsState", { id: id, type: type });
       }
     },
     addQuestionInResult(question, option) {

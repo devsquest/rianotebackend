@@ -49,6 +49,16 @@ const mutations = {
             state.questions.push(val);
         });
     },
+    changeQuestionsState(state, payload) {
+        state.sub_sections_list = state.sub_sections_list.map((val) => {
+            if (payload.id == val.id) {
+                val.showStatus = true;
+            } else {
+                val.showStatus = false;
+            }
+            return val;
+        });
+    },
     currentSelectedSection(state, payload) {
         state.current_section_questions = payload;
     },
@@ -107,15 +117,16 @@ const mutations = {
 };
 const actions = {
     async getQuestions(context, payload) {
+        console.log(payload);
         const { token } = JSON.parse(localStorage.getItem("loginInfo"));
-        let url = process.env.MIX_API_URL + "/api/questions/" + payload;
+        let url = process.env.MIX_API_URL + "/api/questions/" + payload.id;
         let headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         };
         return Vue.axios.get(url, { headers: headers }).then((response) => {
-            context.commit('getQuestions', { section_id: payload, data: response.data.data.questions });
+            context.commit('getQuestions', { section_id: payload.id, data: response.data.data.questions });
         }).catch((error) => {
             console.log(error);
         });

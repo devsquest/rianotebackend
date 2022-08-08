@@ -39,7 +39,7 @@ class SectionController extends Controller
     {
         return view('section.add-section', [
             'user' => Auth::user(),
-            'notes' => Note::all()->where('status', '=', 1),
+            'notes' => Note::where('status', '=', 1)->get(),
             'parentSections' => Section::where('parent_id', '=', null)->pluck('name', 'id')->all()
         ]);
     }

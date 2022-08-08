@@ -50,8 +50,7 @@ class QuestionController extends Controller
      */
     public function saveQuestion(Request $request)
     {
-        $data = request()->all();
-
+        $data = $request->all();
         $question = new Question();
         $question->question_text = $data['question-text'];
         $question->question_type = $data['question-type'];

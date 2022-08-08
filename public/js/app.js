@@ -3307,7 +3307,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    loadSubSection: function loadSubSection(id) {
+    loadSubSection: function loadSubSection(id, type) {
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
@@ -3321,7 +3321,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.current_section_id = id;
 
                 if (_this2.currentSectionQuestions.length <= 0) {
-                  _this2.$store.dispatch("note/getQuestions", id);
+                  _this2.$store.dispatch("note/getQuestions", {
+                    id: id,
+                    type: type
+                  });
+                } else {
+                  _this2.$store.commit("note/changeQuestionsState", {
+                    id: id,
+                    type: type
+                  });
                 }
 
               case 4:
@@ -5799,7 +5807,7 @@ var render = function render() {
       staticClass: "note-section-left-text",
       on: {
         click: function click($event) {
-          return _vm.loadSubSection(x.id);
+          return _vm.loadSubSection(x.id, x.type);
         }
       }
     }, [_vm._v(_vm._s(x.name))])]);
@@ -6632,6 +6640,17 @@ var mutations = {
       state.questions.push(val);
     });
   },
+  changeQuestionsState: function changeQuestionsState(state, payload) {
+    state.sub_sections_list = state.sub_sections_list.map(function (val) {
+      if (payload.id == val.id) {
+        val.showStatus = true;
+      } else {
+        val.showStatus = false;
+      }
+
+      return val;
+    });
+  },
   currentSelectedSection: function currentSelectedSection(state, payload) {
     state.current_section_questions = payload;
   },
@@ -6705,8 +6724,9 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              console.log(payload);
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/questions/" + payload;
+              url = "https://fasternote.com" + "/api/questions/" + payload.id;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -6716,14 +6736,14 @@ var actions = {
                 headers: headers
               }).then(function (response) {
                 context.commit('getQuestions', {
-                  section_id: payload,
+                  section_id: payload.id,
                   data: response.data.data.questions
                 });
               })["catch"](function (error) {
                 console.log(error);
               }));
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
