@@ -25,6 +25,7 @@
                                         <option value="">{{ __('Select Question Type')}}</option>
                                         <option value="text" {{ (isset($editQuestion) and $editQuestion->question_type == 'text') ? 'selected' : '' }}>Text</option>
                                         <option value="tags" {{ (isset($editQuestion) and $editQuestion->question_type == 'tags') ? 'selected' : '' }}>Tags</option>
+                                        <option value="tags-replacement-option" {{ (isset($editQuestion) and $editQuestion->question_type == 'tags-replacement-option') ? 'selected' : '' }}>Tags with replacement option</option>
                                         <option value="form" {{ (isset($editQuestion) and $editQuestion->question_type == 'form') ? 'selected' : '' }}>Form</option>
                                     </select>
                                 </div>
