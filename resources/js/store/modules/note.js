@@ -48,6 +48,7 @@ const mutations = {
             val.selectedOptions = [];
             state.questions.push(val);
         });
+        console.log(state.questions);
     },
     changeQuestionsState(state, payload) {
         state.sub_sections_list = state.sub_sections_list.map((val) => {

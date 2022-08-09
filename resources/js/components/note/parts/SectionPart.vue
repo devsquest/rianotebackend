@@ -123,8 +123,106 @@
               </div>
             </div>
             <!--col-->
-            <div class="col-lg-12" v-if="current_sub_section == 'statements'">
-              <h1>Hello Guys</h1>
+            <div
+              class="col-lg-12"
+              v-else-if="current_sub_section == 'statements'"
+            >
+              <div class="tools-area">
+                <div class="search-box">
+                  <input
+                    type="text"
+                    placeholder="Enter Search Here"
+                    class="tool-input"
+                  />
+                  <i class="fa-solid fa-magnifying-glass tool-input-icon"></i>
+                </div>
+                <div class="questions">
+                  <div
+                    class="single-tools-area"
+                    v-for="x in currentSectionQuestions"
+                    :key="x.id"
+                  >
+                    <div class="tools-heading mt-2">
+                      <h6
+                        class="bold-heading"
+                        v-if="x.only_show_options == false"
+                      >
+                        {{ x.question_text }}:
+                      </h6>
+                    </div>
+                    <div class="tools-statement-lines">
+                      <h6
+                        class="bold-heading"
+                        v-for="sm in x.statement_master"
+                        :key="sm.id"
+                      >
+                        {{ sm.short_text }} = {{ sm.statement_text }}:
+                      </h6>
+                    </div>
+                    <div class="tools-options">
+                      <div
+                        v-for="sd in x.statement_detail"
+                        :key="sd.id"
+                        class="single-tools-option"
+                      >
+                      <h6 class="bold-heading">{{ sd.title }}:</h6>
+                        <!-- <p
+                          :class="[
+                            'note-questions-single-option-box',
+                            {
+                              'note-questions-single-option-box-selected':
+                                x.selectedOptions.indexOf(option.id) != -1
+                                  ? true
+                                  : false,
+                            },
+                          ]"
+                          v-on:click="addQuestionInResult(x, option)"
+                        >
+                          {{ option.option_text }}
+                        </p> -->
+                      </div>
+                    </div>
+                    <div class="tools-option-add-new">
+                      <h6 class="bold-heading">Customized phrases:</h6>
+                      <button
+                        v-on:click="addOwnCustomPhrase()"
+                        class="btn btn-new-phrase"
+                      >
+                        <i class="fa-solid fa-plus"></i> Add your own custom
+                        phrase
+                      </button>
+                    </div>
+                    <div
+                      class="tools-option-input-box"
+                      v-if="new_phrase.isDisplay"
+                    >
+                      <input
+                        type="text"
+                        v-model="new_phrase.option_text"
+                        class="form-control mt-3"
+                        placeholder="Option Phrase"
+                      />
+                    </div>
+                    <div
+                      class="tools-option-input-box-btn mt-2"
+                      v-if="new_phrase.isDisplay"
+                    >
+                      <button
+                        class="btn btn-primary btn-14px"
+                        v-on:click="saveNewPhrase(x)"
+                      >
+                        <i class="fa fa-save"></i>
+                      </button>
+                      <button
+                        class="btn btn-danger btn-14px"
+                        v-on:click="closeNewPhraseInput"
+                      >
+                        <i class="fa fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <!--col-->
           </div>

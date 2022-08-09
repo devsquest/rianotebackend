@@ -5904,11 +5904,95 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fa fa-times"
     })])]) : _vm._e()]);
-  }), 0)])]) : _vm._e(), _vm._v(" "), _vm.current_sub_section == "statements" ? _c("div", {
+  }), 0)])]) : _vm.current_sub_section == "statements" ? _c("div", {
     staticClass: "col-lg-12"
-  }, [_c("h1", [_vm._v("Hello Guys")])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
+  }, [_c("div", {
+    staticClass: "tools-area"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "questions"
+  }, _vm._l(_vm.currentSectionQuestions, function (x) {
+    return _c("div", {
+      key: x.id,
+      staticClass: "single-tools-area"
+    }, [_c("div", {
+      staticClass: "tools-heading mt-2"
+    }, [x.only_show_options == false ? _c("h6", {
+      staticClass: "bold-heading"
+    }, [_vm._v("\n                      " + _vm._s(x.question_text) + ":\n                    ")]) : _vm._e()]), _vm._v(" "), _c("div", {
+      staticClass: "tools-statement-lines"
+    }, _vm._l(x.statement_master, function (sm) {
+      return _c("h6", {
+        key: sm.id,
+        staticClass: "bold-heading"
+      }, [_vm._v("\n                      " + _vm._s(sm.short_text) + " = " + _vm._s(sm.statement_text) + ":\n                    ")]);
+    }), 0), _vm._v(" "), _c("div", {
+      staticClass: "tools-options"
+    }, _vm._l(x.statement_detail, function (sd) {
+      return _c("div", {
+        key: sd.id,
+        staticClass: "single-tools-option"
+      }, [_c("h6", {
+        staticClass: "bold-heading"
+      }, [_vm._v(_vm._s(sd.title) + ":")])]);
+    }), 0), _vm._v(" "), _c("div", {
+      staticClass: "tools-option-add-new"
+    }, [_c("h6", {
+      staticClass: "bold-heading"
+    }, [_vm._v("Customized phrases:")]), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-new-phrase",
+      on: {
+        click: function click($event) {
+          return _vm.addOwnCustomPhrase();
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa-solid fa-plus"
+    }), _vm._v(" Add your own custom\n                      phrase\n                    ")])]), _vm._v(" "), _vm.new_phrase.isDisplay ? _c("div", {
+      staticClass: "tools-option-input-box"
+    }, [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.new_phrase.option_text,
+        expression: "new_phrase.option_text"
+      }],
+      staticClass: "form-control mt-3",
+      attrs: {
+        type: "text",
+        placeholder: "Option Phrase"
+      },
+      domProps: {
+        value: _vm.new_phrase.option_text
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+
+          _vm.$set(_vm.new_phrase, "option_text", $event.target.value);
+        }
+      }
+    })]) : _vm._e(), _vm._v(" "), _vm.new_phrase.isDisplay ? _c("div", {
+      staticClass: "tools-option-input-box-btn mt-2"
+    }, [_c("button", {
+      staticClass: "btn btn-primary btn-14px",
+      on: {
+        click: function click($event) {
+          return _vm.saveNewPhrase(x);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-save"
+    })]), _vm._v(" "), _c("button", {
+      staticClass: "btn btn-danger btn-14px",
+      on: {
+        click: _vm.closeNewPhraseInput
+      }
+    }, [_c("i", {
+      staticClass: "fa fa-times"
+    })])]) : _vm._e()]);
+  }), 0)])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(1)])]) : _vm.section_type == "form-inline" ? _c("div", {
+  }, [_vm._m(2)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -5916,7 +6000,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(2), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(3), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -5955,7 +6039,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(3)])]) : _vm.section_type == "form-nextline" ? _c("div", {
+  }, [_vm._m(4)])]) : _vm.section_type == "form-nextline" ? _c("div", {
     staticClass: "form-nextline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -5963,7 +6047,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(4), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(5), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -6002,10 +6086,25 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(5)])]) : _vm._e()]);
+  }, [_vm._m(6)])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "search-box"
+  }, [_c("input", {
+    staticClass: "tool-input",
+    attrs: {
+      type: "text",
+      placeholder: "Enter Search Here"
+    }
+  }), _vm._v(" "), _c("i", {
+    staticClass: "fa-solid fa-magnifying-glass tool-input-icon"
+  })]);
+}, function () {
   var _vm = this,
       _c = _vm._self._c;
 
@@ -6644,6 +6743,7 @@ var mutations = {
       val.selectedOptions = [];
       state.questions.push(val);
     });
+    console.log(state.questions);
   },
   changeQuestionsState: function changeQuestionsState(state, payload) {
     state.sub_sections_list = state.sub_sections_list.map(function (val) {
