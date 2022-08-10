@@ -2653,7 +2653,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submitNewNote: function submitNewNote(e) {
-      this.clearContent();
       e.preventDefault();
       this.$router.push({
         name: "make_note",
@@ -2663,6 +2662,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       $("#newNoteModal").modal("hide");
+      location.reload();
     },
     loadHeadings: function loadHeadings() {
       this.loadHeadingsTab.status = true;

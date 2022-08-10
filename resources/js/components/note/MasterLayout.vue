@@ -665,13 +665,13 @@ export default {
         });
     },
     submitNewNote(e) {
-      this.clearContent();
       e.preventDefault();
       this.$router.push({
         name: "make_note",
         params: { type: this.selected_note, section: this.section_slug },
       });
       $("#newNoteModal").modal("hide");
+      location.reload();
     },
     loadHeadings() {
       this.loadHeadingsTab.status = true;

@@ -22,10 +22,6 @@ Route::get('/clear', function () {
     Artisan::call('view:clear');
     return 'Cleared!';
 });
-Route::get('/migrate', function () {
-    Artisan::call('migrate');
-    return 'Migrated!';
-});
 
 Route::get('/', function () {
     return "Faster Note is Comming Soon!";
