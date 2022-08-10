@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->boolean('status')->nullable()->default(1);
             $table->boolean('isAdmin')->nullable()->default(0);
             $table->string('signature')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->timestamps();
         });
     }
