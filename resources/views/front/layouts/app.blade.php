@@ -54,7 +54,7 @@
                             </li>
                             <li class="list-group-item Scrolist">
                                 <i class="fa fa-solid fa-circle"></i>
-                                <span class="ml-5">Home</span>
+                                <span class="ml-5"> Home</span>
                             </li>
                             <li class="list-group-item Scrolist">
                                 <div class="vl"></div>
@@ -87,11 +87,13 @@
                             <p class="first-pg-p">RIA NOTES CAN TRANSFORM THE WAY <br> YOU DOCUMENT YOUR CLINICAL WORK
                                 AND <br> HELP YOU
                                 IN YOUR PRACTICE.</p>
-                            <div class="mt-5 get"><button>Get START <i class="fa-solid fa-arrow-right-long ms-4"></i></button>
-                            </div>
-                            <div class="float-end">
-                                <p style="writing-mode:vertical-lr; font-size: 2rem;">Scroll Down <i class="fa-solid fa-angles-down"></i></p>
-
+                            <p class="first-pg-p mt-5">
+                                <a>GET START <i class="fa-solid fa-arrow-right-long ms-4"></i></a>
+                            </p>
+                            <div class="mt-5">
+                                <i class="fa-solid fa-computer-mouse font-19px"></i>
+                                <div class="vl mt-4"></div>
+                                <p style="writing-mode:vertical-lr; font-size: 1.5rem; position: relative; bottom: 9.5em; left: 0.8em;">SCROLL DOWN</p>
                             </div>
                         </div>
                     </div>
@@ -104,38 +106,37 @@
             </div>
         </div>
         <!--row-->
-
-
         <div class="row scnd-pg">
-            <div class="col-md-6 scnd-pg-div">
-                <div class="col-md-2 float-start ps-0 listdiv">
-                    <ul class="list-group">
-
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i>
-                        </li>
+            <div class="col-md-2 col-2">
+                <ul class="list-group note-front-list-group mt-5">
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <i class="fa fa-solid fa-circle"></i>
+                    </li>
+                    <li class="ist-group-item Scrolist Scrolist-black note-front-numbering">
                         <h1 class="ps-4">02</h1>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i> About us
-                        </li>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div>
-                            <div class="vl2"></div>
-                        </li>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i>
-                        </li>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i>
-                        </li>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i>
-                        </li>
-                        <li class="list-group-item Scrolist2">
-                            <div class="md-v-line "></div><i class="fa-solid fa-circle"></i>
-                        </li>
-                    </ul>
-                </div>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-yellow">
+                        <i class="fa fa-solid fa-circle"></i>
+                        <span class="ml-5 black-color"> About Us</span>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <div class="vl vl-yellow"></div>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <i class="fa fa-solid fa-circle"></i>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <i class="fa fa-solid fa-circle"></i>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <i class="fa fa-solid fa-circle"></i>
+                    </li>
+                    <li class="list-group-item Scrolist Scrolist-gray">
+                        <i class="fa fa-solid fa-circle"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
                 <div class="section" style="padding-bottom:32rem;padding-top:20rem" id="about">
                     <div class="container">
                         <h1 class="m-b-5 m-l-3">LEADERS IN THERAPY <br> NOTE <span class="text-warning">
@@ -152,6 +153,7 @@
                 <img src="{{ asset('front/img/HW.png') }}" alt="" style="margin-top:15rem ;">
             </div>
         </div>
+        <!--row-->
         <div class="row third-pg">
             <div class="col-md-6 third-pg-div">
                 <div class="col-md-2 float-start ps-0 listdiv ">

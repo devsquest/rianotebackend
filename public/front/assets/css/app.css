@@ -6349,10 +6349,6 @@ body {
     overflow-x: hidden;
 }
 
-.get {
-    padding-left: 25rem;
-}
-
 .note-front-bg-one-man-img {
     width: 100%;
     height: 100%;
@@ -6368,11 +6364,25 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
 }
-
+.Scrolist-gray{
+    color: hsl(0deg 0% 90%);
+}
+.Scrolist-black{
+    color: black;
+}
+.Scrolist-yellow{
+    color: hsl(46deg 100% 65%);
+}
+.black-color{
+    color: black;
+}
 .vl {
     border-left: 3px solid white;
-    height: 70px;
+    height: 100px;
     margin-left: 0.4em;
+}
+.vl-yellow {
+    border-left: 3px solid hsl(46deg 100% 65%);
 }
 
 .vl2 {
@@ -6398,4 +6408,7 @@ body {
 
 .note-front-numbering {
     margin-left: -1.7em;
+}
+.font-19px{
+    font-size: 19px;
 }
