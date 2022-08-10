@@ -2653,6 +2653,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     submitNewNote: function submitNewNote(e) {
+      this.clearContent();
       e.preventDefault();
       this.$router.push({
         name: "make_note",
@@ -2662,7 +2663,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       $("#newNoteModal").modal("hide");
-      location.reload();
     },
     loadHeadings: function loadHeadings() {
       this.loadHeadingsTab.status = true;
@@ -4711,7 +4711,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-lg-6 col-md-6"
+    staticClass: "col-lg-7 col-md-7"
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -4779,7 +4779,7 @@ var render = function render() {
       section_type: _vm.section_type
     }
   })], 1)], 1)]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-6 col-md-6"
+    staticClass: "col-lg-5 col-md-5"
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -5933,7 +5933,25 @@ var render = function render() {
         staticClass: "single-tools-option"
       }, [_c("h6", {
         staticClass: "bold-heading"
-      }, [_vm._v(_vm._s(sd.title) + ":")])]);
+      }, [_vm._v(_vm._s(sd.title) + ":")]), _vm._v(" "), _c("div", {
+        staticClass: "statement-lists"
+      }, _vm._l(sd.options, function (option) {
+        return _c("div", {
+          key: option.id,
+          staticClass: "row"
+        }, [_vm._m(2, true), _vm._v(" "), _c("div", {
+          staticClass: "col-9"
+        }, [_c("p", {
+          "class": ["note-questions-single-option-box", {
+            "note-questions-single-option-box-selected": x.selectedOptions.indexOf(option.id) != -1 ? true : false
+          }],
+          on: {
+            click: function click($event) {
+              return _vm.addQuestionInResult(x, option);
+            }
+          }
+        }, [_vm._v("\n                              " + _vm._s(option.option_text) + "\n                            ")])])]);
+      }), 0)]);
     }), 0), _vm._v(" "), _c("div", {
       staticClass: "tools-option-add-new"
     }, [_c("h6", {
@@ -5992,7 +6010,7 @@ var render = function render() {
     })])]) : _vm._e()]);
   }), 0)])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(2)])]) : _vm.section_type == "form-inline" ? _c("div", {
+  }, [_vm._m(3)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -6000,7 +6018,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(3), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(4), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -6039,7 +6057,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(4)])]) : _vm.section_type == "form-nextline" ? _c("div", {
+  }, [_vm._m(5)])]) : _vm.section_type == "form-nextline" ? _c("div", {
     staticClass: "form-nextline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -6047,7 +6065,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(5), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(6), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -6086,7 +6104,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(6)])]) : _vm._e()]);
+  }, [_vm._m(7)])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
@@ -6119,6 +6137,17 @@ var staticRenderFns = [function () {
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-magnifying-glass tool-input-icon"
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "col-3"
+  }, [_c("button", {
+    staticClass: "btn note-statement-btn"
+  }, [_vm._v("P")]), _vm._v(" "), _c("button", {
+    staticClass: "btn note-statement-btn"
+  }, [_vm._v("S")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;

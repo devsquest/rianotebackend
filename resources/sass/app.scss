@@ -137,7 +137,7 @@ $btn-color : #53b848;
     border-style: none;
     background-color: hsl(0deg 0% 96%);
     color: hsl(0deg 0% 69%);
-    width: 100%;
+    width: 95%;
     font-weight: 500;
     height: 35px;
 }
@@ -160,7 +160,7 @@ $btn-color : #53b848;
 .tool-input-icon {
     position: absolute;
     top: 13px;
-    right: 20px;
+    right: 3.1em;
     color: hsl(0deg 0% 69%);
 }
 
@@ -508,4 +508,10 @@ $btn-color : #53b848;
 
 .note-db-link:hover {
     text-decoration: none;
+}
+
+.note-statement-btn {
+    font-size: 14px;
+    border: 1px solid black;
+    font-weight: bolder;
 }

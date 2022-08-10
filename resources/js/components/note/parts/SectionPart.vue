@@ -165,21 +165,36 @@
                         :key="sd.id"
                         class="single-tools-option"
                       >
-                      <h6 class="bold-heading">{{ sd.title }}:</h6>
-                        <!-- <p
-                          :class="[
-                            'note-questions-single-option-box',
-                            {
-                              'note-questions-single-option-box-selected':
-                                x.selectedOptions.indexOf(option.id) != -1
-                                  ? true
-                                  : false,
-                            },
-                          ]"
-                          v-on:click="addQuestionInResult(x, option)"
-                        >
-                          {{ option.option_text }}
-                        </p> -->
+                        <h6 class="bold-heading">{{ sd.title }}:</h6>
+                        <div class="statement-lists">
+                          <div
+                            class="row"
+                            v-for="option in sd.options"
+                            :key="option.id"
+                          >
+                            <div class="col-3">
+                              <button class="btn note-statement-btn">P</button>
+                              <button class="btn note-statement-btn">S</button>
+                            </div>
+                            <div class="col-9">
+                              <p
+                                :class="[
+                                  'note-questions-single-option-box',
+                                  {
+                                    'note-questions-single-option-box-selected':
+                                      x.selectedOptions.indexOf(option.id) != -1
+                                        ? true
+                                        : false,
+                                  },
+                                ]"
+                                v-on:click="addQuestionInResult(x, option)"
+                              >
+                                {{ option.option_text }}
+                              </p>
+                            </div>
+                          </div>
+                          <!--row-->
+                        </div>
                       </div>
                     </div>
                     <div class="tools-option-add-new">

@@ -166,7 +166,7 @@
       </div>
       <div class="note-body">
         <div class="row">
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-7 col-md-7">
             <div class="row">
               <div class="col-lg-12 col-md-12 bg-green">
                 <div class="scrollable-nav">
@@ -255,7 +255,7 @@
               </KeepAlive>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-5 col-md-5">
             <div class="row">
               <div class="col-lg-12 col-md-12 bg-green">
                 <div class="scrollable-nav">
@@ -665,13 +665,13 @@ export default {
         });
     },
     submitNewNote(e) {
+      this.clearContent();
       e.preventDefault();
       this.$router.push({
         name: "make_note",
         params: { type: this.selected_note, section: this.section_slug },
       });
       $("#newNoteModal").modal("hide");
-      location.reload();
     },
     loadHeadings() {
       this.loadHeadingsTab.status = true;
