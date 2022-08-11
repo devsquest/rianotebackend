@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-md-6 col-6">
                     <div class="note-front-bg-one-man-img-place">
-                        <img src="{{ asset('front/img/header_men.png') }}" alt="" class="note-front-bg-one-man-img">
+                        <img src="{{ asset('front/img/banner_home.png') }}" alt="" class="note-front-bg-one-man-img">
                     </div>
                 </div>
             </div>
