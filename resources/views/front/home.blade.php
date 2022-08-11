@@ -285,7 +285,7 @@
                 </li>
                 <li class="list-group-item Scrolist Scrolist-yellow">
                     <i class="fa fa-solid fa-circle"></i>
-                    <span class="ml-5 black-color"> TESTIMONIALS</span>
+                    <span class="ml-5 black-color"> WATCH THE VIDEO</span>
                 </li>
                 <li class="list-group-item Scrolist Scrolist-gray">
                     <div class="vl vl-yellow"></div>

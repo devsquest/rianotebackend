@@ -26,4 +26,13 @@ class OptionController extends Controller
         ]);
         return response()->json($option, 200);
     }
+    public function updateExistingOption(Request $request)
+    {
+        $id = $request->id;
+        $option = Option::findOrFail($id);
+        $option->update([
+            'option_text' => $request->get('option_text')
+        ]);
+        return response()->json($option, 200);
+    }
 }

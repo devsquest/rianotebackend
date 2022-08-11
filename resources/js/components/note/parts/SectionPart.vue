@@ -80,16 +80,17 @@
                         >
                           {{ option.option_text }}
                         </p>
+                        <p class="d-none">{{ x.editAble }}</p>
                         <div v-if="option.editAble">
                           <button
                             class="note-btn-hover-edit-danger"
-                            v-on:click="editOption(x, option)"
+                            v-on:click="hideOption(x, option)"
                           >
                             <span><i class="fa-solid fa-xmark"></i></span>
                           </button>
                           <button
                             class="note-btn-hover-edit-success"
-                            v-on:click="editOption(x, option)"
+                            v-on:click="saveOption(x, option)"
                           >
                             <span><i class="fa-solid fa-floppy-disk"></i></span>
                           </button>
@@ -99,7 +100,9 @@
                             class="note-btn-hover-edit"
                             v-on:click="editOption(x, option)"
                           >
-                            <span><i class="fa-solid fa-pen-to-square"></i></span>
+                            <span
+                              ><i class="fa-solid fa-pen-to-square"></i
+                            ></span>
                           </button>
                         </div>
                       </div>
@@ -442,9 +445,25 @@ export default {
         option_id: option.id,
       });
     },
+    hideOption(question, option) {
+      // console.log(question, option);
+      this.$store.commit("note/makeQuestionEditHide", {
+        question_id: question.id,
+        option_id: option.id,
+      });
+    },
+    saveOption(question, option) {
+      if (this.contentEditable_text != null) {
+        this.$store.dispatch("note/saveExistingOption", {
+          question_id: question.id,
+          option_id: option.id,
+          option_text: this.contentEditable_text,
+        });
+      }
+    },
     editableInput(e) {
-      // this.contentEditable_text = null;
-      console.log(e.target.innerText);
+      this.contentEditable_text = null;
+      this.contentEditable_text = e.target.innerText;
     },
   },
   computed: {

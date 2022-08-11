@@ -45,6 +45,7 @@ const mutations = {
         });
         payload.data.forEach((val) => {
             val.isDisplay = false;
+            val.editAble = false;
             val.selectedOptions = [];
             state.questions.push(val);
         });
@@ -115,11 +116,26 @@ const mutations = {
         let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);
         state.questions[index].options.push(payload.data.data.option);
     },
-    makeQuestionEditable(state, payload){
+    makeQuestionEditable(state, payload) {
         let qindex = state.questions.findIndex(x => x.id == payload.question_id);
         let oindex = state.questions[qindex].options.findIndex(x => x.id == payload.option_id);
+        state.questions[qindex].editAble = true;
         state.questions[qindex].options[oindex].editAble = true;
-        console.log(state.questions);
+        // console.log(state.questions);
+    },
+    makeQuestionEditHide(state, payload) {
+        let qindex = state.questions.findIndex(x => x.id == payload.question_id);
+        let oindex = state.questions[qindex].options.findIndex(x => x.id == payload.option_id);
+        state.questions[qindex].editAble = false;
+        state.questions[qindex].options[oindex].editAble = false;
+        // console.log(state.questions);
+    },
+    saveExistingOption(state, payload) {
+        let qindex = state.questions.findIndex(x => x.id == payload.question_id);
+        let oindex = state.questions[qindex].options.findIndex(x => x.id == payload.option_id);
+        state.questions[qindex].editAble = false;
+        state.questions[qindex].options[oindex].editAble = false;
+        state.questions[qindex].options[oindex].option_text = payload.option_text;
     }
 };
 const actions = {
@@ -191,6 +207,33 @@ const actions = {
             )
             .then((response) => {
                 context.commit("addQuestionNewOption", response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    },
+    async saveExistingOption(context, payload) {
+        const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+        let headers = {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        };
+        let bodyData = {
+            id: payload.option_id,
+            option_text: payload.option_text,
+        };
+        return Vue.axios
+            .post(
+                process.env.MIX_API_URL +
+                "/api/option/update-existing-option",
+                bodyData,
+                {
+                    headers: headers,
+                }
+            )
+            .then((response) => {
+                context.commit("saveExistingOption", payload);
             })
             .catch((error) => {
                 console.log(error);

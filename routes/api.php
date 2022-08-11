@@ -37,4 +37,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/questions/{id}/{type}', [SectionController::class, 'getSectionContent']);
     Route::put('/option/{id}', [OptionController::class, 'editOption']);
     Route::post('/option/add-new-option', [OptionController::class, 'addOption']);
+    Route::post('/option/update-existing-option', [OptionController::class, 'updateExistingOption']);
 });

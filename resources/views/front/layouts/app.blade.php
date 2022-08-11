@@ -31,17 +31,17 @@
                                 </h1>
                                 <ul class="note-nav">
                                     <li class="note-nav-link-li active">
-                                        <a href="index.html" class="note-nav-link"><span>Home</span></a>
+                                        <a href="{{ route('front.home') }}" class="note-nav-link"><span>Home</span></a>
                                     </li>
                                     <li class="note-nav-link-li">
-                                        <a href="about.html" class="note-nav-link"><span>About</span></a>
+                                        <a href="{{ route('front.about') }}" class="note-nav-link"><span>About</span></a>
                                     </li>
-                                    <li class="note-nav-link-li">
+                                    <!-- <li class="note-nav-link-li">
                                         <a href="blog.html" class="note-nav-link"><span>Blog</span></a>
                                     </li>
                                     <li class="note-nav-link-li">
                                         <a href="contact.html" class="note-nav-link"><span>Contact</span></a>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                         </div>
