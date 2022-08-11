@@ -75,9 +75,33 @@
                             },
                           ]"
                           v-on:click="addQuestionInResult(x, option)"
+                          v-on:input="editableInput"
+                          :contentEditable="option.editAble"
                         >
                           {{ option.option_text }}
                         </p>
+                        <div v-if="option.editAble">
+                          <button
+                            class="note-btn-hover-edit-danger"
+                            v-on:click="editOption(x, option)"
+                          >
+                            <span><i class="fa-solid fa-xmark"></i></span>
+                          </button>
+                          <button
+                            class="note-btn-hover-edit-success"
+                            v-on:click="editOption(x, option)"
+                          >
+                            <span><i class="fa-solid fa-floppy-disk"></i></span>
+                          </button>
+                        </div>
+                        <div v-else>
+                          <button
+                            class="note-btn-hover-edit"
+                            v-on:click="editOption(x, option)"
+                          >
+                            <span><i class="fa-solid fa-pen-to-square"></i></span>
+                          </button>
+                        </div>
                       </div>
                     </div>
                     <div class="tools-option-add-new">
@@ -342,6 +366,7 @@ export default {
   props: ["note_id", "slug", "section_type"],
   data() {
     return {
+      contentEditable_text: null,
       showByDefault: false,
       current_section_id: null,
       sub_sections_list: null,
@@ -409,6 +434,17 @@ export default {
           this.new_phrase.isDisplay = false;
           this.new_phrase.option_text = null;
         });
+    },
+    editOption(question, option) {
+      // console.log(question, option);
+      this.$store.commit("note/makeQuestionEditable", {
+        question_id: question.id,
+        option_id: option.id,
+      });
+    },
+    editableInput(e) {
+      // this.contentEditable_text = null;
+      console.log(e.target.innerText);
     },
   },
   computed: {

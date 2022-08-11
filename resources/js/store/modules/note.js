@@ -114,6 +114,12 @@ const mutations = {
     addQuestionNewOption(state, payload) {
         let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);
         state.questions[index].options.push(payload.data.data.option);
+    },
+    makeQuestionEditable(state, payload){
+        let qindex = state.questions.findIndex(x => x.id == payload.question_id);
+        let oindex = state.questions[qindex].options.findIndex(x => x.id == payload.option_id);
+        state.questions[qindex].options[oindex].editAble = true;
+        console.log(state.questions);
     }
 };
 const actions = {

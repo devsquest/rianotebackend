@@ -27,7 +27,7 @@ Route::get('/', function () {
     return "Faster Note is Comming Soon!";
 });
 Route::get('/homepage', [HomeController::class, 'index']);
-Route::get('/homepage/pricing', [HomeController::class, 'pricing']);
+Route::get('/homepage/about', [HomeController::class, 'about']);
 
 Auth::routes(['register' => false]);
 

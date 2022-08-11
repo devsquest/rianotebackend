@@ -2263,7 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -2423,7 +2423,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      var url = "https://fasternote.com" + "/api/update-user";
+      var url = "http://127.0.0.1:8000" + "/api/update-user";
       var payload = this.user;
       this.axios.post(url, payload, {
         headers: headers
@@ -2464,7 +2464,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      var url = "https://fasternote.com" + "/api/update-user";
+      var url = "http://127.0.0.1:8000" + "/api/update-user";
       var payload = this.password;
       this.axios.post(url, payload, {
         headers: headers
@@ -2622,7 +2622,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this2.notes_list = response.data.data.notes;
@@ -2641,7 +2641,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/sections/" + this.selected_note, {
+      this.axios.get("http://127.0.0.1:8000" + "/api/sections/" + this.selected_note, {
         headers: headers
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
@@ -2933,7 +2933,7 @@ __webpack_require__.r(__webpack_exports__);
         "Content-Type": "application/json",
         Authorization: "Bearer ".concat(token)
       };
-      this.axios.get("https://fasternote.com" + "/api/notes", {
+      this.axios.get("http://127.0.0.1:8000" + "/api/notes", {
         headers: headers
       }).then(function (response) {
         _this.notes_list = response.data.data.notes;
@@ -3047,7 +3047,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings_all/" + _this.selected_note;
+                url = "http://127.0.0.1:8000" + "/api/headings_all/" + _this.selected_note;
                 _context.next = 5;
                 return _this.axios.get(url, {
                   headers: headers
@@ -3111,7 +3111,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   "Content-Type": "application/json",
                   Authorization: "Bearer ".concat(token)
                 };
-                url = "https://fasternote.com" + "/api/headings/" + db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + db_id;
                 _context2.next = 11;
                 return _this2.axios["delete"](url, {
                   headers: headers
@@ -3154,7 +3154,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this3.headingsList[index].heading_text,
                   heading_content: _this3.headingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/save";
+                url = "http://127.0.0.1:8000" + "/api/headings/save";
                 _context3.next = 6;
                 return _this3.axios.post(url, formBody, {
                   headers: headers
@@ -3204,7 +3204,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   heading_text: _this4.dbHeadingsList[index].heading_text,
                   heading_content: _this4.dbHeadingsList[index].heading_content
                 };
-                url = "https://fasternote.com" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
+                url = "http://127.0.0.1:8000" + "/api/headings/" + _this4.dbHeadingsList[index].db_id;
                 _context4.next = 6;
                 return _this4.axios.post(url, formBody, {
                   headers: headers
@@ -3267,6 +3267,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ["note_id", "slug", "section_type"],
   data: function data() {
     return {
+      contentEditable_text: null,
       showByDefault: false,
       current_section_id: null,
       sub_sections_list: null,
@@ -3370,6 +3371,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         _this3.new_phrase.isDisplay = false;
         _this3.new_phrase.option_text = null;
       });
+    },
+    editOption: function editOption(question, option) {
+      // console.log(question, option);
+      this.$store.commit("note/makeQuestionEditable", {
+        question_id: question.id,
+        option_id: option.id
+      });
+    },
+    editableInput: function editableInput(e) {
+      // this.contentEditable_text = null;
+      console.log(e.target.innerText);
     }
   },
   computed: {
@@ -5842,12 +5854,37 @@ var render = function render() {
         "class": ["note-questions-single-option-box", {
           "note-questions-single-option-box-selected": x.selectedOptions.indexOf(option.id) != -1 ? true : false
         }],
+        attrs: {
+          contentEditable: option.editAble
+        },
         on: {
           click: function click($event) {
             return _vm.addQuestionInResult(x, option);
+          },
+          input: _vm.editableInput
+        }
+      }, [_vm._v("\n                        " + _vm._s(option.option_text) + "\n                      ")]), _vm._v(" "), option.editAble ? _c("div", [_c("button", {
+        staticClass: "note-btn-hover-edit-danger",
+        on: {
+          click: function click($event) {
+            return _vm.editOption(x, option);
           }
         }
-      }, [_vm._v("\n                        " + _vm._s(option.option_text) + "\n                      ")])]);
+      }, [_vm._m(1, true)]), _vm._v(" "), _c("button", {
+        staticClass: "note-btn-hover-edit-success",
+        on: {
+          click: function click($event) {
+            return _vm.editOption(x, option);
+          }
+        }
+      }, [_vm._m(2, true)])]) : _c("div", [_c("button", {
+        staticClass: "note-btn-hover-edit",
+        on: {
+          click: function click($event) {
+            return _vm.editOption(x, option);
+          }
+        }
+      }, [_vm._m(3, true)])])]);
     }), 0), _vm._v(" "), _c("div", {
       staticClass: "tools-option-add-new"
     }, [_c("h6", {
@@ -5908,7 +5945,7 @@ var render = function render() {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "tools-area"
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
     staticClass: "questions"
   }, _vm._l(_vm.currentSectionQuestions, function (x) {
     return _c("div", {
@@ -5939,7 +5976,7 @@ var render = function render() {
         return _c("div", {
           key: option.id,
           staticClass: "row"
-        }, [_vm._m(2, true), _vm._v(" "), _c("div", {
+        }, [_vm._m(5, true), _vm._v(" "), _c("div", {
           staticClass: "col-9"
         }, [_c("p", {
           "class": ["note-questions-single-option-box", {
@@ -6010,7 +6047,7 @@ var render = function render() {
     })])]) : _vm._e()]);
   }), 0)])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(3)])]) : _vm.section_type == "form-inline" ? _c("div", {
+  }, [_vm._m(6)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -6018,7 +6055,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(4), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(7), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -6057,7 +6094,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(5)])]) : _vm.section_type == "form-nextline" ? _c("div", {
+  }, [_vm._m(8)])]) : _vm.section_type == "form-nextline" ? _c("div", {
     staticClass: "form-nextline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -6065,7 +6102,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(6), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(9), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -6104,7 +6141,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(7)])]) : _vm._e()]);
+  }, [_vm._m(10)])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
@@ -6121,6 +6158,27 @@ var staticRenderFns = [function () {
     }
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-magnifying-glass tool-input-icon"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", [_c("i", {
+    staticClass: "fa-solid fa-xmark"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", [_c("i", {
+    staticClass: "fa-solid fa-floppy-disk"
+  })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("span", [_c("i", {
+    staticClass: "fa-solid fa-pen-to-square"
   })]);
 }, function () {
   var _vm = this,
@@ -6292,7 +6350,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  asset_url: "https://fasternote.com",
+  asset_url: "http://127.0.0.1:8000",
   app_name: "Faster Note"
 });
 
@@ -6605,7 +6663,7 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              url = "https://fasternote.com" + "/api/login";
+              url = "http://127.0.0.1:8000" + "/api/login";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
@@ -6635,7 +6693,7 @@ var actions = {
           switch (_context2.prev = _context2.next) {
             case 0:
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/details";
+              url = "http://127.0.0.1:8000" + "/api/details";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -6666,7 +6724,7 @@ var actions = {
           switch (_context3.prev = _context3.next) {
             case 0:
               _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse2.token;
-              url = "https://fasternote.com" + "/api/logout";
+              url = "http://127.0.0.1:8000" + "/api/logout";
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -6847,6 +6905,16 @@ var mutations = {
       return x.id == payload.data.data.option.question_id;
     });
     state.questions[index].options.push(payload.data.data.option);
+  },
+  makeQuestionEditable: function makeQuestionEditable(state, payload) {
+    var qindex = state.questions.findIndex(function (x) {
+      return x.id == payload.question_id;
+    });
+    var oindex = state.questions[qindex].options.findIndex(function (x) {
+      return x.id == payload.option_id;
+    });
+    state.questions[qindex].options[oindex].editAble = true;
+    console.log(state.questions);
   }
 };
 var actions = {
@@ -6860,7 +6928,7 @@ var actions = {
             case 0:
               console.log(payload);
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
-              url = "https://fasternote.com" + "/api/questions/" + payload.id + "/" + payload.type;
+              url = "http://127.0.0.1:8000" + "/api/questions/" + payload.id + "/" + payload.type;
               headers = {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
@@ -6899,7 +6967,7 @@ var actions = {
                 "Content-Type": "application/json",
                 Authorization: "Bearer ".concat(token)
               };
-              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("https://fasternote.com" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
+              return _context2.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.get("http://127.0.0.1:8000" + "/api/sections/" + payload.note_id + "/" + payload.section_type + "/" + payload.slug, {
                 headers: headers
               }).then(function (response) {
                 context.commit("setFormQuestions", {
@@ -6937,7 +7005,7 @@ var actions = {
                 question_id: payload.question.id,
                 option_text: payload.option.option_text
               };
-              return _context3.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.post("https://fasternote.com" + "/api/option/add-new-option", bodyData, {
+              return _context3.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.post("http://127.0.0.1:8000" + "/api/option/add-new-option", bodyData, {
                 headers: headers
               }).then(function (response) {
                 context.commit("addQuestionNewOption", response);

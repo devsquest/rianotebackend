@@ -22,26 +22,26 @@
 
 .btn-success {
   color: #fff;
-  background-color: #e0a800;
-  border-color: #e0a800;
+  background-color: #f8ce47;
+  border-color: #f8ce47;
 }
 
 .btn-success:hover {
   color: #fff;
-  background-color: #e0a800;
-  border-color: #e0a800;
+  background-color: #f8ce47;
+  border-color: #f8ce47;
 }
 
 .btn-success:visited {
   color: #fff;
-  background-color: #e0a800;
-  border-color: #e0a800;
+  background-color: #f8ce47;
+  border-color: #f8ce47;
 }
 
 .btn-success:active {
   color: #fff;
-  background-color: #e0a800;
-  border-color: #e0a800;
+  background-color: #f8ce47;
+  border-color: #f8ce47;
 }
 
 .vertical {
@@ -90,7 +90,7 @@
 }
 
 .bg-green {
-  background-color: #e0a800;
+  background-color: #f8ce47;
 }
 
 .note-result {
@@ -115,11 +115,11 @@
 }
 
 .note-section-left-li-selected {
-  background-color: #e0a800;
+  background-color: #f8ce47;
 }
 
 .note-section-left-li:hover {
-  background-color: #e0a800;
+  background-color: #f8ce47;
 }
 
 .note-section-left-text {
@@ -238,12 +238,12 @@
 .note-login-link {
   margin-left: 4rem;
   text-decoration: none;
-  color: #e0a800;
+  color: #f8ce47;
 }
 
 .note-login-link:hover {
   text-decoration: none;
-  color: #e0a800;
+  color: #f8ce47;
 }
 
 .note-login-page-logo {
@@ -259,7 +259,7 @@
 
 .login-page-checkbox:checked {
   background-color: transparent;
-  outline: 2px solid #e0a800;
+  outline: 2px solid #f8ce47;
 }
 
 .login-u-input {
@@ -279,8 +279,8 @@
 
 .login-u-input-focus:focus {
   border-radius: 2rem;
-  border-color: #e0a800;
-  outline: 2px solid #e0a800;
+  border-color: #f8ce47;
+  outline: 2px solid #f8ce47;
   color: white;
 }
 
@@ -293,7 +293,7 @@
 }
 
 .purchase-u-btn:hover {
-  border-color: #e0a800;
+  border-color: #f8ce47;
 }
 
 .u-login-btn {
@@ -318,7 +318,7 @@
 }
 
 .login-form-input-icon:focus {
-  color: #e0a800;
+  color: #f8ce47;
 }
 
 .note-background-img {
@@ -350,7 +350,7 @@
 }
 
 .splash-btn {
-  background-color: #e0a800;
+  background-color: #f8ce47;
   padding: 0.4rem 2.5rem;
 }
 
@@ -489,7 +489,7 @@
   position: relative;
   top: 8px;
   right: 15px;
-  color: #e0a800;
+  color: #f8ce47;
 }
 
 .note-db-link {
@@ -513,4 +513,37 @@
   font-size: 14px;
   border: 1px solid black;
   font-weight: bolder;
+}
+
+.note-btn-hover-edit {
+  background-color: #f8ce47;
+  font-size: 14px;
+  color: white;
+  border: 1px solid #f8ce47;
+  border-radius: 3px;
+  position: relative;
+  bottom: 2em;
+  left: 88%;
+}
+
+.note-btn-hover-edit-danger {
+  background-color: red;
+  font-size: 14px;
+  color: white;
+  border: 1px solid red;
+  border-radius: 3px;
+  position: relative;
+  bottom: 2em;
+  left: 88%;
+}
+
+.note-btn-hover-edit-success {
+  background-color: green;
+  font-size: 14px;
+  color: white;
+  border: 1px solid green;
+  border-radius: 3px;
+  position: relative;
+  bottom: 2em;
+  left: 88%;
 }

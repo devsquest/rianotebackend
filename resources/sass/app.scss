@@ -7,7 +7,8 @@
 // Custom
 $u-color-1 : #0e386a;
 $u-color-2 : rgb(28, 81, 214);
-$u-color-3 : #e0a800;
+// $u-color-3 : #e0a800;
+$u-color-3 : #f8ce47;
 $btn-color : #53b848;
 
 .make-note {
@@ -513,4 +514,36 @@ $btn-color : #53b848;
     font-size: 14px;
     border: 1px solid black;
     font-weight: bolder;
+}
+
+.note-btn-hover-edit {
+    background-color: $u-color-3;
+    font-size: 14px;
+    color: white;
+    border: 1px solid $u-color-3;
+    border-radius: 3px;
+    position: relative;
+    bottom: 2em;
+    left: 88%;
+}
+
+.note-btn-hover-edit-danger {
+    background-color: red;
+    font-size: 14px;
+    color: white;
+    border: 1px solid red;
+    border-radius: 3px;
+    position: relative;
+    bottom: 2em;
+    left: 88%;
+}
+.note-btn-hover-edit-success {
+    background-color: green;
+    font-size: 14px;
+    color: white;
+    border: 1px solid green;
+    border-radius: 3px;
+    position: relative;
+    bottom: 2em;
+    left: 88%;
 }
