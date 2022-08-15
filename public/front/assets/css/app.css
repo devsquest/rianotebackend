@@ -6536,3 +6536,82 @@ a.note-nav-link {
     font-weight: 1000;
 
 }
+
+.scnd-pg-p-pricing {
+    font-size: 3rem;
+    line-height: 1.5em;
+    letter-spacing: -.005em;
+    margin-top: 5rem;
+    color: rgb(65, 26, 26);
+}
+
+.scnd-pg-pricing {
+    padding-bottom: 40rem;
+    color: rgb(65, 26, 26);
+    background-image: url("/front/img/Home_02.jpg");
+    background-size: cover;
+    padding-left: 20rem;
+    padding-top: 15rem;
+}
+
+.scnd-pg-h-pricing {
+    letter-spacing: 1rem;
+    word-spacing: 1.5rem;
+    font-weight: 600;
+
+}
+
+.note-header-pricing {
+    background-image: url('/front/img/pricing_banner.jpg');
+}
+
+.pricing-single-body-text-p {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.pricing-single {
+    background-color: white;
+    border-radius: 10px;
+    border-bottom: 10px solid #ffc107 !important;
+}
+
+.pricing-single-body-text-btn {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 40px;
+    height: 45px;
+    border: 2px solid #ffc107 !important;
+}
+
+.pricing-single-header {
+    background-color: hsl(0deg 0% 98%);
+    padding-bottom: 30px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.pricing-single-header-version-name {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.pricing-single-header-version-price-sign {
+    font-weight: 600;
+    color: #ffc107 !important;
+    font-size: 15px;
+    position: relative;
+    bottom: 15px;
+}
+
+.pricing-single-header-version-price-value {
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffc107 !important;
+}
+
+.pricing-single-header-version-price-by {
+    font-weight: 600;
+    color: #ffc107 !important;
+}

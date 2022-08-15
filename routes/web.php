@@ -28,6 +28,7 @@ Route::get('/', function () {
 });
 Route::get('/homepage', [HomeController::class, 'index'])->name('front.home');
 Route::get('/homepage/about', [HomeController::class, 'about'])->name('front.about');
+Route::get('/homepage/pricing', [HomeController::class, 'pricing'])->name('front.about');
 
 Auth::routes(['register' => false]);
 
