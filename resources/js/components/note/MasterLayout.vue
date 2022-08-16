@@ -26,7 +26,7 @@
             </div>
           </div>
           <div
-            class="col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
+            class="col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg text-right"
           >
             <div class="dropdown">
               <div
@@ -75,8 +75,8 @@
                     >Logout</span
                   >
                 </div>
-                <hr class="vertical" />
-                <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i>
+                <!-- <hr class="vertical" />
+                <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i> -->
               </div>
             </div>
           </div>

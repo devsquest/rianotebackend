@@ -4501,7 +4501,7 @@ var render = function render() {
   }, [_c("i", {
     staticClass: "fa-solid fa-plus"
   }), _vm._v(" New Note\n            ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg"
+    staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg text-right"
   }, [_c("div", {
     staticClass: "dropdown"
   }, [_c("div", {
@@ -4541,14 +4541,7 @@ var render = function render() {
     on: {
       click: _vm.logoutNote
     }
-  }, [_vm._v("Logout")])], 1), _vm._v(" "), _c("hr", {
-    staticClass: "vertical"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "fa-solid fa-sliders",
-    staticStyle: {
-      color: "#cbcbcb"
-    }
-  })])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Logout")])], 1)])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12",
