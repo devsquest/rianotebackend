@@ -6546,7 +6546,6 @@ a.note-nav-link {
 }
 
 .scnd-pg-pricing {
-    padding-bottom: 40rem;
     color: rgb(65, 26, 26);
     background-image: url("/front/img/Home_02.jpg");
     background-size: cover;
@@ -6563,6 +6562,10 @@ a.note-nav-link {
 
 .note-header-pricing {
     background-image: url('/front/img/pricing_banner.jpg');
+}
+
+.note-header-faq {
+    background-image: url('/front/img/faq_banner.jpg');
 }
 
 .pricing-single-body-text-p {
@@ -6614,4 +6617,28 @@ a.note-nav-link {
 .pricing-single-header-version-price-by {
     font-weight: 600;
     color: #ffc107 !important;
+}
+
+.scnd-pg-p-faq {
+    font-size: 3rem;
+    line-height: 1.5em;
+    letter-spacing: -.005em;
+    margin-top: 5rem;
+    color: rgb(65, 26, 26);
+}
+
+.scnd-pg-faq {
+    padding-bottom: 20rem;
+    color: rgb(65, 26, 26);
+    background-image: url("../../Home_02.jpg");
+    padding-left: 25rem;
+    padding-top: 15rem;
+    padding-right: 20rem;
+}
+
+.scnd-pg-h-faq {
+    letter-spacing: 2rem;
+    word-spacing: 1.5rem;
+    font-weight: 1000;
+
 }

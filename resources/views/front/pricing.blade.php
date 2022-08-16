@@ -197,96 +197,107 @@
         <img src="Pricing_27.png" alt="Screen" class="screen w-50 mx-auto d-block"> -->
     </div>
     <!--row-->
-
     <div class="row forth-pg">
-        <div class="section">
-            <div class="container">
-                <h1 style="border-bottom:3px solid white;margin-top:10rem;letter-spacing:2rem;color: white;">
-                    TESTIMONIALS
-                </h1>
-                <div class="row pic">
-                    <div class="col-md-2 hide pic-down"><img src="Home_35.png" class="img-fulid" alt="boy pic">
-                    </div>
-                    <div class="col-md-2 hide"><img src="Home_32.png" class="img-fulid" alt="boy pic">
-                    </div>
-                    <div class="col-md-2  hide pic-down"><img src="Home_38.png" class="img-fulid" alt="boy pic">
-                    </div>
-                    <div class="col-md-2 hide "><img src="Home_34.png" class="img-fulid" alt="boy pic">
-                    </div>
-                    <p class="forth-pg-p">" The software has already saved me hours of work <br> and a
-                        truckload of
+        <div class="col-md-2 col-2">
+        </div>
+        <div class="col-md-10 col-10">
+            <div>
+                <h1 style="margin-top:3em">TESTIMONIALS</h1>
+            </div>
+            <div class="div-note-hr mt-5">
+                <hr class="note-hr-white">
+            </div>
+            <div class="row pic">
+                <div class="col-md-2 hide pic-down">
+                    <img src="{{ asset('front/img/Home_35.png') }}" class="img-fulid" alt="boy pic">
+                </div>
+                <div class="col-md-2 hide">
+                    <img src="{{ asset('front/img/Home_32.png') }}" class="img-fulid" alt="boy pic">
+                </div>
+                <div class="col-md-2  hide pic-down">
+                    <img src="{{ asset('front/img/Home_38.png') }}" class="img-fulid" alt="boy pic">
+                </div>
+                <div class="col-md-2 hide ">
+                    <img src="{{ asset('front/img/Home_34.png') }}" class="img-fulid" alt="boy pic">
+                </div>
+                <div class="note-tes-text">
+                    <p class="forth-pg-p mt-2">" The software has already saved me hours of work <br> and a truckload of
                         frustration.Thanks!"</p>
-                    <p class="forth-pg-p-scnd">- R.P., MAMFT</p>
+                    <p class="forth-pg-p-scnd mt-3">- R.P., MAMFT</p>
                 </div>
             </div>
         </div>
     </div>
+    <!--row-->
     <div class="row fifth-pg">
-        <div class="section" style="padding-bottom:20rem" id="resume">
-            <div class="container">
-                <h3 class=" scroll-animation fifth-pg-h3">WATCH THE VIDEO</h3>
-                <div class="row fifth-pg-row ">
-                    <div class="col-md-6 ">
-                        <img src="youtube.png" class="img-fluid" alt="" style="height:60rem;width:80%" />
+        <div class="col-md-2 col-2">
+        </div>
+        <div class="col-md-10 col-10">
+            <div class="row">
+                <div class="col-md-12 mb-5">
+                    <div class="note-watch-video-heading">
+                        <h1 class="">WATCH THE VIDEO</h1>
                     </div>
-                    <div class="col-md-6">
-                        <h4>HEADING</h4>
-                        <p class="fifth-pg-p">Ria Notes was created to streamline the process of
-                            conceptualizing
-                            and documenting
-                            our clinical work.With over 350 pre-set phrase and statements, plus the
-                            option
-                            tp
-                            create your own, your
-                            therapy notes are compeleted with ease and efficiency.Ria Notes arranges
-                            your
-                            selection and additional
-                            comments into an organized narrative describing the clinical session.Comes
-                            with
-                            modules for Treatment Planning
-                            and Intake & Termination Summaries.Watch our video to see how it work and
-                            how
-                            Ria
-                            Notes can save you valuable
-                            time with your record keeping.
-                        </p>
+                    <div class="div-note-hr mt-5">
+                        <hr class="note-hr">
                     </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('front/img/youtube.png') }}" class="img-fluid" alt="" style="height:60rem;width:80%" />
+                </div>
+                <div class="col-md-6">
+                    <h4>HEADING</h4>
+                    <p class="fifth-pg-p">Faster Note was created to streamline the process of conceptualizing
+                        and documenting
+                        our clinical work.With over 350 pre-set phrase and statements, plus the option tp
+                        create your own, your
+                        therapy notes are compeleted with ease and efficiency.Faster Note arranges your
+                        selection and additional
+                        comments into an organized narrative describing the clinical session.Comes with
+                        modules for Treatment Planning
+                        and Intake & Termination Summaries.Watch our video to see how it work and how Faster
+                        Note can save you valuable
+                        time with your record keeping.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+    <!--row-->
     <div class="row sixth-pg">
-        <div class="section">
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-6 sixth-pg-left">
-                    <h3 class=" scroll-animation fifth-pg-h3">contract</h3>
-                    <ul class="list-group sixth-pg-ul">
-                        <li class="list-group-item sixth-pg-list">
-                            <div class="md-v-line"></div><i class="fa-solid fa-envelope pe-5"></i>
-                            E-MAIL <p class="text-muted sixth-pg-list-p">rianote@gmail.com</p>
-                        </li>
-                        <li class="list-group-item sixth-pg-list">
-                            <div class="md-v-line"></div><i class="fa-solid fa-phone pe-5"></i> PHONE
-                            <p class="text-muted sixth-pg-list-p">(541)754-3010</p>
-                        </li>
-                        <li class="list-group-item sixth-pg-list">
-                            <div class="md-v-line"><i class="fa-solid fa-location-dot pe-5"></i>
-                                ADDRESS <p class="text-muted sixth-pg-list-p">Crophos Inc. <br>76
-                                    Camptown Road
-                                    Chicago, <br> IL 60710 United states </p>
-                        </li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-9">
+                            <div class="note-watch-video-heading">
+                                <h1 class="">CONTACT</h1>
+                            </div>
+                            <div class="div-note-hr mt-5">
+                                <hr class="note-hr">
+                            </div>
+                            <ul class="list-group sixth-pg-ul">
+                                <li class="list-group-item sixth-pg-list">
+                                    <div class="md-v-line"></div><i class="fa-solid fa-envelope pe-5"></i> E-MAIL <p class="text-muted sixth-pg-list-p">info@fasternote.com</p>
+                                </li>
+                                <li class="list-group-item sixth-pg-list">
+                                    <div class="md-v-line"></div><i class="fa-solid fa-phone pe-5"></i> PHONE <p class="text-muted sixth-pg-list-p">(541)754-3010</p>
+                                </li>
+                                <li class="list-group-item sixth-pg-list">
+                                    <div class="md-v-line"><i class="fa-solid fa-location-dot pe-5"></i> ADDRESS <p class="text-muted sixth-pg-list-p">Crophos Inc. <br>76 Camptown Road
+                                            Chicago, <br> IL 60710 United states </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 sixth-pg-right ">
-                    <div>
-                        <form class="form">
-                            <div class="row ">
-                                <div class="col mt-5">
-                                    <input type="text" class="form-control form-input" placeholder="Enter email" name="email">
-                                </div>
-                                <div class="col mt-5">
-                                    <input type="password" class="form-control form-input" placeholder="Enter password" name="pswd">
-                                </div>
+                <div class="col-md-6 sixth-pg-right">
+                    <form class="form">
+                        <div class="row">
+                            <div class="mb-3 mt-5">
+                                <input type="email" class="form-control form-topic" id="email" placeholder="Your Email" name="email">
                             </div>
                             <div class="mb-3 mt-3">
                                 <input type="text" class="form-control form-topic" id="pwd" placeholder="Your Topic" name="pswd">
@@ -294,13 +305,13 @@
                             <div class="form-check mb-3">
                                 <textarea class="form-control form-textarea" rows="5" id="comment" name="text" placeholder="Message...."></textarea>
                             </div>
-                            <button type="submit" class="btn btn-warning form-btn">SEND
-                                MESSAGE</button>
-                        </form>
-                    </div>
+                            <button type="submit" class="btn btn-warning form-btn">SEND MESSAGE</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <!--row-->
 </div>
 @endsection

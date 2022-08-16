@@ -70,7 +70,7 @@
                             NOTE <span class="text-warning">
                                 WRITING <br> SOFTWARE</span>
                         </h1>
-                        <p class="first-pg-p">RIA NOTES CAN TRANSFORM THE WAY <br> YOU DOCUMENT YOUR CLINICAL WORK
+                        <p class="first-pg-p">FASTER NOTE CAN TRANSFORM THE WAY <br> YOU DOCUMENT YOUR CLINICAL WORK
                             AND <br> HELP YOU
                             IN YOUR PRACTICE.</p>
                         <p class="first-pg-p mt-5">
@@ -314,12 +314,12 @@
                         and documenting
                         our clinical work.With over 350 pre-set phrase and statements, plus the option tp
                         create your own, your
-                        therapy notes are compeleted with ease and efficiency.Ria Notes arranges your
+                        therapy notes are compeleted with ease and efficiency.Faster Note arranges your
                         selection and additional
                         comments into an organized narrative describing the clinical session.Comes with
                         modules for Treatment Planning
-                        and Intake & Termination Summaries.Watch our video to see how it work and how Ria
-                        Notes can save you valuable
+                        and Intake & Termination Summaries.Watch our video to see how it work and how Fatser
+                        Note can save you valuable
                         time with your record keeping.
                     </p>
                 </div>
