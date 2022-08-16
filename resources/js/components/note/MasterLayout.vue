@@ -34,15 +34,21 @@
                 style="margin-top: 1.2rem; margin-left: 6rem !important"
               >
                 <img
+                  v-if="userInfo != null"
                   style="
                     border: 3px solid #dee2e6 !important;
                     border-radius: 50%;
                     width: 45px;
                   "
-                  :src="
-                    this.$appConfig.asset_url +
-                    '/note_assets/img/icons/Basic-Note_42.jpg'
-                  "
+                  :src="[
+                    userInfo.profile_picture == null ||
+                    userInfo.profile_picture == ''
+                      ? this.$appConfig.asset_url +
+                        '/note_assets/img/icons/Basic-Note_42.jpg'
+                      : this.$appConfig.asset_url +
+                        '/uploads/images/' +
+                        userInfo.profile_picture,
+                  ]"
                   alt=""
                 />
                 <span v-if="userInfo != null" style="font-size: 14px">{{
@@ -315,8 +321,9 @@
                               color: white;
                               font-weight: 700;
                               padding: 15px;
+                              cursor: pointer;
                             "
-                            href="#"
+                            v-on:click="finalEdit"
                           >
                             <i class="fa-solid fa-pen-to-square"></i> Final
                             Edit</a
@@ -433,6 +440,13 @@
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
                       <span
+                        v-if="
+                          note.intro_comments != null &&
+                          note.intro_comments != ''
+                        "
+                        >{{ note.intro_comments }}.</span
+                      >
+                      <span
                         v-for="x in questionsData.filter((x) => x.isDisplay)"
                         :key="x.id"
                       >
@@ -471,7 +485,11 @@
                           <span>{{
                             x.question_text | removeOptionString(x)
                           }}</span>
-                          <span v-for="(v, i) in x.options" :key="v.id" class="d-none">
+                          <span
+                            v-for="(v, i) in x.options"
+                            :key="v.id"
+                            class="d-none"
+                          >
                             <span v-if="x.selectedOptions.indexOf(v.id) != -1">
                               <span v-if="i >= 1 && x.options.length >= i">
                                 ,</span
@@ -481,6 +499,13 @@
                           >.
                         </span>
                       </span>
+                      <span
+                        v-if="
+                          note.closing_comments != null &&
+                          note.closing_comments != ''
+                        "
+                        >{{ note.closing_comments }}.</span
+                      >
                     </p>
                   </div>
                   <div class="section-2">
@@ -567,6 +592,59 @@
               </button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+    <!--model end-->
+    <!--model start-->
+    <div
+      class="modal fade"
+      id="finalEditModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="finalEditModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="finalEditModalLabel">Final edit</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <h6 class="card-header text-right">
+                    <button
+                      class="btn btn-success"
+                      v-on:click="finalEditExport"
+                    >
+                      <i class="fa-solid fa-file-export"></i> Export
+                    </button>
+                    <button class="btn btn-success" v-on:click="finalEditCopy">
+                      <i class="fa-solid fa-copy"></i> Copy
+                    </button>
+                  </h6>
+                  <div class="card-body">
+                    <div
+                      class="card-text"
+                      id="pdf_to_append_final_edit"
+                      contentEditable="true"
+                      ref="finaledit_noteresult"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -708,8 +786,8 @@ export default {
     },
     generatePDF() {
       document.getElementById("pdf_to_append").innerHTML = "";
-      const node = document.getElementById("note-result");
-      const clone = node.cloneNode(true);
+      let node = document.getElementById("note-result");
+      let clone = node.cloneNode(true);
       document.getElementById("pdf_to_append").appendChild(clone);
       this.$refs.html2Pdf.generatePdf();
     },
@@ -741,6 +819,31 @@ export default {
             this.$swal.fire("Not Cleared", "", "info");
           }
         });
+    },
+    finalEdit() {
+      document.getElementById("pdf_to_append_final_edit").innerHTML = "";
+      let node = document.getElementById("note-result");
+      let clone = node.cloneNode(true);
+      console.log(clone);
+      document.getElementById("pdf_to_append_final_edit").appendChild(clone);
+      $("#finalEditModal").modal("show");
+    },
+    finalEditCopy() {
+      let noteresult = this.$refs.finaledit_noteresult;
+      this.$copyText(noteresult);
+      this.$toastr.s("Copied!", "Success!");
+    },
+    finalEditExport() {
+      document.getElementById("pdf_to_append").innerHTML = "";
+      let node = document.getElementById("pdf_to_append_final_edit");
+      let clone = node.cloneNode(true);
+      document.getElementById("pdf_to_append").appendChild(clone);
+      this.$refs.html2Pdf.generatePdf();
+      //
+      document.getElementById("pdf_to_append").innerHTML = "";
+      node = document.getElementById("note-result");
+      clone = node.cloneNode(true);
+      document.getElementById("pdf_to_append").appendChild(clone);
     },
   },
   computed: {

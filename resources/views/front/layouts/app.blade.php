@@ -36,10 +36,10 @@
                                     <li class="note-nav-link-li">
                                         <a href="{{ route('front.about') }}" class="note-nav-link"><span>About</span></a>
                                     </li>
-                                    <!-- <li class="note-nav-link-li">
-                                        <a href="blog.html" class="note-nav-link"><span>Blog</span></a>
-                                    </li>
                                     <li class="note-nav-link-li">
+                                        <a href="{{ route('front.pricing') }}" class="note-nav-link"><span>Pricing</span></a>
+                                    </li>
+                                    <!-- <li class="note-nav-link-li">
                                         <a href="contact.html" class="note-nav-link"><span>Contact</span></a>
                                     </li> -->
                                 </ul>

@@ -2738,6 +2738,31 @@ __webpack_require__.r(__webpack_exports__);
           _this4.$swal.fire("Not Cleared", "", "info");
         }
       });
+    },
+    finalEdit: function finalEdit() {
+      document.getElementById("pdf_to_append_final_edit").innerHTML = "";
+      var node = document.getElementById("note-result");
+      var clone = node.cloneNode(true);
+      console.log(clone);
+      document.getElementById("pdf_to_append_final_edit").appendChild(clone);
+      $("#finalEditModal").modal("show");
+    },
+    finalEditCopy: function finalEditCopy() {
+      var noteresult = this.$refs.finaledit_noteresult;
+      this.$copyText(noteresult);
+      this.$toastr.s("Copied!", "Success!");
+    },
+    finalEditExport: function finalEditExport() {
+      document.getElementById("pdf_to_append").innerHTML = "";
+      var node = document.getElementById("pdf_to_append_final_edit");
+      var clone = node.cloneNode(true);
+      document.getElementById("pdf_to_append").appendChild(clone);
+      this.$refs.html2Pdf.generatePdf(); //
+
+      document.getElementById("pdf_to_append").innerHTML = "";
+      node = document.getElementById("note-result");
+      clone = node.cloneNode(true);
+      document.getElementById("pdf_to_append").appendChild(clone);
     }
   },
   computed: {
@@ -3590,14 +3615,14 @@ var render = function render() {
     staticStyle: {
       display: "inline-block"
     }
-  }, [_c("img", {
+  }, [_vm.userInfo != null ? _c("img", {
     staticClass: "img-fluid border dropdown",
     staticStyle: {
       "border-radius": "50%",
       width: "35px"
     },
     attrs: {
-      src: this.$appConfig.asset_url + "/note_assets/img/imagetwo.png",
+      src: [_vm.userInfo.profile_picture == null || _vm.userInfo.profile_picture == "" ? this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg" : this.$appConfig.asset_url + "/uploads/images/" + _vm.userInfo.profile_picture],
       alt: "profile",
       lass: "btn btn-secondary dropdown-toggle",
       type: "button",
@@ -3606,7 +3631,7 @@ var render = function render() {
       "aria-haspopup": "true",
       "aria-expanded": "false"
     }
-  }), _vm._v(" "), _c("div", {
+  }) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "dropdown-menu dropdown-menu-right",
     attrs: {
       "aria-labelledby": "dropdownMenuButton"
@@ -4485,17 +4510,17 @@ var render = function render() {
       "margin-top": "1.2rem",
       "margin-left": "6rem !important"
     }
-  }, [_c("img", {
+  }, [_vm.userInfo != null ? _c("img", {
     staticStyle: {
       border: "3px solid #dee2e6 !important",
       "border-radius": "50%",
       width: "45px"
     },
     attrs: {
-      src: this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg",
+      src: [_vm.userInfo.profile_picture == null || _vm.userInfo.profile_picture == "" ? this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg" : this.$appConfig.asset_url + "/uploads/images/" + _vm.userInfo.profile_picture],
       alt: ""
     }
-  }), _vm._v(" "), _vm.userInfo != null ? _c("span", {
+  }) : _vm._e(), _vm._v(" "), _vm.userInfo != null ? _c("span", {
     staticStyle: {
       "font-size": "14px"
     }
@@ -4857,7 +4882,22 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-copy"
-  }), _vm._v(" Copy")])]), _vm._v(" "), _vm._m(3), _vm._v(" "), _c("li", {
+  }), _vm._v(" Copy")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link white-text",
+    staticStyle: {
+      color: "white",
+      "font-weight": "700",
+      padding: "15px",
+      cursor: "pointer"
+    },
+    on: {
+      click: _vm.finalEdit
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-pen-to-square"
+  }), _vm._v(" Final\n                          Edit")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
     staticClass: "nav-link white-text",
@@ -4935,7 +4975,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(x.question_text) + ":")])]), _vm._v(" "), _c("p", [_c("label", [_vm._v(_vm._s(x.textInput))])])]) : _vm._e()])]);
   })], 2), _vm._v(" "), _c("h6", {
     staticClass: "ex-bold-heading"
-  }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", _vm._l(_vm.questionsData.filter(function (x) {
+  }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", [_vm.note.intro_comments != null && _vm.note.intro_comments != "" ? _c("span", [_vm._v(_vm._s(_vm.note.intro_comments) + ".")]) : _vm._e(), _vm._v(" "), _vm._l(_vm.questionsData.filter(function (x) {
     return x.isDisplay;
   }), function (x) {
     return _c("span", {
@@ -4954,7 +4994,7 @@ var render = function render() {
         staticClass: "d-none"
       }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                              ,")]) : _vm._e(), _vm._v("\n                            " + _vm._s(v.option_text))]) : _vm._e()]);
     }), _vm._v(".\n                      ")], 2) : _vm._e()]);
-  }), 0)]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _vm.note.closing_comments != null && _vm.note.closing_comments != "" ? _c("span", [_vm._v(_vm._s(_vm.note.closing_comments) + ".")]) : _vm._e()], 2)]), _vm._v(" "), _c("div", {
     staticClass: "section-2"
   }, [_c("p", {
     staticClass: "text-left note-hr-line"
@@ -5002,7 +5042,7 @@ var render = function render() {
     on: {
       submit: _vm.submitNewNote
     }
-  }, [_vm._m(4), _vm._v(" "), _c("div", {
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "row"
@@ -5039,7 +5079,56 @@ var render = function render() {
         "for": "note-" + note.id
       }
     }, [_vm._v(_vm._s(note.name))])]);
-  })], 2)])]), _vm._v(" "), _vm._m(5)])])])])]);
+  })], 2)])]), _vm._v(" "), _vm._m(4)])])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "finalEditModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "finalEditModalLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-xl",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("h6", {
+    staticClass: "card-header text-right"
+  }, [_c("button", {
+    staticClass: "btn btn-success",
+    on: {
+      click: _vm.finalEditExport
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-file-export"
+  }), _vm._v(" Export\n                  ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success",
+    on: {
+      click: _vm.finalEditCopy
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-copy"
+  }), _vm._v(" Copy\n                  ")])]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    ref: "finaledit_noteresult",
+    staticClass: "card-text",
+    attrs: {
+      id: "pdf_to_append_final_edit",
+      contentEditable: "true"
+    }
+  })])])])])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -5099,25 +5188,6 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link white-text",
-    staticStyle: {
-      color: "white",
-      "font-weight": "700",
-      padding: "15px"
-    },
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-pen-to-square"
-  }), _vm._v(" Final\n                          Edit")])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
   return _c("div", {
     staticClass: "modal-header"
   }, [_c("h5", {
@@ -5155,6 +5225,29 @@ var staticRenderFns = [function () {
       type: "submit"
     }
   }, [_vm._v("\n              Start a new Note\n            ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h5", {
+    staticClass: "modal-title",
+    attrs: {
+      id: "finalEditModalLabel"
+    }
+  }, [_vm._v("Final edit")]), _vm._v(" "), _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])])]);
 }];
 render._withStripped = true;
 

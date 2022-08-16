@@ -110,13 +110,16 @@
               </li>
 
               <li class="list-group-item border-less p-3">
-                <router-link :class="[
+                <router-link
+                  :class="[
                     'note-db-link',
                     {
                       'note-db-link-active':
                         current_active_component == 'my_notifications_page',
                     },
-                  ]" :to="{ name: 'my_notifications_page'}">
+                  ]"
+                  :to="{ name: 'my_notifications_page' }"
+                >
                   <i class="fa-solid fa-bell pe-4"></i> My Notifications
                 </router-link>
               </li>
@@ -144,10 +147,16 @@
                 </div>
                 <div style="display: inline-block" class="dropdown">
                   <img
-                    :src="
-                      this.$appConfig.asset_url +
-                      '/note_assets/img/imagetwo.png'
-                    "
+                    v-if="userInfo != null"
+                    :src="[
+                      userInfo.profile_picture == null ||
+                      userInfo.profile_picture == ''
+                        ? this.$appConfig.asset_url +
+                          '/note_assets/img/icons/Basic-Note_42.jpg'
+                        : this.$appConfig.asset_url +
+                          '/uploads/images/' +
+                          userInfo.profile_picture,
+                    ]"
                     alt="profile"
                     class="img-fluid border dropdown"
                     style="border-radius: 50%; width: 35px"
