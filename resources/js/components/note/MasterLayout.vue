@@ -495,7 +495,7 @@
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
                       <span
-                        v-for="x in questionsData.filter((x) => x.isDisplay)"
+                        v-for="x in questionsData.filter((x) => x.isDisplay && x.question_type != 'statements')"
                         :key="x.id"
                       >
                         <span

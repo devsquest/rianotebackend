@@ -1200,7 +1200,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    addQuestionInResult: function addQuestionInResult(question, option) {
+    addQuestionInResult: function addQuestionInResult(question, option, question_type) {
+      console.log(question);
+      console.log(option);
+      console.log(question_type);
       this.$store.commit("note/addQuestionsOnResult", {
         question: question,
         option: option
@@ -2829,7 +2832,7 @@ var render = function render() {
   })], 2), _vm._v(" "), _c("h6", {
     staticClass: "ex-bold-heading"
   }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", _vm._l(_vm.questionsData.filter(function (x) {
-    return x.isDisplay;
+    return x.isDisplay && x.question_type != "statements";
   }), function (x) {
     return _c("span", {
       key: x.id
@@ -3828,7 +3831,7 @@ var render = function render() {
         },
         on: {
           click: function click($event) {
-            return _vm.addQuestionInResult(x, option);
+            return _vm.addQuestionInResult(x, option, x.question_type);
           },
           input: _vm.editableInput
         }
@@ -3947,7 +3950,14 @@ var render = function render() {
         return _c("div", {
           key: option.id,
           staticClass: "row"
-        }, [_vm._m(5, true), _vm._v(" "), _c("div", {
+        }, [_c("div", {
+          staticClass: "col-3"
+        }, _vm._l(x.statement_master, function (sm) {
+          return _c("button", {
+            key: sm.id,
+            staticClass: "btn note-statement-btn m-1"
+          }, [_vm._v(_vm._s(sm.short_text))]);
+        }), 0), _vm._v(" "), _c("div", {
           staticClass: "col-9"
         }, [_c("p", {
           "class": ["note-questions-single-option-box", {
@@ -3955,7 +3965,7 @@ var render = function render() {
           }],
           on: {
             click: function click($event) {
-              return _vm.addQuestionInResult(x, option);
+              return _vm.addQuestionInResult(x, option, x.question_type);
             }
           }
         }, [_vm._v("\n                              " + _vm._s(option.option_text) + "\n                            ")])])]);
@@ -4018,7 +4028,7 @@ var render = function render() {
     })])]) : _vm._e()]);
   }), 0)])]) : _vm._e()]) : _vm._e()])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(6)])]) : _vm.section_type == "form-inline" ? _c("div", {
+  }, [_vm._m(5)])]) : _vm.section_type == "form-inline" ? _c("div", {
     staticClass: "form-inline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -4026,7 +4036,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(7), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(6), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -4065,7 +4075,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(8)])]) : _vm.section_type == "form-nextline" ? _c("div", {
+  }, [_vm._m(7)])]) : _vm.section_type == "form-nextline" ? _c("div", {
     staticClass: "form-nextline"
   }, [_vm.currentFormQuestions != null && _vm.currentFormQuestions.length > 0 ? _c("div", {
     staticClass: "row"
@@ -4073,7 +4083,7 @@ var render = function render() {
     staticClass: "col-lg-12 col-md-12"
   }, [_c("br"), _vm._v(" "), _c("div", {
     staticClass: "row"
-  }, [_vm._m(9), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
+  }, [_vm._m(8), _vm._v(" "), _vm._l(_vm.currentFormQuestions, function (x) {
     return _c("div", {
       key: x.id,
       staticClass: "col-lg-12 col-md-12"
@@ -4112,7 +4122,7 @@ var render = function render() {
     })])])]);
   })], 2)])]) : _c("div", {
     staticClass: "row"
-  }, [_vm._m(10)])]) : _vm._e()]);
+  }, [_vm._m(9)])]) : _vm._e()]);
 };
 
 var staticRenderFns = [function () {
@@ -4166,17 +4176,6 @@ var staticRenderFns = [function () {
   }), _vm._v(" "), _c("i", {
     staticClass: "fa-solid fa-magnifying-glass tool-input-icon"
   })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "col-3"
-  }, [_c("button", {
-    staticClass: "btn note-statement-btn"
-  }, [_vm._v("P")]), _vm._v(" "), _c("button", {
-    staticClass: "btn note-statement-btn"
-  }, [_vm._v("S")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -4796,8 +4795,7 @@ var mutations = {
       val.editAble = false;
       val.selectedOptions = [];
       state.questions.push(val);
-    });
-    console.log(state.questions);
+    }); // console.log(state.questions);
   },
   changeQuestionsState: function changeQuestionsState(state, payload) {
     state.sub_sections_list = state.sub_sections_list.map(function (val) {
@@ -4864,8 +4862,9 @@ var mutations = {
       if (state.questions[index].selectedOptions.length == 0) {
         state.questions[index].isDisplay = false;
       }
-    } // console.log(state.questions);
+    }
 
+    console.log(state.questions);
   },
   addQuestionNewOption: function addQuestionNewOption(state, payload) {
     var index = state.questions.findIndex(function (x) {
@@ -4914,7 +4913,6 @@ var actions = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log(payload);
               _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")), token = _JSON$parse.token;
               url = "https://fasternote.com" + "/api/questions/" + payload.id + "/" + payload.type;
               headers = {
@@ -4933,7 +4931,7 @@ var actions = {
                 console.log(error);
               }));
 
-            case 5:
+            case 4:
             case "end":
               return _context.stop();
           }

@@ -49,7 +49,7 @@ const mutations = {
             val.selectedOptions = [];
             state.questions.push(val);
         });
-        console.log(state.questions);
+        // console.log(state.questions);
     },
     changeQuestionsState(state, payload) {
         state.sub_sections_list = state.sub_sections_list.map((val) => {
@@ -110,7 +110,7 @@ const mutations = {
                 state.questions[index].isDisplay = false;
             }
         }
-        // console.log(state.questions);
+        console.log(state.questions);
     },
     addQuestionNewOption(state, payload) {
         let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);
@@ -140,7 +140,6 @@ const mutations = {
 };
 const actions = {
     async getQuestions(context, payload) {
-        console.log(payload);
         const { token } = JSON.parse(localStorage.getItem("loginInfo"));
         let url = process.env.MIX_API_URL + "/api/questions/" + payload.id + "/" + payload.type;
         let headers = {

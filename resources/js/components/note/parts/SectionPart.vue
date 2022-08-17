@@ -74,7 +74,7 @@
                                   : false,
                             },
                           ]"
-                          v-on:click="addQuestionInResult(x, option)"
+                          v-on:click="addQuestionInResult(x, option, x.question_type)"
                           v-on:input="editableInput"
                           :contentEditable="option.editAble"
                         >
@@ -200,8 +200,7 @@
                             :key="option.id"
                           >
                             <div class="col-3">
-                              <button class="btn note-statement-btn">P</button>
-                              <button class="btn note-statement-btn">S</button>
+                              <button v-for="sm in x.statement_master" :key="sm.id" class="btn note-statement-btn m-1">{{ sm.short_text }}</button>
                             </div>
                             <div class="col-9">
                               <p
@@ -214,7 +213,7 @@
                                         : false,
                                   },
                                 ]"
-                                v-on:click="addQuestionInResult(x, option)"
+                                v-on:click="addQuestionInResult(x, option, x.question_type)"
                               >
                                 {{ option.option_text }}
                               </p>
@@ -407,7 +406,10 @@ export default {
         this.$store.commit("note/changeQuestionsState", { id: id, type: type });
       }
     },
-    addQuestionInResult(question, option) {
+    addQuestionInResult(question, option, question_type) {
+      console.log(question);
+      console.log(option);
+      console.log(question_type);
       this.$store.commit("note/addQuestionsOnResult", {
         question: question,
         option: option,
