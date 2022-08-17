@@ -6104,6 +6104,7 @@ _:-ms-fullscreen,
     font-size: 1.5rem;
     font-weight: bold;
     height: 3.5em;
+    padding: 1em;
 }
 
 .features {
@@ -6135,6 +6136,7 @@ _:-ms-fullscreen,
     font-weight: bold;
     height: 3.5em;
     width: 12em;
+    padding: 1em;
 }
 
 .dollar {
@@ -6641,4 +6643,37 @@ a.note-nav-link {
     word-spacing: 1.5rem;
     font-weight: 1000;
 
+}
+
+.note-accordion-btn {
+    font-size: 15px;
+    color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    height: 3.3em;
+}
+
+.note-accordion-btn:active {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.note-accordion-btn:hover {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.note-card-header {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.comming-soon {
+    background-image: url('/front/img/Coming-soon.png');
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
 }

@@ -23,9 +23,7 @@ Route::get('/clear', function () {
     return 'Cleared!';
 });
 
-Route::get('/', function () {
-    return "Faster Note is Comming Soon!";
-});
+Route::get('/', [HomeController::class, 'commingSoon'])->name('front.comming_soon');
 Route::get('/homepage', [HomeController::class, 'index'])->name('front.home');
 Route::get('/homepage/about', [HomeController::class, 'about'])->name('front.about');
 Route::get('/homepage/pricing', [HomeController::class, 'pricing'])->name('front.pricing');

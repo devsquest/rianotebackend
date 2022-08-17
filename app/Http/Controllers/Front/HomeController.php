@@ -27,4 +27,8 @@ class HomeController extends Controller
     {
         return view('front.test');
     }
+    public function commingSoon()
+    {
+        return view('front.comming_soon');
+    }
 }

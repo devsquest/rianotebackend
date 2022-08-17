@@ -53,45 +53,45 @@
         <div class="col-md-12">
             <div class="accordion" id="accordionExample">
                 <div class="card">
-                    <div class="card-header" id="headingOne">
+                    <div class="card-header note-card-header" id="headingOne">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Collapsible Group Item #1
+                            <button class="btn btn-block text-left note-accordion-btn" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Tell me more about the different versions?
                             </button>
                         </h2>
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <div class="card-body">
-                            Some placeholder content for the first accordion panel. This panel is shown by default, thanks to the <code>.show</code> class.
+                            There are two main versions of Note Designer: the Download version and the Online version. The Download version is our classic program people have been using for years. Here you download the program and install it on your computer(s) – standard Mac and/or Windows systems. It comes with a small database in which the program stores any custom statements you create. You can also store notes temporarily until you can print them or copy/paste them into a secure long-term encrypted storage system. Installation of the Download version is straightforward and can take as little as 5 minutes: You will provide your “signature line” that you want on your notes, then upon purchase you will be automatically sent an email that will include instructions plus a link for your download and an authorization code to use once you launch the program. The Online version runs in any computer’s browser, so there is nothing to install and it is convenient to use across multiple devices. Upon purchase of your monthly or annual subscription you will be emailed a link to set up your account and password. Once you start using the program, if you create some of your own phrases or customize the pre-set statements, these customizations will all be safely stored in your account on our server so they will be available when you log in from other devices. Because this Online version is on the web, it is possible for us to make ongoing developments (e.g., new content) available immediately.
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingTwo">
+                    <div class="card-header note-card-header" id="headingTwo">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Collapsible Group Item #2
+                            <button class="btn btn-block text-left collapsed note-accordion-btn" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Tell me more about the different payment plans?
                             </button>
                         </h2>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                            Some placeholder content for the second accordion panel. This panel is hidden by default.
+                            For the Download version there is only one payment plan: A one-time payment with no monthly or additional fees. For the Online versions there is either a low monthly subscription fee or an even less expensive annual fee. For both versions there are also reduced-fee group rates for groups of 3 or more practitioners: For the Online version this group rate is displayed on our Pricing page; for the Download version we ask you to contact us at info@fasternote.com so we can work out the details based on your particular needs.
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header" id="headingThree">
+                    <div class="card-header note-card-header" id="headingThree">
                         <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Collapsible Group Item #3
+                            <button class="btn btn-block text-left collapsed note-accordion-btn" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                How is billing handled?
                             </button>
                         </h2>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                         <div class="card-body">
-                            And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
+                            All our online sales are handled by Fastspring, a world leader in e-commerce and the retail partner for thousands of online companies internationally. Fastspring securely handles your credit card information and billing (using industry-standard encryption to protect the confidentiality of your personal information); we at Faster Note then set up your user account and ensure access to the program. Depending on the plan you choose, billing is automatically done once (for the Download version) or either monthly or annually (for the online versions). The merchant of record is Fastspring’s office in the United States, and pricing is therefore in US dollars with conversions applied for other currencies that take into account the typical range of currency exchange fluctuation over time. If you need it, their W-9 information can be found here.
                         </div>
                     </div>
                 </div>

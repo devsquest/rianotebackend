@@ -135,7 +135,7 @@
                     keeping. Here is a bit of their story ......
                 </p>
                 <p>
-                    <button class="btn readmore-btn mt-5 pl-5 pr-5"> READ MORE</button>
+                    <a href="{{ route('front.about') }}" class="btn readmore-btn mt-5 pl-5 pr-5"> READ MORE</a>
                 </p>
             </div>
         </div>
@@ -191,7 +191,7 @@
                     <i class="fa-solid fa-ellipsis"></i>
                 </div>
                 <div class="btn-section">
-                    <button class="btn see-all-btn pl-5 pr-5">See All Features</button>
+                    <a href="{{ route('front.pricing') }}" class="btn see-all-btn pl-5 pr-5">See All Features</a>
                 </div>
             </div>
         </div>
