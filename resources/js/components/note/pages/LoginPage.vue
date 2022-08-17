@@ -54,23 +54,27 @@
                 </div>
               </div>
               <div class="form-check">
-                <label class="form-check-label">
-                  <input
-                    class="form-check-input login-u-input login-page-checkbox"
-                    type="checkbox"
-                    name="remember"
-                  />
-                  Remember me
-                  <label for="link" class="form-check-label float-end">
-                    <a href="" class="note-login-link">
-                      Forget Password?</a
-                    ></label
-                  >
-                </label>
+                <div class="form-check-label">
+                  <div style="width: 50%; float: left;" class="text-left">
+                    <input
+                      class="form-check-input login-u-input login-page-checkbox"
+                      type="checkbox"
+                      name="remember"
+                    />
+                    Remember me
+                  </div>
+                  <div style="width: 50%; float: left;" class="text-right">
+                    <label for="link" class="form-check-label float-end">
+                      <a href="" class="note-login-link">
+                        Forget Password?</a
+                      ></label
+                    >
+                  </div>
+                </div>
               </div>
               <button
                 type="submit"
-                class="btn btn-warning u-login-btn mt-3"
+                class="btn btn-success u-login-btn mt-3"
                 :disabled="loginBtn.disable"
               >
                 {{ loginBtn.text }}

@@ -117,9 +117,9 @@
                     <i class="fa-solid fa-clock u-input-icon"></i>
                     <input
                       type="time"
-                      placeholder="Start Time"
+                      placeholder="Session Time"
                       class="u-input"
-                      v-model="note.start_time"
+                      v-model="note.session_time"
                     />
                   </div>
                 </div>
@@ -127,10 +127,10 @@
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
                     <input
-                      type="time"
-                      placeholder="End Time"
+                      type="text"
+                      placeholder="Length of Session"
                       class="u-input"
-                      v-model="note.end_time"
+                      v-model="note.length_of_session"
                     />
                   </div>
                 </div>
@@ -139,31 +139,42 @@
                     <i class="fa-solid fa-sack-dollar u-input-icon"></i>
                     <input
                       type="text"
-                      placeholder="Fee"
+                      placeholder="Diagnosis"
                       class="u-input"
-                      v-model="note.fee"
+                      v-model="note.diagnosis"
                     />
                   </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-12">
+                <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-regular fa-message u-input-icon"></i>
                     <input
                       type="text"
-                      placeholder="Intrductory Comments"
+                      placeholder="Billing Code"
                       class="u-input"
-                      v-model="note.intro_comments"
+                      v-model="note.billing_code"
                     />
                   </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-12">
+                <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-regular fa-message u-input-icon"></i>
                     <input
                       type="text"
-                      placeholder="Closing Comments"
+                      placeholder="Session Location"
                       class="u-input"
-                      v-model="note.closing_comments"
+                      v-model="note.session_location"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-6">
+                  <div class="input-group-u">
+                    <i class="fa-regular fa-message u-input-icon"></i>
+                    <input
+                      type="text"
+                      placeholder="Comments"
+                      class="u-input"
+                      v-model="note.comments"
                     />
                   </div>
                 </div>
@@ -362,25 +373,69 @@
                     <p v-if="note.date != null && note.date != ''">
                       <span class="note-heading-text-title">Date: </span>
                       <span class="note-heading-text-value">{{
-                        note.date
+                        note.date | moment("dddd, MMMM Do YYYY")
                       }}</span>
                     </p>
-                    <p v-if="note.start_time != null && note.start_time != ''">
-                      <span class="note-heading-text-title">Start Time: </span>
+                    <p
+                      v-if="
+                        note.session_time != null && note.session_time != ''
+                      "
+                    >
+                      <span class="note-heading-text-title"
+                        >Session Time:
+                      </span>
                       <span class="note-heading-text-value">{{
-                        note.start_time
+                        note.session_time | customTime
                       }}</span>
                     </p>
-                    <p v-if="note.end_time != null && note.end_time != ''">
-                      <span class="note-heading-text-title">End Time: </span>
+                    <p
+                      v-if="
+                        note.length_of_session != null &&
+                        note.length_of_session != ''
+                      "
+                    >
+                      <span class="note-heading-text-title"
+                        >Length of Session:
+                      </span>
                       <span class="note-heading-text-value">{{
-                        note.end_time
+                        note.length_of_session
                       }}</span>
                     </p>
-                    <p v-if="note.fee != null && note.fee != ''">
-                      <span class="note-heading-text-title">Fee: </span>
+                    <p v-if="note.diagnosis != null && note.diagnosis != ''">
+                      <span class="note-heading-text-title">Diagnosis: </span>
                       <span class="note-heading-text-value">{{
-                        note.fee
+                        note.diagnosis
+                      }}</span>
+                    </p>
+                    <p
+                      v-if="
+                        note.billing_code != null && note.billing_code != ''
+                      "
+                    >
+                      <span class="note-heading-text-title"
+                        >Billing Code:
+                      </span>
+                      <span class="note-heading-text-value">{{
+                        note.billing_code
+                      }}</span>
+                    </p>
+                    <p
+                      v-if="
+                        note.session_location != null &&
+                        note.session_location != ''
+                      "
+                    >
+                      <span class="note-heading-text-title"
+                        >Session Location:
+                      </span>
+                      <span class="note-heading-text-value">{{
+                        note.session_location
+                      }}</span>
+                    </p>
+                    <p v-if="note.comments != null && note.comments != ''">
+                      <span class="note-heading-text-title">Comments: </span>
+                      <span class="note-heading-text-value">{{
+                        note.comments
                       }}</span>
                     </p>
                     <div class="heading-sections-note-result">
@@ -680,11 +735,12 @@ export default {
       note: {
         name: null,
         date: null,
-        start_time: null,
-        end_time: null,
-        fee: null,
-        intro_comments: null,
-        closing_comments: null,
+        session_time: null,
+        length_of_session: null,
+        diagnosis: null,
+        billing_code: null,
+        session_location: null,
+        comments: null,
       },
     };
   },

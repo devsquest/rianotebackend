@@ -81,6 +81,18 @@
   left: 30px;
 }
 
+.u-input::-webkit-input-placeholder {
+  color: white;
+  position: absolute;
+  left: 30px;
+}
+
+.u-input::-ms-input-placeholder {
+  color: white;
+  position: absolute;
+  left: 30px;
+}
+
 .u-input-icon {
   color: white;
   position: relative;
@@ -237,8 +249,8 @@
 }
 
 .note-heading-text-title {
-  font-size: 18px;
-  font-weight: bolder;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .note-heading-text-value {
@@ -258,7 +270,6 @@
 }
 
 .note-login-link {
-  margin-left: 4rem;
   text-decoration: none;
   color: #ffff94;
 }

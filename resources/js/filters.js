@@ -13,3 +13,6 @@ Vue.filter("removeOptionString", (value, arg) => {
     });
     return value.replace('*option*', txt);
 });
+Vue.filter("customTime", (value) => {
+    return Vue.moment(value, "HH:mm").format('LT');
+});

@@ -24,6 +24,7 @@ Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2);
 Vue.use(toastr);
 Vue.use(VueClipboard)
+Vue.use(require('vue-moment'));
 
 const router = new VueRouter({
   mode: 'history',
