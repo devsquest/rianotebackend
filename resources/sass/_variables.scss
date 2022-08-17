@@ -9,3 +9,17 @@ $line-height-base: 1.6;
 //Custom
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 $font-family-poppins: 'Poppins', sans-serif;
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/note_assets/fonts/OpenSans-VariableFont_wdth,wght.ttf');
+}
+
+$font-family-open-sans: 'Open Sans', sans-serif;
+
+@font-face {
+    font-family: 'Myriad Pro Condensed';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Myriad Pro Condensed'), url('/note_assets/fonts/myriad/MYRIADPRO-COND.woff') format('woff');
+}

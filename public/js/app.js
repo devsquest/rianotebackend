@@ -4494,7 +4494,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "new-note-btn"
   }, [_c("button", {
-    staticClass: "btn btn-success mt-4 ml-3",
+    staticClass: "btn btn-success mt-3 ml-3",
     on: {
       click: _vm.newNoteBtn
     }
@@ -4507,8 +4507,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "user-profile",
     staticStyle: {
-      "margin-top": "1.2rem",
-      "margin-left": "6rem !important"
+      "margin-top": "0.8em"
     }
   }, [_vm.userInfo != null ? _c("img", {
     staticStyle: {
@@ -4549,7 +4548,7 @@ var render = function render() {
       "background-color": "#0e386a"
     }
   }, [_c("div", {
-    staticClass: "input-placeholder mt-3 mb-3",
+    staticClass: "input-placeholder mt-1 mb-3",
     staticStyle: {
       "padding-left": "2%",
       "padding-right": "2%"
@@ -4780,13 +4779,13 @@ var render = function render() {
   }, [_c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    "class": ["nav-link", "white-text", "note-nav-link", "note-nav-link-headings", {
+    "class": ["nav-link", "note-nav-link", "note-nav-link-headings", {
       "note-nav-a-click": _vm.loadHeadingsTab.status
     }],
     style: [_vm.loadHeadingsTab.status ? {
-      color: "#e0a800"
+      color: "#ffff94"
     } : {
-      color: "white"
+      color: "#06244c"
     }],
     on: {
       click: _vm.loadHeadings
@@ -4796,13 +4795,13 @@ var render = function render() {
       key: x.id,
       staticClass: "nav-item"
     }, [_c("a", {
-      "class": ["nav-link", "white-text", "note-nav-link", "note-nav-link-headings", {
+      "class": ["nav-link", "note-nav-link", "note-nav-link-headings", {
         "note-nav-a-click": x.showStatus
       }],
       style: [x.showStatus ? {
-        color: "#e0a800"
+        color: "#ffff94"
       } : {
-        color: "white"
+        color: "#06244c"
       }],
       on: {
         click: function click($event) {
@@ -4848,25 +4847,10 @@ var render = function render() {
   }, [_c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    staticClass: "nav-link white-text",
+    staticClass: "nav-link dark-blue",
     staticStyle: {
-      color: "white",
-      "font-weight": "700",
-      padding: "15px",
-      cursor: "pointer"
-    },
-    on: {
-      click: _vm.generatePDF
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-file-export"
-  }), _vm._v(" Export")])]), _vm._v(" "), _c("li", {
-    staticClass: "nav-item"
-  }, [_c("a", {
-    staticClass: "nav-link white-text",
-    staticStyle: {
-      color: "white",
-      "font-weight": "700",
+      color: "#06244c",
+      "font-weight": "600",
       padding: "15px",
       cursor: "pointer"
     },
@@ -4878,25 +4862,25 @@ var render = function render() {
   }), _vm._v(" Copy")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    staticClass: "nav-link white-text",
+    staticClass: "nav-link dark-blue",
     staticStyle: {
-      color: "white",
-      "font-weight": "700",
+      color: "#06244c",
+      "font-weight": "600",
       padding: "15px",
       cursor: "pointer"
     },
     on: {
-      click: _vm.finalEdit
+      click: _vm.generatePDF
     }
   }, [_c("i", {
-    staticClass: "fa-solid fa-pen-to-square"
-  }), _vm._v(" Final\n                          Edit")])]), _vm._v(" "), _c("li", {
+    staticClass: "fa-solid fa-file-export"
+  }), _vm._v(" Export")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("a", {
-    staticClass: "nav-link white-text",
+    staticClass: "nav-link dark-blue",
     staticStyle: {
-      color: "white",
-      "font-weight": "700",
+      color: "#06244c",
+      "font-weight": "600",
       padding: "15px",
       cursor: "pointer"
     },
@@ -4905,7 +4889,22 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "fa-solid fa-eraser"
-  }), _vm._v(" Clear")])])])])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" Clear")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("a", {
+    staticClass: "nav-link dark-blue",
+    staticStyle: {
+      color: "#06244c",
+      "font-weight": "600",
+      padding: "15px",
+      cursor: "pointer"
+    },
+    on: {
+      click: _vm.finalEdit
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-pen-to-square"
+  }), _vm._v(" Final\n                          Edit")])])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12 col-md-12"
@@ -6282,7 +6281,7 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("span", [_c("i", {
-    staticClass: "fa-solid fa-pen-to-square"
+    staticClass: "fa-solid fa-pen-to-square queston-action-icon"
   })]);
 }, function () {
   var _vm = this,

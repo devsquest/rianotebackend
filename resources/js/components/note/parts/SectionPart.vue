@@ -101,7 +101,7 @@
                             v-on:click="editOption(x, option)"
                           >
                             <span
-                              ><i class="fa-solid fa-pen-to-square"></i
+                              ><i class="fa-solid fa-pen-to-square queston-action-icon"></i
                             ></span>
                           </button>
                         </div>

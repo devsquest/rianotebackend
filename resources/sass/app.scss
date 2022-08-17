@@ -8,11 +8,15 @@
 $u-color-1 : #0e386a;
 $u-color-2 : rgb(28, 81, 214);
 // $u-color-3 : #e0a800;
-$u-color-3 : #f8ce47;
+$u-color-3 : #ffff94;
 $btn-color : #53b848;
 
+.dark-blue {
+    color: #06244c;
+}
+
 .make-note {
-    font-family: $font-family-poppins;
+    font-family: $font-family-open-sans;
 }
 
 .note-background {
@@ -24,33 +28,34 @@ $btn-color : #53b848;
 }
 
 .top-note-height {
-    height: 80px;
+    height: 4em;
 }
 
 .logo-img {
-    width: 65px;
+    width: 3.1em;
 }
 
 .btn-success {
-    color: #fff;
+    color: #06244c;
     background-color: $u-color-3;
     border-color: $u-color-3;
+    font-weight: 300;
 }
 
 .btn-success:hover {
-    color: #fff;
+    color: #06244c;
     background-color: $u-color-3;
     border-color: $u-color-3;
 }
 
 .btn-success:visited {
-    color: #fff;
+    color: #06244c;
     background-color: $u-color-3;
     border-color: $u-color-3;
 }
 
 .btn-success:active {
-    color: #fff;
+    color: #06244c;
     background-color: $u-color-3;
     border-color: $u-color-3;
 }
@@ -116,21 +121,28 @@ $btn-color : #53b848;
     padding-top: 10px;
     padding-bottom: 10px;
     color: white;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .note-section-left-li-selected {
     background-color: $u-color-3;
+    color: #06244c;
+}
+
+.queston-action-icon {
+    color: #06244c;
 }
 
 .note-section-left-li:hover {
     background-color: $u-color-3;
+    color: #06244c;
 }
 
 .note-section-left-text {
     display: block;
     text-align: center;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .tool-input {
@@ -182,7 +194,7 @@ $btn-color : #53b848;
     color: black;
     padding: 7px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 15px;
 }
 
@@ -353,13 +365,13 @@ $btn-color : #53b848;
 
 .note-nav-link {
     color: white;
-    font-weight: 700;
+    font-weight: 600;
     padding: 15px;
     cursor: pointer;
 }
 
 .note-nav-a-click {
-    background-color: #f7f7f7;
+    background-color: $u-color-1;
 }
 
 .tools-box-complete {
@@ -373,7 +385,7 @@ $btn-color : #53b848;
 }
 
 .bold-heading {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .ex-bold-heading {
@@ -409,7 +421,7 @@ $btn-color : #53b848;
     border: 1px solid $u-color-1;
     background-color: $u-color-1;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     padding: 4px;
 }
 
@@ -537,6 +549,7 @@ $btn-color : #53b848;
     bottom: 2em;
     left: 88%;
 }
+
 .note-btn-hover-edit-success {
     background-color: green;
     font-size: 14px;

@@ -1,7 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap);
+@font-face {
+  font-family: "Open Sans";
+  src: url("/note_assets/fonts/OpenSans-VariableFont_wdth,wght.ttf");
+}
+@font-face {
+  font-family: "Myriad Pro Condensed";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Myriad Pro Condensed"), url("/note_assets/fonts/myriad/MYRIADPRO-COND.woff") format("woff");
+}
+.dark-blue {
+  color: #06244c;
+}
+
 .make-note {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .note-background {
@@ -13,35 +27,36 @@
 }
 
 .top-note-height {
-  height: 80px;
+  height: 4em;
 }
 
 .logo-img {
-  width: 65px;
+  width: 3.1em;
 }
 
 .btn-success {
-  color: #fff;
-  background-color: #f8ce47;
-  border-color: #f8ce47;
+  color: #06244c;
+  background-color: #ffff94;
+  border-color: #ffff94;
+  font-weight: 300;
 }
 
 .btn-success:hover {
-  color: #fff;
-  background-color: #f8ce47;
-  border-color: #f8ce47;
+  color: #06244c;
+  background-color: #ffff94;
+  border-color: #ffff94;
 }
 
 .btn-success:visited {
-  color: #fff;
-  background-color: #f8ce47;
-  border-color: #f8ce47;
+  color: #06244c;
+  background-color: #ffff94;
+  border-color: #ffff94;
 }
 
 .btn-success:active {
-  color: #fff;
-  background-color: #f8ce47;
-  border-color: #f8ce47;
+  color: #06244c;
+  background-color: #ffff94;
+  border-color: #ffff94;
 }
 
 .vertical {
@@ -90,7 +105,7 @@
 }
 
 .bg-green {
-  background-color: #f8ce47;
+  background-color: #ffff94;
 }
 
 .note-result {
@@ -111,21 +126,28 @@
   padding-top: 10px;
   padding-bottom: 10px;
   color: white;
-  font-weight: 900;
+  font-weight: 600;
 }
 
 .note-section-left-li-selected {
-  background-color: #f8ce47;
+  background-color: #ffff94;
+  color: #06244c;
+}
+
+.queston-action-icon {
+  color: #06244c;
 }
 
 .note-section-left-li:hover {
-  background-color: #f8ce47;
+  background-color: #ffff94;
+  color: #06244c;
 }
 
 .note-section-left-text {
   display: block;
   text-align: center;
   cursor: pointer;
+  font-size: 15px;
 }
 
 .tool-input {
@@ -182,7 +204,7 @@
   color: black;
   padding: 7px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -238,12 +260,12 @@
 .note-login-link {
   margin-left: 4rem;
   text-decoration: none;
-  color: #f8ce47;
+  color: #ffff94;
 }
 
 .note-login-link:hover {
   text-decoration: none;
-  color: #f8ce47;
+  color: #ffff94;
 }
 
 .note-login-page-logo {
@@ -259,7 +281,7 @@
 
 .login-page-checkbox:checked {
   background-color: transparent;
-  outline: 2px solid #f8ce47;
+  outline: 2px solid #ffff94;
 }
 
 .login-u-input {
@@ -279,8 +301,8 @@
 
 .login-u-input-focus:focus {
   border-radius: 2rem;
-  border-color: #f8ce47;
-  outline: 2px solid #f8ce47;
+  border-color: #ffff94;
+  outline: 2px solid #ffff94;
   color: white;
 }
 
@@ -293,7 +315,7 @@
 }
 
 .purchase-u-btn:hover {
-  border-color: #f8ce47;
+  border-color: #ffff94;
 }
 
 .u-login-btn {
@@ -318,7 +340,7 @@
 }
 
 .login-form-input-icon:focus {
-  color: #f8ce47;
+  color: #ffff94;
 }
 
 .note-background-img {
@@ -350,19 +372,19 @@
 }
 
 .splash-btn {
-  background-color: #f8ce47;
+  background-color: #ffff94;
   padding: 0.4rem 2.5rem;
 }
 
 .note-nav-link {
   color: white;
-  font-weight: 700;
+  font-weight: 600;
   padding: 15px;
   cursor: pointer;
 }
 
 .note-nav-a-click {
-  background-color: #f7f7f7;
+  background-color: #0e386a;
 }
 
 .tools-box-complete {
@@ -376,7 +398,7 @@
 }
 
 .bold-heading {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .ex-bold-heading {
@@ -412,7 +434,7 @@
   border: 1px solid #0e386a;
   background-color: #0e386a;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   padding: 4px;
 }
 
@@ -489,7 +511,7 @@
   position: relative;
   top: 8px;
   right: 15px;
-  color: #f8ce47;
+  color: #ffff94;
 }
 
 .note-db-link {
@@ -516,10 +538,10 @@
 }
 
 .note-btn-hover-edit {
-  background-color: #f8ce47;
+  background-color: #ffff94;
   font-size: 14px;
   color: white;
-  border: 1px solid #f8ce47;
+  border: 1px solid #ffff94;
   border-radius: 3px;
   position: relative;
   bottom: 2em;

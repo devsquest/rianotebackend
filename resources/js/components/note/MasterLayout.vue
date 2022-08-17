@@ -20,19 +20,21 @@
             class="col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
           >
             <div class="new-note-btn">
-              <button class="btn btn-success mt-4 ml-3" v-on:click="newNoteBtn">
+              <button class="btn btn-success mt-3 ml-3" v-on:click="newNoteBtn">
                 <i class="fa-solid fa-plus"></i> New Note
               </button>
             </div>
           </div>
           <div
-            class="col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg text-right"
+            class="
+              col-lg-4 col-md-4 col-sm-4 col-12
+              top-note-height
+              white-bg
+              text-right
+            "
           >
             <div class="dropdown">
-              <div
-                class="user-profile"
-                style="margin-top: 1.2rem; margin-left: 6rem !important"
-              >
+              <div class="user-profile" style="margin-top: 0.8em">
                 <img
                   v-if="userInfo != null"
                   style="
@@ -84,7 +86,7 @@
         <div class="row">
           <div class="col-lg-12" style="background-color: #0e386a">
             <div
-              class="input-placeholder mt-3 mb-3"
+              class="input-placeholder mt-1 mb-3"
               style="padding-left: 2%; padding-right: 2%"
             >
               <div class="row">
@@ -201,7 +203,6 @@
                           <a
                             :class="[
                               'nav-link',
-                              'white-text',
                               'note-nav-link',
                               'note-nav-link-headings',
                               {
@@ -210,8 +211,8 @@
                             ]"
                             :style="[
                               loadHeadingsTab.status
-                                ? { color: '#e0a800' }
-                                : { color: 'white' },
+                                ? { color: '#ffff94' }
+                                : { color: '#06244c' },
                             ]"
                             v-on:click="loadHeadings"
                           >
@@ -226,7 +227,6 @@
                           <a
                             :class="[
                               'nav-link',
-                              'white-text',
                               'note-nav-link',
                               'note-nav-link-headings',
                               {
@@ -235,8 +235,8 @@
                             ]"
                             :style="[
                               x.showStatus
-                                ? { color: '#e0a800' }
-                                : { color: 'white' },
+                                ? { color: '#ffff94' }
+                                : { color: '#06244c' },
                             ]"
                             v-on:click="loadSections(x.id, index, x.type)"
                           >
@@ -288,24 +288,10 @@
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                           <a
-                            class="nav-link white-text"
+                            class="nav-link dark-blue"
                             style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                              cursor: pointer;
-                            "
-                            v-on:click="generatePDF"
-                          >
-                            <i class="fa-solid fa-file-export"></i> Export</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
+                              color: #06244c;
+                              font-weight: 600;
                               padding: 15px;
                               cursor: pointer;
                             "
@@ -316,10 +302,38 @@
                         </li>
                         <li class="nav-item">
                           <a
-                            class="nav-link white-text"
+                            class="nav-link dark-blue"
                             style="
-                              color: white;
-                              font-weight: 700;
+                              color: #06244c;
+                              font-weight: 600;
+                              padding: 15px;
+                              cursor: pointer;
+                            "
+                            v-on:click="generatePDF"
+                          >
+                            <i class="fa-solid fa-file-export"></i> Export</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link dark-blue"
+                            style="
+                              color: #06244c;
+                              font-weight: 600;
+                              padding: 15px;
+                              cursor: pointer;
+                            "
+                            v-on:click="clearContent"
+                          >
+                            <i class="fa-solid fa-eraser"></i> Clear</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link dark-blue"
+                            style="
+                              color: #06244c;
+                              font-weight: 600;
                               padding: 15px;
                               cursor: pointer;
                             "
@@ -327,20 +341,6 @@
                           >
                             <i class="fa-solid fa-pen-to-square"></i> Final
                             Edit</a
-                          >
-                        </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link white-text"
-                            style="
-                              color: white;
-                              font-weight: 700;
-                              padding: 15px;
-                              cursor: pointer;
-                            "
-                            v-on:click="clearContent"
-                          >
-                            <i class="fa-solid fa-eraser"></i> Clear</a
                           >
                         </li>
                       </ul>
