@@ -2828,7 +2828,7 @@ var render = function render() {
     }, [_vm._v(_vm._s(x.question_text) + ":")])]), _vm._v(" "), _c("p", [_c("label", [_vm._v(_vm._s(x.textInput))])])]) : _vm._e()])]);
   })], 2), _vm._v(" "), _c("h6", {
     staticClass: "ex-bold-heading"
-  }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", [_vm.note.intro_comments != null && _vm.note.intro_comments != "" ? _c("span", [_vm._v(_vm._s(_vm.note.intro_comments) + ".")]) : _vm._e(), _vm._v(" "), _vm._l(_vm.questionsData.filter(function (x) {
+  }, [_vm._v("Session Note:")]), _vm._v(" "), _c("p", _vm._l(_vm.questionsData.filter(function (x) {
     return x.isDisplay;
   }), function (x) {
     return _c("span", {
@@ -2847,7 +2847,7 @@ var render = function render() {
         staticClass: "d-none"
       }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                              ,")]) : _vm._e(), _vm._v("\n                            " + _vm._s(v.option_text))]) : _vm._e()]);
     }), _vm._v(".\n                      ")], 2) : _vm._e()]);
-  }), _vm._v(" "), _vm.note.closing_comments != null && _vm.note.closing_comments != "" ? _c("span", [_vm._v(_vm._s(_vm.note.closing_comments) + ".")]) : _vm._e()], 2)]), _vm._v(" "), _c("div", {
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "section-2"
   }, [_c("p", {
     staticClass: "text-left note-hr-line"

@@ -495,13 +495,6 @@
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
                       <span
-                        v-if="
-                          note.intro_comments != null &&
-                          note.intro_comments != ''
-                        "
-                        >{{ note.intro_comments }}.</span
-                      >
-                      <span
                         v-for="x in questionsData.filter((x) => x.isDisplay)"
                         :key="x.id"
                       >
@@ -554,13 +547,6 @@
                           >.
                         </span>
                       </span>
-                      <span
-                        v-if="
-                          note.closing_comments != null &&
-                          note.closing_comments != ''
-                        "
-                        >{{ note.closing_comments }}.</span
-                      >
                     </p>
                   </div>
                   <div class="section-2">
