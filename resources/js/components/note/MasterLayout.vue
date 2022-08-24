@@ -136,7 +136,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa-solid fa-sack-dollar u-input-icon"></i>
+                    <i class="fa-solid fa-comment-medical u-input-icon"></i>
                     <input
                       type="text"
                       placeholder="Diagnosis"
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa-regular fa-message u-input-icon"></i>
+                    <i class="fa-solid fa-file-invoice u-input-icon"></i>
                     <input
                       type="text"
                       placeholder="Billing Code"
@@ -158,7 +158,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
-                    <i class="fa-regular fa-message u-input-icon"></i>
+                    <i class="fa-solid fa-location-arrow u-input-icon"></i>
                     <input
                       type="text"
                       placeholder="Session Location"
@@ -210,7 +210,7 @@
                       id="navbarSupportedContent"
                     >
                       <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                           <a
                             :class="[
                               'nav-link',
@@ -229,6 +229,26 @@
                           >
                             Headings</a
                           >
+                        </li> -->
+                        <li class="nav-item">
+                          <a
+                            :class="[
+                              'nav-link',
+                              'note-nav-link',
+                              'note-nav-link-headings',
+                              {
+                                'note-nav-a-click': loadMyPhraseTab.status,
+                              },
+                            ]"
+                            :style="[
+                              loadMyPhraseTab.status
+                                ? { color: '#ffff94' }
+                                : { color: '#06244c' },
+                            ]"
+                            v-on:click="loadMyPhrase"
+                          >
+                            My Phrases
+                          </a>
                         </li>
                         <li
                           v-for="(x, index) in sections_list"
@@ -339,21 +359,6 @@
                             <i class="fa-solid fa-eraser"></i> Clear</a
                           >
                         </li>
-                        <li class="nav-item">
-                          <a
-                            class="nav-link dark-blue"
-                            style="
-                              color: #06244c;
-                              font-weight: 600;
-                              padding: 15px;
-                              cursor: pointer;
-                            "
-                            v-on:click="finalEdit"
-                          >
-                            <i class="fa-solid fa-pen-to-square"></i> Final
-                            Edit</a
-                          >
-                        </li>
                       </ul>
                     </div>
                   </nav>
@@ -362,7 +367,12 @@
             </div>
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="note-result" id="note-result" ref="noteresult">
+                <div
+                  class="note-result"
+                  id="note-result"
+                  ref="noteresult"
+                  contentEditable="true"
+                >
                   <div class="section-1">
                     <p v-if="note.name != null && note.name != ''">
                       <span class="note-heading-text-title">Name: </span>
@@ -491,11 +501,57 @@
                         </div>
                       </div>
                       <!--form-nextline-->
+                      <div class="statement-questions-note">
+                        <div
+                          class="statement-single-question"
+                          v-for="x in questionsData.filter(
+                            (x) =>
+                              x.isDisplay && x.question_type == 'statements'
+                          )"
+                          :key="x.id"
+                        >
+                          <span class="d-none">{{ x.revision }}</span>
+                          <h6>
+                            <label class="ex-bold-heading"
+                              >{{ x.section_name }}:</label
+                            >
+                          </h6>
+                          <p
+                            v-for="sm in x.statement_master"
+                            :key="sm.id"
+                            class="sm"
+                          >
+                            <span v-if="sm.selectedOptions && sm.selectedOptions.length > 0">
+                              <span>{{ sm.statement_text }}</span>
+                              <span
+                                v-for="sd in x.statement_detail"
+                                :key="sd.id"
+                                class="sd"
+                              >
+                                <span v-for="dop in sd.options" :key="dop.id">
+                                  <span
+                                    v-if="
+                                      sm.selectedOptions &&
+                                      sm.selectedOptions.find(
+                                        (fi) => fi == dop.id
+                                      )
+                                    "
+                                    >{{ dop.option_text }}.</span
+                                  >
+                                </span>
+                              </span>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                      <!--statement-questions-->
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
                       <span
-                        v-for="x in questionsData.filter((x) => x.isDisplay && x.question_type != 'statements')"
+                        v-for="x in questionsData.filter(
+                          (x) => x.isDisplay && x.question_type != 'statements'
+                        )"
                         :key="x.id"
                       >
                         <span
@@ -637,65 +693,13 @@
       </div>
     </div>
     <!--model end-->
-    <!--model start-->
-    <div
-      class="modal fade"
-      id="finalEditModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="finalEditModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="finalEditModalLabel">Final edit</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <h6 class="card-header text-right">
-                    <button
-                      class="btn btn-success"
-                      v-on:click="finalEditExport"
-                    >
-                      <i class="fa-solid fa-file-export"></i> Export
-                    </button>
-                    <button class="btn btn-success" v-on:click="finalEditCopy">
-                      <i class="fa-solid fa-copy"></i> Copy
-                    </button>
-                  </h6>
-                  <div class="card-body">
-                    <div
-                      class="card-text"
-                      id="pdf_to_append_final_edit"
-                      contentEditable="true"
-                      ref="finaledit_noteresult"
-                    ></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--model end-->
   </div>
 </template>
 
 <script>
 import VueHtml2pdf from "vue-html2pdf";
 import HeadingPart from "./parts/HeadingPart.vue";
+import MyPhrase from "./parts/MyPhrase.vue";
 import SectionPart from "./parts/SectionPart.vue";
 
 export default {
@@ -704,15 +708,20 @@ export default {
     VueHtml2pdf,
     HeadingPart,
     SectionPart,
+    MyPhrase,
   },
   data() {
     return {
       section_type: null,
       section_slug: this.$route.params.section,
-      current: "HeadingPart",
+      current: "MyPhrase",
       notes_list: null,
       sections_list: null,
       loadHeadingsTab: {
+        status: false,
+        class: "note-nav-a-click",
+      },
+      loadMyPhraseTab: {
         status: false,
         class: "note-nav-a-click",
       },
@@ -806,9 +815,23 @@ export default {
         params: { type: this.selected_note, section: "Headings" },
       });
     },
+    loadMyPhrase() {
+      this.loadMyPhraseTab.status = true;
+      this.current = "MyPhrase";
+      this.sections_list = this.sections_list.map((val) => {
+        val.showStatus = false;
+        return val;
+      });
+      this.section_slug = "MyPhrase";
+      this.$router.push({
+        name: "make_note",
+        params: { type: this.selected_note, section: "MyPhrase" },
+      });
+    },
     loadSections(id, index, type) {
       this.section_type = type;
       this.loadHeadingsTab.status = false;
+      this.loadMyPhraseTab.status = false;
       this.current = "SectionPart";
       this.sections_list = this.sections_list.map((val) => {
         val.showStatus = false;
@@ -861,31 +884,6 @@ export default {
             this.$swal.fire("Not Cleared", "", "info");
           }
         });
-    },
-    finalEdit() {
-      document.getElementById("pdf_to_append_final_edit").innerHTML = "";
-      let node = document.getElementById("note-result");
-      let clone = node.cloneNode(true);
-      console.log(clone);
-      document.getElementById("pdf_to_append_final_edit").appendChild(clone);
-      $("#finalEditModal").modal("show");
-    },
-    finalEditCopy() {
-      let noteresult = this.$refs.finaledit_noteresult;
-      this.$copyText(noteresult);
-      this.$toastr.s("Copied!", "Success!");
-    },
-    finalEditExport() {
-      document.getElementById("pdf_to_append").innerHTML = "";
-      let node = document.getElementById("pdf_to_append_final_edit");
-      let clone = node.cloneNode(true);
-      document.getElementById("pdf_to_append").appendChild(clone);
-      this.$refs.html2Pdf.generatePdf();
-      //
-      document.getElementById("pdf_to_append").innerHTML = "";
-      node = document.getElementById("note-result");
-      clone = node.cloneNode(true);
-      document.getElementById("pdf_to_append").appendChild(clone);
     },
   },
   computed: {

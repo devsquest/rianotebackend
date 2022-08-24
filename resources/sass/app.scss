@@ -76,7 +76,7 @@ $btn-color : #53b848;
     left: 30px;
 }
 
-.u-input::-webkit-input-placeholder {
+.u-input:-ms-input-placeholder {
     color: white;
     position: absolute;
     left: 30px;
@@ -220,7 +220,6 @@ $btn-color : #53b848;
     height: 100vh;
     padding: 10px;
 }
-
 .single-tools-option-input:focus {
     border: none;
     outline: none;

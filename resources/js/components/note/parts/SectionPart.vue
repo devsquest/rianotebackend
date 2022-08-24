@@ -20,7 +20,7 @@
                 >
                   <span
                     class="note-section-left-text"
-                    v-on:click="loadSubSection(x.id, x.type)"
+                    v-on:click="loadSubSection(x.id, x.type, x.name)"
                     >{{ x.name }}</span
                   >
                 </div>
@@ -74,7 +74,9 @@
                                   : false,
                             },
                           ]"
-                          v-on:click="addQuestionInResult(x, option, x.question_type)"
+                          v-on:click="
+                            addQuestionInResult(x, option, x.question_type)
+                          "
                           v-on:input="editableInput"
                           :contentEditable="option.editAble"
                         >
@@ -101,7 +103,12 @@
                             v-on:click="editOption(x, option)"
                           >
                             <span
-                              ><i class="fa-solid fa-pen-to-square queston-action-icon"></i
+                              ><i
+                                class="
+                                  fa-solid fa-pen-to-square
+                                  queston-action-icon
+                                "
+                              ></i
                             ></span>
                           </button>
                         </div>
@@ -200,7 +207,33 @@
                             :key="option.id"
                           >
                             <div class="col-3">
-                              <button v-for="sm in x.statement_master" :key="sm.id" class="btn note-statement-btn m-1">{{ sm.short_text }}</button>
+                              <button
+                                v-for="sm in x.statement_master"
+                                :key="sm.id"
+                                :class="[
+                                  'btn',
+                                  'note-statement-btn m-1',
+                                  {
+                                    'note-questions-single-option-box-selected':
+                                      sm.selectedOptions != undefined &&
+                                      sm.selectedOptions.indexOf(option.id) !=
+                                        -1
+                                        ? true
+                                        : false,
+                                  },
+                                ]"
+                                v-on:click="
+                                  addQuestionInResult(
+                                    x,
+                                    option,
+                                    x.question_type,
+                                    sm
+                                  )
+                                "
+                              >
+                                {{ sm.short_text }}
+                              </button>
+                              <span class="d-none">{{ x.revision }}</span>
                             </div>
                             <div class="col-9">
                               <p
@@ -213,7 +246,6 @@
                                         : false,
                                   },
                                 ]"
-                                v-on:click="addQuestionInResult(x, option, x.question_type)"
                               >
                                 {{ option.option_text }}
                               </p>
@@ -395,9 +427,12 @@ export default {
         });
       }
     },
-    async loadSubSection(id, type) {
+    async loadSubSection(id, type, section_name) {
       this.current_sub_section = type;
-      this.$store.commit("note/changeSubSectionComponent", id);
+      this.$store.commit("note/changeSubSectionComponent", {
+        id: id,
+        section_name: section_name,
+      });
       this.showByDefault = true;
       this.current_section_id = id;
       if (this.currentSectionQuestions.length <= 0) {
@@ -406,13 +441,12 @@ export default {
         this.$store.commit("note/changeQuestionsState", { id: id, type: type });
       }
     },
-    addQuestionInResult(question, option, question_type) {
-      console.log(question);
-      console.log(option);
-      console.log(question_type);
+    addQuestionInResult(question, option, question_type, sm = null) {
       this.$store.commit("note/addQuestionsOnResult", {
         question: question,
         option: option,
+        question_type: question_type,
+        sm: sm,
       });
     },
     addOwnCustomPhrase() {
@@ -464,7 +498,7 @@ export default {
       }
     },
     editableInput(e) {
-      this.contentEditable_text = null;
+      // this.contentEditable_text = null;
       this.contentEditable_text = e.target.innerText;
     },
   },

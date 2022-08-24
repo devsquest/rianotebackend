@@ -8,6 +8,7 @@ const state = {
     sub_sections_list: [],
     current_parent_section_id: null,
     current_sub_section_id: null,
+    activeSectionName: null,
 };
 const getters = {
     currentSectionFormQuestions(state) {
@@ -29,7 +30,8 @@ const mutations = {
         state.current_parent_section_id = payload.parent_id;
     },
     changeSubSectionComponent(state, payload) {
-        state.current_sub_section_id = payload;
+        state.current_sub_section_id = payload.id;
+        state.activeSectionName = payload.section_name
     },
     changeHeadings(state, payload) {
         state.all_headings = payload;
@@ -46,6 +48,8 @@ const mutations = {
         payload.data.forEach((val) => {
             val.isDisplay = false;
             val.editAble = false;
+            val.revision = 0;
+            val.section_name = null;
             val.selectedOptions = [];
             state.questions.push(val);
         });
@@ -88,29 +92,56 @@ const mutations = {
         }
     },
     addQuestionsOnResult(state, payload) {
+        // console.log(payload);
         let index = state.questions.findIndex(x => x.id == payload.question.id);
-        if (payload.question.selection_type == 'single') {
-            if (state.questions[index].selectedOptions.length > 0 && state.questions[index].selectedOptions[0] == payload.option.id) {
-                state.questions[index].selectedOptions.splice(0, 1);
+        if (payload.question_type == 'tags' || payload.question_type == 'text' || payload.question_type == 'tags-replacement-option') {
+            if (payload.question.selection_type == 'single') {
+                if (state.questions[index].selectedOptions.length > 0 && state.questions[index].selectedOptions[0] == payload.option.id) {
+                    state.questions[index].selectedOptions.splice(0, 1);
+                    state.questions[index].isDisplay = false;
+                } else {
+                    state.questions[index].selectedOptions = [];
+                    state.questions[index].selectedOptions.push(payload.option.id);
+                    state.questions[index].isDisplay = true;
+                }
+            } else if (payload.question.selection_type == 'multiple') {
+                let selected_options_index = state.questions[index].selectedOptions.indexOf(payload.option.id);
+                if (selected_options_index == -1) {
+                    state.questions[index].selectedOptions.push(payload.option.id);
+                    state.questions[index].isDisplay = true;
+                } else {
+                    state.questions[index].selectedOptions.splice(selected_options_index, 1);
+                }
+                if (state.questions[index].selectedOptions.length == 0) {
+                    state.questions[index].isDisplay = false;
+                }
+            }
+        } else {
+            state.questions[index].section_name = state.activeSectionName;
+            state.questions[index].revision = state.questions[index].revision == undefined ? 1 : ++state.questions[index].revision;
+            let sel_index = state.questions[index].statement_master.findIndex(x => x.short_text == payload.sm.short_text);
+            if (state.questions[index].statement_master[sel_index].selectedOptions == undefined) {
+                state.questions[index].statement_master[sel_index].selectedOptions = [];
+            }
+            if (state.questions[index].statement_master[sel_index].selectedOptions.indexOf(payload.option.id) == -1) {
+                state.questions[index].statement_master.forEach((val) => {
+                    if (val.selectedOptions != undefined && val.selectedOptions.indexOf(payload.option.id) != -1) {
+                        let tempIndex = val.selectedOptions.findIndex(x => x == payload.option.id);
+                        val.selectedOptions.splice(tempIndex, 1);
+                    }
+                })
+                state.questions[index].statement_master[sel_index].selectedOptions.push(payload.option.id);
+            } else {
+                let removedIndex = state.questions[index].statement_master[sel_index].selectedOptions.findIndex(x => x == payload.option.id);
+                state.questions[index].statement_master[sel_index].selectedOptions.splice(removedIndex, 1);
+            }
+            if (state.questions[index].statement_master[sel_index].selectedOptions.length == 0) {
                 state.questions[index].isDisplay = false;
             } else {
-                state.questions[index].selectedOptions = [];
-                state.questions[index].selectedOptions.push(payload.option.id);
                 state.questions[index].isDisplay = true;
-            }
-        } else if (payload.question.selection_type == 'multiple') {
-            let selected_options_index = state.questions[index].selectedOptions.indexOf(payload.option.id);
-            if (selected_options_index == -1) {
-                state.questions[index].selectedOptions.push(payload.option.id);
-                state.questions[index].isDisplay = true;
-            } else {
-                state.questions[index].selectedOptions.splice(selected_options_index, 1);
-            }
-            if (state.questions[index].selectedOptions.length == 0) {
-                state.questions[index].isDisplay = false;
             }
         }
-        console.log(state.questions);
+        // console.log(state.questions);
     },
     addQuestionNewOption(state, payload) {
         let index = state.questions.findIndex(x => x.id == payload.data.data.option.question_id);

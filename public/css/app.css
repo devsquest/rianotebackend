@@ -81,7 +81,7 @@
   left: 30px;
 }
 
-.u-input::-webkit-input-placeholder {
+.u-input:-ms-input-placeholder {
   color: white;
   position: absolute;
   left: 30px;

@@ -22,7 +22,18 @@
                   <tr>
                     <td>Monthly individual</td>
                     <td>
-                      <button class="btn btn-info btn-14px">Active</button>
+                      <stripe-checkout
+                        ref="checkoutRef"
+                        mode="payment"
+                        :pk="publishableKey"
+                        :line-items="lineItems"
+                        :success-url="successURL"
+                        :cancel-url="cancelURL"
+                        @loading="(v) => (loading = v)"
+                      />
+                      <button class="btn btn-info btn-14px" v-on:click="submit">
+                        Pay Now
+                      </button>
                     </td>
                     <td>
                       <button class="btn btn-info btn-14px">Active</button>
@@ -44,11 +55,39 @@
   </div>
 </template>
 <script>
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
 export default {
   name: "MySubscriptionsPage",
+  components: {
+    StripeCheckout,
+  },
+  data() {
+    return {
+      publishableKey: "pk_test_TYooMQauvdEDq54NiTphI7jx",
+      lineItems: [
+        {
+          price: "120", // The id of the one-time price you created in your Stripe dashboard
+          quantity: 1,
+        },
+      ],
+      successURL:
+        "http://127.0.0.1:8000/note/user/my-subscriptions?status=success",
+      cancelURL:
+        "http://127.0.0.1:8000/note/user/my-subscriptions?status=cancel",
+    };
+  },
   mounted() {
     this.$emit("updateNav", this.$route.name);
     document.title = "My Subscriptions";
+  },
+  methods: {
+    stripeSession() {
+      this.axios.get();
+    },
+    submit() {
+      // You will be redirected to Stripe's secure checkout page
+      this.$refs.checkoutRef.redirectToCheckout();
+    },
   },
 };
 </script>
