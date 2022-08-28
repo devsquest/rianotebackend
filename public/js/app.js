@@ -466,8 +466,8 @@ __webpack_require__.r(__webpack_exports__);
     this.getSectionsList();
   },
   methods: {
-    newNoteBtn: function newNoteBtn() {
-      $("#newNoteModal").modal("show");
+    preferencesNoteBtn: function preferencesNoteBtn() {
+      $("#preferencesNoteModal").modal("show");
     },
     logoutNote: function logoutNote() {
       var _this = this;
@@ -521,8 +521,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    submitNewNote: function submitNewNote(e) {
-      e.preventDefault();
+    submitNewNote: function submitNewNote(id) {
+      this.selected_note = id;
       this.$router.push({
         name: "make_note",
         params: {
@@ -530,7 +530,6 @@ __webpack_require__.r(__webpack_exports__);
           section: this.section_slug
         }
       });
-      $("#newNoteModal").modal("hide");
       location.reload();
     },
     loadHeadings: function loadHeadings() {
@@ -2649,30 +2648,35 @@ var render = function render() {
       alt: ""
     }
   })]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
+    staticClass: "col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg"
   }, [_c("div", {
     staticClass: "new-note-btn"
-  }, [_c("button", {
-    staticClass: "btn btn-success mt-3 ml-3",
-    on: {
-      click: _vm.newNoteBtn
-    }
-  }, [_c("i", {
-    staticClass: "fa-solid fa-plus"
-  }), _vm._v(" New Note\n            ")])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.notes_list, function (note) {
+    return _c("button", {
+      key: note.id,
+      "class": ["btn", "btn-success", "mt-2", "ml-3", "btn-14px", {
+        "btn-success-active": _vm.selected_note == note.id
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.submitNewNote(note.id);
+        }
+      }
+    }, [_vm._v("\n              " + _vm._s(note.name) + "\n            ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg text-right"
   }, [_c("div", {
-    staticClass: "dropdown"
-  }, [_c("div", {
-    staticClass: "user-profile",
+    staticClass: "dropdown",
     staticStyle: {
-      "margin-top": "0.8em"
+      "float": "right"
     }
+  }, [_c("div", {
+    staticClass: "user-profile mt-2"
   }, [_vm.userInfo != null ? _c("img", {
     staticStyle: {
       border: "3px solid #dee2e6 !important",
       "border-radius": "50%",
-      width: "45px"
+      width: "35px"
     },
     attrs: {
       src: [_vm.userInfo.profile_picture == null || _vm.userInfo.profile_picture == "" ? this.$appConfig.asset_url + "/note_assets/img/icons/Basic-Note_42.jpg" : this.$appConfig.asset_url + "/uploads/images/" + _vm.userInfo.profile_picture],
@@ -2699,7 +2703,21 @@ var render = function render() {
     on: {
       click: _vm.logoutNote
     }
-  }, [_vm._v("Logout")])], 1)])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Logout")])], 1)])]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      "float": "right"
+    }
+  }, [_c("a", {
+    staticClass: "btn mt-1",
+    staticStyle: {
+      "font-size": "17px"
+    },
+    on: {
+      click: _vm.preferencesNoteBtn
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-gear"
+  }), _vm._v(" Preferences")])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12",
@@ -2707,11 +2725,7 @@ var render = function render() {
       "background-color": "#0e386a"
     }
   }, [_c("div", {
-    staticClass: "input-placeholder mt-1 mb-3",
-    staticStyle: {
-      "padding-left": "2%",
-      "padding-right": "2%"
-    }
+    staticClass: "input-placeholder mb-2"
   }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -3000,7 +3014,7 @@ var render = function render() {
     staticClass: "tools-box-complete"
   }, [_c("KeepAlive", {
     attrs: {
-      include: "HeadingPart"
+      include: "MyPhrase"
     }
   }, [_c(_vm.current, {
     key: this.section_slug,
@@ -3225,67 +3239,7 @@ var render = function render() {
       id: "pdf_to_append"
     },
     slot: "pdf-content"
-  })])], 1)])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "modal fade",
-    attrs: {
-      id: "newNoteModal",
-      tabindex: "-1",
-      role: "dialog",
-      "aria-labelledby": "newNoteModalLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog",
-    attrs: {
-      role: "document"
-    }
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_c("form", {
-    attrs: {
-      method: "post"
-    },
-    on: {
-      submit: _vm.submitNewNote
-    }
-  }, [_vm._m(3), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-12"
-  }, [_c("p", {
-    staticClass: "modal-main-text"
-  }, [_vm._v("Choose Note Type")]), _vm._v(" "), _vm._l(_vm.notes_list, function (note) {
-    return _c("p", {
-      key: note.id
-    }, [_c("input", {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: _vm.selected_note,
-        expression: "selected_note"
-      }],
-      attrs: {
-        type: "radio",
-        name: "note",
-        id: "note-" + note.id
-      },
-      domProps: {
-        value: note.id,
-        checked: _vm._q(_vm.selected_note, note.id)
-      },
-      on: {
-        change: function change($event) {
-          _vm.selected_note = note.id;
-        }
-      }
-    }), _vm._v(" "), _c("label", {
-      attrs: {
-        "for": "note-" + note.id
-      }
-    }, [_vm._v(_vm._s(note.name))])]);
-  })], 2)])]), _vm._v(" "), _vm._m(4)])])])])]);
+  })])], 1)])])])])]), _vm._v(" "), _vm._m(3)]);
 };
 
 var staticRenderFns = [function () {
@@ -3346,13 +3300,29 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "preferencesNoteModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "newNoteModalLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_c("div", {
     staticClass: "modal-header"
   }, [_c("h5", {
     staticClass: "modal-title",
     attrs: {
       id: "newNoteModalLabel"
     }
-  }, [_vm._v("\n              Start a new note\n            ")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n              Preferences and Advanced Options\n            ")]), _vm._v(" "), _c("button", {
     staticClass: "close",
     attrs: {
       type: "button",
@@ -3363,12 +3333,48 @@ var staticRenderFns = [function () {
     attrs: {
       "aria-hidden": "true"
     }
-  }, [_vm._v("×")])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
+  }, [_vm._v("×")])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "system-settings"
+  }, [_c("div", {
+    staticClass: "single-setting"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Terminology")]), _vm._v(" "), _c("h6", [_vm._v("Which terms do you prefer (current selections are highlighted)?")])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, [_c("button", {
+    staticClass: "btn btn-success btn-14px",
+    attrs: {
+      value: "client"
+    }
+  }, [_vm._v("Client")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success btn-14px",
+    attrs: {
+      value: "patient"
+    }
+  }, [_vm._v("Patient")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success btn-14px",
+    attrs: {
+      value: "person"
+    }
+  }, [_vm._v("Person")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success btn-14px",
+    attrs: {
+      value: "student"
+    }
+  }, [_vm._v("Student")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-success btn-14px",
+    attrs: {
+      value: "youth"
+    }
+  }, [_vm._v("youth")])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "modal-footer"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -3376,12 +3382,12 @@ var staticRenderFns = [function () {
       type: "button",
       "data-dismiss": "modal"
     }
-  }, [_vm._v("\n              Close\n            ")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("\n              Discard Changes and close\n            ")]), _vm._v(" "), _c("button", {
     staticClass: "btn btn-success",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n              Start a new Note\n            ")])]);
+  }, [_vm._v("\n              Save\n            ")])])])])]);
 }];
 render._withStripped = true;
 

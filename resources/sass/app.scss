@@ -28,11 +28,11 @@ $btn-color : #53b848;
 }
 
 .top-note-height {
-    height: 4em;
+    height: 3em;
 }
 
 .logo-img {
-    width: 3.1em;
+    width: 2.2em;
 }
 
 .btn-success {
@@ -40,6 +40,12 @@ $btn-color : #53b848;
     background-color: $u-color-3;
     border-color: $u-color-3;
     font-weight: 400;
+}
+
+.btn-success-active {
+    color: white;
+    background-color: $u-color-1;
+    border-color: $u-color-1;
 }
 
 .btn-success:hover {
@@ -220,6 +226,7 @@ $btn-color : #53b848;
     height: 100vh;
     padding: 10px;
 }
+
 .single-tools-option-input:focus {
     border: none;
     outline: none;
@@ -569,4 +576,8 @@ $btn-color : #53b848;
     position: relative;
     bottom: 2em;
     left: 88%;
+}
+
+.font-weight-600 {
+    font-weight: 600;
 }

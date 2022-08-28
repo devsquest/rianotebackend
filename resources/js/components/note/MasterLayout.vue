@@ -17,11 +17,23 @@
             />
           </div>
           <div
-            class="col-lg-6 col-md-6 col-sm-6 col-6 top-note-height white-bg"
+            class="col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg"
           >
             <div class="new-note-btn">
-              <button class="btn btn-success mt-3 ml-3" v-on:click="newNoteBtn">
-                <i class="fa-solid fa-plus"></i> New Note
+              <button
+                v-for="note in notes_list"
+                :key="note.id"
+                :class="[
+                  'btn',
+                  'btn-success',
+                  'mt-2',
+                  'ml-3',
+                  'btn-14px',
+                  { 'btn-success-active': selected_note == note.id },
+                ]"
+                v-on:click="submitNewNote(note.id)"
+              >
+                {{ note.name }}
               </button>
             </div>
           </div>
@@ -33,14 +45,14 @@
               text-right
             "
           >
-            <div class="dropdown">
-              <div class="user-profile" style="margin-top: 0.8em">
+            <div class="dropdown" style="float: right">
+              <div class="user-profile mt-2">
                 <img
                   v-if="userInfo != null"
                   style="
                     border: 3px solid #dee2e6 !important;
                     border-radius: 50%;
-                    width: 45px;
+                    width: 35px;
                   "
                   :src="[
                     userInfo.profile_picture == null ||
@@ -77,18 +89,16 @@
                     >Logout</span
                   >
                 </div>
-                <!-- <hr class="vertical" />
-                <i class="fa-solid fa-sliders" style="color: #cbcbcb"></i> -->
               </div>
+            </div>
+            <div style="float: right">
+              <a class="btn mt-1" v-on:click="preferencesNoteBtn" style="font-size: 17px;"><i class="fa-solid fa-gear"></i> Preferences</a>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-12" style="background-color: #0e386a">
-            <div
-              class="input-placeholder mt-1 mb-3"
-              style="padding-left: 2%; padding-right: 2%"
-            >
+            <div class="input-placeholder mb-2">
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
@@ -281,7 +291,7 @@
               </div>
             </div>
             <div class="tools-box-complete">
-              <KeepAlive include="HeadingPart">
+              <KeepAlive include="MyPhrase">
                 <component
                   :is="current"
                   :note_id="selected_note"
@@ -521,7 +531,12 @@
                             :key="sm.id"
                             class="sm"
                           >
-                            <span v-if="sm.selectedOptions && sm.selectedOptions.length > 0">
+                            <span
+                              v-if="
+                                sm.selectedOptions &&
+                                sm.selectedOptions.length > 0
+                              "
+                            >
                               <span>{{ sm.statement_text }}</span>
                               <span
                                 v-for="sd in x.statement_detail"
@@ -634,10 +649,10 @@
         </div>
       </div>
     </div>
-    <!--model start-->
+        <!--model start-->
     <div
       class="modal fade"
-      id="newNoteModal"
+      id="preferencesNoteModal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="newNoteModalLabel"
@@ -645,10 +660,9 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form method="post" v-on:submit="submitNewNote">
             <div class="modal-header">
               <h5 class="modal-title" id="newNoteModalLabel">
-                Start a new note
+                Preferences and Advanced Options
               </h5>
               <button
                 type="button"
@@ -660,19 +674,23 @@
               </button>
             </div>
             <div class="modal-body">
-              <div class="row">
-                <div class="col-lg-12">
-                  <p class="modal-main-text">Choose Note Type</p>
-                  <p v-for="note in notes_list" :key="note.id">
-                    <input
-                      type="radio"
-                      name="note"
-                      :value="note.id"
-                      v-model="selected_note"
-                      :id="'note-' + note.id"
-                    />
-                    <label :for="'note-' + note.id">{{ note.name }}</label>
-                  </p>
+              <div class="system-settings">
+                <div class="single-setting">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h6 class="font-weight-600">Terminology</h6>
+                      <h6>Which terms do you prefer (current selections are highlighted)?</h6>
+                    </div>
+                    <div class="col-lg-12">
+                      <div class="buttons">
+                        <button class="btn btn-success btn-14px" value="client">Client</button>
+                        <button class="btn btn-success btn-14px" value="patient">Patient</button>
+                        <button class="btn btn-success btn-14px" value="person">Person</button>
+                        <button class="btn btn-success btn-14px" value="student">Student</button>
+                        <button class="btn btn-success btn-14px" value="youth">youth</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -682,13 +700,12 @@
                 class="btn btn-secondary"
                 data-dismiss="modal"
               >
-                Close
+                Discard Changes and close
               </button>
               <button type="submit" class="btn btn-success">
-                Start a new Note
+                Save
               </button>
             </div>
-          </form>
         </div>
       </div>
     </div>
@@ -745,8 +762,8 @@ export default {
     this.getSectionsList();
   },
   methods: {
-    newNoteBtn() {
-      $("#newNoteModal").modal("show");
+    preferencesNoteBtn() {
+      $("#preferencesNoteModal").modal("show");
     },
     logoutNote() {
       this.$store.dispatch("login/logoutUser").then(() => {
@@ -793,13 +810,12 @@ export default {
           console.log(error);
         });
     },
-    submitNewNote(e) {
-      e.preventDefault();
+    submitNewNote(id) {
+      this.selected_note = id;
       this.$router.push({
         name: "make_note",
         params: { type: this.selected_note, section: this.section_slug },
       });
-      $("#newNoteModal").modal("hide");
       location.reload();
     },
     loadHeadings() {

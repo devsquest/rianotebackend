@@ -27,11 +27,11 @@
 }
 
 .top-note-height {
-  height: 4em;
+  height: 3em;
 }
 
 .logo-img {
-  width: 3.1em;
+  width: 2.2em;
 }
 
 .btn-success {
@@ -39,6 +39,12 @@
   background-color: #ffff94;
   border-color: #ffff94;
   font-weight: 400;
+}
+
+.btn-success-active {
+  color: white;
+  background-color: #0e386a;
+  border-color: #0e386a;
 }
 
 .btn-success:hover {
@@ -579,4 +585,8 @@
   position: relative;
   bottom: 2em;
   left: 88%;
+}
+
+.font-weight-600 {
+  font-weight: 600;
 }
