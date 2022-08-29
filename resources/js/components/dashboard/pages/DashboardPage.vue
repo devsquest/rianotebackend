@@ -6,15 +6,13 @@
           <div class="row">
             <div class="col-md-6 text-left">
               <p>
-                <b
-                  >Welcome to your {{ this.$appConfig.app_name }} User
-                  Dashboard</b
-                >
+                <b>Welcome to your {{  this.$appConfig.app_name  }} User
+                  Dashboard</b>
               </p>
             </div>
             <div class="col-md-6 text-right">
-              <button class="btn btn-warning" v-on:click="newNoteBtn">
-                Start using your {{ this.$appConfig.app_name }} now
+              <button class="btn btn-warning" v-on:click="submitNewNote">
+                Start using your {{  this.$appConfig.app_name  }} now
                 <i class="fas fa-arrow-alt-circle-right"></i>
               </button>
             </div>
@@ -33,7 +31,7 @@
                 <span>Email: </span>
               </div>
               <div class="col-md-6 text-right">
-                <span>{{ userInfo.email }}</span>
+                <span>{{  userInfo.email  }}</span>
               </div>
             </div>
           </div>
@@ -44,7 +42,7 @@
                 <span>Signature: </span>
               </div>
               <div class="col-md-6 text-right">
-                <span>{{ userInfo.signature }}</span>
+                <span>{{  userInfo.signature  }}</span>
               </div>
             </div>
           </div>
@@ -111,65 +109,6 @@
         </div>
       </div>
     </div>
-    <!--model start-->
-    <div
-      class="modal fade"
-      id="newNoteModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="newNoteModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form method="post" v-on:submit="submitNewNote">
-            <div class="modal-header">
-              <h5 class="modal-title" id="newNoteModalLabel">
-                Start a new note
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="row">
-                <div class="col-lg-12">
-                  <p class="modal-main-text">Choose Note Type</p>
-                  <p v-for="note in notes_list" :key="note.id">
-                    <input
-                      type="radio"
-                      name="note"
-                      :value="note.id"
-                      v-model="selected_note"
-                      :id="'note-' + note.id"
-                    />
-                    <label :for="'note-' + note.id">{{ note.name }}</label>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-success">
-                Start a new Note
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <!--model end-->
   </div>
 </template>
 <script>
@@ -177,7 +116,6 @@ export default {
   name: "DashboardPage",
   data() {
     return {
-      selected_note: null,
       notes_list: null,
     };
   },
@@ -187,9 +125,6 @@ export default {
     this.getNotesList();
   },
   methods: {
-    newNoteBtn() {
-      $("#newNoteModal").modal("show");
-    },
     getNotesList() {
       const { token } = JSON.parse(localStorage.getItem("loginInfo"));
       let headers = {
@@ -206,16 +141,14 @@ export default {
           console.log(error);
         });
     },
-    submitNewNote(e) {
-      e.preventDefault();
-      if (this.selected_note != null) {
+    submitNewNote() {
+      if (this.notes_list != null && this.notes_list.length > 0) {
         this.$router.push({
           name: "make_note",
-          params: { type: this.selected_note, section: "Headings" },
+          params: { type: this.notes_list[0].id, section: "MyPhrase" },
         });
-        $("#newNoteModal").modal("hide");
       } else {
-        this.$toastr.e("Select Note Type", "Error!");
+        this.$toastr.e("No notes available for you", "Error!");
       }
     },
   },
