@@ -623,6 +623,12 @@ __webpack_require__.r(__webpack_exports__);
           _this4.$swal.fire("Not Cleared", "", "info");
         }
       });
+    },
+    changeTerminologyDefault: function changeTerminologyDefault(id, type) {
+      this.$store.commit("note/changeTerminologyDefault", {
+        id: id,
+        type: type
+      });
     }
   },
   computed: {
@@ -645,6 +651,15 @@ __webpack_require__.r(__webpack_exports__);
     },
     formQuestions: function formQuestions() {
       return this.$store.state.note.formQuestions;
+    },
+    terminologyClient: function terminologyClient() {
+      return this.$store.state.note.terminology_client;
+    },
+    terminologyPsycho: function terminologyPsycho() {
+      return this.$store.state.note.terminology_psycho;
+    },
+    terminologyBehavior: function terminologyBehavior() {
+      return this.$store.state.note.terminology_behavior;
     }
   }
 });
@@ -2662,7 +2677,7 @@ var render = function render() {
           return _vm.submitNewNote(note.id);
         }
       }
-    }, [_vm._v("\n              " + _vm._s(note.name) + "\n            ")]);
+    }, [_vm._v("\n                " + _vm._s(note.name) + "\n              ")]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-4 col-md-4 col-sm-4 col-12 top-note-height white-bg text-right"
   }, [_c("div", {
@@ -2991,7 +3006,7 @@ var render = function render() {
     on: {
       click: _vm.loadMyPhrase
     }
-  }, [_vm._v("\n                          My Phrases\n                        ")])]), _vm._v(" "), _vm._l(_vm.sections_list, function (x, index) {
+  }, [_vm._v("\n                            My Phrases\n                          ")])]), _vm._v(" "), _vm._l(_vm.sections_list, function (x, index) {
     return _c("li", {
       key: x.id,
       staticClass: "nav-item"
@@ -3009,7 +3024,7 @@ var render = function render() {
           return _vm.loadSections(x.id, index, x.type);
         }
       }
-    }, [_vm._v("\n                          " + _vm._s(x.name))])]);
+    }, [_vm._v("\n                            " + _vm._s(x.name))])]);
   })], 2)])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tools-box-complete"
   }, [_c("KeepAlive", {
@@ -3113,11 +3128,11 @@ var render = function render() {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm._f("moment")(_vm.note.date, "dddd, MMMM Do YYYY")))])]) : _vm._e(), _vm._v(" "), _vm.note.session_time != null && _vm.note.session_time != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
-  }, [_vm._v("Session Time:\n                    ")]), _vm._v(" "), _c("span", {
+  }, [_vm._v("Session Time:\n                      ")]), _vm._v(" "), _c("span", {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm._f("customTime")(_vm.note.session_time)))])]) : _vm._e(), _vm._v(" "), _vm.note.length_of_session != null && _vm.note.length_of_session != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
-  }, [_vm._v("Length of Session:\n                    ")]), _vm._v(" "), _c("span", {
+  }, [_vm._v("Length of Session:\n                      ")]), _vm._v(" "), _c("span", {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm.note.length_of_session))])]) : _vm._e(), _vm._v(" "), _vm.note.diagnosis != null && _vm.note.diagnosis != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
@@ -3125,11 +3140,11 @@ var render = function render() {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm.note.diagnosis))])]) : _vm._e(), _vm._v(" "), _vm.note.billing_code != null && _vm.note.billing_code != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
-  }, [_vm._v("Billing Code:\n                    ")]), _vm._v(" "), _c("span", {
+  }, [_vm._v("Billing Code:\n                      ")]), _vm._v(" "), _c("span", {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm.note.billing_code))])]) : _vm._e(), _vm._v(" "), _vm.note.session_location != null && _vm.note.session_location != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
-  }, [_vm._v("Session Location:\n                    ")]), _vm._v(" "), _c("span", {
+  }, [_vm._v("Session Location:\n                      ")]), _vm._v(" "), _c("span", {
     staticClass: "note-heading-text-value"
   }, [_vm._v(_vm._s(_vm.note.session_location))])]) : _vm._e(), _vm._v(" "), _vm.note.comments != null && _vm.note.comments != "" ? _c("p", [_c("span", {
     staticClass: "note-heading-text-title"
@@ -3180,7 +3195,7 @@ var render = function render() {
       return _c("p", {
         key: sm.id,
         staticClass: "sm"
-      }, [sm.selectedOptions && sm.selectedOptions.length > 0 ? _c("span", [_c("span", [_vm._v(_vm._s(sm.statement_text))]), _vm._v(" "), _vm._l(x.statement_detail, function (sd) {
+      }, [sm.selectedOptions && sm.selectedOptions.length > 0 ? _c("span", [_c("span", [_vm._v(_vm._s(_vm._f("removeStringClient")(sm.statement_text, _vm.terminologyClient)))]), _vm._v(" "), _vm._l(x.statement_detail, function (sd) {
         return _c("span", {
           key: sd.id,
           staticClass: "sd"
@@ -3200,20 +3215,20 @@ var render = function render() {
   }), function (x) {
     return _c("span", {
       key: x.id
-    }, [x.question_type == "text" || x.question_type == "tags" ? _c("span", [x.only_show_options == false ? _c("span", [_c("span", [_vm._v(_vm._s(x.question_text))]), _vm._v(" "), _vm._l(x.options, function (v, i) {
+    }, [x.question_type == "text" || x.question_type == "tags" ? _c("span", [x.only_show_options == false ? _c("span", [_c("span", [_vm._v(_vm._s(_vm._f("removeStringClient")(x.question_text, _vm.terminologyClient)))]), _vm._v(" "), _vm._l(x.options, function (v, i) {
       return _c("span", {
         key: v.id
-      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                                ,")]) : _vm._e(), _vm._v("\n                              " + _vm._s(v.option_text))]) : _vm._e()]);
-    }), _vm._v(".\n                        ")], 2) : _c("span", _vm._l(x.options, function (v) {
+      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                                  ,")]) : _vm._e(), _vm._v("\n                                " + _vm._s(v.option_text))]) : _vm._e()]);
+    }), _vm._v(".\n                          ")], 2) : _c("span", _vm._l(x.options, function (v) {
       return _c("span", {
         key: v.id
-      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [_vm._v(_vm._s(v.option_text) + ".\n                            ")]) : _vm._e()]);
+      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [_vm._v(_vm._s(v.option_text) + ".\n                              ")]) : _vm._e()]);
     }), 0)]) : x.question_type == "tags-replacement-option" ? _c("span", [_c("span", [_vm._v(_vm._s(_vm._f("removeOptionString")(x.question_text, x)))]), _vm._v(" "), _vm._l(x.options, function (v, i) {
       return _c("span", {
         key: v.id,
         staticClass: "d-none"
-      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                              ,")]) : _vm._e(), _vm._v("\n                            " + _vm._s(v.option_text))]) : _vm._e()]);
-    }), _vm._v(".\n                      ")], 2) : _vm._e()]);
+      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                                ,")]) : _vm._e(), _vm._v("\n                              " + _vm._s(v.option_text))]) : _vm._e()]);
+    }), _vm._v(".\n                        ")], 2) : _vm._e()]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "section-2"
   }, [_c("p", {
@@ -3239,7 +3254,79 @@ var render = function render() {
       id: "pdf_to_append"
     },
     slot: "pdf-content"
-  })])], 1)])])])])]), _vm._v(" "), _vm._m(3)]);
+  })])], 1)])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "preferencesNoteModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "newNoteModalLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "system-settings"
+  }, [_c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.terminologyClient, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "client");
+        }
+      }
+    }, [_vm._v("\n                        " + _vm._s(btn.name) + "\n                      ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.terminologyPsycho, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "psycho");
+        }
+      }
+    }, [_vm._v("\n                        " + _vm._s(btn.name) + "\n                      ")]);
+  }), 0)]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.terminologyBehavior, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "behavior");
+        }
+      }
+    }, [_vm._v("\n                        " + _vm._s(btn.name) + "\n                      ")]);
+  }), 0)])])])])]), _vm._v(" "), _vm._m(5)])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -3300,22 +3387,6 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-    staticClass: "modal fade",
-    attrs: {
-      id: "preferencesNoteModal",
-      tabindex: "-1",
-      role: "dialog",
-      "aria-labelledby": "newNoteModalLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog",
-    attrs: {
-      role: "document"
-    }
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_c("div", {
     staticClass: "modal-header"
   }, [_c("h5", {
     staticClass: "modal-title",
@@ -3333,48 +3404,23 @@ var staticRenderFns = [function () {
     attrs: {
       "aria-hidden": "true"
     }
-  }, [_vm._v("×")])])]), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("div", {
-    staticClass: "system-settings"
-  }, [_c("div", {
-    staticClass: "single-setting"
-  }, [_c("div", {
+  }, [_vm._v("×")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12"
   }, [_c("h6", {
     staticClass: "font-weight-600"
-  }, [_vm._v("Terminology")]), _vm._v(" "), _c("h6", [_vm._v("Which terms do you prefer (current selections are highlighted)?")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-12"
-  }, [_c("div", {
-    staticClass: "buttons"
-  }, [_c("button", {
-    staticClass: "btn btn-success btn-14px",
-    attrs: {
-      value: "client"
-    }
-  }, [_vm._v("Client")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success btn-14px",
-    attrs: {
-      value: "patient"
-    }
-  }, [_vm._v("Patient")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success btn-14px",
-    attrs: {
-      value: "person"
-    }
-  }, [_vm._v("Person")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success btn-14px",
-    attrs: {
-      value: "student"
-    }
-  }, [_vm._v("Student")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success btn-14px",
-    attrs: {
-      value: "youth"
-    }
-  }, [_vm._v("youth")])])])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Terminology")]), _vm._v(" "), _c("h6", [_vm._v("Which terms do you prefer (current selections are highlighted)?")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
     staticClass: "modal-footer"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -3382,12 +3428,7 @@ var staticRenderFns = [function () {
       type: "button",
       "data-dismiss": "modal"
     }
-  }, [_vm._v("\n              Discard Changes and close\n            ")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-success",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("\n              Save\n            ")])])])])]);
+  }, [_vm._v("Close")])]);
 }];
 render._withStripped = true;
 
@@ -4890,6 +4931,12 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].filter("removeOptionString", functio
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].filter("customTime", function (value) {
   return vue__WEBPACK_IMPORTED_MODULE_0__["default"].moment(value, "HH:mm").format('LT');
 });
+vue__WEBPACK_IMPORTED_MODULE_0__["default"].filter("removeStringClient", function (val, arg) {
+  var keyword_obj = arg.find(function (x) {
+    return x.status == 1;
+  });
+  return val.replace('client', keyword_obj.name);
+});
 
 /***/ }),
 
@@ -5291,7 +5338,46 @@ var state = {
   sub_sections_list: [],
   current_parent_section_id: null,
   current_sub_section_id: null,
-  activeSectionName: null
+  activeSectionName: null,
+  terminology_client: [{
+    id: 1,
+    name: "client",
+    status: 1
+  }, {
+    id: 2,
+    name: "patient",
+    status: 0
+  }, {
+    id: 3,
+    name: "person",
+    status: 0
+  }, {
+    id: 4,
+    name: "student",
+    status: 0
+  }, {
+    id: 5,
+    name: "youth",
+    status: 0
+  }],
+  terminology_psycho: [{
+    id: 1,
+    name: "psychodynamic",
+    status: 1
+  }, {
+    id: 2,
+    name: "psychoanalytic",
+    status: 0
+  }],
+  terminology_behavior: [{
+    id: 1,
+    name: "behavior",
+    status: 1
+  }, {
+    id: 2,
+    name: "behaviour",
+    status: 0
+  }]
 };
 var getters = {
   currentSectionFormQuestions: function currentSectionFormQuestions(state) {
@@ -5481,6 +5567,40 @@ var mutations = {
     state.questions[qindex].editAble = false;
     state.questions[qindex].options[oindex].editAble = false;
     state.questions[qindex].options[oindex].option_text = payload.option_text;
+  },
+  changeTerminologyDefault: function changeTerminologyDefault(state, payload) {
+    // console.log(payload);
+    if (payload.type == 'client') {
+      state.terminology_client.map(function (val) {
+        if (val.id == payload.id) {
+          val.status = 1;
+        } else {
+          val.status = 0;
+        }
+
+        return val;
+      });
+    } else if (payload.type == 'psycho') {
+      state.terminology_psycho.map(function (val) {
+        if (val.id == payload.id) {
+          val.status = 1;
+        } else {
+          val.status = 0;
+        }
+
+        return val;
+      });
+    } else if (payload.type == 'behavior') {
+      state.terminology_behavior.map(function (val) {
+        if (val.id == payload.id) {
+          val.status = 1;
+        } else {
+          val.status = 0;
+        }
+
+        return val;
+      });
+    }
   }
 };
 var actions = {

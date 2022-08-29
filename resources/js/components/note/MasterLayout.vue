@@ -3,96 +3,64 @@
     <div class="note-background">
       <div class="note-header">
         <div class="row">
-          <div
-            class="col-lg-2 col-md-2 col-sm-2 col-6 note-logo top-note-height"
-          >
-            <img
-              style="margin-left: 2.2rem !important"
-              class="logo-img mt-2"
-              :src="
-                this.$appConfig.asset_url +
-                '/note_assets/img/Faster_note logo.png'
-              "
-              alt=""
-            />
+          <div class="col-lg-2 col-md-2 col-sm-2 col-6 note-logo top-note-height">
+            <img style="margin-left: 2.2rem !important" class="logo-img mt-2" :src="
+              this.$appConfig.asset_url +
+              '/note_assets/img/Faster_note logo.png'
+            " alt="" />
           </div>
-          <div
-            class="col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg"
-          >
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg">
             <div class="new-note-btn">
-              <button
-                v-for="note in notes_list"
-                :key="note.id"
-                :class="[
-                  'btn',
-                  'btn-success',
-                  'mt-2',
-                  'ml-3',
-                  'btn-14px',
-                  { 'btn-success-active': selected_note == note.id },
-                ]"
-                v-on:click="submitNewNote(note.id)"
-              >
-                {{ note.name }}
+              <button v-for="note in notes_list" :key="note.id" :class="[
+                'btn',
+                'btn-success',
+                'mt-2',
+                'ml-3',
+                'btn-14px',
+                { 'btn-success-active': selected_note == note.id },
+              ]" v-on:click="submitNewNote(note.id)">
+                {{  note.name  }}
               </button>
             </div>
           </div>
-          <div
-            class="
+          <div class="
               col-lg-4 col-md-4 col-sm-4 col-12
               top-note-height
               white-bg
               text-right
-            "
-          >
+            ">
             <div class="dropdown" style="float: right">
               <div class="user-profile mt-2">
-                <img
-                  v-if="userInfo != null"
-                  style="
+                <img v-if="userInfo != null" style="
                     border: 3px solid #dee2e6 !important;
                     border-radius: 50%;
                     width: 35px;
-                  "
-                  :src="[
+                  " :src="[
                     userInfo.profile_picture == null ||
-                    userInfo.profile_picture == ''
+                      userInfo.profile_picture == ''
                       ? this.$appConfig.asset_url +
-                        '/note_assets/img/icons/Basic-Note_42.jpg'
+                      '/note_assets/img/icons/Basic-Note_42.jpg'
                       : this.$appConfig.asset_url +
-                        '/uploads/images/' +
-                        userInfo.profile_picture,
-                  ]"
-                  alt=""
-                />
+                      '/uploads/images/' +
+                      userInfo.profile_picture,
+                  ]" alt="" />
                 <span v-if="userInfo != null" style="font-size: 14px">{{
-                  userInfo.name
-                }}</span>
-                <span
-                  lass="btn btn-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
+                   userInfo.name 
+                  }}</span>
+                <span lass="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="fa-solid fa-angle-down" style="color: #cbcbcb"></i>
                 </span>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <!-- <span class="dropdown-item btn">Dashboard</span> -->
-                  <router-link
-                    class="dropdown-item btn"
-                    :to="{ name: 'dashboard_page' }"
-                    >Dashboard</router-link
-                  >
-                  <span v-on:click="logoutNote" class="dropdown-item btn"
-                    >Logout</span
-                  >
+                  <router-link class="dropdown-item btn" :to="{ name: 'dashboard_page' }">Dashboard</router-link>
+                  <span v-on:click="logoutNote" class="dropdown-item btn">Logout</span>
                 </div>
               </div>
             </div>
             <div style="float: right">
-              <a class="btn mt-1" v-on:click="preferencesNoteBtn" style="font-size: 17px;"><i class="fa-solid fa-gear"></i> Preferences</a>
+              <a class="btn mt-1" v-on:click="preferencesNoteBtn" style="font-size: 17px;"><i
+                  class="fa-solid fa-gear"></i> Preferences</a>
             </div>
           </div>
         </div>
@@ -103,89 +71,50 @@
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa fa-user u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Name"
-                      class="u-input"
-                      v-model="note.name"
-                    />
+                    <input type="text" placeholder="Name" class="u-input" v-model="note.name" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-calendar-days u-input-icon"></i>
-                    <input
-                      type="date"
-                      placeholder="Date"
-                      class="u-input"
-                      v-model="note.date"
-                    />
+                    <input type="date" placeholder="Date" class="u-input" v-model="note.date" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
-                    <input
-                      type="time"
-                      placeholder="Session Time"
-                      class="u-input"
-                      v-model="note.session_time"
-                    />
+                    <input type="time" placeholder="Session Time" class="u-input" v-model="note.session_time" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-clock u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Length of Session"
-                      class="u-input"
-                      v-model="note.length_of_session"
-                    />
+                    <input type="text" placeholder="Length of Session" class="u-input"
+                      v-model="note.length_of_session" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-comment-medical u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Diagnosis"
-                      class="u-input"
-                      v-model="note.diagnosis"
-                    />
+                    <input type="text" placeholder="Diagnosis" class="u-input" v-model="note.diagnosis" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-file-invoice u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Billing Code"
-                      class="u-input"
-                      v-model="note.billing_code"
-                    />
+                    <input type="text" placeholder="Billing Code" class="u-input" v-model="note.billing_code" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-solid fa-location-arrow u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Session Location"
-                      class="u-input"
-                      v-model="note.session_location"
-                    />
+                    <input type="text" placeholder="Session Location" class="u-input" v-model="note.session_location" />
                   </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6">
                   <div class="input-group-u">
                     <i class="fa-regular fa-message u-input-icon"></i>
-                    <input
-                      type="text"
-                      placeholder="Comments"
-                      class="u-input"
-                      v-model="note.comments"
-                    />
+                    <input type="text" placeholder="Comments" class="u-input" v-model="note.comments" />
                   </div>
                 </div>
               </div>
@@ -199,26 +128,14 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 bg-green">
                 <div class="scrollable-nav">
-                  <nav
-                    class="navbar navbar-expand-lg navbar-light"
-                    style="overflow-x: auto; padding: 0"
-                  >
-                    <button
-                      class="navbar-toggler"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                    >
+                  <nav class="navbar navbar-expand-lg navbar-light" style="overflow-x: auto; padding: 0">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                      aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div
-                      class="collapse navbar-collapse"
-                      id="navbarSupportedContent"
-                    >
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav mr-auto">
                         <!-- <li class="nav-item">
                           <a
@@ -241,48 +158,35 @@
                           >
                         </li> -->
                         <li class="nav-item">
-                          <a
-                            :class="[
-                              'nav-link',
-                              'note-nav-link',
-                              'note-nav-link-headings',
-                              {
-                                'note-nav-a-click': loadMyPhraseTab.status,
-                              },
-                            ]"
-                            :style="[
-                              loadMyPhraseTab.status
-                                ? { color: '#ffff94' }
-                                : { color: '#06244c' },
-                            ]"
-                            v-on:click="loadMyPhrase"
-                          >
+                          <a :class="[
+                            'nav-link',
+                            'note-nav-link',
+                            'note-nav-link-headings',
+                            {
+                              'note-nav-a-click': loadMyPhraseTab.status,
+                            },
+                          ]" :style="[
+  loadMyPhraseTab.status
+    ? { color: '#ffff94' }
+    : { color: '#06244c' },
+]" v-on:click="loadMyPhrase">
                             My Phrases
                           </a>
                         </li>
-                        <li
-                          v-for="(x, index) in sections_list"
-                          :key="x.id"
-                          class="nav-item"
-                        >
-                          <a
-                            :class="[
-                              'nav-link',
-                              'note-nav-link',
-                              'note-nav-link-headings',
-                              {
-                                'note-nav-a-click': x.showStatus,
-                              },
-                            ]"
-                            :style="[
-                              x.showStatus
-                                ? { color: '#ffff94' }
-                                : { color: '#06244c' },
-                            ]"
-                            v-on:click="loadSections(x.id, index, x.type)"
-                          >
-                            {{ x.name }}</a
-                          >
+                        <li v-for="(x, index) in sections_list" :key="x.id" class="nav-item">
+                          <a :class="[
+                            'nav-link',
+                            'note-nav-link',
+                            'note-nav-link-headings',
+                            {
+                              'note-nav-a-click': x.showStatus,
+                            },
+                          ]" :style="[
+  x.showStatus
+    ? { color: '#ffff94' }
+    : { color: '#06244c' },
+]" v-on:click="loadSections(x.id, index, x.type)">
+                            {{  x.name  }}</a>
                         </li>
                       </ul>
                     </div>
@@ -292,13 +196,8 @@
             </div>
             <div class="tools-box-complete">
               <KeepAlive include="MyPhrase">
-                <component
-                  :is="current"
-                  :note_id="selected_note"
-                  :key="this.section_slug"
-                  :slug="this.section_slug"
-                  :section_type="section_type"
-                ></component>
+                <component :is="current" :note_id="selected_note" :key="this.section_slug" :slug="this.section_slug"
+                  :section_type="section_type"></component>
               </KeepAlive>
             </div>
           </div>
@@ -306,68 +205,41 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 bg-green">
                 <div class="scrollable-nav">
-                  <nav
-                    class="navbar navbar-expand-lg navbar-light"
-                    style="overflow-x: auto; padding: 0"
-                  >
-                    <button
-                      class="navbar-toggler"
-                      type="button"
-                      data-toggle="collapse"
-                      data-target="#navbarSupportedContent"
-                      aria-controls="navbarSupportedContent"
-                      aria-expanded="false"
-                      aria-label="Toggle navigation"
-                    >
+                  <nav class="navbar navbar-expand-lg navbar-light" style="overflow-x: auto; padding: 0">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                      aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div
-                      class="collapse navbar-collapse"
-                      id="navbarSupportedContent"
-                    >
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                       <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                          <a
-                            class="nav-link dark-blue"
-                            style="
+                          <a class="nav-link dark-blue" style="
                               color: #06244c;
                               font-weight: 600;
                               padding: 15px;
                               cursor: pointer;
-                            "
-                            v-on:click="copyContent"
-                          >
-                            <i class="fa-solid fa-copy"></i> Copy</a
-                          >
+                            " v-on:click="copyContent">
+                            <i class="fa-solid fa-copy"></i> Copy</a>
                         </li>
                         <li class="nav-item">
-                          <a
-                            class="nav-link dark-blue"
-                            style="
+                          <a class="nav-link dark-blue" style="
                               color: #06244c;
                               font-weight: 600;
                               padding: 15px;
                               cursor: pointer;
-                            "
-                            v-on:click="generatePDF"
-                          >
-                            <i class="fa-solid fa-file-export"></i> Export</a
-                          >
+                            " v-on:click="generatePDF">
+                            <i class="fa-solid fa-file-export"></i> Export</a>
                         </li>
                         <li class="nav-item">
-                          <a
-                            class="nav-link dark-blue"
-                            style="
+                          <a class="nav-link dark-blue" style="
                               color: #06244c;
                               font-weight: 600;
                               padding: 15px;
                               cursor: pointer;
-                            "
-                            v-on:click="clearContent"
-                          >
-                            <i class="fa-solid fa-eraser"></i> Clear</a
-                          >
+                            " v-on:click="clearContent">
+                            <i class="fa-solid fa-eraser"></i> Clear</a>
                         </li>
                       </ul>
                     </div>
@@ -377,182 +249,128 @@
             </div>
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div
-                  class="note-result"
-                  id="note-result"
-                  ref="noteresult"
-                  contentEditable="true"
-                >
+                <div class="note-result" id="note-result" ref="noteresult" contentEditable="true">
                   <div class="section-1">
                     <p v-if="note.name != null && note.name != ''">
                       <span class="note-heading-text-title">Name: </span>
                       <span class="note-heading-text-value">{{
-                        note.name
-                      }}</span>
+                         note.name 
+                        }}</span>
                     </p>
                     <p v-if="note.date != null && note.date != ''">
                       <span class="note-heading-text-title">Date: </span>
                       <span class="note-heading-text-value">{{
-                        note.date | moment("dddd, MMMM Do YYYY")
-                      }}</span>
+                         note.date | moment("dddd, MMMM Do YYYY") 
+                        }}</span>
                     </p>
-                    <p
-                      v-if="
-                        note.session_time != null && note.session_time != ''
-                      "
-                    >
-                      <span class="note-heading-text-title"
-                        >Session Time:
+                    <p v-if="
+                      note.session_time != null && note.session_time != ''
+                    ">
+                      <span class="note-heading-text-title">Session Time:
                       </span>
                       <span class="note-heading-text-value">{{
-                        note.session_time | customTime
-                      }}</span>
+                         note.session_time | customTime 
+                        }}</span>
                     </p>
-                    <p
-                      v-if="
-                        note.length_of_session != null &&
-                        note.length_of_session != ''
-                      "
-                    >
-                      <span class="note-heading-text-title"
-                        >Length of Session:
+                    <p v-if="
+                      note.length_of_session != null &&
+                      note.length_of_session != ''
+                    ">
+                      <span class="note-heading-text-title">Length of Session:
                       </span>
                       <span class="note-heading-text-value">{{
-                        note.length_of_session
-                      }}</span>
+                         note.length_of_session 
+                        }}</span>
                     </p>
                     <p v-if="note.diagnosis != null && note.diagnosis != ''">
                       <span class="note-heading-text-title">Diagnosis: </span>
                       <span class="note-heading-text-value">{{
-                        note.diagnosis
-                      }}</span>
+                         note.diagnosis 
+                        }}</span>
                     </p>
-                    <p
-                      v-if="
-                        note.billing_code != null && note.billing_code != ''
-                      "
-                    >
-                      <span class="note-heading-text-title"
-                        >Billing Code:
+                    <p v-if="
+                      note.billing_code != null && note.billing_code != ''
+                    ">
+                      <span class="note-heading-text-title">Billing Code:
                       </span>
                       <span class="note-heading-text-value">{{
-                        note.billing_code
-                      }}</span>
+                         note.billing_code 
+                        }}</span>
                     </p>
-                    <p
-                      v-if="
-                        note.session_location != null &&
-                        note.session_location != ''
-                      "
-                    >
-                      <span class="note-heading-text-title"
-                        >Session Location:
+                    <p v-if="
+                      note.session_location != null &&
+                      note.session_location != ''
+                    ">
+                      <span class="note-heading-text-title">Session Location:
                       </span>
                       <span class="note-heading-text-value">{{
-                        note.session_location
-                      }}</span>
+                         note.session_location 
+                        }}</span>
                     </p>
                     <p v-if="note.comments != null && note.comments != ''">
                       <span class="note-heading-text-title">Comments: </span>
                       <span class="note-heading-text-value">{{
-                        note.comments
-                      }}</span>
+                         note.comments 
+                        }}</span>
                     </p>
                     <div class="heading-sections-note-result">
-                      <div
-                        class="div"
-                        v-for="x in allHeadingsStore"
-                        :key="x.id"
-                      >
+                      <div class="div" v-for="x in allHeadingsStore" :key="x.id">
                         <h6 v-if="x.status == 1">
-                          <label class="ex-bold-heading"
-                            >{{ x.heading_text }}:</label
-                          >
-                          <label>{{ x.heading_content }}</label>
+                          <label class="ex-bold-heading">{{  x.heading_text  }}:</label>
+                          <label>{{  x.heading_content  }}</label>
                         </h6>
                       </div>
                     </div>
                     <div class="heading-sections-note-result">
-                      <div
-                        class="form-inline-note"
-                        v-for="x in formQuestions.filter(
-                          (x) => x.formType == 'form-inline'
-                        )"
-                        :key="x.id"
-                      >
+                      <div class="form-inline-note" v-for="x in formQuestions.filter(
+                        (x) => x.formType == 'form-inline'
+                      )" :key="x.id">
                         <div>
                           <h6 v-if="x.textInput != null && x.textInput != ''">
-                            <label class="ex-bold-heading"
-                              >{{ x.question_text }}:</label
-                            >
-                            <label>{{ x.textInput }}</label>
+                            <label class="ex-bold-heading">{{  x.question_text  }}:</label>
+                            <label>{{  x.textInput  }}</label>
                           </h6>
                         </div>
                       </div>
                       <!--form-inline-note-->
-                      <div
-                        class="form-nextline-note"
-                        v-for="x in formQuestions.filter(
-                          (x) => x.formType == 'form-nextline'
-                        )"
-                        :key="x.id"
-                      >
+                      <div class="form-nextline-note" v-for="x in formQuestions.filter(
+                        (x) => x.formType == 'form-nextline'
+                      )" :key="x.id">
                         <div>
                           <div v-if="x.textInput != null && x.textInput != ''">
                             <h6>
-                              <label class="ex-bold-heading"
-                                >{{ x.question_text }}:</label
-                              >
+                              <label class="ex-bold-heading">{{  x.question_text  }}:</label>
                             </h6>
                             <p>
-                              <label>{{ x.textInput }}</label>
+                              <label>{{  x.textInput  }}</label>
                             </p>
                           </div>
                         </div>
                       </div>
                       <!--form-nextline-->
                       <div class="statement-questions-note">
-                        <div
-                          class="statement-single-question"
-                          v-for="x in questionsData.filter(
-                            (x) =>
-                              x.isDisplay && x.question_type == 'statements'
-                          )"
-                          :key="x.id"
-                        >
-                          <span class="d-none">{{ x.revision }}</span>
+                        <div class="statement-single-question" v-for="x in questionsData.filter(
+                          (x) =>
+                            x.isDisplay && x.question_type == 'statements'
+                        )" :key="x.id">
+                          <span class="d-none">{{  x.revision  }}</span>
                           <h6>
-                            <label class="ex-bold-heading"
-                              >{{ x.section_name }}:</label
-                            >
+                            <label class="ex-bold-heading">{{  x.section_name  }}:</label>
                           </h6>
-                          <p
-                            v-for="sm in x.statement_master"
-                            :key="sm.id"
-                            class="sm"
-                          >
-                            <span
-                              v-if="
-                                sm.selectedOptions &&
-                                sm.selectedOptions.length > 0
-                              "
-                            >
-                              <span>{{ sm.statement_text }}</span>
-                              <span
-                                v-for="sd in x.statement_detail"
-                                :key="sd.id"
-                                class="sd"
-                              >
+                          <p v-for="sm in x.statement_master" :key="sm.id" class="sm">
+                            <span v-if="
+                              sm.selectedOptions &&
+                              sm.selectedOptions.length > 0
+                            ">
+                              <span>{{ sm.statement_text | removeStringClient(terminologyClient) }}</span>
+                              <span v-for="sd in x.statement_detail" :key="sd.id" class="sd">
                                 <span v-for="dop in sd.options" :key="dop.id">
-                                  <span
-                                    v-if="
-                                      sm.selectedOptions &&
-                                      sm.selectedOptions.find(
-                                        (fi) => fi == dop.id
-                                      )
-                                    "
-                                    >{{ dop.option_text }}.</span
-                                  >
+                                  <span v-if="
+                                    sm.selectedOptions &&
+                                    sm.selectedOptions.find(
+                                      (fi) => fi == dop.id
+                                    )
+                                  ">{{  dop.option_text  }}.</span>
                                 </span>
                               </span>
                             </span>
@@ -563,82 +381,51 @@
                     </div>
                     <h6 class="ex-bold-heading">Session Note:</h6>
                     <p>
-                      <span
-                        v-for="x in questionsData.filter(
-                          (x) => x.isDisplay && x.question_type != 'statements'
-                        )"
-                        :key="x.id"
-                      >
-                        <span
-                          v-if="
-                            x.question_type == 'text' ||
-                            x.question_type == 'tags'
-                          "
-                        >
+                      <span v-for="x in questionsData.filter(
+                        (x) => x.isDisplay && x.question_type != 'statements'
+                      )" :key="x.id">
+                        <span v-if="
+                          x.question_type == 'text' ||
+                          x.question_type == 'tags'
+                        ">
                           <span v-if="x.only_show_options == false">
-                            <span>{{ x.question_text }}</span>
+                            <span>{{  x.question_text | removeStringClient(terminologyClient)  }}</span>
                             <span v-for="(v, i) in x.options" :key="v.id">
-                              <span
-                                v-if="x.selectedOptions.indexOf(v.id) != -1"
-                              >
+                              <span v-if="x.selectedOptions.indexOf(v.id) != -1">
                                 <span v-if="i >= 1 && x.options.length >= i">
-                                  ,</span
-                                >
-                                {{ v.option_text }}</span
-                              > </span
-                            >.
+                                  ,</span>
+                                {{  v.option_text  }}</span> </span>.
                           </span>
                           <span v-else>
                             <span v-for="v in x.options" :key="v.id">
-                              <span v-if="x.selectedOptions.indexOf(v.id) != -1"
-                                >{{ v.option_text }}.
+                              <span v-if="x.selectedOptions.indexOf(v.id) != -1">{{  v.option_text  }}.
                               </span>
                             </span>
                           </span>
                         </span>
-                        <span
-                          v-else-if="
-                            x.question_type == 'tags-replacement-option'
-                          "
-                        >
+                        <span v-else-if="
+                          x.question_type == 'tags-replacement-option'
+                        ">
                           <span>{{
-                            x.question_text | removeOptionString(x)
-                          }}</span>
-                          <span
-                            v-for="(v, i) in x.options"
-                            :key="v.id"
-                            class="d-none"
-                          >
+                             x.question_text | removeOptionString(x) 
+                            }}</span>
+                          <span v-for="(v, i) in x.options" :key="v.id" class="d-none">
                             <span v-if="x.selectedOptions.indexOf(v.id) != -1">
                               <span v-if="i >= 1 && x.options.length >= i">
-                                ,</span
-                              >
-                              {{ v.option_text }}</span
-                            > </span
-                          >.
+                                ,</span>
+                              {{  v.option_text  }}</span> </span>.
                         </span>
                       </span>
                     </p>
                   </div>
                   <div class="section-2">
                     <p class="text-left note-hr-line"></p>
-                    <p v-if="userInfo != null">{{ userInfo.signature }}</p>
+                    <p v-if="userInfo != null">{{  userInfo.signature  }}</p>
                   </div>
                 </div>
-                <VueHtml2pdf
-                  :show-layout="false"
-                  :float-layout="true"
-                  :enable-download="true"
-                  :preview-modal="true"
-                  :paginate-elements-by-height="1400"
-                  filename="myPDF"
-                  :pdf-quality="2"
-                  :manual-pagination="false"
-                  pdf-format="a4"
-                  pdf-orientation="landscape"
-                  pdf-content-width="100%"
-                  ref="html2Pdf"
-                >
+                <VueHtml2pdf :show-layout="false" :float-layout="true" :enable-download="true" :preview-modal="true"
+                  :paginate-elements-by-height="1400" filename="myPDF" :pdf-quality="2" :manual-pagination="false"
+                  pdf-format="a4" pdf-orientation="landscape" pdf-content-width="100%" ref="html2Pdf">
                   <section slot="pdf-content" id="pdf_to_append">
                     <!-- PDF Content Here -->
                   </section>
@@ -649,63 +436,68 @@
         </div>
       </div>
     </div>
-        <!--model start-->
-    <div
-      class="modal fade"
-      id="preferencesNoteModal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="newNoteModalLabel"
-      aria-hidden="true"
-    >
+    <!--model start-->
+    <div class="modal fade" id="preferencesNoteModal" tabindex="-1" role="dialog" aria-labelledby="newNoteModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="newNoteModalLabel">
-                Preferences and Advanced Options
-              </h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="system-settings">
-                <div class="single-setting">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <h6 class="font-weight-600">Terminology</h6>
-                      <h6>Which terms do you prefer (current selections are highlighted)?</h6>
+          <div class="modal-header">
+            <h5 class="modal-title" id="newNoteModalLabel">
+              Preferences and Advanced Options
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="system-settings">
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Terminology</h6>
+                    <h6>Which terms do you prefer (current selections are highlighted)?</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in terminologyClient" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'client')">
+                        {{  btn.name  }}
+                      </button>
                     </div>
-                    <div class="col-lg-12">
-                      <div class="buttons">
-                        <button class="btn btn-success btn-14px" value="client">Client</button>
-                        <button class="btn btn-success btn-14px" value="patient">Patient</button>
-                        <button class="btn btn-success btn-14px" value="person">Person</button>
-                        <button class="btn btn-success btn-14px" value="student">Student</button>
-                        <button class="btn btn-success btn-14px" value="youth">youth</button>
-                      </div>
+                  </div>
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in terminologyPsycho" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'psycho')">
+                        {{  btn.name  }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in terminologyBehavior" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'behavior')">
+                        {{  btn.name  }}
+                      </button>
                     </div>
                   </div>
                 </div>
+                <!--row-->
               </div>
             </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Discard Changes and close
-              </button>
-              <button type="submit" class="btn btn-success">
-                Save
-              </button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="submit" class="btn btn-success">
+              Save
+            </button> -->
+          </div>
         </div>
       </div>
     </div>
@@ -901,6 +693,12 @@ export default {
           }
         });
     },
+    changeTerminologyDefault(id, type) {
+      this.$store.commit("note/changeTerminologyDefault", {
+        id: id,
+        type: type
+      });
+    }
   },
   computed: {
     allHeadingsStore() {
@@ -920,6 +718,15 @@ export default {
     },
     formQuestions() {
       return this.$store.state.note.formQuestions;
+    },
+    terminologyClient() {
+      return this.$store.state.note.terminology_client;
+    },
+    terminologyPsycho() {
+      return this.$store.state.note.terminology_psycho;
+    },
+    terminologyBehavior() {
+      return this.$store.state.note.terminology_behavior;
     },
   },
 };

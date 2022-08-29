@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
 Vue.filter("removeOptionString", (value, arg) => {
     let txt = "";
@@ -15,4 +15,8 @@ Vue.filter("removeOptionString", (value, arg) => {
 });
 Vue.filter("customTime", (value) => {
     return Vue.moment(value, "HH:mm").format('LT');
+});
+Vue.filter("removeStringClient", (val, arg) => {
+    let keyword_obj = arg.find(x => x.status == 1);
+    return val.replace('client', keyword_obj.name);
 });

@@ -9,6 +9,21 @@ const state = {
     current_parent_section_id: null,
     current_sub_section_id: null,
     activeSectionName: null,
+    terminology_client: [
+        { id: 1, name: "client", status: 1 },
+        { id: 2, name: "patient", status: 0 },
+        { id: 3, name: "person", status: 0 },
+        { id: 4, name: "student", status: 0 },
+        { id: 5, name: "youth", status: 0 },
+    ],
+    terminology_psycho: [
+        { id: 1, name: "psychodynamic", status: 1 },
+        { id: 2, name: "psychoanalytic", status: 0 },
+    ],
+    terminology_behavior: [
+        { id: 1, name: "behavior", status: 1 },
+        { id: 2, name: "behaviour", status: 0 },
+    ],
 };
 const getters = {
     currentSectionFormQuestions(state) {
@@ -167,6 +182,37 @@ const mutations = {
         state.questions[qindex].editAble = false;
         state.questions[qindex].options[oindex].editAble = false;
         state.questions[qindex].options[oindex].option_text = payload.option_text;
+    },
+    changeTerminologyDefault(state, payload) {
+        // console.log(payload);
+        if (payload.type == 'client') {
+            state.terminology_client.map((val) => {
+                if (val.id == payload.id) {
+                    val.status = 1;
+                } else {
+                    val.status = 0;
+                }
+                return val;
+            });
+        } else if (payload.type == 'psycho') {
+            state.terminology_psycho.map((val) => {
+                if (val.id == payload.id) {
+                    val.status = 1;
+                } else {
+                    val.status = 0;
+                }
+                return val;
+            });
+        } else if (payload.type == 'behavior') {
+            state.terminology_behavior.map((val) => {
+                if (val.id == payload.id) {
+                    val.status = 1;
+                } else {
+                    val.status = 0;
+                }
+                return val;
+            });
+        }
     }
 };
 const actions = {

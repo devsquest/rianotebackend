@@ -48,10 +48,10 @@
                 <div class="col-md-3 col-12 mr-5 ml-5">
                     <div class="pricing-single">
                         <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">DOWNLOAD VERSION</p>
+                            <p class="pricing-single-header-version-name">1 MONTH</p>
                             <p>
                                 <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">185</span>
+                                <span class="pricing-single-header-version-price-value">15</span>
                             </p>
                             <p class="pricing-single-header-version-price-by">USD Total</p>
                         </div>
@@ -73,12 +73,12 @@
                 <div class="col-md-3 col-12 mr-5 ml-5">
                     <div class="pricing-single">
                         <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">INDIVIDUAL MONTH</p>
+                            <p class="pricing-single-header-version-name">6 MONTH</p>
                             <p>
                                 <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">15</span>
+                                <span class="pricing-single-header-version-price-value">84</span>
                             </p>
-                            <p class="pricing-single-header-version-price-by">USD/Month</p>
+                            <p class="pricing-single-header-version-price-by">USD Total</p>
                         </div>
                         <div class="pricing-single-body mt-5">
                             <div class="pricing-single-body-text text-center">
@@ -98,10 +98,10 @@
                 <div class="col-md-3 col-12 mr-5 ml-5">
                     <div class="pricing-single">
                         <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">INDIVIDUAL ANNUAL</p>
+                            <p class="pricing-single-header-version-name">1 YEAR</p>
                             <p>
                                 <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">150</span>
+                                <span class="pricing-single-header-version-price-value">180</span>
                             </p>
                             <p class="pricing-single-header-version-price-by">USD/Month</p>
                         </div>
@@ -122,79 +122,6 @@
                 <!--col-->
             </div>
         </div>
-        <!-- <div class="col-md-12">
-            <h1 class="scnd-pg-h2-pricing mt-5">WHICH NOTE DESIGNER <br> VERSION IS BEST FOR YOU?</h1>
-        </div>
-        <div class="col-md-6">
-            <div class="content">
-                <h4>BENEFITS OF ALL VERSIONS OFNOTE DESIGNER:</h4>
-                <ul class="list-group content-list">
-                    <li class="list-group-item lst" style="font-weight:bold;">30-day trial period: Just return
-                        for full-refund if you are not satisfied </li>
-                    <li class="list-group-item lst">Notes are never stored in the cloud, to protect the
-                        confidentiality of your information.</li>
-                    <li class="list-group-item lst">Point-Click-Your note is done: Hundreds of phrases to
-                        choose from, organized according to the client/patient's affective and mental state,
-                        the themes of the session, the interventions or treatments in the session, and an
-                        evaluation of progress plus plans for ongoing treatment. <b style="font-weight:bold;">SOAP</b> format is also an option.</li>
-                    <li class="list-group-item lst">Customize your own statements for each section of the
-                        note.</li>
-                    <li class="list-group-item lst">Add specific comments about the session, as appropriate.
-                    </li>
-                    <li class="list-group-item lst">Each note includes your personalized signature line, to
-                        which you can add lines with your institutional affiliation, address, etc.</li>
-                    <li class="list-group-item lst">Set your preferences for wording (e.g., "client" vs
-                        "patient"; "behaviour" vs "behavior").</li>
-                    <li class="list-group-item lst">Create an Intake or Termination Note.</li>
-                    <li class="list-group-item lst">**Includes a new "Treatment Plan" module at no extra
-                        charge.</li>
-                    <li class="list-group-item lst">Customize your own headings as needed.</li>
-                    <li class="list-group-item lst">Print your note, or copy it to your word processor or EHR.
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="content rght-content ">
-                <h4>BENEFITS OF THE ONLINE SUBSCRIPTION VERSION:</h4>
-                <ul class="list-group content-list">
-                    <li class="list-group-item lst">Can be used on all of your tablets (iPads, Chromebooks),
-                        laptops and desktops.</li>
-                    <li class="list-group-item lst">New content and features added and updated regularly</li>
-                    <li class="list-group-item lst">Offers almost unlimited space for you to create your own
-                        content</li>
-                    <li class="list-group-item lst">Access to all your customizations from all of your devices
-                    </li>
-                    <li class="list-group-item lst">All your customizations are stored safely for future use
-                    </li>
-                    <li class="list-group-item lst">Users can edit the pre-set statements</li>
-                    <li class="list-group-item lst">Low monthly or annual fee options</li>
-                    <li class="list-group-item lst">Ideal for clinics and groups (with discount rates for
-                        groups of 3 or more)</li>
-                </ul>
-            </div>
-            <div class="col-md-6">
-                <div class="content rght-content rght-lower-content">
-                    <h4>BENEFITS OF THE NOTE DESIGNER DOWNLOAD VERSION:</h4>
-                    <ul class="list-group content-list">
-                        <li class="list-group-item lst">One-time fee</li>
-                        <li class="list-group-item lst">Can download onto all your Mac and/or Windows
-                            computers</li>
-                        <li class="list-group-item lst">Offers temporary short-term storage on your computer
-                        </li>
-                        <li class="list-group-item lst">Users can hide pre-set statements they do not use
-                        </li>
-                        <li class="list-group-item lst">Users can create and customize hundreds of their own
-                            statements</li>
-                        <li class="list-group-item lst">Group rates available (contact us for more details)
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <h1 class="scnd-pg-h2-pricing">WHICH NOTE DESIGNER <br>
-            VERSION IS BEST FOR YOU? </h1>
-        <img src="Pricing_27.png" alt="Screen" class="screen w-50 mx-auto d-block"> -->
     </div>
     <!--row-->
     <div class="row forth-pg">
