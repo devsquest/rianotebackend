@@ -18,16 +18,16 @@ class UserController extends Controller
      *
      * @return JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
-        if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
+        if (Auth::attempt(['email' => request('email'), 'password' => request('password'), 'status' => 1])) {
             $user = Auth::user();
             $token =  $user->createToken('MyApp')->plainTextToken;
             $response = ['status' => 'success', 'msg' => 'Login successfully!', 'data' => ['token' => $token, 'user' => $user]];
@@ -43,21 +43,15 @@ class UserController extends Controller
      */
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-            'c_password' => 'required|same:password',
+        $request->validate([
+                'package' => 'required',
+                'name' => 'required',
+                'email' => 'required|email|unique:users',
+                'signature' => 'required',
+                'password' => 'required|min:6',
         ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
-        }
         $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
-        return response()->json(['success' => $success], $this->successStatus);
+        return $input;
     }
     /**
      * details api
@@ -77,7 +71,7 @@ class UserController extends Controller
     public function updateUser(Request $request)
     {
         $data = $request->all();
-        if(isset($data['password'])){
+        if (isset($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
         $user = User::find(Auth::user()->id)->update($data);

@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-section-part">
+  <div class="vue-section-part" style="margin-top: -1em">
     <div class="questionnaire" v-if="section_type == 'questionnaire'">
       <div
         class="row"

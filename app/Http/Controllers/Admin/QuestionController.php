@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Section;
 use App\Models\Option;
+use App\Models\StatementMaster;
+use App\Models\StatementDetail;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -68,9 +70,11 @@ class QuestionController extends Controller
 
     public function deleteQuestion($id)
     {
+        $statement_master = StatementMaster::where('question_id', $id)->delete();
+        $statement_detail = StatementDetail::where('question_id', $id)->delete();
         $options = Option::where('question_id', $id)->delete();
-        Question::destroy($id);
-        return redirect('admin/question-list')->with('status', 'Question Has Been Deleted Successfully');
+        $question = Question::destroy($id);
+        return redirect()->back()->with('status', 'Question Has Been Deleted Successfully');
     }
 
     public function editQuestion($id)

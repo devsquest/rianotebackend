@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\HeadingController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,6 @@ Route::get('/homepage/faq', [HomeController::class, 'faq'])->name('front.faq');
 Route::get('/homepage/test', [HomeController::class, 'test'])->name('front.test');
 
 Auth::routes(['register' => false]);
-
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
-
-Route::get('/backup', [HeadingController::class, 'our_backup_database']);
 
 Route::get('/note/{view?}', [\App\Http\Controllers\HomeController::class, 'index'])->where('view', '(.*)')->name('vue_page');
 
@@ -135,3 +132,15 @@ Route::prefix('admin')->group(function () {
     Route::get('edit-user/{id}', [\App\Http\Controllers\Auth\UserController::class, 'editUser'])
         ->middleware('auth');
 });
+
+// Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth']], function () {
+//     /**Dashboard */
+//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+//     /**User */
+//     Route::get('/users', [UserController::class, 'index'])->name('user_index');
+//     Route::get('/users/add', [UserController::class, 'create'])->name('user_create');
+//     Route::post('/users/add', [UserController::class, 'store'])->name('user_store');
+//     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user_edit');
+//     Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('user_update');
+//     Route::post('/users/enterdetail', [UserController::class, 'enterDetail'])->name('user_enter_detail');
+// });

@@ -45,81 +45,29 @@
         </div>
         <div class="col-md-12 mt-5 mb-5">
             <div class="row">
+                @foreach($subscriptions as $subscription)
                 <div class="col-md-3 col-12 mr-5 ml-5">
                     <div class="pricing-single">
                         <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">1 MONTH</p>
+                            <p class="pricing-single-header-version-name">{{ $subscription->name }}</p>
                             <p>
-                                <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">15</span>
+                                <span class="pricing-single-header-version-price-sign">{{ $subscription->currency_sign }}</span>
+                                <span class="pricing-single-header-version-price-value">{{ round($subscription->price, 0) }}</span>
                             </p>
-                            <p class="pricing-single-header-version-price-by">USD Total</p>
+                            <p class="pricing-single-header-version-price-by">{{ $subscription->currency }} Total</p>
                         </div>
                         <div class="pricing-single-body mt-5">
+                            {!! $subscription->description !!}
                             <div class="pricing-single-body-text text-center">
-                                <p class="pricing-single-body-text-p">Mac and/or Windows</p>
-                                <p class="pricing-single-body-text-p">All your computers</p>
-                                <p class="pricing-single-body-text-p">Short-term Storage on your computer</p>
-                                <p class="pricing-single-body-text-p">One-time Fee</p>
-                                <p class="pricing-single-body-text-p">Group pricing? contact us!</p>
                                 <p class="pt-5 pb-5">
-                                    <button class="btn pricing-single-body-text-btn">Start Now</button>
+                                    <a href="{{ url('/note/subscription?pk='. $subscription->stripe_price_id) }}" class="btn pricing-single-body-text-btn">Start Now</a>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--col-->
-                <div class="col-md-3 col-12 mr-5 ml-5">
-                    <div class="pricing-single">
-                        <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">6 MONTH</p>
-                            <p>
-                                <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">84</span>
-                            </p>
-                            <p class="pricing-single-header-version-price-by">USD Total</p>
-                        </div>
-                        <div class="pricing-single-body mt-5">
-                            <div class="pricing-single-body-text text-center">
-                                <p class="pricing-single-body-text-p">Mac and/or Windows</p>
-                                <p class="pricing-single-body-text-p">Runs in your browser</p>
-                                <p class="pricing-single-body-text-p">Access from any computer</p>
-                                <p class="pricing-single-body-text-p">Low monthly Fee</p>
-                                <p class="pricing-single-body-text-p">Highly customizeable</p>
-                                <p class="pt-5 pb-5">
-                                    <button class="btn pricing-single-body-text-btn">Start Now</button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--col-->
-                <div class="col-md-3 col-12 mr-5 ml-5">
-                    <div class="pricing-single">
-                        <div class="pricing-single-header text-center pt-4">
-                            <p class="pricing-single-header-version-name">1 YEAR</p>
-                            <p>
-                                <span class="pricing-single-header-version-price-sign">$</span>
-                                <span class="pricing-single-header-version-price-value">180</span>
-                            </p>
-                            <p class="pricing-single-header-version-price-by">USD/Month</p>
-                        </div>
-                        <div class="pricing-single-body mt-5">
-                            <div class="pricing-single-body-text text-center">
-                                <p class="pricing-single-body-text-p">Mac and/or Windows</p>
-                                <p class="pricing-single-body-text-p">Runs in your browser</p>
-                                <p class="pricing-single-body-text-p">Access from any computer</p>
-                                <p class="pricing-single-body-text-p">Even lower annual Fee</p>
-                                <p class="pricing-single-body-text-p">Highly customizeable</p>
-                                <p class="pt-5 pb-5">
-                                    <button class="btn pricing-single-body-text-btn">Start Now</button>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--col-->
+                @endforeach
             </div>
         </div>
     </div>

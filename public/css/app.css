@@ -79,12 +79,14 @@
   color: white;
   position: absolute;
   left: 30px;
+  bottom: 1px;
 }
 
 .u-input::placeholder {
   color: white;
   position: absolute;
   left: 30px;
+  bottom: 1px;
 }
 
 .u-input:-ms-input-placeholder {
@@ -102,14 +104,14 @@
 .u-input-icon {
   color: white;
   position: relative;
-  top: 23px;
+  top: 20px;
   left: 5px;
 }
 
 .u-input {
   width: 100%;
   border: none;
-  height: 27px;
+  height: 20px;
   background-color: #0e386a;
   border-bottom: 1px solid rgb(28, 81, 214);
   padding-left: 30px;
@@ -215,6 +217,10 @@
   background-color: #0e386a;
   color: white;
   height: 28px;
+}
+
+.single-tools-option {
+  margin-bottom: -2.1em;
 }
 
 .note-questions-single-option-box {
@@ -561,8 +567,8 @@
   border: 1px solid #ffff94;
   border-radius: 3px;
   position: relative;
-  bottom: 2em;
-  left: 88%;
+  bottom: 3em;
+  left: 94%;
 }
 
 .note-btn-hover-edit-danger {
@@ -589,4 +595,16 @@
 
 .font-weight-600 {
   font-weight: 600;
+}
+
+.note-signup-invalid-feedback {
+  position: relative;
+  bottom: 1.2em;
+}
+
+.login-u-input option {
+  margin: 40px;
+  background: #0e386a;
+  color: #fff;
+  text-shadow: 0 1px 0 #0e386a;
 }

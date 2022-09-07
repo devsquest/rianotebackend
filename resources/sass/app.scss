@@ -80,6 +80,7 @@ $btn-color : #53b848;
     color: white;
     position: absolute;
     left: 30px;
+    bottom: 1px;
 }
 
 .u-input:-ms-input-placeholder {
@@ -97,14 +98,14 @@ $btn-color : #53b848;
 .u-input-icon {
     color: white;
     position: relative;
-    top: 23px;
+    top: 20px;
     left: 5px;
 }
 
 .u-input {
     width: 100%;
     border: none;
-    height: 27px;
+    height: 20px;
     background-color: $u-color-1;
     border-bottom: 1px solid $u-color-2;
     padding-left: 30px;
@@ -205,6 +206,10 @@ $btn-color : #53b848;
     background-color: $u-color-1;
     color: white;
     height: 28px;
+}
+
+.single-tools-option {
+    margin-bottom: -2.1em;
 }
 
 .note-questions-single-option-box {
@@ -552,8 +557,8 @@ $btn-color : #53b848;
     border: 1px solid $u-color-3;
     border-radius: 3px;
     position: relative;
-    bottom: 2em;
-    left: 88%;
+    bottom: 3em;
+    left: 94%;
 }
 
 .note-btn-hover-edit-danger {
@@ -580,4 +585,16 @@ $btn-color : #53b848;
 
 .font-weight-600 {
     font-weight: 600;
+}
+
+.note-signup-invalid-feedback {
+    position: relative;
+    bottom: 1.2em;
+}
+
+.login-u-input option {
+    margin: 40px;
+    background: $u-color-1;
+    color: #fff;
+    text-shadow: 0 1px 0 $u-color-1;
 }

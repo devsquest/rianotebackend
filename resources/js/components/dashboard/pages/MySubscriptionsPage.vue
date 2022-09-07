@@ -22,15 +22,9 @@
                   <tr>
                     <td>Monthly individual</td>
                     <td>
-                      <stripe-checkout
-                        ref="checkoutRef"
-                        mode="payment"
-                        :pk="publishableKey"
-                        :line-items="lineItems"
-                        :success-url="successURL"
-                        :cancel-url="cancelURL"
-                        @loading="(v) => (loading = v)"
-                      />
+                      <stripe-checkout ref="checkoutRef" mode="subscription" :pk="publishableKey"
+                        :line-items="lineItems" :success-url="successURL" :cancel-url="cancelURL"
+                        @loading="v => loading = v" />
                       <button class="btn btn-info btn-14px" v-on:click="submit">
                         Pay Now
                       </button>
@@ -56,6 +50,7 @@
 </template>
 <script>
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
+
 export default {
   name: "MySubscriptionsPage",
   components: {
@@ -63,20 +58,21 @@ export default {
   },
   data() {
     return {
-      publishableKey: "pk_test_TYooMQauvdEDq54NiTphI7jx",
+      publishableKey: process.env.MIX_STRIPE_PK,
       lineItems: [
         {
-          price: "120", // The id of the one-time price you created in your Stripe dashboard
+          price: "price_1LdW0FIMnKC1Keli4FyCDrVN", // The id of the one-time price you created in your Stripe dashboard
           quantity: 1,
         },
       ],
       successURL:
-        "http://127.0.0.1:8000/note/user/my-subscriptions?status=success",
+        "http://127.0.0.1:8000/note/user/my-subscriptions?status=success&ref=",
       cancelURL:
         "http://127.0.0.1:8000/note/user/my-subscriptions?status=cancel",
     };
   },
   mounted() {
+    console.log(process.env.MIX_ENC_KEY);
     this.$emit("updateNav", this.$route.name);
     document.title = "My Subscriptions";
   },
@@ -86,7 +82,18 @@ export default {
     },
     submit() {
       // You will be redirected to Stripe's secure checkout page
+      this.successURL = this.successURL + this.makeAuthString(45);
       this.$refs.checkoutRef.redirectToCheckout();
+    },
+    makeAuthString(length) {
+      let result = '';
+      let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+          charactersLength));
+      }
+      return result;
     },
   },
 };

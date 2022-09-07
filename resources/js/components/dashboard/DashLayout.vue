@@ -154,7 +154,6 @@
                         ? this.$appConfig.asset_url +
                           '/note_assets/img/icons/Basic-Note_42.jpg'
                         : this.$appConfig.asset_url +
-                          '/uploads/images/' +
                           userInfo.profile_picture,
                     ]"
                     alt="profile"

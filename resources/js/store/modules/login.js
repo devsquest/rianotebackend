@@ -7,6 +7,9 @@ const state = {
 };
 const getters = {};
 const mutations = {
+    signup(state, payload) {
+        console.log(payload);
+    },
     login(state, payload) {
         state.error_log_text = null;
         if (payload.status == '200' && payload.data.data.user.isAdmin != 1) {
@@ -17,7 +20,7 @@ const mutations = {
             state.user = payload.data.data.user;
             localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
         } else if (payload.status == '200' && payload.data.data.user.isAdmin == 1) {
-            state.error_log_text = 'You are not allowed to Login Man';
+            state.error_log_text = 'You are not allowed to Login!';
         } else {
             state.error_log_text = null;
         }
@@ -34,6 +37,18 @@ const mutations = {
     }
 };
 const actions = {
+    async signup(context, payload) {
+        let url = process.env.MIX_API_URL + "/api/register";
+        let headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+        };
+        return Vue.axios.post(url, payload, { headers: headers }).then((response) => {
+            context.commit('signup', response);
+        }).catch((error) => {
+            console.log(error);
+        });
+    },
     async login(context, payload) {
         let url = process.env.MIX_API_URL + "/api/login";
         let headers = {

@@ -18,13 +18,17 @@ class NoteController extends Controller
     /**
      * @return View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $notes = Note::paginate(15);
+        $user_from_query_string = $request->raw_user_id;
+        $notes = Note::where('user_id', $user_from_query_string)->paginate(15);
+        $users =  User::where('status', 1)->where('isAdmin', 0)->get();
 
         return view('note.list-note', [
-            'notes' => $notes,
-            'user' => Auth::user()
+            'notes' => isset($user_from_query_string) ? $notes : [],
+            'user' => Auth::user(),
+            'users' => $users,
+            'user_from_query_string' => $user_from_query_string
         ]);
     }
     /**

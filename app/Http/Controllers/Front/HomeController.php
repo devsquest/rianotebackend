@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Subscription;
 
 class HomeController extends Controller
 {
@@ -17,7 +18,8 @@ class HomeController extends Controller
     }
     public function pricing()
     {
-        return view('front.pricing');
+        $subscriptions = Subscription::where('status', 1)->get();
+        return view('front.pricing', compact('subscriptions'));
     }
     public function faq()
     {

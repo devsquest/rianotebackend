@@ -10,11 +10,10 @@
                   <div class="inner-content-splash">
                     <div class="img-splash">
                       <img :src="this.$appConfig.asset_url + '/note_assets/img/Faster_note logo.png'" alt="logo"
-                        class="splash-logo"></img>
+                        class="splash-logo" />
                     </div>
                     <div class="btn-section-splash mt-5">
                       <span class="btn splash-btn" v-on:click="submitNewNote">Start a new Note</span>
-                      <!-- <button class="splash-btn">Go to Dashboard</button> -->
                       <router-link class="btn splash-btn" :to="{ name: 'dashboard_page' }">Go to Dashboard</router-link>
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" style="margin-top: -1em">
     <div class="col-lg-12 col-md-12">
       <br />
       <div class="note-heading-section">

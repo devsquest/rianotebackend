@@ -28,28 +28,32 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'admin/note-list';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    protected function redirectTo()
+    {
+        return '/admin/dashboard';
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request) {
-        Auth::logout();
-        return redirect('/login');
-    }
+    // public function logout(Request $request) {
+    //     Auth::logout();
+    //     return redirect('/login');
+    // }
 
     public function login(Request $request)
     {
-        $user = User::where('email',$request->email)->first();
-        if( $user && !$user->isAdmin && !$user->status){
-            return redirect()->back()->with('error','User is not Admin or InActive');
+        $user = User::where('email', $request->email)->first();
+        if ($user && !$user->isAdmin && !$user->status) {
+            return redirect()->back()->with('error', 'User is not Admin or InActive');
         }
 
         $this->validateLogin($request);
@@ -57,8 +61,10 @@ class LoginController extends Controller
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
+        if (
+            method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)
+        ) {
             $this->fireLockoutEvent($request);
 
             return $this->sendLockoutResponse($request);

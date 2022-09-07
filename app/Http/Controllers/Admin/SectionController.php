@@ -63,7 +63,7 @@ class SectionController extends Controller
     public function deleteSection($id)
     {
         Section::destroy($id);
-        return redirect('admin/section-list')->with('status', 'Section Has Been Deleted Successfully');
+        return redirect()->back()->with('status', 'Section Has Been Deleted Successfully');
     }
 
     public function editSection($id)
