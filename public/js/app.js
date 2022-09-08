@@ -475,6 +475,9 @@ __webpack_require__.r(__webpack_exports__);
     preferencesNoteBtn: function preferencesNoteBtn() {
       $("#preferencesNoteModal").modal("show");
     },
+    helpNoteBtn: function helpNoteBtn() {
+      $("#helpNoteModal").modal("show");
+    },
     logoutNote: function logoutNote() {
       var _this = this;
 
@@ -2762,6 +2765,16 @@ var render = function render() {
       "font-size": "17px"
     },
     on: {
+      click: _vm.helpNoteBtn
+    }
+  }, [_c("i", {
+    staticClass: "fa-solid fa-circle-question"
+  }), _vm._v(" Help")]), _vm._v(" "), _c("a", {
+    staticClass: "btn mt-1",
+    staticStyle: {
+      "font-size": "17px"
+    },
+    on: {
       click: _vm.preferencesNoteBtn
     }
   }, [_c("i", {
@@ -3298,7 +3311,7 @@ var render = function render() {
       "aria-hidden": "true"
     }
   }, [_c("div", {
-    staticClass: "modal-dialog",
+    staticClass: "modal-dialog modal-lg",
     attrs: {
       role: "document"
     }
@@ -3360,7 +3373,50 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
-  }), 0)])])])])]), _vm._v(" "), _vm._m(5)])])])]);
+  }), 0)])])])])]), _vm._v(" "), _vm._m(5)])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade",
+    attrs: {
+      id: "helpNoteModal",
+      tabindex: "-1",
+      role: "dialog",
+      "aria-labelledby": "newNoteModalLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-lg",
+    attrs: {
+      role: "document"
+    }
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_c("div", {
+    staticClass: "modal-header"
+  }, [_c("h5", {
+    staticClass: "modal-title",
+    attrs: {
+      id: "newNoteModalLabel"
+    }
+  }, [_vm._v("\n            Help with " + _vm._s(this.$appConfig.app_name) + "\n          ")]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "note-help"
+  }, [_c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("Welcome to " + _vm._s(this.$appConfig.app_name) + ":")]), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("\n              " + _vm._s(this.$appConfig.app_name) + " was created by two psychologists who wanted a method for efficiently\n              creating clinical\n              notes that would be thorough and useful, as well as consistent with standard regulatory guidelines.")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para note-help-modal-para-bold"
+  }, [_vm._v("Introduction:")]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para note-help-modal-para-bold"
+  }, [_c("ul", [_c("li", [_vm._v("If this is your first time using " + _vm._s(this.$appConfig.app_name) + ", the easiest way to get started is\n                to familiarize\n                yourself with the steps for creating a basic note, which are actually quite simple. You can read some\n                or all of the detailed instructions and information below, or just close this window and get started.\n                Type a few things in, click a few buttons, and see what happens. If you find anything unclear, simply\n                use the Help menu at the top of your screen to return to this window.\n              ")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("To create a basic session note:")]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("Exporting and copying:")]), _vm._v(" "), _vm._m(8), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("Clearing your work:")]), _vm._v(" "), _vm._m(9), _vm._v(" "), _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_vm._v("Customization:")]), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _vm._m(11)])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -3450,6 +3506,63 @@ var staticRenderFns = [function () {
   }, [_c("h6", {
     staticClass: "font-weight-600"
   }, [_vm._v("Terminology")]), _vm._v(" "), _c("h6", [_vm._v("Which terms do you prefer (current selections are highlighted)?")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "modal-footer"
+  }, [_c("button", {
+    staticClass: "btn btn-secondary",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal"
+    }
+  }, [_vm._v("Close")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("button", {
+    staticClass: "close",
+    attrs: {
+      type: "button",
+      "data-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  }, [_c("span", {
+    attrs: {
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_c("ul", [_c("li", [_vm._v("Name and Date: Type the client/patient's name (or other identifer; e.g., initials) and the session\n                date in the lines at the top left.")]), _vm._v(" "), _c("li", [_vm._v("Duration and Fee: If you wish to, you can add Session Duration (Start and End times) and Fee, using\n                the fields next to Name and Date.")]), _vm._v(" "), _c("li", [_vm._v("Selecting Statements to Describe the Session: Click on the tabs to find statements relating to the\n                person's affective and mental STATE, the THEMES of the session, the interventions made ('TREATMENT')\n                and the PROGRESS made and plans for future treatment. Simply scroll through the statements listed and\n                click on the statements that apply. As you do, you will see the statements appear as the note is\n                generated to the right of the screen. When a statement is highlighted on the left, it is selected and\n                should appear in the note on the right. You may select as many of the statements as you like. When you\n                first use Note Designer, you may find it takes a few moments to locate the statements you want, but\n                after awhile you will become familiar with the statements and their location on each tab and sub-tab.\n                Or you can use the search function, above the statements, to find particular items.")]), _vm._v(" "), _c("li", [_vm._v("Removing Statements: If you wish to remove it just click the statement again and it will be\n                deselected. For each section of statements you also have the option to add your own 'custom'\n                observations if you do not find a standard statement that is suitable.")]), _vm._v(" "), _c("li", [_vm._v("Introductory and Concluding Statements: If you have additional introductory or concluding comments\n                to add, you can type them in the spaces indicated near the top of the screen and then press the +/-\n                button to add them in to (or remove them from) your note, or the X button to delete them.")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_c("ul", [_c("li", [_vm._v('When your note is finished, click the "EXPORT" button above the note and this will send it to\n                temporary window, from which you can download (as pdf) or print the note. If the format of the printed\n                note does not appear quite as you would like it, use "OPTIONS / PREFERENCES" (see below) to make\n                modifications.')]), _vm._v(" "), _c("li", [_vm._v('If you would like to edit or format the note further, or save it to your regular files, you can use\n                the "COPY" button to copy it to your system clipboard. Then you should be able to paste the note into\n                Word or your regular text-editing program: just open an empty document and choose edit/paste. Any of\n                the styling done by Note Designer (e.g., font size and style) may be lost in this operation; the note\n                will likely take on whatever formatting that you have set up in your word processor, where you can\n                then format the note however you like.')])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_c("ul", [_c("li", [_vm._v('Use the "CLEAR" button when you have finished printing, copying, or saving the note and you wish to\n                start a new one. This will completely clear the note and all statement choices from the workspace so\n                you\n                can start fresh.')])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("p", {
+    staticClass: "note-help-modal-para"
+  }, [_c("ul", [_c("li", [_vm._v("Each section of statements includes blank lines where you can add your own phrases and sentences.\n                Format your choices according to the style of the section (i.e., whether single words or phrases or\n                sentences). Then click the button at the right of the item to save your addition (which will also make\n                it available for future notes). Then click the item to add your choice into the note.")])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -4666,10 +4779,16 @@ var render = function render() {
       staticClass: "bold-heading"
     }, [_vm._v("\n                      " + _vm._s(x.question_text) + ":\n                    ")]) : _vm._e()]), _vm._v(" "), _c("div", {
       staticClass: "tools-options"
+    }, [_c("div", {
+      staticClass: "row"
     }, _vm._l(x.options, function (option) {
       return _c("div", {
         key: option.id,
-        staticClass: "single-tools-option"
+        "class": [{
+          "col-lg-12": x.question_type == "text",
+          "col-lg-6": x.question_type == "tags",
+          "col-lg-3": x.question_type == "tags-replacement-option"
+        }, "single-tools-option"]
       }, [_c("p", {
         "class": ["note-questions-single-option-box", {
           "note-questions-single-option-box-selected": x.selectedOptions.indexOf(option.id) != -1 ? true : false
@@ -4683,7 +4802,7 @@ var render = function render() {
           },
           input: _vm.editableInput
         }
-      }, [_vm._v("\n                        " + _vm._s(option.option_text) + "\n                      ")]), _vm._v(" "), _c("p", {
+      }, [_vm._v("\n                          " + _vm._s(option.option_text) + "\n                        ")]), _vm._v(" "), _c("p", {
         staticClass: "d-none"
       }, [_vm._v(_vm._s(x.editAble))]), _vm._v(" "), option.editAble ? _c("div", [_c("button", {
         staticClass: "note-btn-hover-edit-danger",
@@ -4707,7 +4826,7 @@ var render = function render() {
           }
         }
       }, [_vm._m(3, true)])])]);
-    }), 0), _vm._v(" "), _c("div", {
+    }), 0)]), _vm._v(" "), _c("div", {
       staticClass: "tools-option-add-new"
     }, [_c("h6", {
       staticClass: "bold-heading"
@@ -5103,7 +5222,6 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 

@@ -15,6 +15,7 @@
     <div id="app"></div>
 
     <script src="{{ asset('note_assets/bootstrap/jquery.slim.min.js') }}"></script>
+    <script src="{{ asset('note_assets/bootstrap/popper.min.js') }}"></script>
     <script src="{{ asset('note_assets/fontawesome/js/all.min.js') }}"></script>
     <script src="{{ asset('note_assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>

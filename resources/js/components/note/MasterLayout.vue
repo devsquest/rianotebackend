@@ -57,6 +57,8 @@
               </div>
             </div>
             <div style="float: right">
+              <a class="btn mt-1" v-on:click="helpNoteBtn" style="font-size: 17px;"><i
+                  class="fa-solid fa-circle-question"></i> Help</a>
               <a class="btn mt-1" v-on:click="preferencesNoteBtn" style="font-size: 17px;"><i
                   class="fa-solid fa-gear"></i> Preferences</a>
             </div>
@@ -437,7 +439,7 @@
     <!--model start-->
     <div class="modal fade" id="preferencesNoteModal" tabindex="-1" role="dialog" aria-labelledby="newNoteModalLabel"
       aria-hidden="true">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="newNoteModalLabel">
@@ -500,6 +502,109 @@
       </div>
     </div>
     <!--model end-->
+    <!--model start-->
+    <div class="modal fade" id="helpNoteModal" tabindex="-1" role="dialog" aria-labelledby="newNoteModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="newNoteModalLabel">
+              Help with {{ this.$appConfig.app_name }}
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="note-help">
+              <p class="note-help-modal-para">Welcome to {{ this.$appConfig.app_name }}:</p>
+              <p class="note-help-modal-para">
+                {{ this.$appConfig.app_name }} was created by two psychologists who wanted a method for efficiently
+                creating clinical
+                notes that would be thorough and useful, as well as consistent with standard regulatory guidelines.</p>
+              <br>
+              <p class="note-help-modal-para note-help-modal-para-bold">Introduction:</p>
+              <br>
+              <p class="note-help-modal-para note-help-modal-para-bold">
+              <ul>
+                <li>If this is your first time using {{ this.$appConfig.app_name }}, the easiest way to get started is
+                  to familiarize
+                  yourself with the steps for creating a basic note, which are actually quite simple. You can read some
+                  or all of the detailed instructions and information below, or just close this window and get started.
+                  Type a few things in, click a few buttons, and see what happens. If you find anything unclear, simply
+                  use the Help menu at the top of your screen to return to this window.
+                </li>
+              </ul>
+              </p>
+              <br>
+              <p class="note-help-modal-para">To create a basic session note:</p>
+              <p class="note-help-modal-para">
+              <ul>
+                <li>Name and Date: Type the client/patient's name (or other identifer; e.g., initials) and the session
+                  date in the lines at the top left.</li>
+                <li>Duration and Fee: If you wish to, you can add Session Duration (Start and End times) and Fee, using
+                  the fields next to Name and Date.</li>
+                <li>Selecting Statements to Describe the Session: Click on the tabs to find statements relating to the
+                  person's affective and mental STATE, the THEMES of the session, the interventions made ('TREATMENT')
+                  and the PROGRESS made and plans for future treatment. Simply scroll through the statements listed and
+                  click on the statements that apply. As you do, you will see the statements appear as the note is
+                  generated to the right of the screen. When a statement is highlighted on the left, it is selected and
+                  should appear in the note on the right. You may select as many of the statements as you like. When you
+                  first use Note Designer, you may find it takes a few moments to locate the statements you want, but
+                  after awhile you will become familiar with the statements and their location on each tab and sub-tab.
+                  Or you can use the search function, above the statements, to find particular items.</li>
+                <li>Removing Statements: If you wish to remove it just click the statement again and it will be
+                  deselected. For each section of statements you also have the option to add your own 'custom'
+                  observations if you do not find a standard statement that is suitable.</li>
+                <li>Introductory and Concluding Statements: If you have additional introductory or concluding comments
+                  to add, you can type them in the spaces indicated near the top of the screen and then press the +/-
+                  button to add them in to (or remove them from) your note, or the X button to delete them.</li>
+              </ul>
+              </p>
+              <br>
+              <p class="note-help-modal-para">Exporting and copying:</p>
+              <p class="note-help-modal-para">
+              <ul>
+                <li>When your note is finished, click the "EXPORT" button above the note and this will send it to
+                  temporary window, from which you can download (as pdf) or print the note. If the format of the printed
+                  note does not appear quite as you would like it, use "OPTIONS / PREFERENCES" (see below) to make
+                  modifications.</li>
+                <li>If you would like to edit or format the note further, or save it to your regular files, you can use
+                  the "COPY" button to copy it to your system clipboard. Then you should be able to paste the note into
+                  Word or your regular text-editing program: just open an empty document and choose edit/paste. Any of
+                  the styling done by Note Designer (e.g., font size and style) may be lost in this operation; the note
+                  will likely take on whatever formatting that you have set up in your word processor, where you can
+                  then format the note however you like.</li>
+              </ul>
+              </p>
+              <br>
+              <p class="note-help-modal-para">Clearing your work:</p>
+              <p class="note-help-modal-para">
+              <ul>
+                <li>Use the "CLEAR" button when you have finished printing, copying, or saving the note and you wish to
+                  start a new one. This will completely clear the note and all statement choices from the workspace so
+                  you
+                  can start fresh.</li>
+              </ul>
+              </p>
+              <p class="note-help-modal-para">Customization:</p>
+              <p class="note-help-modal-para">
+              <ul>
+                <li>Each section of statements includes blank lines where you can add your own phrases and sentences.
+                  Format your choices according to the style of the section (i.e., whether single words or phrases or
+                  sentences). Then click the button at the right of the item to save your addition (which will also make
+                  it available for future notes). Then click the item to add your choice into the note.</li>
+              </ul>
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--model end-->
   </div>
 </template>
 
@@ -554,6 +659,9 @@ export default {
   methods: {
     preferencesNoteBtn() {
       $("#preferencesNoteModal").modal("show");
+    },
+    helpNoteBtn() {
+      $("#helpNoteModal").modal("show");
     },
     logoutNote() {
       this.$store.dispatch("login/logoutUser").then(() => {

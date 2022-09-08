@@ -174,7 +174,7 @@
   border-style: none;
   background-color: hsl(0deg, 0%, 96%);
   color: hsl(0deg, 0%, 69%);
-  width: 95%;
+  width: 98%;
   font-weight: 500;
   height: 35px;
 }
@@ -202,7 +202,7 @@
 .tool-input-icon {
   position: absolute;
   top: 13px;
-  right: 3.1em;
+  right: 2.3em;
   color: hsl(0deg, 0%, 69%);
 }
 
@@ -240,7 +240,7 @@
 .questions {
   overflow: auto;
   height: 100vh;
-  padding: 10px;
+  padding-right: 10px;
 }
 
 .single-tools-option-input:focus {
@@ -580,6 +580,7 @@
   position: relative;
   bottom: 2em;
   left: 88%;
+  z-index: 1;
 }
 
 .note-btn-hover-edit-success {
@@ -591,6 +592,7 @@
   position: relative;
   bottom: 2em;
   left: 88%;
+  z-index: 1;
 }
 
 .font-weight-600 {
@@ -607,4 +609,12 @@
   background: #0e386a;
   color: #fff;
   text-shadow: 0 1px 0 #0e386a;
+}
+
+.note-help-modal-para {
+  margin: 0;
+}
+
+.note-help-modal-para-bold {
+  font-weight: bold;
 }
