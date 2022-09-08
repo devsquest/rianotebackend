@@ -648,6 +648,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this5 = this;
 
       if (this.$store.state.login.user != null) {
+        this.$store.dispatch("note/changeTerminology");
         return this.$store.state.login.user;
       } else {
         this.$store.dispatch("login/userInformation").then(function () {
@@ -669,6 +670,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     terminologyBehavior: function terminologyBehavior() {
       return this.$store.state.note.terminology_behavior;
+    },
+    openingHeading: function openingHeading() {
+      return this.$store.state.note.opening_heading;
+    },
+    sectionBreaks: function sectionBreaks() {
+      return this.$store.state.note.section_breaks;
+    },
+    spacingOptions: function spacingOptions() {
+      return this.$store.state.note.spacing_options;
+    },
+    fontStyle: function fontStyle() {
+      return this.$store.state.note.font_style;
+    },
+    fontSize: function fontSize() {
+      return this.$store.state.note.font_size;
+    },
+    dateFormat: function dateFormat() {
+      return this.$store.state.note.date_format;
+    },
+    colorOpacity: function colorOpacity() {
+      return this.$store.state.note.color_opacity;
     }
   }
 });
@@ -3373,7 +3395,147 @@ var render = function render() {
         }
       }
     }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
-  }), 0)])])])])]), _vm._v(" "), _vm._m(5)])])]), _vm._v(" "), _c("div", {
+  }), 0)])]), _vm._v(" "), _vm._m(5)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(6), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.openingHeading, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "opening_heading");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(7)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(8), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.sectionBreaks, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "section_breaks");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(9)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(10), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.spacingOptions, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "spacing_options");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(11)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(12), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.fontStyle, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "font_style");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(13)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(14), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.fontSize, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "font_size");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(15)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(16), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.dateFormat, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", "mb-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "date_format");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])]), _vm._v(" "), _vm._m(17)]), _vm._v(" "), _c("div", {
+    staticClass: "single-setting"
+  }, [_vm._m(18), _vm._v(" "), _c("div", {
+    staticClass: "row text-center"
+  }, [_c("div", {
+    staticClass: "col-lg-12 mt-1 mb-1"
+  }, [_c("div", {
+    staticClass: "buttons"
+  }, _vm._l(_vm.colorOpacity, function (btn) {
+    return _c("button", {
+      key: btn.id,
+      "class": ["btn", "btn-success", "btn-14px", "ml-1", "mr-1", "mb-1", {
+        "btn-success-active": btn.status == 1
+      }],
+      on: {
+        click: function click($event) {
+          return _vm.changeTerminologyDefault(btn.id, "color_opacity");
+        }
+      }
+    }, [_vm._v("\n                      " + _vm._s(btn.name) + "\n                    ")]);
+  }), 0)])])])])]), _vm._v(" "), _vm._m(19)])])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade",
     attrs: {
       id: "helpNoteModal",
@@ -3396,7 +3558,7 @@ var render = function render() {
     attrs: {
       id: "newNoteModalLabel"
     }
-  }, [_vm._v("\n            Help with " + _vm._s(this.$appConfig.app_name) + "\n          ")]), _vm._v(" "), _vm._m(6)]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n            Help with " + _vm._s(this.$appConfig.app_name) + "\n          ")]), _vm._v(" "), _vm._m(20)]), _vm._v(" "), _c("div", {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "note-help"
@@ -3410,13 +3572,13 @@ var render = function render() {
     staticClass: "note-help-modal-para note-help-modal-para-bold"
   }, [_c("ul", [_c("li", [_vm._v("If this is your first time using " + _vm._s(this.$appConfig.app_name) + ", the easiest way to get started is\n                to familiarize\n                yourself with the steps for creating a basic note, which are actually quite simple. You can read some\n                or all of the detailed instructions and information below, or just close this window and get started.\n                Type a few things in, click a few buttons, and see what happens. If you find anything unclear, simply\n                use the Help menu at the top of your screen to return to this window.\n              ")])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
     staticClass: "note-help-modal-para"
-  }, [_vm._v("To create a basic session note:")]), _vm._v(" "), _vm._m(7), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+  }, [_vm._v("To create a basic session note:")]), _vm._v(" "), _vm._m(21), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
     staticClass: "note-help-modal-para"
-  }, [_vm._v("Exporting and copying:")]), _vm._v(" "), _vm._m(8), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
+  }, [_vm._v("Exporting and copying:")]), _vm._v(" "), _vm._m(22), _vm._v(" "), _c("br"), _vm._v(" "), _c("p", {
     staticClass: "note-help-modal-para"
-  }, [_vm._v("Clearing your work:")]), _vm._v(" "), _vm._m(9), _vm._v(" "), _c("p", {
+  }, [_vm._v("Clearing your work:")]), _vm._v(" "), _vm._m(23), _vm._v(" "), _c("p", {
     staticClass: "note-help-modal-para"
-  }, [_vm._v("Customization:")]), _vm._v(" "), _vm._m(10)])]), _vm._v(" "), _vm._m(11)])])])]);
+  }, [_vm._v("Customization:")]), _vm._v(" "), _vm._m(24)])]), _vm._v(" "), _vm._m(25)])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -3506,6 +3668,146 @@ var staticRenderFns = [function () {
   }, [_c("h6", {
     staticClass: "font-weight-600"
   }, [_vm._v("Terminology")]), _vm._v(" "), _c("h6", [_vm._v("Which terms do you prefer (current selections are highlighted)?")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Opening heading")]), _vm._v(" "), _c("h6", [_vm._v('Do you wish to include a heading "Session Note" or "Progress Note"?')])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Section Breaks")]), _vm._v(" "), _c("h6", [_vm._v("Do you wish to have paragraph breaks and/or headings between sections of your progress note?\n                  ")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Spacing Between Options")]), _vm._v(" "), _c("h6", [_vm._v("Set your spacing between Options:")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Printed-Note Font Style")]), _vm._v(" "), _c("h6", [_vm._v("Set your Printed-Note Font Style:")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Printed-Note Font Size")]), _vm._v(" "), _c("h6", [_vm._v("Set your Printed-Note Font Size:")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Date Format")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("hr")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("h6", {
+    staticClass: "font-weight-600"
+  }, [_vm._v("Color Opacity of Selected Statements")]), _vm._v(" "), _c("h6", [_vm._v("Set color opacity of selected statements:")])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -5803,6 +6105,141 @@ var state = {
     id: 2,
     name: "behaviour",
     status: 0
+  }],
+  opening_heading: [{
+    id: 1,
+    name: "Session Note",
+    status: 1
+  }, {
+    id: 2,
+    name: "Progressive Note",
+    status: 0
+  }, {
+    id: 3,
+    name: "no heading",
+    status: 0
+  }],
+  section_breaks: [{
+    id: 1,
+    name: "no paragraph breaks",
+    status: 1
+  }, {
+    id: 2,
+    name: "paragraph breaks",
+    status: 0
+  }],
+  spacing_options: [{
+    id: 1,
+    name: 1,
+    status: 1
+  }, {
+    id: 2,
+    name: 2,
+    status: 0
+  }, {
+    id: 3,
+    name: 3,
+    status: 0
+  }, {
+    id: 4,
+    name: 4,
+    status: 0
+  }, {
+    id: 5,
+    name: 5,
+    status: 0
+  }],
+  font_style: [{
+    id: 1,
+    name: "Arial",
+    status: 1
+  }, {
+    id: 2,
+    name: "Times",
+    status: 0
+  }, {
+    id: 3,
+    name: "Courier",
+    status: 0
+  }, {
+    id: 4,
+    name: "DejaVu*",
+    status: 0
+  }],
+  font_size: [{
+    id: 1,
+    name: 12,
+    status: 1
+  }, {
+    id: 2,
+    name: 14,
+    status: 0
+  }, {
+    id: 3,
+    name: 16,
+    status: 0
+  }, {
+    id: 4,
+    name: 18,
+    status: 0
+  }, {
+    id: 5,
+    name: 20,
+    status: 0
+  }],
+  date_format: [{
+    id: 1,
+    name: "September 23, 1939",
+    status: 1
+  }, {
+    id: 2,
+    name: "09/23/1939",
+    status: 0
+  }, {
+    id: 3,
+    name: "23/09/1939",
+    status: 0
+  }, {
+    id: 4,
+    name: "1939-09-23",
+    status: 0
+  }, {
+    id: 5,
+    name: "Saturday, 23 September, 1939",
+    status: 0
+  }, {
+    id: 6,
+    name: "Saturday, September 23, 1939",
+    status: 0
+  }, {
+    id: 7,
+    name: "23 September, 1939",
+    status: 0
+  }],
+  color_opacity: [{
+    id: 1,
+    name: 0.1,
+    status: 1
+  }, {
+    id: 2,
+    name: 0.3,
+    status: 0
+  }, {
+    id: 3,
+    name: 0.5,
+    status: 0
+  }, {
+    id: 4,
+    name: 0.7,
+    status: 0
+  }, {
+    id: 5,
+    name: 0.9,
+    status: 0
+  }, {
+    id: 6,
+    name: 1.0,
+    status: 0
   }]
 };
 var getters = {
@@ -5818,6 +6255,9 @@ var getters = {
   }
 };
 var mutations = {
+  changeTerminology: function changeTerminology(state, payload) {
+    console.log(payload);
+  },
   clearContent: function clearContent(state) {
     state.all_headings = [];
     state.questions = [];
@@ -6030,6 +6470,11 @@ var mutations = {
   }
 };
 var actions = {
+  changeTerminology: function changeTerminology(context) {
+    context.commit('changeTerminology', {
+      user: context.rootState.login.user
+    });
+  },
   getQuestions: function getQuestions(context, payload) {
     return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
       var _JSON$parse, token, url, headers;

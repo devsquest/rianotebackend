@@ -489,7 +489,204 @@
                   </div>
                 </div>
                 <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
               </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Opening heading</h6>
+                    <h6>Do you wish to include a heading "Session Note" or "Progress Note"?</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in openingHeading" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'opening_heading')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Section Breaks</h6>
+                    <h6>Do you wish to have paragraph breaks and/or headings between sections of your progress note?
+                    </h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in sectionBreaks" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'section_breaks')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Spacing Between Options</h6>
+                    <h6>Set your spacing between Options:</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in spacingOptions" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'spacing_options')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Printed-Note Font Style</h6>
+                    <h6>Set your Printed-Note Font Style:</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in fontStyle" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'font_style')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Printed-Note Font Size</h6>
+                    <h6>Set your Printed-Note Font Size:</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in fontSize" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'font_size')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Date Format</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in dateFormat" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', 'mb-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'date_format')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row">
+                  <div class="col-lg-12">
+                    <hr>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
+              <div class="single-setting">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h6 class="font-weight-600">Color Opacity of Selected Statements</h6>
+                    <h6>Set color opacity of selected statements:</h6>
+                  </div>
+                </div>
+                <!--row-->
+                <div class="row text-center">
+                  <div class="col-lg-12 mt-1 mb-1">
+                    <div class="buttons">
+                      <button v-for="btn in colorOpacity" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', 'mb-1', {
+                        'btn-success-active': btn.status == 1
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'color_opacity')">
+                        {{ btn.name }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!--row-->
+              </div>
+              <!--single-setting-->
             </div>
           </div>
           <div class="modal-footer">
@@ -812,6 +1009,7 @@ export default {
     },
     userInfo() {
       if (this.$store.state.login.user != null) {
+        this.$store.dispatch("note/changeTerminology");
         return this.$store.state.login.user;
       } else {
         this.$store.dispatch("login/userInformation").then(() => {
@@ -833,6 +1031,27 @@ export default {
     },
     terminologyBehavior() {
       return this.$store.state.note.terminology_behavior;
+    },
+    openingHeading() {
+      return this.$store.state.note.opening_heading;
+    },
+    sectionBreaks() {
+      return this.$store.state.note.section_breaks;
+    },
+    spacingOptions() {
+      return this.$store.state.note.spacing_options;
+    },
+    fontStyle() {
+      return this.$store.state.note.font_style;
+    },
+    fontSize() {
+      return this.$store.state.note.font_size;
+    },
+    dateFormat() {
+      return this.$store.state.note.date_format;
+    },
+    colorOpacity() {
+      return this.$store.state.note.color_opacity;
     },
   },
 };

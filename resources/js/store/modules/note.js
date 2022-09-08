@@ -24,6 +24,52 @@ const state = {
         { id: 1, name: "behavior", status: 1 },
         { id: 2, name: "behaviour", status: 0 },
     ],
+    opening_heading: [
+        { id: 1, name: "Session Note", status: 1 },
+        { id: 2, name: "Progressive Note", status: 0 },
+        { id: 3, name: "no heading", status: 0 },
+    ],
+    section_breaks: [
+        { id: 1, name: "no paragraph breaks", status: 1 },
+        { id: 2, name: "paragraph breaks", status: 0 },
+    ],
+    spacing_options: [
+        { id: 1, name: 1, status: 1 },
+        { id: 2, name: 2, status: 0 },
+        { id: 3, name: 3, status: 0 },
+        { id: 4, name: 4, status: 0 },
+        { id: 5, name: 5, status: 0 },
+    ],
+    font_style: [
+        { id: 1, name: "Arial", status: 1 },
+        { id: 2, name: "Times", status: 0 },
+        { id: 3, name: "Courier", status: 0 },
+        { id: 4, name: "DejaVu*", status: 0 },
+    ],
+    font_size: [
+        { id: 1, name: 12, status: 1 },
+        { id: 2, name: 14, status: 0 },
+        { id: 3, name: 16, status: 0 },
+        { id: 4, name: 18, status: 0 },
+        { id: 5, name: 20, status: 0 },
+    ],
+    date_format: [
+        { id: 1, name: "September 23, 1939", status: 1 },
+        { id: 2, name: "09/23/1939", status: 0 },
+        { id: 3, name: "23/09/1939", status: 0 },
+        { id: 4, name: "1939-09-23", status: 0 },
+        { id: 5, name: "Saturday, 23 September, 1939", status: 0 },
+        { id: 6, name: "Saturday, September 23, 1939", status: 0 },
+        { id: 7, name: "23 September, 1939", status: 0 },
+    ],
+    color_opacity: [
+        { id: 1, name: 0.1, status: 1 },
+        { id: 2, name: 0.3, status: 0 },
+        { id: 3, name: 0.5, status: 0 },
+        { id: 4, name: 0.7, status: 0 },
+        { id: 5, name: 0.9, status: 0 },
+        { id: 6, name: 1.0, status: 0 },
+    ],
 };
 const getters = {
     currentSectionFormQuestions(state) {
@@ -34,6 +80,9 @@ const getters = {
     },
 };
 const mutations = {
+    changeTerminology(state, payload) {
+        console.log(payload);
+    },
     clearContent(state) {
         state.all_headings = [];
         state.questions = [];
@@ -216,6 +265,9 @@ const mutations = {
     }
 };
 const actions = {
+    changeTerminology(context) {
+        context.commit('changeTerminology', { user: context.rootState.login.user });
+    },
     async getQuestions(context, payload) {
         const { token } = JSON.parse(localStorage.getItem("loginInfo"));
         let url = process.env.MIX_API_URL + "/api/questions/" + payload.id + "/" + payload.type;
