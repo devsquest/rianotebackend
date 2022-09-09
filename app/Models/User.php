@@ -18,7 +18,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'status', 'isAdmin', 'signature', 'profile_picture'
+        'name',
+        'email',
+        'password',
+        'status',
+        'isAdmin',
+        'signature',
+        'terminology_client',
+        'terminology_psycho',
+        'terminology_behavior',
+        'opening_heading',
+        'section_breaks',
+        'spacing_options',
+        'font_style',
+        'font_size',
+        'date_format',
+        'color_opacity',
+        'profile_picture'
     ];
 
     /**

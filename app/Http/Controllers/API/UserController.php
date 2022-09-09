@@ -44,11 +44,11 @@ class UserController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-                'package' => 'required',
-                'name' => 'required',
-                'email' => 'required|email|unique:users',
-                'signature' => 'required',
-                'password' => 'required|min:6',
+            'package' => 'required',
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'signature' => 'required',
+            'password' => 'required|min:6',
         ]);
         $input = $request->all();
         return $input;
@@ -83,5 +83,10 @@ class UserController extends Controller
         $request->user()->tokens()->delete();
         $response = ['status' => 'success', 'msg' => 'Logout successfully'];
         return response()->json($response, $this->successStatus);
+    }
+    public function updateKeywords(Request $request)
+    {
+        $user = User::find(Auth::user()->id)->update([$request->type => $request->id]);
+        return $user;
     }
 }

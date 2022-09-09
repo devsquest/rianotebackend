@@ -208,10 +208,6 @@ $btn-color : #53b848;
     height: 28px;
 }
 
-.single-tools-option {
-    margin-bottom: -2.1em;
-}
-
 .note-questions-single-option-box {
     background-color: hsl(0deg, 0%, 96%);
     color: black;
@@ -250,12 +246,10 @@ $btn-color : #53b848;
 }
 
 .note-heading-text-title {
-    font-size: 16px;
     font-weight: 600;
 }
 
 .note-heading-text-value {
-    font-size: 17px;
     font-weight: normal;
 }
 
@@ -558,7 +552,7 @@ $btn-color : #53b848;
     border-radius: 3px;
     position: relative;
     bottom: 3em;
-    left: 94%;
+    left: 90%;
 }
 
 .note-btn-hover-edit-danger {

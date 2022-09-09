@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/details', [UserController::class, 'details']);
     Route::post('/update-user', [UserController::class, 'updateUser']);
+    Route::post('/update-user-keywords', [UserController::class, 'updateKeywords']);
     Route::get('/sections/{note_id}/{type?}/{parent_id?}', [SectionController::class, 'index']);
     Route::get('/notes', [NoteController::class, 'index']);
     Route::get('/notes/{id}', [NoteController::class, 'getSectionByType']);

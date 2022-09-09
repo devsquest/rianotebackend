@@ -249,7 +249,8 @@
             </div>
             <div class="row">
               <div class="col-lg-12 col-md-12">
-                <div class="note-result" id="note-result" ref="noteresult" contentEditable="true">
+                <div class="note-result" id="note-result" ref="noteresult" contentEditable="true"
+                  :style="{'font-size': fontSize.find(dd => dd.status == 1).name + 'px !important' }">
                   <div class="section-1">
                     <p v-if="note.name != null && note.name != ''">
                       <span class="note-heading-text-title">Name: </span>
@@ -260,7 +261,7 @@
                     <p v-if="note.date != null && note.date != ''">
                       <span class="note-heading-text-title">Date: </span>
                       <span class="note-heading-text-value">{{
-                      note.date | moment("dddd, MMMM Do YYYY")
+                      note.date | moment(dateFormat.find(dd => dd.status == 1).format)
                       }}</span>
                     </p>
                     <p v-if="
@@ -315,10 +316,10 @@
                     </p>
                     <div class="heading-sections-note-result">
                       <div class="div" v-for="x in allHeadingsStore" :key="x.id">
-                        <h6 v-if="x.status == 1">
-                          <label class="ex-bold-heading">{{ x.heading_text }}:</label>
-                          <label>{{ x.heading_content }}</label>
-                        </h6>
+                        <p v-if="x.status == 1">
+                          <span class="note-heading-text-title">{{ x.heading_text }}:</span>
+                          <span class="note-heading-text-value">{{ x.heading_content }}</span>
+                        </p>
                       </div>
                     </div>
                     <div class="heading-sections-note-result">
@@ -326,10 +327,10 @@
                         (x) => x.formType == 'form-inline'
                       )" :key="x.id">
                         <div>
-                          <h6 v-if="x.textInput != null && x.textInput != ''">
-                            <label class="ex-bold-heading">{{ x.question_text }}:</label>
-                            <label>{{ x.textInput }}</label>
-                          </h6>
+                          <p v-if="x.textInput != null && x.textInput != ''">
+                            <span class="note-heading-text-title">{{ x.question_text }}:</span>
+                            <span class="note-heading-text-value">{{ x.textInput }}</span>
+                          </p>
                         </div>
                       </div>
                       <!--form-inline-note-->
@@ -338,11 +339,11 @@
                       )" :key="x.id">
                         <div>
                           <div v-if="x.textInput != null && x.textInput != ''">
-                            <h6>
-                              <label class="ex-bold-heading">{{ x.question_text }}:</label>
-                            </h6>
                             <p>
-                              <label>{{ x.textInput }}</label>
+                              <span class="note-heading-text-title">{{ x.question_text }}:</span>
+                            </p>
+                            <p>
+                              <span class="note-heading-text-value">{{ x.textInput }}</span>
                             </p>
                           </div>
                         </div>
@@ -354,9 +355,9 @@
                             x.isDisplay && x.question_type == 'statements'
                         )" :key="x.id">
                           <span class="d-none">{{ x.revision }}</span>
-                          <h6>
+                          <p>
                             <label class="ex-bold-heading">{{ x.section_name }}:</label>
-                          </h6>
+                          </p>
                           <p v-for="sm in x.statement_master" :key="sm.id" class="sm">
                             <span v-if="
                               sm.selectedOptions &&
@@ -379,7 +380,8 @@
                       </div>
                       <!--statement-questions-->
                     </div>
-                    <h6 class="ex-bold-heading">Session Note:</h6>
+                    <p v-if="openingHeading.find(dd => dd.status == 1).name != 'no heading'" class="ex-bold-heading">{{
+                    openingHeading.find(dd => dd.status == 1).name }}:</p>
                     <p>
                       <span v-for="x in questionsData.filter(
                         (x) => x.isDisplay && x.question_type != 'statements'
@@ -464,7 +466,7 @@
                     <div class="buttons">
                       <button v-for="btn in terminologyClient" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
                         'btn-success-active': btn.status == 1
-                      }]" v-on:click="changeTerminologyDefault(btn.id, 'client')">
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'terminology_client')">
                         {{ btn.name }}
                       </button>
                     </div>
@@ -473,7 +475,7 @@
                     <div class="buttons">
                       <button v-for="btn in terminologyPsycho" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
                         'btn-success-active': btn.status == 1
-                      }]" v-on:click="changeTerminologyDefault(btn.id, 'psycho')">
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'terminology_psycho')">
                         {{ btn.name }}
                       </button>
                     </div>
@@ -482,7 +484,7 @@
                     <div class="buttons">
                       <button v-for="btn in terminologyBehavior" :key="btn.id" :class="['btn', 'btn-success', 'btn-14px', 'ml-1', 'mr-1', {
                         'btn-success-active': btn.status == 1
-                      }]" v-on:click="changeTerminologyDefault(btn.id, 'behavior')">
+                      }]" v-on:click="changeTerminologyDefault(btn.id, 'terminology_behavior')">
                         {{ btn.name }}
                       </button>
                     </div>
@@ -997,7 +999,7 @@ export default {
         });
     },
     changeTerminologyDefault(id, type) {
-      this.$store.commit("note/changeTerminologyDefault", {
+      this.$store.dispatch("note/changeTerminologyDefault", {
         id: id,
         type: type
       });

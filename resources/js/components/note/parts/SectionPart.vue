@@ -37,7 +37,8 @@
                     <div class="tools-options">
                       <div class="row">
                         <div v-for="option in x.options" :key="option.id"
-                          :class="[{'col-lg-12': x.question_type == 'text', 'col-lg-6': x.question_type == 'tags', 'col-lg-3': x.question_type == 'tags-replacement-option'}, 'single-tools-option']">
+                          :class="[{'col-lg-12': x.question_type == 'text', 'col-lg-6': x.question_type == 'tags', 'col-lg-3': x.question_type == 'tags-replacement-option'}]"
+                          :style="{'margin-bottom': spacingOptions.find(dd => dd.status == 1).value}">
                           <p :class="[
                             'note-questions-single-option-box',
                             {
@@ -46,9 +47,11 @@
                                   ? true
                                   : false,
                             },
-                          ]" v-on:click="
-                            addQuestionInResult(x, option, x.question_type)
-                          " v-on:input="editableInput" :contentEditable="option.editAble">
+                          ]"
+                            :style="[x.selectedOptions.indexOf(option.id) != -1 ? {'opacity': colorOpacity.find(dd => dd.status == 1).name}:{'opacity': '1'}]"
+                            v-on:click="
+                              addQuestionInResult(x, option, x.question_type)
+                            " v-on:input="editableInput" :contentEditable="option.editAble">
                             {{ option.option_text }}
                           </p>
                           <p class="d-none">{{ x.editAble }}</p>
@@ -373,6 +376,12 @@ export default {
     },
     currentFormQuestions() {
       return this.$store.getters["note/currentSectionFormQuestions"];
+    },
+    spacingOptions() {
+      return this.$store.state.note.spacing_options;
+    },
+    colorOpacity() {
+      return this.$store.state.note.color_opacity;
     },
   },
 };
