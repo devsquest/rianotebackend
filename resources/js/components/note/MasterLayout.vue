@@ -197,7 +197,8 @@
             <div class="tools-box-complete">
               <KeepAlive include="MyPhrase">
                 <component :is="current" :note_id="selected_note" :key="this.section_slug" :slug="this.section_slug"
-                  :section_type="section_type"></component>
+                  :section_type="section_type" :currentCompLastSubSectionId="currentCompLastSubSectionId" v-on:updateLastSubSectionId="updateLastSubSectionIdParent($event)">
+                </component>
               </KeepAlive>
             </div>
           </div>
@@ -848,6 +849,7 @@ export default {
         session_location: null,
         comments: null,
       },
+      currentCompLastSubSectionId: null,
     };
   },
   mounted() {
@@ -900,6 +902,7 @@ export default {
         .then((response) => {
           this.sections_list = response.data.data.sections.map((val) => {
             val.showStatus = false;
+            val.lastSubSectionId = null;
             return val;
           });
         })
@@ -951,6 +954,7 @@ export default {
         return val;
       });
       this.sections_list[index].showStatus = true;
+      this.currentCompLastSubSectionId = this.sections_list[index].lastSubSectionId;
       if (this.sections_list[index].id != this.section_slug) {
         this.section_slug = this.sections_list[index].id;
         this.$router.push({
@@ -1003,6 +1007,10 @@ export default {
         id: id,
         type: type
       });
+    },
+    updateLastSubSectionIdParent(payload) {
+      let index = this.sections_list.findIndex(x => x.id == payload.section_id);
+      this.sections_list[index].lastSubSectionId = payload.sub_section_id;
     }
   },
   computed: {

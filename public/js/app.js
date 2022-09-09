@@ -463,7 +463,8 @@ __webpack_require__.r(__webpack_exports__);
         billing_code: null,
         session_location: null,
         comments: null
-      }
+      },
+      currentCompLastSubSectionId: null
     };
   },
   mounted: function mounted() {
@@ -524,6 +525,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _this3.sections_list = response.data.data.sections.map(function (val) {
           val.showStatus = false;
+          val.lastSubSectionId = null;
           return val;
         });
       })["catch"](function (error) {
@@ -583,6 +585,7 @@ __webpack_require__.r(__webpack_exports__);
         return val;
       });
       this.sections_list[index].showStatus = true;
+      this.currentCompLastSubSectionId = this.sections_list[index].lastSubSectionId;
 
       if (this.sections_list[index].id != this.section_slug) {
         this.section_slug = this.sections_list[index].id;
@@ -638,6 +641,12 @@ __webpack_require__.r(__webpack_exports__);
         id: id,
         type: type
       });
+    },
+    updateLastSubSectionIdParent: function updateLastSubSectionIdParent(payload) {
+      var index = this.sections_list.findIndex(function (x) {
+        return x.id == payload.section_id;
+      });
+      this.sections_list[index].lastSubSectionId = payload.sub_section_id;
     }
   },
   computed: {
@@ -1599,7 +1608,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SectionPart",
-  props: ["note_id", "slug", "section_type"],
+  props: ["note_id", "slug", "section_type", "currentCompLastSubSectionId"],
   data: function data() {
     return {
       contentEditable_text: null,
@@ -1633,6 +1642,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     note_id: _this.note_id,
                     section_type: _this.section_type,
                     slug: _this.slug
+                  }).then(function () {
+                    if (_this.currentCompLastSubSectionId != null) {
+                      var exited_single_sub = _this.currentSubSectionList.find(function (dd) {
+                        return dd.id == _this.currentCompLastSubSectionId;
+                      });
+
+                      _this.loadSubSection(exited_single_sub.id, exited_single_sub.type, exited_single_sub.name);
+                    }
                   });
                 }
 
@@ -1652,6 +1669,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                // console.log(this.currentSubSectionList);
+                _this2.$emit("updateLastSubSectionId", {
+                  "section_id": _this2.slug,
+                  sub_section_id: id
+                });
+
                 _this2.current_sub_section = type;
 
                 _this2.$store.commit("note/changeSubSectionComponent", {
@@ -1674,7 +1697,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   });
                 }
 
-              case 5:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -3112,7 +3135,13 @@ var render = function render() {
     attrs: {
       note_id: _vm.selected_note,
       slug: this.section_slug,
-      section_type: _vm.section_type
+      section_type: _vm.section_type,
+      currentCompLastSubSectionId: _vm.currentCompLastSubSectionId
+    },
+    on: {
+      updateLastSubSectionId: function updateLastSubSectionId($event) {
+        return _vm.updateLastSubSectionIdParent($event);
+      }
     }
   })], 1)], 1)]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-5 col-md-5"
@@ -6421,8 +6450,7 @@ var mutations = {
 
         return value;
       });
-    } // console.log(payload.user.terminology_client);
-
+    }
   },
   clearContent: function clearContent(state) {
     state.all_headings = [];

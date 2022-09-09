@@ -181,8 +181,6 @@ const mutations = {
                 return value;
             });
         }
-
-        // console.log(payload.user.terminology_client);
     },
     clearContent(state) {
         state.all_headings = [];

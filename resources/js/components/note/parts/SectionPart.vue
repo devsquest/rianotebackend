@@ -262,7 +262,7 @@
 <script>
 export default {
   name: "SectionPart",
-  props: ["note_id", "slug", "section_type"],
+  props: ["note_id", "slug", "section_type", "currentCompLastSubSectionId"],
   data() {
     return {
       contentEditable_text: null,
@@ -289,10 +289,17 @@ export default {
           note_id: this.note_id,
           section_type: this.section_type,
           slug: this.slug,
+        }).then(() => {
+          if (this.currentCompLastSubSectionId != null) {
+            let exited_single_sub = this.currentSubSectionList.find(dd => dd.id == this.currentCompLastSubSectionId);
+            this.loadSubSection(exited_single_sub.id, exited_single_sub.type, exited_single_sub.name)
+          }
         });
       }
     },
     async loadSubSection(id, type, section_name) {
+      // console.log(this.currentSubSectionList);
+      this.$emit("updateLastSubSectionId", { "section_id": this.slug, sub_section_id: id });
       this.current_sub_section = type;
       this.$store.commit("note/changeSubSectionComponent", {
         id: id,
