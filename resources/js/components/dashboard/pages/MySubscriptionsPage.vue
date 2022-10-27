@@ -10,33 +10,28 @@
                 <thead>
                   <tr>
                     <th>Subscription type</th>
-                    <th>Is active</th>
                     <th>State</th>
-                    <th>Occupied/Quantity</th>
                     <th>Started from</th>
-                    <th>Valid until</th>
+                    <th>valid until</th>
+                    <th>Purchased by</th>
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Monthly individual</td>
+                <tbody v-if="sub_scriptions_list && sub_scriptions_list != null">
+                  <tr v-for="sub in sub_scriptions_list" :key="sub.id">
+                    <td>{{ sub.subscription.name }}</td>
                     <td>
-                      <stripe-checkout ref="checkoutRef" mode="subscription" :pk="publishableKey"
-                        :line-items="lineItems" :success-url="successURL" :cancel-url="cancelURL"
-                        @loading="v => loading = v" />
-                      <button class="btn btn-info btn-14px" v-on:click="submit">
-                        Pay Now
+                      <button class="btn btn-success btn-14px">{{ sub.status }}</button>
+                    </td>
+                    <td>{{ sub.start }}</td>
+                    <td>{{ sub.end }}</td>
+                    <td>
+                      <button class="btn btn-info btn-14px disabled">You</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-danger btn-14px disabled">
+                        Unassigned me
                       </button>
-                    </td>
-                    <td>
-                      <button class="btn btn-info btn-14px">Active</button>
-                    </td>
-                    <td>1/1</td>
-                    <td>2022-02-03</td>
-                    <td>2022-09-03</td>
-                    <td>
-                      <a href="#">View Details</a>
                     </td>
                   </tr>
                 </tbody>
@@ -58,6 +53,7 @@ export default {
   },
   data() {
     return {
+      sub_scriptions_list: null,
       publishableKey: process.env.MIX_STRIPE_PK,
       lineItems: [
         {
@@ -75,6 +71,7 @@ export default {
     console.log(process.env.MIX_ENC_KEY);
     this.$emit("updateNav", this.$route.name);
     document.title = "My Subscriptions";
+    this.subscriptions();
   },
   methods: {
     stripeSession() {
@@ -94,6 +91,20 @@ export default {
           charactersLength));
       }
       return result;
+    },
+    subscriptions() {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let url = process.env.MIX_API_URL + "/api/user/active-subscriptions";
+      let headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      this.axios.get(url, { headers: headers }).then((response) => {
+        this.sub_scriptions_list = response.data.data.subscriptions;
+      }).catch((error) => {
+        console.log(error);
+      });
     },
   },
 };

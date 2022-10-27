@@ -24,11 +24,11 @@ Route::get('/clear', function () {
     return 'Cleared!';
 });
 
-Route::get('/', [HomeController::class, 'commingSoon'])->name('front.comming_soon');
-Route::get('/homepage', [HomeController::class, 'index'])->name('front.home');
-Route::get('/homepage/about', [HomeController::class, 'about'])->name('front.about');
-Route::get('/homepage/pricing', [HomeController::class, 'pricing'])->name('front.pricing');
-Route::get('/homepage/faq', [HomeController::class, 'faq'])->name('front.faq');
+Route::get('/comming-soon', [HomeController::class, 'commingSoon'])->name('front.comming_soon');
+Route::get('/', [HomeController::class, 'index'])->name('front.home');
+Route::get('/about', [HomeController::class, 'about'])->name('front.about');
+Route::get('/pricing', [HomeController::class, 'pricing'])->name('front.pricing');
+Route::get('/faq', [HomeController::class, 'faq'])->name('front.faq');
 Route::get('/homepage/test', [HomeController::class, 'test'])->name('front.test');
 
 Auth::routes(['register' => false]);

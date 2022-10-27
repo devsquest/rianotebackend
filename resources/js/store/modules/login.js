@@ -4,11 +4,20 @@ const state = {
     loginInfo: null,
     user: null,
     error_log_text: null,
+    signupInfo: null,
 };
 const getters = {};
 const mutations = {
     signup(state, payload) {
-        console.log(payload);
+        state.signupInfo = payload;
+        if (state.signupInfo.status && state.signupInfo.status == "success") {
+            state.loginInfo = {
+                status: 'true',
+                token: state.signupInfo.data.token,
+            };
+            state.user = state.signupInfo.data.user;
+            localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
+        }
     },
     login(state, payload) {
         state.error_log_text = null;
@@ -44,9 +53,9 @@ const actions = {
             "Content-Type": "application/json",
         };
         return Vue.axios.post(url, payload, { headers: headers }).then((response) => {
-            context.commit('signup', response);
+            context.commit('signup', response.data);
         }).catch((error) => {
-            console.log(error);
+            context.commit('signup', error.response.data);
         });
     },
     async login(context, payload) {
@@ -88,7 +97,7 @@ const actions = {
         }).catch((error) => {
             console.log(error);
         });
-    }
+    },
 };
 
 export default {

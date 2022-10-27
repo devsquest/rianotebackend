@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('price', 10, 1)->default(0);
+            $table->unsignedInteger('duration')->nullable();
             $table->string('currency')->nullable();
             $table->string('currency_sign')->nullable();
             $table->text('description')->nullable();

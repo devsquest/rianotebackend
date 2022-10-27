@@ -13,7 +13,7 @@ class NoteController extends Controller
     public $successStatus = 200;
     public function index()
     {
-        $notes = Note::where('status', 1)->where('user_id', Auth::user()->id)->get();
+        $notes = Note::where('status', 1)->where('user_id', 2)->get();
         $response = ['status' => 'success', 'msg' => '', 'data' => [
             'notes' => $notes,
         ]];

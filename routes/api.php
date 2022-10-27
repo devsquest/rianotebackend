@@ -39,4 +39,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::put('/option/{id}', [OptionController::class, 'editOption']);
     Route::post('/option/add-new-option', [OptionController::class, 'addOption']);
     Route::post('/option/update-existing-option', [OptionController::class, 'updateExistingOption']);
+    Route::post('/verify-payment', [UserController::class, 'verifyPayment']);
+    Route::get('/user/active-subscriptions', [UserController::class, 'activeSubscriptions']);
 });

@@ -19,9 +19,9 @@
                                 <div class="input-group">
                                     <select name="package" id="package" class="login-u-input login-u-input-focus"
                                         v-model="formData.package">
-                                        <option value="price_1LdW0FIMnKC1Keli4FyCDrVN">1 Month</option>
-                                        <option value="price_1LegtVIMnKC1KeliJnhlIufo">6 Month</option>
-                                        <option value="price_1LeguRIMnKC1KeliBYNiqUmc">1 Year</option>
+                                        <option value="price_1LdW0FIMnKC1Keli4FyCDrVN">1 Month $15 USD</option>
+                                        <option value="price_1LegtVIMnKC1KeliJnhlIufo">6 Month $84 USD</option>
+                                        <option value="price_1LeguRIMnKC1KeliBYNiqUmc">1 Year $180 USD</option>
                                     </select>
                                     <i class="fa-brands fa-uncharted login-form-input-icon"></i>
                                 </div>
@@ -126,9 +126,9 @@ export default {
                 },
             ],
             successURL:
-                "http://127.0.0.1:8000/note/user/my-subscriptions?status=success&ref=",
+                "http://127.0.0.1:8000/note/user/dashboard?status=success&ref=",
             cancelURL:
-                "http://127.0.0.1:8000/note/user/my-subscriptions?status=cancel",
+                "http://127.0.0.1:8000/note/user/dashboard?status=cancel",
             responseData: null,
             errors: null,
             signupBtn: {
@@ -161,9 +161,23 @@ export default {
             this.signupBtn.text = "Proceed to pay...";
             this.responseData = null;
             this.errors = null;
+            this.$store.state.login.signupInfo = null;
             await this.$store.dispatch("login/signup", this.formData).then((response) => {
-                // console.log(response);
+                if (this.signupInfo.errors && Object.keys(this.signupInfo.errors).length != 0) {
+                    for (let err in this.signupInfo.errors) {
+                        for (let index = 0; index < this.signupInfo.errors[err].length; index++) {
+                            console.log(this.signupInfo.errors[err][index]);
+                            this.$toastr.e(this.signupInfo.errors[err][index], err);
+                        }
+                    }
+                } else {
+                    console.log(this.signupInfo);
+                    this.successURL = this.successURL + this.signupInfo.data.user.subscription_code;
+                    this.$refs.checkoutRef.redirectToCheckout();
+                }
             });
+            this.signupBtn.status = false;
+            this.signupBtn.text = "Proceed to pay";
             // let headers = {
             //     Accept: "application/json",
             //     "Content-Type": "application/json",
@@ -192,6 +206,11 @@ export default {
                     charactersLength));
             }
             return result;
+        },
+    },
+    computed: {
+        signupInfo() {
+            return this.$store.state.login.signupInfo;
         },
     },
     watch: {

@@ -63,13 +63,13 @@
                     />
                     Remember me
                   </div>
-                  <div style="width: 50%; float: left;" class="text-right">
+                  <!-- <div style="width: 50%; float: left;" class="text-right">
                     <label for="link" class="form-check-label float-end">
                       <a href="" class="note-login-link">
                         Forget Password?</a
                       ></label
                     >
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <button
@@ -79,12 +79,12 @@
               >
                 {{ loginBtn.text }}
               </button>
-              <button
+              <!-- <button
                 type="button"
                 class="btn btn-primary u-login-btn mt-3 purchase-u-btn"
               >
                 Purchase a copy faster note
-              </button>
+              </button> -->
             </form>
           </div>
           <div class="col-sm col-md-6 d-xs-none">

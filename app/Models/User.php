@@ -34,7 +34,9 @@ class User extends Authenticatable
         'font_size',
         'date_format',
         'color_opacity',
-        'profile_picture'
+        'profile_picture',
+        'subscription_code',
+        'subscription_code_verified',
     ];
 
     /**
@@ -57,7 +59,7 @@ class User extends Authenticatable
     protected function profilePicture(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => '/uploads/images/'.$value,
+            get: fn ($value) => $value == null || $value == '' ? null : '/uploads/images/' . $value,
         );
     }
     public function headings()

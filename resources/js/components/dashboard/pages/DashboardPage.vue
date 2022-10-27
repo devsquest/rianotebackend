@@ -6,13 +6,13 @@
           <div class="row">
             <div class="col-md-6 text-left">
               <p>
-                <b>Welcome to your {{  this.$appConfig.app_name  }} User
+                <b>Welcome to your {{ this.$appConfig.app_name }} User
                   Dashboard</b>
               </p>
             </div>
             <div class="col-md-6 text-right">
               <button class="btn btn-warning" v-on:click="submitNewNote">
-                Start using your {{  this.$appConfig.app_name  }} now
+                Start using your {{ this.$appConfig.app_name }} now
                 <i class="fas fa-arrow-alt-circle-right"></i>
               </button>
             </div>
@@ -31,7 +31,7 @@
                 <span>Email: </span>
               </div>
               <div class="col-md-6 text-right">
-                <span>{{  userInfo.email  }}</span>
+                <span>{{ userInfo.email }}</span>
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@
                 <span>Signature: </span>
               </div>
               <div class="col-md-6 text-right">
-                <span>{{  userInfo.signature  }}</span>
+                <span>{{ userInfo.signature }}</span>
               </div>
             </div>
           </div>
@@ -74,7 +74,6 @@
                 <thead>
                   <tr>
                     <th>Subscription type</th>
-                    <th>Is active?</th>
                     <th>State</th>
                     <th>Started from</th>
                     <th>valid until</th>
@@ -82,22 +81,19 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>Monthly individual</td>
+                <tbody v-if="sub_scriptions_list && sub_scriptions_list != null">
+                  <tr v-for="sub in sub_scriptions_list" :key="sub.id">
+                    <td>{{ sub.subscription.name }}</td>
                     <td>
-                      <button class="btn btn-success btn-14px">Action</button>
+                      <button class="btn btn-success btn-14px">{{ sub.status }}</button>
+                    </td>
+                    <td>{{ sub.start }}</td>
+                    <td>{{ sub.end }}</td>
+                    <td>
+                      <button class="btn btn-info btn-14px disabled">You</button>
                     </td>
                     <td>
-                      <button class="btn btn-success btn-14px">Action</button>
-                    </td>
-                    <td>2022-02-03</td>
-                    <td>2022-09-03</td>
-                    <td>
-                      <button class="btn btn-info btn-14px">You</button>
-                    </td>
-                    <td>
-                      <button class="btn btn-danger btn-14px">
+                      <button class="btn btn-danger btn-14px disabled">
                         Unassigned me
                       </button>
                     </td>
@@ -117,12 +113,20 @@ export default {
   data() {
     return {
       notes_list: null,
+      sub_scriptions_list: null,
     };
   },
   mounted() {
     this.$emit("updateNav", this.$route.name);
     document.title = "Dashboard";
     this.getNotesList();
+    if (this.$route.query.status == "success") {
+      this.verifyPayment();
+      this.$toastr.s("Your Subscription has been activated", "Payment Successfully");
+    } else if (this.$route.query.status == "cancel") {
+      this.$toastr.e("Payment Failed Go to Subscriptions and Pay again", "Payment Failed");
+    }
+    this.subscriptions();
   },
   methods: {
     getNotesList() {
@@ -141,6 +145,20 @@ export default {
           console.log(error);
         });
     },
+    verifyPayment() {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let url = process.env.MIX_API_URL + "/api/verify-payment";
+      let headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      this.axios.post(url, { subscription_code: this.$route.query.ref }, { headers: headers }).then((response) => {
+        //
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
     submitNewNote() {
       if (this.notes_list != null && this.notes_list.length > 0) {
         this.$router.push({
@@ -150,6 +168,20 @@ export default {
       } else {
         this.$toastr.e("No notes available for you", "Error!");
       }
+    },
+    subscriptions() {
+      const { token } = JSON.parse(localStorage.getItem("loginInfo"));
+      let url = process.env.MIX_API_URL + "/api/user/active-subscriptions";
+      let headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+      this.axios.get(url, { headers: headers }).then((response) => {
+        this.sub_scriptions_list = response.data.data.subscriptions;
+      }).catch((error) => {
+        console.log(error);
+      });
     },
   },
   computed: {

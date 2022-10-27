@@ -81,13 +81,23 @@ __webpack_require__.r(__webpack_exports__);
   name: "DashboardPage",
   data: function data() {
     return {
-      notes_list: null
+      notes_list: null,
+      sub_scriptions_list: null
     };
   },
   mounted: function mounted() {
     this.$emit("updateNav", this.$route.name);
     document.title = "Dashboard";
     this.getNotesList();
+
+    if (this.$route.query.status == "success") {
+      this.verifyPayment();
+      this.$toastr.s("Your Subscription has been activated", "Payment Successfully");
+    } else if (this.$route.query.status == "cancel") {
+      this.$toastr.e("Payment Failed Go to Subscriptions and Pay again", "Payment Failed");
+    }
+
+    this.subscriptions();
   },
   methods: {
     getNotesList: function getNotesList() {
@@ -109,6 +119,25 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    verifyPayment: function verifyPayment() {
+      var _JSON$parse2 = JSON.parse(localStorage.getItem("loginInfo")),
+          token = _JSON$parse2.token;
+
+      var url = "https://fasternote.com" + "/api/verify-payment";
+      var headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer ".concat(token)
+      };
+      this.axios.post(url, {
+        subscription_code: this.$route.query.ref
+      }, {
+        headers: headers
+      }).then(function (response) {//
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     submitNewNote: function submitNewNote() {
       if (this.notes_list != null && this.notes_list.length > 0) {
         this.$router.push({
@@ -121,17 +150,37 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.$toastr.e("No notes available for you", "Error!");
       }
+    },
+    subscriptions: function subscriptions() {
+      var _this2 = this;
+
+      var _JSON$parse3 = JSON.parse(localStorage.getItem("loginInfo")),
+          token = _JSON$parse3.token;
+
+      var url = "https://fasternote.com" + "/api/user/active-subscriptions";
+      var headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer ".concat(token)
+      };
+      this.axios.get(url, {
+        headers: headers
+      }).then(function (response) {
+        _this2.sub_scriptions_list = response.data.data.subscriptions;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   computed: {
     userInfo: function userInfo() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.$store.state.login.user != null) {
         return this.$store.state.login.user;
       } else {
         this.$store.dispatch("login/userInformation").then(function () {
-          return _this2.$store.state.login.user;
+          return _this3.$store.state.login.user;
         });
       }
     }
@@ -371,6 +420,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      sub_scriptions_list: null,
       publishableKey: "pk_test_51JtQJqIMnKC1Keli1WUmAH0ByX3SJ2edKt9Yxjz4vYyZxw7VAS3BkiurBn9ribtQI58aQmMLl1zba1cbcsYhPvJm00LHL3KNqG",
       lineItems: [{
         price: "price_1LdW0FIMnKC1Keli4FyCDrVN",
@@ -385,6 +435,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log("base64:3qW0jVnhjmHvSnWmfzrihn5dbAtTW2wl0ZBfJny90yY=");
     this.$emit("updateNav", this.$route.name);
     document.title = "My Subscriptions";
+    this.subscriptions();
   },
   methods: {
     stripeSession: function stripeSession() {
@@ -405,6 +456,26 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return result;
+    },
+    subscriptions: function subscriptions() {
+      var _this = this;
+
+      var _JSON$parse = JSON.parse(localStorage.getItem("loginInfo")),
+          token = _JSON$parse.token;
+
+      var url = "https://fasternote.com" + "/api/user/active-subscriptions";
+      var headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer ".concat(token)
+      };
+      this.axios.get(url, {
+        headers: headers
+      }).then(function (response) {
+        _this.sub_scriptions_list = response.data.data.subscriptions;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -932,8 +1003,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // The id of the one-time price you created in your Stripe dashboard
         quantity: 1
       }],
-      successURL: "http://127.0.0.1:8000/note/user/my-subscriptions?status=success&ref=",
-      cancelURL: "http://127.0.0.1:8000/note/user/my-subscriptions?status=cancel",
+      successURL: "http://127.0.0.1:8000/note/user/dashboard?status=success&ref=",
+      cancelURL: "http://127.0.0.1:8000/note/user/dashboard?status=cancel",
       responseData: null,
       errors: null,
       signupBtn: {
@@ -992,11 +1063,47 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this.signupBtn.text = "Proceed to pay...";
                 _this.responseData = null;
                 _this.errors = null;
-                _context.next = 14;
-                return _this.$store.dispatch("login/signup", _this.formData).then(function (response) {// console.log(response);
+                _this.$store.state.login.signupInfo = null;
+                _context.next = 15;
+                return _this.$store.dispatch("login/signup", _this.formData).then(function (response) {
+                  if (_this.signupInfo.errors && Object.keys(_this.signupInfo.errors).length != 0) {
+                    for (var err in _this.signupInfo.errors) {
+                      for (var index = 0; index < _this.signupInfo.errors[err].length; index++) {
+                        console.log(_this.signupInfo.errors[err][index]);
+
+                        _this.$toastr.e(_this.signupInfo.errors[err][index], err);
+                      }
+                    }
+                  } else {
+                    console.log(_this.signupInfo);
+                    _this.successURL = _this.successURL + _this.signupInfo.data.user.subscription_code;
+
+                    _this.$refs.checkoutRef.redirectToCheckout();
+                  }
                 });
 
-              case 14:
+              case 15:
+                _this.signupBtn.status = false;
+                _this.signupBtn.text = "Proceed to pay"; // let headers = {
+                //     Accept: "application/json",
+                //     "Content-Type": "application/json",
+                // };
+                // let url = process.env.MIX_API_URL + "/api/register";
+                // this.axios.post(url, this.formData, { headers: headers }).then((response) => {
+                //     this.responseData = response;
+                //     this.signupBtn.status = false;
+                //     this.signupBtn.text = "Proceed to pay";
+                //     console.log(this.responseData);
+                //     // this.successURL = this.successURL;
+                //     // this.$refs.checkoutRef.redirectToCheckout();
+                // }).catch((errors) => {
+                //     this.errors = errors;
+                //     this.signupBtn.status = false;
+                //     this.signupBtn.text = "Proceed to pay";
+                //     console.log(this.errors);
+                // });
+
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -1014,6 +1121,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return result;
+    }
+  },
+  computed: {
+    signupInfo: function signupInfo() {
+      return this.$store.state.login.signupInfo;
     }
   },
   watch: {
@@ -2075,7 +2187,23 @@ var render = function render() {
     staticClass: "row"
   }, [_vm._m(2), _vm._v(" "), _c("div", {
     staticClass: "col-md-6 text-right"
-  }, [_c("span", [_vm._v(_vm._s(_vm.userInfo.signature))])])])]), _vm._v(" "), _vm._m(3)])]) : _vm._e(), _vm._v(" "), _vm._m(4)])]);
+  }, [_c("span", [_vm._v(_vm._s(_vm.userInfo.signature))])])])]), _vm._v(" "), _vm._m(3)])]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "row white-bg mt-5"
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12"
+  }, [_c("div", {
+    staticClass: "table-responsive mt-4"
+  }, [_c("table", {
+    staticClass: "table table-bordered"
+  }, [_vm._m(5), _vm._v(" "), _vm.sub_scriptions_list && _vm.sub_scriptions_list != null ? _c("tbody", _vm._l(_vm.sub_scriptions_list, function (sub) {
+    return _c("tr", {
+      key: sub.id
+    }, [_c("td", [_vm._v(_vm._s(sub.subscription.name))]), _vm._v(" "), _c("td", [_c("button", {
+      staticClass: "btn btn-success btn-14px"
+    }, [_vm._v(_vm._s(sub.status))])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.start))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.end))]), _vm._v(" "), _vm._m(6, true), _vm._v(" "), _vm._m(7, true)]);
+  }), 0) : _vm._e()])])])])])])]);
 };
 
 var staticRenderFns = [function () {
@@ -2129,27 +2257,28 @@ var staticRenderFns = [function () {
 
   return _c("div", {
     staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "row white-bg mt-5"
-  }, [_c("div", {
-    staticClass: "col-md-12"
   }, [_c("h6", {
     staticClass: "p-4 border-bottom"
-  }, [_vm._v("\n            Active Subscriptions assigned to your account\n          ")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-12"
-  }, [_c("div", {
-    staticClass: "table-responsive mt-4"
-  }, [_c("table", {
-    staticClass: "table table-bordered"
-  }, [_c("thead", [_c("tr", [_c("th", [_vm._v("Subscription type")]), _vm._v(" "), _c("th", [_vm._v("Is active?")]), _vm._v(" "), _c("th", [_vm._v("State")]), _vm._v(" "), _c("th", [_vm._v("Started from")]), _vm._v(" "), _c("th", [_vm._v("valid until")]), _vm._v(" "), _c("th", [_vm._v("Purchased by")]), _vm._v(" "), _c("th", [_vm._v("Action")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", [_vm._v("Monthly individual")]), _vm._v(" "), _c("td", [_c("button", {
-    staticClass: "btn btn-success btn-14px"
-  }, [_vm._v("Action")])]), _vm._v(" "), _c("td", [_c("button", {
-    staticClass: "btn btn-success btn-14px"
-  }, [_vm._v("Action")])]), _vm._v(" "), _c("td", [_vm._v("2022-02-03")]), _vm._v(" "), _c("td", [_vm._v("2022-09-03")]), _vm._v(" "), _c("td", [_c("button", {
-    staticClass: "btn btn-info btn-14px"
-  }, [_vm._v("You")])]), _vm._v(" "), _c("td", [_c("button", {
-    staticClass: "btn btn-danger btn-14px"
-  }, [_vm._v("\n                      Unassigned me\n                    ")])])])])])])])])]);
+  }, [_vm._v("\n            Active Subscriptions assigned to your account\n          ")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Subscription type")]), _vm._v(" "), _c("th", [_vm._v("State")]), _vm._v(" "), _c("th", [_vm._v("Started from")]), _vm._v(" "), _c("th", [_vm._v("valid until")]), _vm._v(" "), _c("th", [_vm._v("Purchased by")]), _vm._v(" "), _c("th", [_vm._v("Action")])])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("td", [_c("button", {
+    staticClass: "btn btn-info btn-14px disabled"
+  }, [_vm._v("You")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("td", [_c("button", {
+    staticClass: "btn btn-danger btn-14px disabled"
+  }, [_vm._v("\n                      Unassigned me\n                    ")])]);
 }];
 render._withStripped = true;
 
@@ -2667,49 +2796,34 @@ var render = function render() {
     staticClass: "table-responsive mt-4"
   }, [_c("table", {
     staticClass: "table table-bordered"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", [_c("tr", [_c("td", [_vm._v("Monthly individual")]), _vm._v(" "), _c("td", [_c("stripe-checkout", {
-    ref: "checkoutRef",
-    attrs: {
-      mode: "subscription",
-      pk: _vm.publishableKey,
-      "line-items": _vm.lineItems,
-      "success-url": _vm.successURL,
-      "cancel-url": _vm.cancelURL
-    },
-    on: {
-      loading: function loading(v) {
-        return _vm.loading = v;
-      }
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-info btn-14px",
-    on: {
-      click: _vm.submit
-    }
-  }, [_vm._v("\n                      Pay Now\n                    ")])], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("td", [_vm._v("1/1")]), _vm._v(" "), _c("td", [_vm._v("2022-02-03")]), _vm._v(" "), _c("td", [_vm._v("2022-09-03")]), _vm._v(" "), _vm._m(2)])])])])])])])])]);
+  }, [_vm._m(0), _vm._v(" "), _vm.sub_scriptions_list && _vm.sub_scriptions_list != null ? _c("tbody", _vm._l(_vm.sub_scriptions_list, function (sub) {
+    return _c("tr", {
+      key: sub.id
+    }, [_c("td", [_vm._v(_vm._s(sub.subscription.name))]), _vm._v(" "), _c("td", [_c("button", {
+      staticClass: "btn btn-success btn-14px"
+    }, [_vm._v(_vm._s(sub.status))])]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.start))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.end))]), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _vm._m(2, true)]);
+  }), 0) : _vm._e()])])])])])])]);
 };
 
 var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("Subscription type")]), _vm._v(" "), _c("th", [_vm._v("Is active")]), _vm._v(" "), _c("th", [_vm._v("State")]), _vm._v(" "), _c("th", [_vm._v("Occupied/Quantity")]), _vm._v(" "), _c("th", [_vm._v("Started from")]), _vm._v(" "), _c("th", [_vm._v("Valid until")]), _vm._v(" "), _c("th", [_vm._v("Action")])])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Subscription type")]), _vm._v(" "), _c("th", [_vm._v("State")]), _vm._v(" "), _c("th", [_vm._v("Started from")]), _vm._v(" "), _c("th", [_vm._v("valid until")]), _vm._v(" "), _c("th", [_vm._v("Purchased by")]), _vm._v(" "), _c("th", [_vm._v("Action")])])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
   return _c("td", [_c("button", {
-    staticClass: "btn btn-info btn-14px"
-  }, [_vm._v("Active")])]);
+    staticClass: "btn btn-info btn-14px disabled"
+  }, [_vm._v("You")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("td", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("View Details")])]);
+  return _c("td", [_c("button", {
+    staticClass: "btn btn-danger btn-14px disabled"
+  }, [_vm._v("\n                      Unassigned me\n                    ")])]);
 }];
 render._withStripped = true;
 
@@ -4081,12 +4195,7 @@ var render = function render() {
       type: "submit",
       disabled: _vm.loginBtn.disable
     }
-  }, [_vm._v("\n              " + _vm._s(_vm.loginBtn.text) + "\n            ")]), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-primary u-login-btn mt-3 purchase-u-btn",
-    attrs: {
-      type: "button"
-    }
-  }, [_vm._v("\n              Purchase a copy faster note\n            ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n              " + _vm._s(_vm.loginBtn.text) + "\n            ")])])]), _vm._v(" "), _c("div", {
     staticClass: "col-sm col-md-6 d-xs-none"
   }, [_c("img", {
     staticClass: "d-block img-fluid float-end login-side-img",
@@ -4141,23 +4250,7 @@ var staticRenderFns = [function () {
       type: "checkbox",
       name: "remember"
     }
-  }), _vm._v("\n                  Remember me\n                ")]), _vm._v(" "), _c("div", {
-    staticClass: "text-right",
-    staticStyle: {
-      width: "50%",
-      "float": "left"
-    }
-  }, [_c("label", {
-    staticClass: "form-check-label float-end",
-    attrs: {
-      "for": "link"
-    }
-  }, [_c("a", {
-    staticClass: "note-login-link",
-    attrs: {
-      href: ""
-    }
-  }, [_vm._v("\n                      Forget Password?")])])])])]);
+  }), _vm._v("\n                  Remember me\n                ")])])]);
 }];
 render._withStripped = true;
 
@@ -4303,15 +4396,15 @@ var render = function render() {
     attrs: {
       value: "price_1LdW0FIMnKC1Keli4FyCDrVN"
     }
-  }, [_vm._v("1 Month")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("1 Month $15 USD")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "price_1LegtVIMnKC1KeliJnhlIufo"
     }
-  }, [_vm._v("6 Month")]), _vm._v(" "), _c("option", {
+  }, [_vm._v("6 Month $84 USD")]), _vm._v(" "), _c("option", {
     attrs: {
       value: "price_1LeguRIMnKC1KeliBYNiqUmc"
     }
-  }, [_vm._v("1 Year")])]), _vm._v(" "), _c("i", {
+  }, [_vm._v("1 Year $180 USD")])]), _vm._v(" "), _c("i", {
     staticClass: "fa-brands fa-uncharted login-form-input-icon"
   })]), _vm._v(" "), _vm.errors != null && _vm.errors.response.data.errors["package"] ? _c("div", {
     staticClass: "invalid-feedback note-signup-invalid-feedback d-inline"
@@ -5938,12 +6031,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var state = {
   loginInfo: null,
   user: null,
-  error_log_text: null
+  error_log_text: null,
+  signupInfo: null
 };
 var getters = {};
 var mutations = {
   signup: function signup(state, payload) {
-    console.log(payload);
+    state.signupInfo = payload;
+
+    if (state.signupInfo.status && state.signupInfo.status == "success") {
+      state.loginInfo = {
+        status: 'true',
+        token: state.signupInfo.data.token
+      };
+      state.user = state.signupInfo.data.user;
+      localStorage.setItem("loginInfo", JSON.stringify(state.loginInfo));
+    }
   },
   login: function login(state, payload) {
     state.error_log_text = null;
@@ -5988,9 +6091,9 @@ var actions = {
               return _context.abrupt("return", vue__WEBPACK_IMPORTED_MODULE_0__["default"].axios.post(url, payload, {
                 headers: headers
               }).then(function (response) {
-                context.commit('signup', response);
+                context.commit('signup', response.data);
               })["catch"](function (error) {
-                console.log(error);
+                context.commit('signup', error.response.data);
               }));
 
             case 3:

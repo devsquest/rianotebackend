@@ -34,6 +34,8 @@ class CreateUsersTable extends Migration
             $table->string('font_size')->nullable();
             $table->string('date_format')->nullable();
             $table->string('color_opacity')->nullable();
+            $table->string('subscription_code')->nullable();
+            $table->boolean('subscription_code_verified')->default(0);
             $table->timestamps();
         });
     }
