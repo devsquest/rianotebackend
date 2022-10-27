@@ -189,4 +189,5 @@
     </div>
     <!--row-->
 </div>
-@endsection
+</div>
+@endsectiony
