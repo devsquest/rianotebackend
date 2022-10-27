@@ -1003,8 +1003,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // The id of the one-time price you created in your Stripe dashboard
         quantity: 1
       }],
-      successURL: "http://127.0.0.1:8000/note/user/dashboard?status=success&ref=",
-      cancelURL: "http://127.0.0.1:8000/note/user/dashboard?status=cancel",
+      successURL: "https://fasternote.com/note/user/dashboard?status=success&ref=",
+      cancelURL: "https://fasternote.com/note/user/dashboard?status=cancel",
       responseData: null,
       errors: null,
       signupBtn: {

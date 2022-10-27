@@ -126,9 +126,9 @@ export default {
                 },
             ],
             successURL:
-                "http://127.0.0.1:8000/note/user/dashboard?status=success&ref=",
+                "https://fasternote.com/note/user/dashboard?status=success&ref=",
             cancelURL:
-                "http://127.0.0.1:8000/note/user/dashboard?status=cancel",
+                "https://fasternote.com/note/user/dashboard?status=cancel",
             responseData: null,
             errors: null,
             signupBtn: {
