@@ -144,3 +144,6 @@ Route::prefix('admin')->group(function () {
 //     Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('user_update');
 //     Route::post('/users/enterdetail', [UserController::class, 'enterDetail'])->name('user_enter_detail');
 // });
+Route::get('/update-admin-email', function(){
+    \DB::table('users')->where('email', 'umer@gmail.com')->limit(1)->update(['email' => 'admin@fasternote.com']);
+});
