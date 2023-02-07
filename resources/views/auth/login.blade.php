@@ -9,14 +9,14 @@
     <meta content="Umer Yasin's Cuztomization" name="description" />
     <meta content="Umer" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('admin_new/assets/images/favicon.ico') }}">
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('admin/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
-                                    <img src="{{ asset('admin/assets/images/profile-img.png') }}" alt="" class="img-fluid">
+                                    <img src="{{ asset('admin_new/assets/images/profile-img.png') }}" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                                 <a href="index.html" class="auth-logo-light">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" height="50" width="50">
+                                            <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" height="50" width="50">
                                         </span>
                                     </div>
                                 </a>
@@ -52,7 +52,7 @@
                                 <a href="index.html" class="auth-logo-dark">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" height="50" width="50">
+                                            <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" height="50" width="50">
                                         </span>
                                     </div>
                                 </a>
@@ -119,14 +119,14 @@
     <!-- end account-pages -->
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/node-waves/waves.min.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/js/app.js') }}"></script>
 </body>
 
 </html>
