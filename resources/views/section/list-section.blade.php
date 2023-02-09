@@ -45,7 +45,7 @@
                                     </tr>
                                     @endforeach
                                 </tbody>
-                                {{ $sections->links() }}
+                                {{ $sections->links('vendor.pagination.default') }}
                             </table>
                             <div class="row">
                                 <div class="col-sm-6 m-t-20">
