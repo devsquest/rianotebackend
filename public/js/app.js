@@ -2949,7 +2949,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "col-lg-12",
     staticStyle: {
-      "background-color": "#0e386a"
+      "background-color": "#2cabe3"
     }
   }, [_c("div", {
     staticClass: "input-placeholder mb-2"

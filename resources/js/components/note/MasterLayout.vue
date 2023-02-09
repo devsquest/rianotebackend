@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-12" style="background-color: #0e386a">
+          <div class="col-lg-12" style="background-color: #2cabe3;">
             <div class="input-placeholder mb-2">
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-6">

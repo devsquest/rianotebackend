@@ -23,7 +23,7 @@
 }
 
 .note-logo {
-  background-color: #0e386a;
+  background-color: #2cabe3;
 }
 
 .top-note-height {
@@ -36,33 +36,33 @@
 
 .btn-success {
   color: #06244c;
-  background-color: #ffff94;
-  border-color: #ffff94;
+  background-color: rgb(28, 81, 214);
+  border-color: rgb(28, 81, 214);
   font-weight: 400;
 }
 
 .btn-success-active {
   color: white;
-  background-color: #0e386a;
-  border-color: #0e386a;
+  background-color: #2cabe3;
+  border-color: #2cabe3;
 }
 
 .btn-success:hover {
   color: #06244c;
-  background-color: #ffff94;
-  border-color: #ffff94;
+  background-color: rgb(28, 81, 214);
+  border-color: rgb(28, 81, 214);
 }
 
 .btn-success:visited {
   color: #06244c;
-  background-color: #ffff94;
-  border-color: #ffff94;
+  background-color: rgb(28, 81, 214);
+  border-color: rgb(28, 81, 214);
 }
 
 .btn-success:active {
   color: #06244c;
-  background-color: #ffff94;
-  border-color: #ffff94;
+  background-color: rgb(28, 81, 214);
+  border-color: rgb(28, 81, 214);
 }
 
 .vertical {
@@ -112,8 +112,8 @@
   width: 100%;
   border: none;
   height: 20px;
-  background-color: #0e386a;
-  border-bottom: 1px solid rgb(28, 81, 214);
+  background-color: #2cabe3;
+  border-bottom: 1px solid #33b4ed;
   padding-left: 30px;
   color: white;
 }
@@ -121,11 +121,11 @@
 .u-input:focus {
   border: none;
   outline: none;
-  border-bottom: 1px solid rgb(28, 81, 214);
+  border-bottom: 1px solid #2cabe3;
 }
 
 .bg-green {
-  background-color: #ffff94;
+  background-color: rgb(28, 81, 214);
 }
 
 .note-result {
@@ -138,7 +138,7 @@
 }
 
 .note-section-left {
-  background-color: #0e386a;
+  background-color: #2cabe3;
   min-height: 100vh;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .note-section-left-li-selected {
-  background-color: #ffff94;
+  background-color: rgb(28, 81, 214);
   color: #06244c;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .note-section-left-li:hover {
-  background-color: #ffff94;
+  background-color: rgb(28, 81, 214);
   color: #06244c;
 }
 
@@ -214,7 +214,7 @@
 .single-tools-option-input {
   border-style: none;
   width: 100%;
-  background-color: #0e386a;
+  background-color: #2cabe3;
   color: white;
   height: 28px;
 }
@@ -229,7 +229,7 @@
 }
 
 .note-questions-single-option-box-selected {
-  background-color: #0e386a;
+  background-color: #2cabe3;
   color: white;
 }
 
@@ -265,7 +265,7 @@
 }
 
 .login-row {
-  background-color: #0e386a;
+  background-color: #2cabe3;
   min-height: 100vh;
 }
 
@@ -277,12 +277,12 @@
 
 .note-login-link {
   text-decoration: none;
-  color: #ffff94;
+  color: rgb(28, 81, 214);
 }
 
 .note-login-link:hover {
   text-decoration: none;
-  color: #ffff94;
+  color: rgb(28, 81, 214);
 }
 
 .note-login-page-logo {
@@ -298,7 +298,7 @@
 
 .login-page-checkbox:checked {
   background-color: transparent;
-  outline: 2px solid #ffff94;
+  outline: 2px solid rgb(28, 81, 214);
 }
 
 .login-u-input {
@@ -318,8 +318,8 @@
 
 .login-u-input-focus:focus {
   border-radius: 2rem;
-  border-color: #ffff94;
-  outline: 2px solid #ffff94;
+  border-color: rgb(28, 81, 214);
+  outline: 2px solid rgb(28, 81, 214);
   color: white;
 }
 
@@ -332,7 +332,7 @@
 }
 
 .purchase-u-btn:hover {
-  border-color: #ffff94;
+  border-color: rgb(28, 81, 214);
 }
 
 .u-login-btn {
@@ -357,7 +357,7 @@
 }
 
 .login-form-input-icon:focus {
-  color: #ffff94;
+  color: rgb(28, 81, 214);
 }
 
 .note-background-img {
@@ -389,7 +389,7 @@
 }
 
 .splash-btn {
-  background-color: #ffff94;
+  background-color: rgb(28, 81, 214);
   padding: 0.4rem 2.5rem;
 }
 
@@ -401,7 +401,7 @@
 }
 
 .note-nav-a-click {
-  background-color: #0e386a;
+  background-color: #2cabe3;
 }
 
 .tools-box-complete {
@@ -448,8 +448,8 @@
 
 .btn-heading-note-add-new {
   border-radius: 3px;
-  border: 1px solid #0e386a;
-  background-color: #0e386a;
+  border: 1px solid #2cabe3;
+  background-color: #2cabe3;
   color: white;
   font-weight: 500;
   padding: 4px;
@@ -471,15 +471,15 @@
 }
 
 .btn-new-phrase {
-  background-color: #0e386a;
-  border: 1px solid #0e386a;
+  background-color: #2cabe3;
+  border: 1px solid #2cabe3;
   font-size: 14px;
   color: white;
 }
 
 .btn-new-phrase:hover {
-  background-color: #0e386a;
-  border: 1px solid #0e386a;
+  background-color: #2cabe3;
+  border: 1px solid #2cabe3;
   color: white;
 }
 
@@ -528,7 +528,7 @@
   position: relative;
   top: 8px;
   right: 15px;
-  color: #ffff94;
+  color: rgb(28, 81, 214);
 }
 
 .note-db-link {
@@ -537,7 +537,7 @@
 }
 
 .note-db-link-active {
-  color: rgb(28, 81, 214);
+  color: #2cabe3;
 }
 
 .note-db-link:visited {
@@ -555,10 +555,10 @@
 }
 
 .note-btn-hover-edit {
-  background-color: #ffff94;
+  background-color: rgb(28, 81, 214);
   font-size: 14px;
   color: white;
-  border: 1px solid #ffff94;
+  border: 1px solid rgb(28, 81, 214);
   border-radius: 3px;
   position: relative;
   bottom: 3em;
@@ -600,9 +600,9 @@
 
 .login-u-input option {
   margin: 40px;
-  background: #0e386a;
+  background: #2cabe3;
   color: #fff;
-  text-shadow: 0 1px 0 #0e386a;
+  text-shadow: 0 1px 0 #2cabe3;
 }
 
 .note-help-modal-para {

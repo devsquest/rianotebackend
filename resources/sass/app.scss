@@ -5,10 +5,11 @@
 @import 'variables';
 
 // Custom
-$u-color-1 : #0e386a;
-$u-color-2 : rgb(28, 81, 214);
+$u-color-1 : #2cabe3;
+$u-color-2 : #2cabe3;
+$u-color-input-border : #33b4ed;
 // $u-color-3 : #e0a800;
-$u-color-3 : #ffff94;
+$u-color-3 : rgb(28 81 214);
 $btn-color : #53b848;
 
 .dark-blue {
@@ -107,7 +108,7 @@ $btn-color : #53b848;
     border: none;
     height: 20px;
     background-color: $u-color-1;
-    border-bottom: 1px solid $u-color-2;
+    border-bottom: 1px solid $u-color-input-border;
     padding-left: 30px;
     color: white;
 }
