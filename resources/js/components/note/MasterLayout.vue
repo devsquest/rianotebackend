@@ -395,8 +395,7 @@
                             <span>{{ x.question_text | removeStringClient(terminologyClient) }}</span>
                             <span v-for="(v, i) in x.options" :key="v.id">
                               <span v-if="x.selectedOptions.indexOf(v.id) != -1">
-                                <span v-if="i >= 1 && x.options.length >= i">
-                                  ,</span>
+                                <span v-if="i >= 1 && x.options.length >= i">,</span>
                                 {{ v.option_text }}</span> </span>.
                           </span>
                           <span v-else>

@@ -3455,7 +3455,7 @@ var render = function render() {
     }, [x.question_type == "text" || x.question_type == "tags" ? _c("span", [x.only_show_options == false ? _c("span", [_c("span", [_vm._v(_vm._s(_vm._f("removeStringClient")(x.question_text, _vm.terminologyClient)))]), _vm._v(" "), _vm._l(x.options, function (v, i) {
       return _c("span", {
         key: v.id
-      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v("\n                                ,")]) : _vm._e(), _vm._v("\n                              " + _vm._s(v.option_text))]) : _vm._e()]);
+      }, [x.selectedOptions.indexOf(v.id) != -1 ? _c("span", [i >= 1 && x.options.length >= i ? _c("span", [_vm._v(",")]) : _vm._e(), _vm._v("\n                              " + _vm._s(v.option_text))]) : _vm._e()]);
     }), _vm._v(".\n                        ")], 2) : _c("span", _vm._l(x.options, function (v) {
       return _c("span", {
         key: v.id
