@@ -37,7 +37,7 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        return '/admin/dashboard';
+        return '/admin/note-list';
     }
     public function __construct()
     {
