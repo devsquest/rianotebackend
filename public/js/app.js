@@ -2868,7 +2868,9 @@ var render = function render() {
     staticClass: "col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg"
   }, [_c("div", {
     staticClass: "new-note-btn"
-  }, _vm._l(_vm.notes_list, function (note) {
+  }, _vm._l(_vm.notes_list.filter(function (x) {
+    return x.name == "Basic Note";
+  }), function (note) {
     return _c("button", {
       key: note.id,
       "class": ["btn", "btn-success", "mt-2", "ml-3", "btn-14px", {
@@ -3213,7 +3215,7 @@ var render = function render() {
         "note-nav-a-click": x.showStatus
       }],
       style: [x.showStatus ? {
-        color: "#ffff94"
+        color: "white"
       } : {
         color: "#06244c"
       }],

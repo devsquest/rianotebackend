@@ -11,7 +11,7 @@
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-12 top-note-height white-bg">
             <div class="new-note-btn">
-              <button v-for="note in notes_list" :key="note.id" :class="[
+              <button v-for="note in notes_list.filter(x => x.name == 'Basic Note')" :key="note.id" :class="[
                 'btn',
                 'btn-success',
                 'mt-2',
@@ -167,7 +167,7 @@
                             },
                           ]" :style="[
                             x.showStatus
-                              ? { color: '#ffff94' }
+                              ? { color: 'white' }
                               : { color: '#06244c' },
                           ]" v-on:click="loadSections(x.id, index, x.type)">
                             {{ x.name }}</a>
