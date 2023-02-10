@@ -20,7 +20,7 @@ class OptionController extends Controller
      * @return View
      */
     public function index(){
-        $options = Option::paginate(15);
+        $options = Option::paginate(25);
 
         return view('option.list-option', [
             'options' => $options,

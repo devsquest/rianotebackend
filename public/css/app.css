@@ -36,8 +36,8 @@
 
 .btn-success {
   color: #06244c;
-  background-color: rgb(28, 81, 214);
-  border-color: rgb(28, 81, 214);
+  background-color: #0077b6;
+  border-color: #0077b6;
   font-weight: 400;
 }
 
@@ -49,20 +49,20 @@
 
 .btn-success:hover {
   color: #06244c;
-  background-color: rgb(28, 81, 214);
-  border-color: rgb(28, 81, 214);
+  background-color: #0077b6;
+  border-color: #0077b6;
 }
 
 .btn-success:visited {
   color: #06244c;
-  background-color: rgb(28, 81, 214);
-  border-color: rgb(28, 81, 214);
+  background-color: #0077b6;
+  border-color: #0077b6;
 }
 
 .btn-success:active {
   color: #06244c;
-  background-color: rgb(28, 81, 214);
-  border-color: rgb(28, 81, 214);
+  background-color: #0077b6;
+  border-color: #0077b6;
 }
 
 .vertical {
@@ -125,7 +125,7 @@
 }
 
 .bg-green {
-  background-color: rgb(28, 81, 214);
+  background-color: #0077b6;
 }
 
 .note-result {
@@ -150,7 +150,7 @@
 }
 
 .note-section-left-li-selected {
-  background-color: rgb(28, 81, 214);
+  background-color: #0077b6;
   color: #06244c;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .note-section-left-li:hover {
-  background-color: rgb(28, 81, 214);
+  background-color: #0077b6;
   color: #06244c;
 }
 
@@ -277,12 +277,12 @@
 
 .note-login-link {
   text-decoration: none;
-  color: rgb(28, 81, 214);
+  color: #0077b6;
 }
 
 .note-login-link:hover {
   text-decoration: none;
-  color: rgb(28, 81, 214);
+  color: #0077b6;
 }
 
 .note-login-page-logo {
@@ -298,7 +298,7 @@
 
 .login-page-checkbox:checked {
   background-color: transparent;
-  outline: 2px solid rgb(28, 81, 214);
+  outline: 2px solid #0077b6;
 }
 
 .login-u-input {
@@ -318,8 +318,8 @@
 
 .login-u-input-focus:focus {
   border-radius: 2rem;
-  border-color: rgb(28, 81, 214);
-  outline: 2px solid rgb(28, 81, 214);
+  border-color: #0077b6;
+  outline: 2px solid #0077b6;
   color: white;
 }
 
@@ -332,7 +332,7 @@
 }
 
 .purchase-u-btn:hover {
-  border-color: rgb(28, 81, 214);
+  border-color: #0077b6;
 }
 
 .u-login-btn {
@@ -357,7 +357,7 @@
 }
 
 .login-form-input-icon:focus {
-  color: rgb(28, 81, 214);
+  color: #0077b6;
 }
 
 .note-background-img {
@@ -389,7 +389,7 @@
 }
 
 .splash-btn {
-  background-color: rgb(28, 81, 214);
+  background-color: #0077b6;
   padding: 0.4rem 2.5rem;
 }
 
@@ -528,7 +528,7 @@
   position: relative;
   top: 8px;
   right: 15px;
-  color: rgb(28, 81, 214);
+  color: #0077b6;
 }
 
 .note-db-link {
@@ -555,10 +555,10 @@
 }
 
 .note-btn-hover-edit {
-  background-color: rgb(28, 81, 214);
+  background-color: #0077b6;
   font-size: 14px;
   color: white;
-  border: 1px solid rgb(28, 81, 214);
+  border: 1px solid #0077b6;
   border-radius: 3px;
   position: relative;
   bottom: 3em;
