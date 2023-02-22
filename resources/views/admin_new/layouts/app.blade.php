@@ -233,84 +233,12 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-envelope"></i>
-                                <span key="t-email">Email</span>
+                                <i class="bx bx-windows"></i>
+                                <span key="t-crypto">Question Management</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="email-inbox.html" key="t-inbox">Inbox</a></li>
-                                <li><a href="email-read.html" key="t-read-email">Read Email</a></li>
-                                <li>
-                                    <a href="javascript: void(0);">
-                                        <span class="badge rounded-pill badge-soft-success float-end" key="t-new">New</span>
-                                        <span key="t-email-templates">Templates</span>
-                                    </a>
-                                    <ul class="sub-menu" aria-expanded="true">
-                                        <li><a href="email-template-basic.html" key="t-basic-action">Basic Action</a></li>
-                                        <li><a href="email-template-alert.html" key="t-alert-email">Alert Email</a></li>
-                                        <li><a href="email-template-billing.html" key="t-bill-email">Billing Email</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-receipt"></i>
-                                <span key="t-invoices">Invoices</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="invoices-list.html" key="t-invoice-list">Invoice List</a></li>
-                                <li><a href="invoices-detail.html" key="t-invoice-detail">Invoice Detail</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-briefcase-alt-2"></i>
-                                <span key="t-projects">Projects</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="projects-grid.html" key="t-p-grid">Projects Grid</a></li>
-                                <li><a href="projects-list.html" key="t-p-list">Projects List</a></li>
-                                <li><a href="projects-overview.html" key="t-p-overview">Project Overview</a></li>
-                                <li><a href="projects-create.html" key="t-create-new">Create New</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-task"></i>
-                                <span key="t-tasks">Tasks</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="tasks-list.html" key="t-task-list">Task List</a></li>
-                                <li><a href="tasks-kanban.html" key="t-kanban-board">Kanban Board</a></li>
-                                <li><a href="tasks-create.html" key="t-create-task">Create Task</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bxs-user-detail"></i>
-                                <span key="t-contacts">Contacts</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="contacts-grid.html" key="t-user-grid">User Grid</a></li>
-                                <li><a href="contacts-list.html" key="t-user-list">User List</a></li>
-                                <li><a href="contacts-profile.html" key="t-profile">Profile</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(0);" class="waves-effect">
-                                <span class="badge rounded-pill bg-success float-end" key="t-new">New</span>
-                                <i class="bx bx-detail"></i>
-                                <span key="t-blog">Blog</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="blog-list.html" key="t-blog-list">Blog List</a></li>
-                                <li><a href="blog-grid.html" key="t-blog-grid">Blog Grid</a></li>
-                                <li><a href="blog-details.html" key="t-blog-details">Blog Details</a></li>
+                                <li><a href="{{ route('admin.section_create') }}" key="t-buy">Create Question</a></li>
+                                <li><a href="{{ route('admin.section_index') }}" key="t-wallet">Question Listing</a></li>
                             </ul>
                         </li>
 

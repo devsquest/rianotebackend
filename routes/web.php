@@ -5,6 +5,7 @@ use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\newAdmin\DashboardController;
 use App\Http\Controllers\newAdmin\UserController;
 use App\Http\Controllers\newAdmin\SectionController;
+use App\Http\Controllers\newAdmin\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -147,4 +148,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin-new', 'middleware' => ['auth'
     Route::get('/section', [SectionController::class, 'index'])->name('section_index');
     Route::get('/section/add', [SectionController::class, 'create'])->name('section_create');
     Route::post('/section/add', [SectionController::class, 'store'])->name('section_store');
+    Route::get('/section/{id}/edit', [SectionController::class, 'edit'])->name('section_edit');
+    Route::post('/section/{id}/edit', [SectionController::class, 'update'])->name('section_update');
+    /**Questions */
+    Route::get('/question', [QuestionController::class, 'index'])->name('question_index');
+    Route::get('/question/add', [QuestionController::class, 'create'])->name('question_create');
+    Route::post('/question/add', [QuestionController::class, 'store'])->name('question_store');
+    Route::get('/question/{id}/edit', [QuestionController::class, 'edit'])->name('question_edit');
+    Route::post('/question/{id}/edit', [QuestionController::class, 'update'])->name('question_update');
 });

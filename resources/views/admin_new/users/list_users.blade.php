@@ -52,7 +52,7 @@
                                         </td>
                                         <td>{{ $user->signature }}</td>
                                         <td>
-                                            <a target="_blank" href="{{ url($user->profile_picture) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
+                                            <a target="_blank" href="{{ $user->profile_picture }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
                                                 Profile Picture
                                             </a>
                                         </td>
