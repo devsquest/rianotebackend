@@ -22,13 +22,13 @@ class SectionController extends Controller
     }
     public function store(Request $request)
     {
-        return $request->all();
         $data = [
-            "parent_id" => '',
-            "name" => '',
-            "note_id" => '',
-            "type" => '',
+            "parent_id" => $request->parent_id,
+            "name" => $request->name,
+            "note_id" => $request->note_id,
+            "type" => $request->type,
         ];
         $section = Section::create($data);
+        return back()->with('success','Section Created Successfully.');
     }
 }

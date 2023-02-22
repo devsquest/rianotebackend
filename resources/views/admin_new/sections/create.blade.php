@@ -59,7 +59,7 @@
                                             <select name="parent_id" id="parent_id" class="form-control">
                                                 <option value="">{{ __('Select Main Section')}}</option>
                                                 @foreach($parentSections as $key => $section)
-                                                <option value="{{$section->id}}">{{ $section }}</option>
+                                                <option value="{{$key}}">{{ $section }}</option>
                                                 @endforeach
                                             </select>
                                             @if($errors->has('parent_id'))
