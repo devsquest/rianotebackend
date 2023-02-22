@@ -9,14 +9,14 @@
     <meta content="Umer Yasin's Custom" name="description" />
     <meta content="Umer" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('admin_new/assets/images/favicon.ico') }}">
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="{{ asset('admin/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('admin/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('admin_new/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -35,19 +35,19 @@
                     <div class="navbar-brand-box">
                         <a href="index.html" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" alt="" height="40" width="40">
+                                <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" alt="" height="40" width="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" alt="" height="50" width="50">
+                                <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" alt="" height="50" width="50">
                             </span>
                         </a>
 
                         <a href="index.html" class="logo logo-light">
                             <span class="logo-sm">
-                                <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" alt="" height="40" width="40">
+                                <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" alt="" height="40" width="40">
                             </span>
                             <span class="logo-lg">
-                                <img src="{{ asset('admin/assets/images/Faster_note logo.png') }}" alt="" height="50" width="50">
+                                <img src="{{ asset('admin_new/assets/images/Faster_note logo.png') }}" alt="" height="50" width="50">
                             </span>
                         </a>
                     </div>
@@ -119,7 +119,7 @@
                                 </a>
                                 <a href="" class="text-reset notification-item">
                                     <div class="media">
-                                        <img src="{{ asset('admin/assets/images/users/avatar-3.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                        <img src="{{ asset('admin_new/assets/images/users/avatar-3.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                         <div class="media-body">
                                             <h6 class="mt-0 mb-1">James Lemire</h6>
                                             <div class="font-size-12 text-muted">
@@ -148,7 +148,7 @@
 
                                 <a href="" class="text-reset notification-item">
                                     <div class="media">
-                                        <img src="{{ asset('admin/assets/images/users/avatar-4.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                                        <img src="{{ asset('admin_new/assets/images/users/avatar-4.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                         <div class="media-body">
                                             <h6 class="mt-0 mb-1">Salena Layfield</h6>
                                             <div class="font-size-12 text-muted">
@@ -169,7 +169,7 @@
 
                     <div class="dropdown d-inline-block">
                         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle header-profile-user" src="{{ asset('admin/assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
+                            <img class="rounded-circle header-profile-user" src="{{ asset('admin_new/assets/images/users/avatar-1.jpg') }}" alt="Header Avatar">
                             <span class="d-none d-xl-inline-block ms-1" key="t-henry">{{ Auth::user()->name }}</span>
                             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                         </button>
@@ -215,13 +215,19 @@
                                 <span key="t-crypto">User Management</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('admin.user_index') }}" key="t-wallet">Users</a></li>
-                                <li><a href="crypto-buy-sell.html" key="t-buy">Buy/Sell</a></li>
-                                <li><a href="crypto-exchange.html" key="t-exchange">Exchange</a></li>
-                                <li><a href="crypto-lending.html" key="t-lending">Lending</a></li>
-                                <li><a href="crypto-orders.html" key="t-orders">Orders</a></li>
-                                <li><a href="crypto-kyc-application.html" key="t-kyc">KYC Application</a></li>
-                                <li><a href="crypto-ico-landing.html" key="t-ico">ICO Landing</a></li>
+                                <li><a href="{{ route('admin.user_create') }}" key="t-buy">Create User</a></li>
+                                <li><a href="{{ route('admin.user_index') }}" key="t-wallet">Users Listing</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="bx bx-windows"></i>
+                                <span key="t-crypto">Section Management</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('admin.section_create') }}" key="t-buy">Create Section</a></li>
+                                <li><a href="{{ route('admin.section_index') }}" key="t-wallet">Section Listing</a></li>
                             </ul>
                         </li>
 
@@ -351,17 +357,17 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('admin/assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/metismenu/metisMenu.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/simplebar/simplebar.min.js') }}"></script>
-    <script src="{{ asset('admin/assets/libs/node-waves/waves.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/metismenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/simplebar/simplebar.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/node-waves/waves.min.js') }}"></script>
 
     <!-- apexcharts -->
-    <script src="{{ asset('admin/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ asset('admin/assets/js/app.js') }}"></script>
+    <script src="{{ asset('admin_new/assets/js/app.js') }}"></script>
     @stack('custom-js')
 </body>
 

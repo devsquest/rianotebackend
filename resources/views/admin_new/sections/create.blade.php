@@ -1,5 +1,5 @@
 @extends('admin_new.layouts.app')
-@section('title', 'Edit User')
+@section('title', 'Add Section')
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -8,13 +8,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Users</h4>
+                    <h4 class="mb-sm-0 font-size-18">Section</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">User Management</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Users</a></li>
-                            <li class="breadcrumb-item active">Edit User</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Section Management</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Add Section</a></li>
+                            <li class="breadcrumb-item active">Add Section</li>
                         </ol>
                     </div>
 
@@ -37,15 +37,15 @@
                                 @endif
                             </div>
                             <div class="col-lg-12">
-                                <h4 class="card-title mb-4">Add User</h4>
+                                <h4 class="card-title mb-4">Add Section</h4>
                             </div>
                             <div class="col-lg-12">
-                                <form method="post" action="{{ route('admin.user_update', $id) }}" class="needs-validation" enctype="multipart/form-data">
+                                <form method="post" action="{{ route('admin.section_store') }}" class="needs-validation" enctype="multipart/form-data">
                                     @csrf
                                     <div class="mb-3 row">
-                                        <label for="name" class="col-md-2 col-form-label">Name</label>
+                                        <label for="name" class="col-md-2 col-form-label">Section Name</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" id="name" name="name" value="{{ $user->name }}" required>
+                                            <input class="form-control" type="text" id="name" name="name" required>
                                             @if($errors->has('name'))
                                             <div class="invalid-feedback d-inline">
                                                 {{ $errors->first('name') }}
@@ -54,40 +54,48 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="email" class="col-md-2 col-form-label">Email</label>
+                                        <label for="parent_id" class="col-md-2 col-form-label">Main Section</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="email" id="email" name="email" value="{{ $user->email }}" required>
-                                            @if($errors->has('email'))
+                                            <select name="parent_id" id="parent_id" class="form-control">
+                                                <option value="">{{ __('Select Main Section')}}</option>
+                                                @foreach($parentSections as $key => $section)
+                                                <option value="{{$section->id}}">{{ $section }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('parent_id'))
                                             <div class="invalid-feedback d-inline">
-                                                {{ $errors->first('email') }}
+                                                {{ $errors->first('parent_id') }}
+                                            </div>
+                                            @endif
+                                            <h6 class="text-primary">Note: If no main section selected, this will be saved as main section too </h6>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="note_id" class="col-md-2 col-form-label">Notes</label>
+                                        <div class="col-md-10">
+                                            <select name="note_id" id="note_id" class="form-control" required>
+                                                <option value="">{{ __('Select Note')}}</option>
+                                                @foreach($notes as $key => $note)
+                                                <option value="{{$note->id}}">{{ $note->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if($errors->has('note_id'))
+                                            <div class="invalid-feedback d-inline">
+                                                {{ $errors->first('note_id') }}
                                             </div>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="signature" class="col-md-2 col-form-label">Signature</label>
+                                        <label for="type" class="col-md-2 col-form-label">Type</label>
                                         <div class="col-md-10">
-                                            <input class="form-control" type="text" id="signature" name="signature" value="{{ $user->signature }}">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="profile_picture" class="col-md-2 col-form-label">Profile</label>
-                                        <div class="col-md-10">
-                                            <input class="form-control" type="file" id="profile_picture" name="profile_picture">
-                                            <div>
-                                                <img src="{{ asset($user->profile_picture) }}" class="img-fluid" style="max-width: 100px">
-                                            </div>
-                                            @if($errors->has('profile_picture'))
-                                            <div class="invalid-feedback d-inline">
-                                                {{ $errors->first('profile_picture') }}
-                                            </div>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="status" class="col-md-2 col-form-label">Status (Active)</label>
-                                        <div class="col-md-10">
-                                            <input class="form-check-input" type="checkbox" name="status" @if($user->status == 1) checked @endif>
+                                            <select class="form-control" name="type" id="type" required>
+                                                <option value="">{{ __('Select Type')}}</option>
+                                                <option value="questionnaire">Questionnaire</option>
+                                                <option value="form-inline">Form Heading and Content Inline</option>
+                                                <option value="form-nextline">Form Heading and Content Next Line</option>
+                                                <option value="statements">Statements</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
