@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin_new.layouts.app')
 @section('title', 'Users')
 @section('content')
 <div class="page-content">
@@ -60,8 +60,8 @@
                                             <a href="{{ route('admin.user_edit', $user->id) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
                                                 Edit
                                             </a>
-                                            <button type="button" class="btn btn-info btn-sm btn-rounded waves-effect waves-light">
-                                                Data
+                                            <button types="button" class="btn btn-info btn-sm btn-rounded waves-effect waves-light">
+                                                Delete
                                             </button>
                                         </td>
                                     </tr>

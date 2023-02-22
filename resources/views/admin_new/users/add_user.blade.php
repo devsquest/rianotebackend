@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('admin_new.layouts.app')
 @section('title', 'Add User')
 @section('content')
 <div class="page-content">

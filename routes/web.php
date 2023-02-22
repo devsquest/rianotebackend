@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\newAdmin\DashboardController;
+use App\Http\Controllers\newAdmin\UserController;
+use App\Http\Controllers\newAdmin\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,14 +134,17 @@ Route::prefix('admin')->group(function () {
         ->middleware('auth');
 });
 
-// Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth']], function () {
-//     /**Dashboard */
-//     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-//     /**User */
-//     Route::get('/users', [UserController::class, 'index'])->name('user_index');
-//     Route::get('/users/add', [UserController::class, 'create'])->name('user_create');
-//     Route::post('/users/add', [UserController::class, 'store'])->name('user_store');
-//     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user_edit');
-//     Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('user_update');
-//     Route::post('/users/enterdetail', [UserController::class, 'enterDetail'])->name('user_enter_detail');
-// });
+Route::group(['as' => 'admin.', 'prefix' => 'admin-new', 'middleware' => ['auth']], function () {
+    /**Dashboard */
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    /**User */
+    Route::get('/users', [UserController::class, 'index'])->name('user_index');
+    Route::get('/users/add', [UserController::class, 'create'])->name('user_create');
+    Route::post('/users/add', [UserController::class, 'store'])->name('user_store');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('user_edit');
+    Route::post('/users/{id}/edit', [UserController::class, 'update'])->name('user_update');
+    /**Sections */
+    Route::get('/section', [SectionController::class, 'index'])->name('section_index');
+    Route::get('/section/add', [SectionController::class, 'create'])->name('section_create');
+    Route::post('/section/add', [SectionController::class, 'store'])->name('section_store');
+});
