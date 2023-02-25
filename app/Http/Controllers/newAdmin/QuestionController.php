@@ -4,6 +4,8 @@ namespace App\Http\Controllers\newAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Section;
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
@@ -12,9 +14,13 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $search = $request->get('search');
+        $questions = Question::when($search, function ($query) use ($search) {
+            $query->where('question_text','like', $search);
+        })->paginate(25);
+        return view('admin_new.questions.index', compact('questions'));
     }
 
     /**
@@ -24,7 +30,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        $sections = Section::with('parent')->get();
+        return view('admin_new.questions.create', compact('sections'));
     }
 
     /**
@@ -35,7 +42,15 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'question_text' => $request->question_text,
+            'question_type' => $request->question_type,
+            'selection_type' => $request->selection_type,
+            'section_id' => $request->section_id,
+            'only_show_options' => isset($request->only_show_options) ? 1 : 0,
+        ];
+        $question = Question::create($data);
+        return back()->with('success', 'Section Created Successfully.');
     }
 
     /**

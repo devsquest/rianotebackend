@@ -237,8 +237,8 @@
                                 <span key="t-crypto">Question Management</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{ route('admin.section_create') }}" key="t-buy">Create Question</a></li>
-                                <li><a href="{{ route('admin.section_index') }}" key="t-wallet">Question Listing</a></li>
+                                <li><a href="{{ route('admin.question_create') }}" key="t-buy">Create Question</a></li>
+                                <li><a href="{{ route('admin.question_index') }}" key="t-wallet">Question Listing</a></li>
                             </ul>
                         </li>
 
