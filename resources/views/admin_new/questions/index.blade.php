@@ -1,5 +1,5 @@
 @extends('admin_new.layouts.app')
-@section('title', 'Section Listing')
+@section('title', 'Question Listing')
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -8,12 +8,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Section Listing</h4>
+                    <h4 class="mb-sm-0 font-size-18">Question Listing</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Section Management</a></li>
-                            <li class="breadcrumb-item active">Section Listing</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Question Management</a></li>
+                            <li class="breadcrumb-item active">Question Listing</li>
                         </ol>
                     </div>
 
@@ -38,9 +38,9 @@
                         </form>
                         <h4 class="card-title mb-4">
                             <br>
-                            <a href="{{ route('admin.section_create') }}" class="btn btn-primary">Create Section</a>
+                            <a href="{{ route('admin.question_create') }}" class="btn btn-primary">Create Question</a>
                         </h4>
-                        <h4 class="card-title mb-4">Section Listing</h4>
+                        <h4 class="card-title mb-4">Question Listing</h4>
                         <div class="table-responsive">
                             <table class="table align-middle table-nowrap mb-0">
                                 <thead class="table-light">
@@ -64,7 +64,7 @@
                                         <td>{{ $question->section->name }}</td>
                                         <td>{{ $question->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.section_edit', $question->id) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
+                                            <a href="{{ route('admin.question_edit', $question->id) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
                                                 Edit
                                             </a>
                                             <button types="button" class="btn btn-info btn-sm btn-rounded waves-effect waves-light">

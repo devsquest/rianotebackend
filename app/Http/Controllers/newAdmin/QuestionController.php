@@ -18,7 +18,7 @@ class QuestionController extends Controller
     {
         $search = $request->get('search');
         $questions = Question::when($search, function ($query) use ($search) {
-            $query->where('question_text','like', $search);
+            $query->where('question_text', 'like', $search);
         })->paginate(25);
         return view('admin_new.questions.index', compact('questions'));
     }
@@ -72,7 +72,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sections = Section::with('parent')->get();
+        $question = Question::where('id', $id)->first();
+        return view('admin_new.questions.edit', compact('sections', 'question'));
     }
 
     /**
@@ -84,7 +86,19 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $question = Question::find($id);
+        $data = [
+            'question_text' => $request->question_text,
+            'question_type' => $request->question_type,
+            'selection_type' => $request->selection_type,
+            'section_id' => $request->section_id,
+            'only_show_options' => isset($request->only_show_options) ? 1 : 0,
+        ];
+        if ($question->update($data)) {
+            return back()->with('success', 'Question Update Successfully.');
+        } else {
+            return back()->with('success', 'Error in Update.');
+        }
     }
 
     /**
