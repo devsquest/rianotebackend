@@ -12,6 +12,7 @@
                         <div class="form-group row m-b-20">
                             <div class="col-sm-12">
                                 <a class="btn btn-success btn-sm" href="{{ url('admin/add-option') }}">Create An Option</a>
+                                <a href="{{ route('admin.dashboard') }}">Try New Admin Panel Beta!</a>
                             </div>
 
                         </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\newAdmin\DashboardController;
 use App\Http\Controllers\newAdmin\UserController;
 use App\Http\Controllers\newAdmin\SectionController;
 use App\Http\Controllers\newAdmin\QuestionController;
+use App\Http\Controllers\newAdmin\OptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,4 +157,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin-new', 'middleware' => ['auth'
     Route::post('/question/add', [QuestionController::class, 'store'])->name('question_store');
     Route::get('/question/{id}/edit', [QuestionController::class, 'edit'])->name('question_edit');
     Route::post('/question/{id}/edit', [QuestionController::class, 'update'])->name('question_update');
+    /**Options */
+    Route::get('/question/{qid}/options', [OptionController::class, 'index'])->name('option_index');
+    Route::get('/question/{qid}/options/add', [OptionController::class, 'create'])->name('option_create');
 });

@@ -1,5 +1,5 @@
 @extends('admin_new.layouts.app')
-@section('title', 'Question Listing')
+@section('title', 'Option Listing')
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -8,12 +8,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                    <h4 class="mb-sm-0 font-size-18">Question Listing</h4>
+                    <h4 class="mb-sm-0 font-size-18">Option Listing</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Question Management</a></li>
-                            <li class="breadcrumb-item active">Question Listing</li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Option Management</a></li>
+                            <li class="breadcrumb-item active">Option Listing</li>
                         </ol>
                     </div>
 
@@ -38,7 +38,7 @@
                         </form>
                         <h4 class="card-title mb-4">
                             <br>
-                            <a href="{{ route('admin.question_create') }}" class="btn btn-primary">Create Question</a>
+                            <a href="{{ route('admin.option_create', $qid) }}" class="btn btn-primary">Add Option</a>
                         </h4>
                         <h4 class="card-title mb-4">Question Listing</h4>
                         <div class="table-responsive">
@@ -46,28 +46,22 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th class="align-middle">ID</th>
-                                        <th class="align-middle">Question Test</th>
-                                        <th class="align-middle">Type</th>
-                                        <th class="align-middle">Selection Type</th>
-                                        <th class="align-middle">Section</th>
+                                        <th class="align-middle">Option Text</th>
+                                        <th class="align-middle">Question Text</th>
                                         <th class="align-middle">Updated At</th>
                                         <th class="align-middle">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($questions as $key => $question)
+                                    @foreach($options as $key => $option)
                                     <tr>
-                                        <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $question->id }}</a> </td>
-                                        <td>{{ $question->question_text }}</td>
-                                        <td>{{ $question->question_type }}</td>
-                                        <td>{{ $question->selection_type }}</td>
-                                        <td>{{ $question->section->name }}</td>
-                                        <td>{{ $question->updated_at }}</td>
+                                        <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $option->id }}</a> </td>
+                                        <td>{{ $option->option_text }}</td>
+                                        <td>{{ $option->question->question_text }}</td>
+                    
+                                        <td>{{ $option->updated_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin.option_index', $question->id) }}" class="btn btn-success btn-sm btn-rounded waves-effect waves-light">
-                                                Options
-                                            </a>
-                                            <a href="{{ route('admin.question_edit', $question->id) }}" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
+                                            <a href="#" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">
                                                 Edit
                                             </a>
                                             <button types="button" class="btn btn-info btn-sm btn-rounded waves-effect waves-light">
@@ -81,7 +75,7 @@
                         </div>
                         <!-- end table-responsive -->
                         <div class="pagination">
-                            {{ $questions->links('vendor.pagination.bootstrap-4') }}
+                            {{-- $options->links('vendor.pagination.bootstrap-4') --}}
                         </div>
                     </div>
                 </div>
